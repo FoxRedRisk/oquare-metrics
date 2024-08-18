@@ -69,7 +69,7 @@ def main():
         "bash", "./src/fullparse.sh",
         "-i", args.input,
         "-s", args.source,
-        "-f", ontology_file,
+        "-f", args.file,
         "-r", args.reasoner
     ]
     

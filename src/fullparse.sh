@@ -189,23 +189,24 @@ done
 for ontology_file in $ontology_files
 do
     log "Processing individual ontology file: $ontology_file"
-    if [ -f "$ontology_file" ]
+    full_ontology_path="$ontology_folders/$ontology_file"
+    if [ -f "$full_ontology_path" ]
     then
-        dir=$(dirname "$ontology_file")
-        outputFile=$(basename "$ontology_file")
+        dir=$(dirname "$full_ontology_path")
+        outputFile=$(basename "$full_ontology_path")
         outputFile="${outputFile%.*}"
         mkdir -p "$contents_folder/temp_results/ontologies/imports/$outputFile/$date/metrics"
         mkdir -p "$contents_folder/temp_results/ontologies/imports/$outputFile/$date/img"
         outputFilePath="${contents_folder#./}/temp_results/ontologies/imports/$outputFile/$date/metrics/$outputFile.xml"
-        log "Ontology file: $ontology_file"
+        log "Ontology file: $full_ontology_path"
         log "Output file path: $outputFilePath"
         log "Checking if ontology file exists:"
-        if [ -f "$ontology_file" ]; then
+        if [ -f "$full_ontology_path" ]; then
             log "Ontology file exists"
         else
             log "Error: Ontology file does not exist"
-            log "Contents of $(dirname "$ontology_file"):"
-            ls -la "$(dirname "$ontology_file")"
+            log "Contents of $(dirname "$full_ontology_path"):"
+            ls -la "$(dirname "$full_ontology_path")"
             exit 1
         fi
         
