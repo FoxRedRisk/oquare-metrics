@@ -39,7 +39,10 @@ def fix_owl_files(imports_folder="ontologies/imports"):
                 if str(s).startswith("file:///") or not str(s):
                     # Convert file URI to a valid HTTP URI
                     file_path = urllib.parse.unquote(str(s)[8:])  # Remove 'file:///' and decode
-                    new_iri = URIRef("http://example.org/ontology/" + os.path.basename(file_path).replace(" ", "_"))
+                    base_name = os.path.basename(file_path)
+                    # Replace spaces with underscores and remove any other non-alphanumeric characters
+                    safe_name = ''.join(c if c.isalnum() or c == '_' else '_' for c in base_name.replace(" ", "_"))
+                    new_iri = URIRef("http://example.org/ontology/" + safe_name)
                     g.remove((s, None, None))
                     g.add((new_iri, p, o))
                     print(f"Fixed invalid ontology IRI in {owl_file}")
