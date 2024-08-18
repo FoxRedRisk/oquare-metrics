@@ -1,11 +1,21 @@
 #!/bin/bash
 
 set -e  # Exit immediately if a command exits with a non-zero status.
+set -x  # Print commands and their arguments as they are executed
 
 # Function to log messages
 log() {
-    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1"
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" >&2
 }
+
+# Function to handle errors
+error_handler() {
+    log "Error occurred in line $1"
+    exit 1
+}
+
+# Set up error handling
+trap 'error_handler $LINENO' ERR
 
 # Function to display usage
 usage() {
@@ -112,17 +122,17 @@ do
                 log "Ontology file: $file"
                 java_command="java -jar ./libs/oquare-versions.jar --ontology \"$file\" --reasoner \"$reasoner\" --outputFile \"$outputFilePath\""
                 log "Executing Java command: $java_command"
-                if eval $java_command > "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_output.log" 2> "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log"
+                if ! eval $java_command > >(tee "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_output.log") 2> >(tee "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log" >&2)
                 then
-                    log "Java command completed successfully"
-                    log "Java command output:"
-                    cat "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_output.log"
-                else
                     exit_status=$?
                     log "Java command failed with exit status: $exit_status"
                     log "Java command error output:"
                     cat "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log"
+                    exit $exit_status
                 fi
+                log "Java command completed successfully"
+                log "Java command output:"
+                cat "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_output.log"
                 
                 if [ -f "$outputFilePath" ]
                 then

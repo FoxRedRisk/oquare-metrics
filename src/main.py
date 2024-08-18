@@ -62,14 +62,17 @@ def main():
     # Log the full command
     logging.info(f"Full fullparse.sh command: {' '.join(fullparse_command)}")
     logging.info(f"Running fullparse.sh with command: {' '.join(fullparse_command)}")
-    result = subprocess.run(fullparse_command, text=True, capture_output=True)
     
-    logging.info(f"fullparse.sh exit code: {result.returncode}")
-    logging.info(f"fullparse.sh stdout:\n{result.stdout}")
-    logging.info(f"fullparse.sh stderr:\n{result.stderr}")
-    
-    if result.returncode != 0:
-        logging.error(f"fullparse.sh failed with exit code: {result.returncode}")
+    try:
+        result = subprocess.run(fullparse_command, text=True, capture_output=True, check=True)
+        logging.info(f"fullparse.sh exit code: {result.returncode}")
+        logging.info(f"fullparse.sh stdout:\n{result.stdout}")
+        logging.info(f"fullparse.sh stderr:\n{result.stderr}")
+        logging.info("fullparse.sh completed successfully")
+    except subprocess.CalledProcessError as e:
+        logging.error(f"fullparse.sh failed with exit code: {e.returncode}")
+        logging.error(f"fullparse.sh stdout:\n{e.stdout}")
+        logging.error(f"fullparse.sh stderr:\n{e.stderr}")
         
         # Additional error handling and logging
         logging.error("Checking fullparse.sh file permissions:")
@@ -86,8 +89,6 @@ def main():
             logging.error("fullparse.sh file does not exist in the expected location")
         
         exit(1)
-    else:
-        logging.info("fullparse.sh completed successfully")
 
     logging.info("Main script completed successfully")
 
