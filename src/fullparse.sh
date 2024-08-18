@@ -53,6 +53,8 @@ then
                         echo "Current directory: $(pwd)"
                         echo "Contents of output directory:"
                         ls -R "$contents_folder/temp_results/$ontology_source/$outputFile/$date/"
+                        echo "Contents of Java error log:"
+                        cat "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log"
                         python $GITHUB_ACTION_PATH/src/main.py -i $contents_folder -s $ontology_source -f $outputFile -d $date \
                             -M $model_plot -c $characteristics_plot -S $subcharacteristics_plot -m $metrics_plot -e $evolution_plot
                     fi
