@@ -11,6 +11,7 @@ def main():
     parser.add_argument('-i', '--input', required=True, help='Input path')
     parser.add_argument('-s', '--source', required=True, help='Ontology source folder')
     parser.add_argument('-f', '--file', required=True, help='Ontology file name')
+    parser.add_argument('-d', '--date', required=True, help='Date of the metrics file (YYYY-MM-DD_HH-MM-SS)')
     parser.add_argument('-M', '--model', action='store_true', help='Generate model plot')
     parser.add_argument('-c', '--characteristics', action='store_true', help='Generate characteristics plot')
     parser.add_argument('-S', '--subcharacteristics', action='store_true', help='Generate subcharacteristics plot')
@@ -25,7 +26,7 @@ def main():
         args.file += '.owl'
     
     # Construct the path to the metrics file
-    metrics_file = os.path.join(args.input, "temp_results", args.source, os.path.splitext(args.file)[0], datetime.now().strftime("%Y-%m-%d_%H-%M-%S"), "metrics", f"{os.path.splitext(args.file)[0]}.xml")
+    metrics_file = os.path.join(args.input, "temp_results", args.source, os.path.splitext(args.file)[0], args.date, "metrics", f"{os.path.splitext(args.file)[0]}.xml")
     
     if not os.path.exists(metrics_file):
         logging.error(f"Metrics file not found: {metrics_file}")
