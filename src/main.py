@@ -54,6 +54,21 @@ def main():
         logging.error(f"fullparse.sh failed with exit code: {e.returncode}")
         logging.error(f"Error output: {e.stderr}")
         logging.debug(f"fullparse.sh stdout: {e.stdout}")
+        
+        # Additional error handling and logging
+        logging.error("Checking fullparse.sh file permissions:")
+        try:
+            permissions = subprocess.run(["ls", "-l", "src/fullparse.sh"], check=True, text=True, capture_output=True)
+            logging.info(f"fullparse.sh permissions: {permissions.stdout.strip()}")
+        except subprocess.CalledProcessError as perm_error:
+            logging.error(f"Failed to check permissions: {perm_error}")
+        
+        logging.error("Checking if fullparse.sh exists:")
+        if os.path.exists("src/fullparse.sh"):
+            logging.info("fullparse.sh file exists")
+        else:
+            logging.error("fullparse.sh file does not exist in the expected location")
+        
         exit(1)
 
     logging.info("Main script completed successfully")
