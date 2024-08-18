@@ -8,16 +8,19 @@ log() {
 }
 
 # Inputs
-contents_folder=$1
-ontology_folders=$2
-ignore_files=$3
-ontology_files=$4
-reasoner=$5
-model_plot=$6
-characteristics_plot=$7
-subcharacteristics_plot=$8
-metrics_plot=$9
-evolution_plot=${10}
+contents_folder="$1"
+ontology_folders="$2"
+ignore_files="$3"
+ontology_files="$4"
+reasoner="$5"
+model_plot="$6"
+characteristics_plot="$7"
+subcharacteristics_plot="$8"
+metrics_plot="$9"
+evolution_plot="${10}"
+
+# Convert backslashes to forward slashes in ontology_files
+ontology_files=$(echo "$ontology_files" | sed 's/\\/\//g')
 
 # Log all input parameters
 log "Input parameters:"
