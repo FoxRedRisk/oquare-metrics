@@ -6,6 +6,9 @@ from Controller import Controller
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
+# Example usage:
+# python src/generate_images.py -i ./output -s ./ontologies -f my_ontology.owl -d 2023-08-18_14-30-00 -M -c -S -m -e
+
 def main():
     parser = argparse.ArgumentParser(description='Generate OQuaRE Metrics Images')
     parser.add_argument('-i', '--input', required=True, help='Input path')
