@@ -140,6 +140,17 @@ do
                 log "Java command output:"
                 cat "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_output.log"
                 
+                # Add more detailed logging here
+                log "Checking if metrics file was generated"
+                if [ -f "$outputFilePath" ]; then
+                    log "Metrics file exists: $outputFilePath"
+                    log "File size: $(du -h "$outputFilePath" | cut -f1)"
+                    log "File contents (first 10 lines):"
+                    head -n 10 "$outputFilePath"
+                else
+                    log "Error: Metrics file was not generated: $outputFilePath"
+                fi
+                
                 if [ -f "$outputFilePath" ]
                 then
                     log "Metrics file generated successfully: $outputFilePath"

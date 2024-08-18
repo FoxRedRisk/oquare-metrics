@@ -64,15 +64,29 @@ def main():
     logging.info(f"Running fullparse.sh with command: {' '.join(fullparse_command)}")
     
     try:
-        result = subprocess.run(fullparse_command, text=True, capture_output=True, check=True)
-        logging.info(f"fullparse.sh exit code: {result.returncode}")
-        logging.info(f"fullparse.sh stdout:\n{result.stdout}")
-        logging.info(f"fullparse.sh stderr:\n{result.stderr}")
+        logging.info("Starting execution of fullparse.sh")
+        process = subprocess.Popen(fullparse_command, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        
+        # Real-time logging of stdout and stderr
+        while True:
+            output = process.stdout.readline()
+            error = process.stderr.readline()
+            if output == '' and error == '' and process.poll() is not None:
+                break
+            if output:
+                logging.info(f"fullparse.sh stdout: {output.strip()}")
+            if error:
+                logging.error(f"fullparse.sh stderr: {error.strip()}")
+        
+        returncode = process.poll()
+        logging.info(f"fullparse.sh exit code: {returncode}")
+        
+        if returncode != 0:
+            raise subprocess.CalledProcessError(returncode, fullparse_command)
+        
         logging.info("fullparse.sh completed successfully")
     except subprocess.CalledProcessError as e:
         logging.error(f"fullparse.sh failed with exit code: {e.returncode}")
-        logging.error(f"fullparse.sh stdout:\n{e.stdout}")
-        logging.error(f"fullparse.sh stderr:\n{e.stderr}")
         
         # Additional error handling and logging
         logging.error("Checking fullparse.sh file permissions:")
