@@ -31,7 +31,6 @@ def main():
     # Construct the path to the metrics file
     metrics_file = os.path.normpath(os.path.join(
         args.input,
-        "temp_results",
         args.source.lstrip('./\\'),  # Remove leading ./ or .\ if present
         os.path.splitext(args.file)[0],
         args.date,
@@ -44,11 +43,26 @@ def main():
     if not os.path.exists(metrics_file):
         logging.error(f"Metrics file not found: {metrics_file}")
         logging.error(f"Current working directory: {os.getcwd()}")
+        logging.error(f"Input path: {args.input}")
+        logging.error(f"Source path: {args.source}")
+        logging.error(f"File: {args.file}")
+        logging.error(f"Date: {args.date}")
         logging.error(f"Directory contents of {os.path.dirname(metrics_file)}:")
         try:
             logging.error(os.listdir(os.path.dirname(metrics_file)))
         except FileNotFoundError:
             logging.error(f"Directory {os.path.dirname(metrics_file)} does not exist")
+        
+        # Try to list contents of parent directories
+        parent_dir = os.path.dirname(metrics_file)
+        for _ in range(3):  # Go up to 3 levels
+            parent_dir = os.path.dirname(parent_dir)
+            logging.error(f"Contents of {parent_dir}:")
+            try:
+                logging.error(os.listdir(parent_dir))
+            except FileNotFoundError:
+                logging.error(f"Directory {parent_dir} does not exist")
+        
         exit(1)
 
     # Initialize the Controller
