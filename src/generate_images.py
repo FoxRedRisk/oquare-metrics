@@ -31,6 +31,11 @@ def main():
     # Construct the path to the metrics file
     metrics_file = os.path.join(args.input, "temp_results", args.source, os.path.splitext(args.file)[0], args.date, "metrics", f"{os.path.splitext(args.file)[0]}.xml")
     
+    # Normalize the path
+    metrics_file = os.path.normpath(metrics_file)
+    
+    logging.info(f"Looking for metrics file at: {metrics_file}")
+    
     if not os.path.exists(metrics_file):
         logging.error(f"Metrics file not found: {metrics_file}")
         exit(1)
@@ -40,6 +45,9 @@ def main():
 
     # Generate the images
     output_path = os.path.dirname(os.path.dirname(metrics_file))
+    output_path = os.path.normpath(output_path)
+    logging.info(f"Output path for images: {output_path}")
+
     if args.model:
         controller.plot_oquare_values(metrics_file, output_path)
     if args.characteristics:
