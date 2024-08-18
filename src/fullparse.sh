@@ -39,10 +39,20 @@ then
                     mkdir -p $contents_folder/temp_results/$ontology_source/$outputFile/$date/metrics
                     mkdir -p $contents_folder/temp_results/$ontology_source/$outputFile/$date/img
                     outputFilePath="$contents_folder/temp_results/$ontology_source/$outputFile/$date/metrics/$outputFile.xml"
-                    java -jar $GITHUB_ACTION_PATH/libs/oquare-versions.jar --ontology "$file" --reasoner "$reasoner" --outputFile "$outputFilePath"
+                    echo "Running OQuaRE for file: $file"
+                    echo "Output path: $outputFilePath"
+                    echo "Reasoner: $reasoner"
+                    java -jar $GITHUB_ACTION_PATH/libs/oquare-versions.jar --ontology "$file" --reasoner "$reasoner" --outputFile "$outputFilePath" > >(tee "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_output.log") 2> >(tee "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log" >&2)
+                    echo "Java command exit status: $?"
                     
                     if [ -f "$outputFilePath" ]
                     then
+                        echo "Metrics file generated successfully: $outputFilePath"
+                    else
+                        echo "Error: Metrics file was not generated for $file"
+                        echo "Current directory: $(pwd)"
+                        echo "Contents of output directory:"
+                        ls -R "$contents_folder/temp_results/$ontology_source/$outputFile/$date/"
                         python $GITHUB_ACTION_PATH/src/main.py -i $contents_folder -s $ontology_source -f $outputFile -d $date \
                             -M $model_plot -c $characteristics_plot -S $subcharacteristics_plot -m $metrics_plot -e $evolution_plot
                     fi
