@@ -40,6 +40,9 @@ def fix_owl_files(imports_folder="ontologies/imports"):
             # Fix invalid URIs like "file:///Technical Debt.owl"
             content = re.sub(r'file:///([^"<>\s]+\.owl)', lambda m: f'http://example.org/ontology/{m.group(1).replace(" ", "_")}', content)
 
+            # Fix invalid URIs like "file:///Technical Debt.owl"
+            content = re.sub(r'file:///([^"<>\s]+\.owl)', lambda m: f'http://example.org/ontology/{m.group(1).replace(" ", "_")}', content)
+
             # Try to parse the fixed OWL content using rdflib
             g = Graph()
             g.parse(data=content, format="xml")
