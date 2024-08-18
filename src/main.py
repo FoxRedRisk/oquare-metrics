@@ -101,7 +101,7 @@ def main():
     # Log the full command
     logger.info(f"Full fullparse.sh command: {' '.join(map(str, fullparse_command))}")
     
-    # Construct the metrics file path
+    # Generate timestamp once and use it consistently
     date_str = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     metrics_file = os.path.normpath(os.path.join(args.input, "temp_results", "ontologies", "imports", os.path.splitext(os.path.basename(ontology_file))[0], date_str, "metrics", f"{os.path.splitext(os.path.basename(ontology_file))[0]}.xml"))
     
@@ -155,7 +155,7 @@ def main():
         "-i", args.input,
         "-s", args.source,
         "-f", args.file,
-        "-d", datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        "-d", date_str
     ]
     
     if args.model:
