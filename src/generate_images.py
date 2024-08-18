@@ -31,8 +31,9 @@ def main():
     # Construct the path to the metrics file
     metrics_file = os.path.normpath(os.path.join(
         args.input,
-        "temp_results",
-        args.source.lstrip('./\\'),  # Remove leading ./ or .\ if present
+        "results",
+        "ontologies",
+        "imports",
         os.path.splitext(args.file)[0],
         args.date,
         "metrics",
