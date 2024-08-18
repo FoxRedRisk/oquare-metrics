@@ -90,70 +90,37 @@ def main():
     # Check if the metrics file already exists
     metrics_file = os.path.join(args.input, "temp_results", args.source, os.path.splitext(args.file)[0], datetime.now().strftime("%Y-%m-%d_%H-%M-%S"), "metrics", f"{os.path.splitext(args.file)[0]}.xml")
     
-    if os.path.exists(metrics_file):
-        logger.info(f"Metrics file already exists: {metrics_file}")
-        logger.info("Skipping fullparse.sh execution")
-    else:
-        try:
-            logger.info("Starting execution of fullparse.sh")
-            process = subprocess.Popen(fullparse_command, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            
-            # Real-time logging of stdout and stderr
-            while True:
-                output = process.stdout.readline()
-                error = process.stderr.readline()
-                if output == '' and error == '' and process.poll() is not None:
-                    break
-                if output:
-                    logger.info(f"fullparse.sh stdout: {output.strip()}")
-                if error:
-                    logger.error(f"fullparse.sh stderr: {error.strip()}")
-            
-            returncode = process.poll()
-            logger.info(f"fullparse.sh exit code: {returncode}")
-            
-            if returncode != 0:
-                raise subprocess.CalledProcessError(returncode, fullparse_command)
-            
-            logger.info("fullparse.sh completed successfully")
-        except subprocess.CalledProcessError as e:
-            logger.error(f"fullparse.sh failed with exit code: {e.returncode}")
-            logger.exception("Exception details:")
+    # Run fullparse.sh to generate the metrics XML file
+    try:
+        logger.info("Starting execution of fullparse.sh")
+        process = subprocess.Popen(fullparse_command, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         
-        # Additional error handling and logging
-        logger.error("Checking fullparse.sh file permissions:")
-        try:
-            permissions = subprocess.run(["ls", "-l", "src/fullparse.sh"], check=True, text=True, capture_output=True)
-            logger.info(f"fullparse.sh permissions: {permissions.stdout.strip()}")
-        except subprocess.CalledProcessError as perm_error:
-            logger.error(f"Failed to check permissions: {perm_error}")
+        # Real-time logging of stdout and stderr
+        while True:
+            output = process.stdout.readline()
+            error = process.stderr.readline()
+            if output == '' and error == '' and process.poll() is not None:
+                break
+            if output:
+                logger.info(f"fullparse.sh stdout: {output.strip()}")
+            if error:
+                logger.error(f"fullparse.sh stderr: {error.strip()}")
         
-        logger.error("Checking if fullparse.sh exists:")
-        if os.path.exists("src/fullparse.sh"):
-            logger.info("fullparse.sh file exists")
-        else:
-            logger.error("fullparse.sh file does not exist in the expected location")
+        returncode = process.poll()
+        logger.info(f"fullparse.sh exit code: {returncode}")
         
-        # Check the content of fullparse.sh
-        try:
-            with open("src/fullparse.sh", "r") as f:
-                logger.info("Content of fullparse.sh:")
-                logger.info(f.read())
-        except Exception as read_error:
-            logger.error(f"Failed to read fullparse.sh: {read_error}")
+        if returncode != 0:
+            raise subprocess.CalledProcessError(returncode, fullparse_command)
         
-        # Check if bash is available and its version
-        try:
-            bash_version = subprocess.run(["bash", "--version"], check=True, text=True, capture_output=True)
-            logger.info(f"Bash version: {bash_version.stdout.split(os.linesep)[0]}")
-        except subprocess.CalledProcessError as bash_error:
-            logger.error(f"Failed to get bash version: {bash_error}")
-            logger.error("Bash may not be installed or not in the system PATH.")
-            logger.error("Please ensure that Bash is installed and accessible from the command line.")
-        except FileNotFoundError:
-            logger.error("Bash executable not found.")
-            logger.error("Please ensure that Bash is installed and accessible from the command line.")
-        
+        logger.info("fullparse.sh completed successfully")
+    except subprocess.CalledProcessError as e:
+        logger.error(f"fullparse.sh failed with exit code: {e.returncode}")
+        logger.exception("Exception details:")
+        exit(1)
+
+    # Check if the metrics file was created
+    if not os.path.exists(metrics_file):
+        logger.error(f"Metrics file not found after running fullparse.sh: {metrics_file}")
         exit(1)
 
     # Generate images using generate_images.py
