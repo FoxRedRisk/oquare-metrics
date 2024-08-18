@@ -1,9 +1,9 @@
 import os
 import glob
-from rdflib import Graph, exceptions, URIRef
+from rdflib import Graph, exceptions, URIRef, Namespace
 from owlready2 import get_ontology, OwlReadyOntologyParsingError
 import urllib.parse
-import urllib.parse
+import re
 
 def fix_owl_files(imports_folder="ontologies/imports"):
     """
@@ -30,12 +30,20 @@ def fix_owl_files(imports_folder="ontologies/imports"):
                 owl_file = new_file_name
                 print(f"Renamed file to {owl_file}")
 
-            # Try to parse the OWL file using rdflib
+            # Read the file content
+            with open(owl_file, 'r', encoding='utf-8') as file:
+                content = file.read()
+
+            # Fix file:/// IRIs
+            content = re.sub(r'file:///[^"<>\s]+', lambda m: urllib.parse.quote(m.group(0), safe=':/@'), content)
+
+            # Try to parse the fixed OWL content using rdflib
             g = Graph()
-            g.parse(owl_file, format="xml")
+            g.parse(data=content, format="xml")
             file_statuses[owl_file] = "Valid"
             
             # Check if the ontology IRI is a file URI and fix it
+            ontology_iri_fixed = False
             for s, p, o in g.triples((None, URIRef("http://www.w3.org/2002/07/owl#Ontology"), None)):
                 if not str(s) or str(s).startswith("file:///") or " " in str(s):
                     # Convert file URI or invalid IRI to a valid HTTP URI
@@ -49,17 +57,19 @@ def fix_owl_files(imports_folder="ontologies/imports"):
                     g.remove((s, None, None))
                     g.add((new_iri, p, o))
                     print(f"Fixed invalid ontology IRI in {owl_file}")
-                    
-                    # Create a new file name with -fixed suffix
-                    fixed_file = os.path.splitext(owl_file)[0] + "-fixed.owl"
-                    
-                    # Save the fixed ontology
-                    g.serialize(destination=fixed_file, format="xml")
-                    fixed_files.append(fixed_file)
-                    file_statuses[owl_file] = "Fixed"
-                    print(f"Fixed version saved as {fixed_file}")
-                else:
-                    print(f"File {owl_file} is valid. No fixes needed.")
+                    ontology_iri_fixed = True
+
+            if ontology_iri_fixed or file_statuses[owl_file] != "Valid":
+                # Create a new file name with -fixed suffix
+                fixed_file = os.path.splitext(owl_file)[0] + "-fixed.owl"
+                
+                # Save the fixed ontology
+                g.serialize(destination=fixed_file, format="xml")
+                fixed_files.append(fixed_file)
+                file_statuses[owl_file] = "Fixed"
+                print(f"Fixed version saved as {fixed_file}")
+            else:
+                print(f"File {owl_file} is valid. No fixes needed.")
         except exceptions.ParserError as e:
             print(f"Error in file {owl_file}: {str(e)}")
             file_statuses[owl_file] = f"Invalid: {str(e)}"
