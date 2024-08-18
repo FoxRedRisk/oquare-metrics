@@ -21,7 +21,7 @@ def main():
     args = parser.parse_args()
     logging.info(f"Arguments: {args}")
 
-    ontology_file = os.path.join(args.input, args.source, args.file)
+    ontology_file = os.path.join(args.input, args.source, "import", args.file)
     
     # Check if the ontology file exists
     if not os.path.isfile(ontology_file):
