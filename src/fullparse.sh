@@ -154,7 +154,7 @@ do
                     
                     # Generate images
                     log "Generating images from existing metrics file"
-                    python_command="python ./src/main.py -i \"$contents_folder\" -s \"$ontology_source\" -f \"$outputFile\" $([ "$model_plot" = true ] && echo "-M") $([ "$characteristics_plot" = true ] && echo "-c") $([ "$subcharacteristics_plot" = true ] && echo "-S") $([ "$metrics_plot" = true ] && echo "-m") $([ "$evolution_plot" = true ] && echo "-e")"
+                    python_command="python ./src/generate_images.py -i \"$contents_folder\" -s \"$ontology_source\" -f \"$outputFile\" $([ "$model_plot" = true ] && echo "-M") $([ "$characteristics_plot" = true ] && echo "-c") $([ "$subcharacteristics_plot" = true ] && echo "-S") $([ "$metrics_plot" = true ] && echo "-m") $([ "$evolution_plot" = true ] && echo "-e")"
                     log "Executing Python command: $python_command"
                     if eval $python_command > >(tee "$contents_folder/temp_results/$ontology_source/$outputFile/$date/python_output.log") 2> >(tee "$contents_folder/temp_results/$ontology_source/$outputFile/$date/python_error.log" >&2)
                     then
@@ -223,7 +223,7 @@ do
             head -n 10 "$outputFilePath"
             
             # Generate images
-            python_command="python ./src/main.py -i \"$contents_folder\" -s \"$dir\" -f \"$outputFile\" $([ "$model_plot" = true ] && echo "-M") $([ "$characteristics_plot" = true ] && echo "-c") $([ "$subcharacteristics_plot" = true ] && echo "-S") $([ "$metrics_plot" = true ] && echo "-m") $([ "$evolution_plot" = true ] && echo "-e")"
+            python_command="python ./src/generate_images.py -i \"$contents_folder\" -s \"$dir\" -f \"$outputFile\" $([ "$model_plot" = true ] && echo "-M") $([ "$characteristics_plot" = true ] && echo "-c") $([ "$subcharacteristics_plot" = true ] && echo "-S") $([ "$metrics_plot" = true ] && echo "-m") $([ "$evolution_plot" = true ] && echo "-e")"
             log "Executing Python command: $python_command"
             if eval $python_command > >(tee "$contents_folder/temp_results/$dir/$outputFile/$date/python_output.log") 2> >(tee "$contents_folder/temp_results/$dir/$outputFile/$date/python_error.log" >&2)
             then
