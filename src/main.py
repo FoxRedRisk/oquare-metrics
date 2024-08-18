@@ -30,14 +30,22 @@ def main():
     # Add .owl extension if not provided
     if not args.file.lower().endswith(('.owl', '.rdf', '.ttl')):
         args.file += '.owl'
-    ontology_file = os.path.join(args.source, args.file)
     
-    # Log the constructed file path
+    # Get the absolute path of the source folder
+    source_folder = os.path.abspath(args.source)
+    ontology_file = os.path.join(source_folder, args.file)
+    
+    # Log the constructed file path and current working directory
+    logging.debug(f"Current working directory: {os.getcwd()}")
+    logging.debug(f"Source folder (absolute path): {source_folder}")
     logging.debug(f"Looking for ontology file at: {ontology_file}")
     
     # Check if the ontology file exists
     if not os.path.isfile(ontology_file):
         logging.error(f"Ontology file not found: {ontology_file}")
+        logging.error(f"Contents of {source_folder}:")
+        for file in os.listdir(source_folder):
+            logging.error(f"  {file}")
         exit(1)
 
     # Run fullparse.sh to generate the metrics XML file
