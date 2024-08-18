@@ -156,6 +156,35 @@ def main():
         
         exit(1)
 
+    # Generate images using generate_images.py
+    generate_images_command = [
+        "python", "./src/generate_images.py",
+        "-i", args.input,
+        "-s", args.source,
+        "-f", args.file,
+        "-d", datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    ]
+    
+    if args.model:
+        generate_images_command.append("-M")
+    if args.characteristics:
+        generate_images_command.append("-c")
+    if args.subcharacteristics:
+        generate_images_command.append("-S")
+    if args.metrics:
+        generate_images_command.append("-m")
+    if args.evolution:
+        generate_images_command.append("-e")
+    
+    logger.info(f"Executing generate_images.py with command: {' '.join(generate_images_command)}")
+    
+    try:
+        subprocess.run(generate_images_command, check=True, text=True, capture_output=True)
+        logger.info("Image generation completed successfully")
+    except subprocess.CalledProcessError as e:
+        logger.error(f"Image generation failed with exit code: {e.returncode}")
+        logger.error(f"Error output: {e.stderr}")
+    
     logger.info("Main script completed successfully")
 
 if __name__ == '__main__':
