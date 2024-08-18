@@ -32,18 +32,13 @@ OQuaRE is a framework developed by Astrid Duque Ramos which defines an ontology 
 
    a. Using the main Python script:
    ```
-   python src/main.py -i <input_path> -s <ontology_source> -f <file> -r <reasoner> [-M] [-c] [-S] [-m] [-e]
-   ```
-
-   b. Directly using the fullparse.sh script:
-   ```
-   bash ./src/fullparse.sh -i <input_path> -s <ontology_source> -f <file> -r <reasoner> [-M] [-c] [-S] [-m] [-e]
+   python src/main.py -i <input_path> -s <source_folder> -f <ontology_file> -r <reasoner> [-M] [-c] [-S] [-m] [-e]
    ```
 
    Where:
-   - `<input_path>`: Path to the input folder
-   - `<ontology_source>`: Source folder containing the ontology file
-   - `<file>`: Name of the ontology file
+   - `<input_path>`: Path where you want to store the results
+   - `<source_folder>`: Folder containing your ontology files
+   - `<ontology_file>`: Name of the specific ontology file you want to analyze
    - `<reasoner>`: Reasoner to use (default: HermiT)
    - `-M`: Generate model plot
    - `-c`: Generate characteristics plot
@@ -55,12 +50,17 @@ OQuaRE is a framework developed by Astrid Duque Ramos which defines an ontology 
    ```
    python src/main.py -i ./output -s ./ontologies -f my_ontology.owl -r HermiT -M -c -S -m -e
    ```
-   or
+
+   This example will run the analysis on the ontology file "my_ontology.owl" in the "./ontologies" folder, using the HermiT reasoner, and generate all available plots. The output will be stored in the "./output" directory.
+
+   Note: The script will automatically add the .owl extension to the ontology file name if it's not provided.
+
+   b. Directly using the fullparse.sh script (this method is not recommended for most users):
    ```
-   bash ./src/fullparse.sh -i ./output -s ./ontologies -f my_ontology.owl -r HermiT -M -c -S -m -e
+   bash ./src/fullparse.sh -i <input_path> -s <source_folder> -f <ontology_file> -r <reasoner> [-M] [-c] [-S] [-m] [-e]
    ```
 
-   These examples will run the application on the ontology file "my_ontology.owl" in the "./ontologies" folder, using the HermiT reasoner, and generate all available plots. The output will be stored in the "./output" directory.
+   The parameters for fullparse.sh are the same as for the main.py script.
 
 ## Contact
 
