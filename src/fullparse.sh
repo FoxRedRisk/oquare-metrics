@@ -150,6 +150,14 @@ do
                     log "Java command completed successfully"
                     log "Java command output:"
                     cat "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_output.log"
+                
+                    # Check if the output file was actually created
+                    if [ ! -f "$outputFilePath" ]; then
+                        log "Error: Output file was not created: $outputFilePath"
+                        log "Contents of output directory:"
+                        ls -R "$contents_folder/temp_results/$ontology_source/$outputFile/$date/"
+                        exit 1
+                    fi
                 fi
                 
                 log "Checking metrics file"
