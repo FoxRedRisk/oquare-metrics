@@ -123,12 +123,12 @@ do
         find "$ontology_source" -maxdepth 1 -type f \( -name "*.rdf" -o -name "*.owl" -o -name "*.ttl" -o -name "*.nt" -o -name "*.n3" -o -name "*.jsonld" \) | while read -r file
         do
             outputFile=$(basename "$file")
+            outputFile="${outputFile%.*}"
             if [ -z "$(printf '%s\n' "$ignore_files" | grep -Fx "$file")" ] && [ -z "$(printf '%s\n' "$ontology_files" | grep -Fx "$file")" ]
             then
-                outputFile="${outputFile%.*}" 
-                mkdir -p "$contents_folder/temp_results/$ontology_source/$outputFile/$date/metrics"
-                mkdir -p "$contents_folder/temp_results/$ontology_source/$outputFile/$date/img"
-                outputFilePath="${contents_folder#./}/temp_results/${ontology_source#./}/$outputFile/$date/metrics/$outputFile.xml"
+                mkdir -p "$contents_folder/temp_results/ontologies/imports/$outputFile/$date/metrics"
+                mkdir -p "$contents_folder/temp_results/ontologies/imports/$outputFile/$date/img"
+                outputFilePath="${contents_folder#./}/temp_results/ontologies/imports/$outputFile/$date/metrics/$outputFile.xml"
                 log "Checking if metrics file already exists: $outputFilePath"
                 if [ -f "$outputFilePath" ]; then
                     log "Metrics file already exists, skipping Java execution"
@@ -192,9 +192,9 @@ do
         dir=$(dirname "$ontology_file")
         outputFile=$(basename "$ontology_file")
         outputFile="${outputFile%.*}"
-        mkdir -p "$contents_folder/temp_results/$dir/$outputFile/$date/metrics"
-        mkdir -p "$contents_folder/temp_results/$dir/$outputFile/$date/img"
-        outputFilePath="${contents_folder#./}/temp_results/${dir#./}/$outputFile/$date/metrics/$outputFile.xml"
+        mkdir -p "$contents_folder/temp_results/ontologies/imports/$outputFile/$date/metrics"
+        mkdir -p "$contents_folder/temp_results/ontologies/imports/$outputFile/$date/img"
+        outputFilePath="${contents_folder#./}/temp_results/ontologies/imports/$outputFile/$date/metrics/$outputFile.xml"
         log "Ontology file: $ontology_file"
         log "Output file path: $outputFilePath"
         log "Checking if ontology file exists:"
