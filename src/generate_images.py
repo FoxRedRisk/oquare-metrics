@@ -85,16 +85,19 @@ def main():
     output_path = os.path.normpath(output_path)
     logging.info(f"Output path for images: {output_path}")
 
+    file_name = os.path.splitext(os.path.basename(args.file))[0]
     if args.model:
-        controller.plot_oquare_values(metrics_file, output_path)
+        controller.handle_oquare_model(file_name, args.input, args.source, args.date)
     if args.characteristics:
-        controller.plot_oquare_characteristics(metrics_file, output_path)
+        controller.handle_characteristics(output_path, file_name)
     if args.subcharacteristics:
-        controller.plot_oquare_subcharacteristics(metrics_file, output_path)
+        controller.handle_subcharacteristics(output_path, file_name)
     if args.metrics:
-        controller.plot_metrics(metrics_file, output_path)
+        controller.handle_metrics(output_path, file_name)
     if args.evolution:
-        controller.plot_evolution(metrics_file, output_path)
+        controller.handle_metrics_evolution(file_name, args.input, args.source, args.date)
+        controller.handle_characteristics_evolution(file_name, args.input, args.source, args.date)
+        controller.handle_subcharacteristics_evolution(file_name, args.input, args.source, args.date)
 
     logging.info("Image generation completed successfully")
 
