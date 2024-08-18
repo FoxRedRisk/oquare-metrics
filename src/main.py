@@ -1,4 +1,5 @@
 import sys
+import os
 import argparse
 import subprocess
 from datetime import datetime
@@ -37,6 +38,12 @@ def main():
         controller.handle_oquare_model(args.file, args.input, args.source, date)
 
     temp_path += f"{args.source}/{args.file}/{date}"
+
+    metrics_file = f"{temp_path}/metrics/{args.file}.xml"
+    if not os.path.exists(metrics_file):
+        print(f"Error: Metrics file not found: {metrics_file}")
+        print("Please check if the fullparse.py script generated the metrics file correctly.")
+        sys.exit(1)
 
     if args.characteristics:
         controller.handle_characteristics(temp_path, args.file)
