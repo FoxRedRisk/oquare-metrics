@@ -1,6 +1,7 @@
 import argparse
 import logging
 import os
+import traceback
 from datetime import datetime
 from Controller import Controller
 
@@ -26,6 +27,7 @@ logger.addHandler(fh)
 
 def main():
     logger.info("Starting generate_images.py")
+    try:
     parser = argparse.ArgumentParser(description='Generate OQuaRE Metrics Images')
     parser.add_argument('-i', '--input', required=True, help='Input path')
     parser.add_argument('-s', '--source', required=True, help='Ontology source folder')
@@ -93,7 +95,10 @@ def main():
         controller.handle_characteristics_evolution(file_name, args.input, args.source, args.date)
         controller.handle_subcharacteristics_evolution(file_name, args.input, args.source, args.date)
 
-    logging.info("Image generation completed successfully")
+        logging.info("Image generation completed successfully")
+    except Exception as e:
+        logger.error(f"An error occurred during image generation: {str(e)}")
+        logger.error(traceback.format_exc())
 
 if __name__ == '__main__':
     logging.info("Starting generate_images.py")

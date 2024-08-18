@@ -164,37 +164,54 @@ class Controller:
         input_path -- Folder which stores generated results
         ontology_source -- Source folder which contains ontology file being analysed
         date -- Current date of module execution
-
+        
         """
         import os
+        import logging
+
+        logger = logging.getLogger(__name__)
+        logger.info(f"Starting handle_oquare_model for file: {file}")
 
         archive_path = input_path + '/archives/' + ontology_source + '/' + file + '/'
         results_path = input_path + '/results/' + ontology_source + '/' + file + '/'
         temp_path = input_path + '/temp_results/' + ontology_source + '/' + file + '/' + date
         oquare_model_values = {}
 
+        logger.debug(f"Archive path: {archive_path}")
+        logger.debug(f"Results path: {results_path}")
+        logger.debug(f"Temp path: {temp_path}")
+
         # Create necessary directories
         os.makedirs(temp_path + '/metrics/', exist_ok=True)
+        logger.info(f"Created directory: {temp_path}/metrics/")
 
         archive_list = sorted(glob.glob(archive_path + '*/metrics/' + file + '.xml'))[-18:]
+        logger.debug(f"Found {len(archive_list)} archive files")
         for path in archive_list:
+            logger.debug(f"Parsing archive file: {path}")
             self.parse_entry(archive_path, path, oquare_model_values, 'oquare_value') 
 
         results_file_path = glob.glob(results_path + '*/metrics/' + file + '.xml')
         if len(results_file_path) > 0:
             results_file_path = results_file_path[0]
+            logger.debug(f"Parsing results file: {results_file_path}")
             self.parse_entry(results_path, results_file_path, oquare_model_values, 'oquare_value')
 
         metrics_file = temp_path + '/metrics/' + file + '.xml'
         if not os.path.exists(metrics_file):
-            print(f"Warning: Metrics file not found: {metrics_file}")
+            logger.warning(f"Metrics file not found: {metrics_file}")
             return
 
+        logger.debug(f"Parsing metrics file: {metrics_file}")
         parsed_metrics = MetricsParser(metrics_file)
         oquare_model_values[date] = parsed_metrics.parse_oquare_value()
 
+        logger.info("Plotting OQuaRE values")
         self.graphPlotter.plot_oquare_values(oquare_model_values, file, temp_path)
+        logger.info("Appending OQuaRE value to README")
         self.readmeGenerator.append_oquare_value(file, temp_path)
+
+        logger.info("Finished handle_oquare_model")
 
 
     def handle_metrics_evolution(self, file: str, input_path: str, ontology_source: str, date: str) -> None:
