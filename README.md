@@ -26,19 +26,30 @@ OQuaRE is a framework developed by Astrid Duque Ramos which defines an ontology 
 1. Clone this repository
 2. Install the required Python libraries:
    ```
-   pip install matplotlib matplotx
+   pip install -r requirements.txt
    ```
 3. Run the main script:
    ```
-   python src/main.py -i <input_path> -s <ontology_source> -f <file> -d <date> -M <model_plot> -c <characteristics_plot> -S <subcharacteristics_plot> -m <metrics_plot> -e <evolution_plot>
+   python src/main.py -i <input_path> -s <ontology_source> -f <file> -r <reasoner> [-M] [-c] [-S] [-m] [-e]
    ```
 
    Where:
    - `<input_path>`: Path to the input folder
    - `<ontology_source>`: Source folder containing the ontology file
    - `<file>`: Name of the ontology file
-   - `<date>`: Current date in format YYYY-MM-DD_HH-MM-SS
-   - `<model_plot>`, `<characteristics_plot>`, `<subcharacteristics_plot>`, `<metrics_plot>`, `<evolution_plot>`: Boolean values (true/false) to indicate which plots to generate
+   - `<reasoner>`: Reasoner to use (default: HermiT)
+   - `-M`: Generate model plot
+   - `-c`: Generate characteristics plot
+   - `-S`: Generate subcharacteristics plot
+   - `-m`: Generate metrics plot
+   - `-e`: Generate evolution plot
+
+   Example:
+   ```
+   python src/main.py -i ./output -s ./ontologies -f my_ontology.owl -r HermiT -M -c -S -m -e
+   ```
+
+   This example will run the application on the ontology file "my_ontology.owl" in the "./ontologies" folder, using the HermiT reasoner, and generate all available plots. The output will be stored in the "./output" directory.
 
 ## Contact
 
