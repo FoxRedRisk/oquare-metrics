@@ -114,15 +114,34 @@ class Controller:
         file -- Current ontology file being analysed
 
         """
+        logging.info(f"Handling characteristics for file: {file}")
+        logging.info(f"Temp path: {temp_path}")
+        
         oquare_characteristics_values = {}
 
-        parsed_metrics = MetricsParser(temp_path + '/metrics/' + file + '.xml')
-        characteristics = parsed_metrics.parse_characteristics_metrics()
-        for characteristic, values in characteristics.items():
-            oquare_characteristics_values[characteristic] = values.get('value')
+        metrics_file = temp_path + '/metrics/' + file + '.xml'
+        logging.info(f"Using metrics file: {metrics_file}")
         
-        self.graphPlotter.plot_oquare_characteristics(oquare_characteristics_values, file, temp_path)
-        self.readmeGenerator.append_characteristics(file, temp_path)
+        if not os.path.exists(metrics_file):
+            logging.error(f"Metrics file not found: {metrics_file}")
+            return
+
+        try:
+            parsed_metrics = MetricsParser(metrics_file)
+            characteristics = parsed_metrics.parse_characteristics_metrics()
+            logging.info(f"Parsed characteristics: {characteristics}")
+            
+            for characteristic, values in characteristics.items():
+                oquare_characteristics_values[characteristic] = values.get('value')
+            
+            logging.info(f"Characteristics values: {oquare_characteristics_values}")
+            
+            self.graphPlotter.plot_oquare_characteristics(oquare_characteristics_values, file, temp_path)
+            self.readmeGenerator.append_characteristics(file, temp_path)
+            logging.info("Characteristics handling completed successfully")
+        except Exception as e:
+            logging.error(f"Error handling characteristics: {str(e)}")
+            logging.exception("Exception details:")
 
     def handle_subcharacteristics(self, temp_path: str, file: str) -> None:
         """Handles subcharacteristics data extraction, plotting and reporting

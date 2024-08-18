@@ -57,9 +57,13 @@ def main():
     metrics_file = None
     for location in possible_locations:
         potential_file = os.path.join(location, f"{os.path.splitext(args.file)[0]}.xml")
+        logging.info(f"Checking for metrics file at: {potential_file}")
         if os.path.exists(potential_file):
             metrics_file = potential_file
+            logging.info(f"Found metrics file at: {metrics_file}")
             break
+        else:
+            logging.warning(f"Metrics file not found at: {potential_file}")
 
     if metrics_file is None:
         logging.error("Metrics file not found in any of the expected locations.")
@@ -72,7 +76,15 @@ def main():
                 logging.error(f"Directory does not exist: {os.path.dirname(location)}")
         exit(1)
 
-    logging.info(f"Found metrics file at: {metrics_file}")
+    logging.info(f"Using metrics file: {metrics_file}")
+    
+    # Verify the content of the metrics file
+    try:
+        with open(metrics_file, 'r') as f:
+            metrics_content = f.read()
+            logging.info(f"Metrics file content (first 100 characters): {metrics_content[:100]}")
+    except Exception as e:
+        logging.error(f"Error reading metrics file: {str(e)}")
 
     # Initialize the Controller
     controller = Controller()
