@@ -1,2 +1,4 @@
 matplotlib
 matplotx[all]
+rdflib
+owlready2
