@@ -82,6 +82,16 @@ log "Ontology folders: $ontology_folders"
 log "Ontology files: $ontology_files"
 log "Reasoner: $reasoner"
 
+# Check if the Java tool exists
+if [ ! -f "./libs/oquare-versions.jar" ]; then
+    log "Error: OQuaRE Java tool not found at ./libs/oquare-versions.jar"
+    exit 1
+fi
+
+# Check Java version
+java_version=$(java -version 2>&1 | awk -F '"' '/version/ {print $2}')
+log "Java version: $java_version"
+
 for ontology_source in $ontology_folders
 do
     if [ -d "$ontology_source" ]
@@ -99,11 +109,18 @@ do
                 log "Running OQuaRE for file: $file"
                 log "Output path: $outputFilePath"
                 log "Reasoner: $reasoner"
-                if java -jar ./libs/oquare-versions.jar --ontology "$file" --reasoner "$reasoner" --outputFile "$outputFilePath" > "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_output.log" 2> "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log"
+                java_command="java -jar ./libs/oquare-versions.jar --ontology \"$file\" --reasoner \"$reasoner\" --outputFile \"$outputFilePath\""
+                log "Executing Java command: $java_command"
+                if eval $java_command > "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_output.log" 2> "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log"
                 then
                     log "Java command completed successfully"
+                    log "Java command output:"
+                    cat "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_output.log"
                 else
-                    log "Java command failed with exit status: $?"
+                    exit_status=$?
+                    log "Java command failed with exit status: $exit_status"
+                    log "Java command error output:"
+                    cat "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log"
                 fi
                 
                 if [ -f "$outputFilePath" ]
