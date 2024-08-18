@@ -63,30 +63,37 @@ def main():
     logging.info(f"Full fullparse.sh command: {' '.join(fullparse_command)}")
     logging.info(f"Running fullparse.sh with command: {' '.join(fullparse_command)}")
     
-    try:
-        logging.info("Starting execution of fullparse.sh")
-        process = subprocess.Popen(fullparse_command, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        
-        # Real-time logging of stdout and stderr
-        while True:
-            output = process.stdout.readline()
-            error = process.stderr.readline()
-            if output == '' and error == '' and process.poll() is not None:
-                break
-            if output:
-                logging.info(f"fullparse.sh stdout: {output.strip()}")
-            if error:
-                logging.error(f"fullparse.sh stderr: {error.strip()}")
-        
-        returncode = process.poll()
-        logging.info(f"fullparse.sh exit code: {returncode}")
-        
-        if returncode != 0:
-            raise subprocess.CalledProcessError(returncode, fullparse_command)
-        
-        logging.info("fullparse.sh completed successfully")
-    except subprocess.CalledProcessError as e:
-        logging.error(f"fullparse.sh failed with exit code: {e.returncode}")
+    # Check if the metrics file already exists
+    metrics_file = os.path.join(args.input, "temp_results", args.source, os.path.splitext(args.file)[0], datetime.now().strftime("%Y-%m-%d_%H-%M-%S"), "metrics", f"{os.path.splitext(args.file)[0]}.xml")
+    
+    if os.path.exists(metrics_file):
+        logging.info(f"Metrics file already exists: {metrics_file}")
+        logging.info("Skipping fullparse.sh execution")
+    else:
+        try:
+            logging.info("Starting execution of fullparse.sh")
+            process = subprocess.Popen(fullparse_command, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            
+            # Real-time logging of stdout and stderr
+            while True:
+                output = process.stdout.readline()
+                error = process.stderr.readline()
+                if output == '' and error == '' and process.poll() is not None:
+                    break
+                if output:
+                    logging.info(f"fullparse.sh stdout: {output.strip()}")
+                if error:
+                    logging.error(f"fullparse.sh stderr: {error.strip()}")
+            
+            returncode = process.poll()
+            logging.info(f"fullparse.sh exit code: {returncode}")
+            
+            if returncode != 0:
+                raise subprocess.CalledProcessError(returncode, fullparse_command)
+            
+            logging.info("fullparse.sh completed successfully")
+        except subprocess.CalledProcessError as e:
+            logging.error(f"fullparse.sh failed with exit code: {e.returncode}")
         
         # Additional error handling and logging
         logging.error("Checking fullparse.sh file permissions:")

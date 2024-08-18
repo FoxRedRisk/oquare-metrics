@@ -122,26 +122,30 @@ do
                 mkdir -p "$contents_folder/temp_results/$ontology_source/$outputFile/$date/metrics"
                 mkdir -p "$contents_folder/temp_results/$ontology_source/$outputFile/$date/img"
                 outputFilePath="${contents_folder#./}/temp_results/${ontology_source#./}/$outputFile/$date/metrics/$outputFile.xml"
-                log "Running OQuaRE for file: $file"
-                log "Output path: $outputFilePath"
-                log "Reasoner: $reasoner"
-                log "Ontology file: $file"
-                java_command="java -jar ./libs/oquare-versions.jar --ontology \"$file\" --reasoner \"$reasoner\" --outputFile \"$outputFilePath\""
-                log "Executing Java command: $java_command"
-                if ! eval $java_command > >(tee "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_output.log") 2> >(tee "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log" >&2)
-                then
-                    exit_status=$?
-                    log "Java command failed with exit status: $exit_status"
-                    log "Java command error output:"
-                    cat "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log"
-                    exit $exit_status
+                log "Checking if metrics file already exists: $outputFilePath"
+                if [ -f "$outputFilePath" ]; then
+                    log "Metrics file already exists, skipping Java execution"
+                else
+                    log "Running OQuaRE for file: $file"
+                    log "Output path: $outputFilePath"
+                    log "Reasoner: $reasoner"
+                    log "Ontology file: $file"
+                    java_command="java -jar ./libs/oquare-versions.jar --ontology \"$file\" --reasoner \"$reasoner\" --outputFile \"$outputFilePath\""
+                    log "Executing Java command: $java_command"
+                    if ! eval $java_command > >(tee "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_output.log") 2> >(tee "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log" >&2)
+                    then
+                        exit_status=$?
+                        log "Java command failed with exit status: $exit_status"
+                        log "Java command error output:"
+                        cat "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log"
+                        exit $exit_status
+                    fi
+                    log "Java command completed successfully"
+                    log "Java command output:"
+                    cat "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_output.log"
                 fi
-                log "Java command completed successfully"
-                log "Java command output:"
-                cat "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_output.log"
                 
-                # Add more detailed logging here
-                log "Checking if metrics file was generated"
+                log "Checking metrics file"
                 if [ -f "$outputFilePath" ]; then
                     log "Metrics file exists: $outputFilePath"
                     log "File size: $(du -h "$outputFilePath" | cut -f1)"
