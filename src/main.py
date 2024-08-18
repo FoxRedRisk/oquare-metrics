@@ -4,6 +4,25 @@ import os
 import subprocess
 from datetime import datetime
 
+"""
+How to run:
+python src/main.py -i <input_path> -s <source_folder> -f <ontology_file> -r <reasoner> [-M] [-c] [-S] [-m] [-e]
+
+Example:
+python src/main.py -i ./output -s ./ontologies -f my_ontology.owl -r HermiT -M -c -S -m -e
+
+Arguments:
+-i, --input: Input path for storing results
+-s, --source: Ontology source folder
+-f, --file: Ontology file name
+-r, --reasoner: Reasoner to use (default: HermiT)
+-M: Generate model plot
+-c: Generate characteristics plot
+-S: Generate subcharacteristics plot
+-m: Generate metrics plot
+-e: Generate evolution plot
+"""
+
 # Configure logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -20,11 +39,6 @@ fh = logging.FileHandler('oquare_metrics.log')
 fh.setLevel(logging.DEBUG)
 fh.setFormatter(formatter)
 logger.addHandler(fh)
-
-# How to run:
-# python src/main.py -i <input_path> -s <source_folder> -f <ontology_file> -r <reasoner> [-M] [-c] [-S] [-m] [-e]
-# Example:
-# python src/main.py -i ./output -s ./ontologies -f my_ontology.owl -r HermiT -M -c -S -m -e
 
 def main():
     logger.info("Starting main.py")
