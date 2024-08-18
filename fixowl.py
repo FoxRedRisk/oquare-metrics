@@ -21,6 +21,13 @@ def fix_owl_files(imports_folder="ontologies/imports"):
     
     for owl_file in owl_files:
         try:
+            # Replace spaces with underscores in the file name
+            new_file_name = owl_file.replace(" ", "_")
+            if new_file_name != owl_file:
+                os.rename(owl_file, new_file_name)
+                owl_file = new_file_name
+                print(f"Renamed file to {owl_file}")
+
             # Try to parse the OWL file using rdflib
             g = Graph()
             g.parse(owl_file, format="xml")
@@ -29,7 +36,7 @@ def fix_owl_files(imports_folder="ontologies/imports"):
             # Check if the ontology IRI is a file URI and fix it
             for s, p, o in g.triples((None, URIRef("http://www.w3.org/2002/07/owl#Ontology"), None)):
                 if str(s).startswith("file:///") or not str(s):
-                    new_iri = URIRef("http://example.org/ontology/" + os.path.basename(owl_file))
+                    new_iri = URIRef("http://example.org/ontology/" + os.path.basename(owl_file).replace(" ", "_"))
                     g.remove((s, None, None))
                     g.add((new_iri, p, o))
                     print(f"Fixed invalid ontology IRI in {owl_file}")
