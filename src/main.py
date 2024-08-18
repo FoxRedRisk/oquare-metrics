@@ -79,13 +79,22 @@ def main():
         exit(1)
 
     # Run fullparse.sh to generate the metrics XML file
-    fullparse_command = [
-        "bash", "./src/fullparse.sh",
-        "-i", args.input,
-        "-s", args.source,
-        "-f", args.file,
-        "-r", args.reasoner
-    ]
+    if os.name == 'nt':  # Windows
+        fullparse_command = [
+            "sh", "./src/fullparse.sh",
+            "-i", args.input,
+            "-s", args.source,
+            "-f", args.file,
+            "-r", args.reasoner
+        ]
+    else:  # Unix-like systems
+        fullparse_command = [
+            "bash", "./src/fullparse.sh",
+            "-i", args.input,
+            "-s", args.source,
+            "-f", args.file,
+            "-r", args.reasoner
+        ]
     
     if args.model:
         fullparse_command.append("-M")
@@ -129,6 +138,11 @@ def main():
         logger.info("fullparse.sh completed successfully")
     except subprocess.CalledProcessError as e:
         logger.error(f"fullparse.sh failed with exit code: {e.returncode}")
+        logger.error(f"Command that failed: {' '.join(e.cmd)}")
+        logger.exception("Exception details:")
+        exit(1)
+    except Exception as e:
+        logger.error(f"An unexpected error occurred while running fullparse.sh: {str(e)}")
         logger.exception("Exception details:")
         exit(1)
 
