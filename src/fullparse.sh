@@ -13,22 +13,14 @@ error_handler() {
     local exit_code=$?
     log "Error occurred in line $1 with exit code $exit_code"
     log "Last command executed: $BASH_COMMAND"
-    log "Current working directory: $(pwd)"
-    log "Contents of current directory:"
-    ls -la
     exit $exit_code
 }
 
 # Set up error handling
 trap 'error_handler $LINENO' ERR
 
-# Enable debug mode
-set -o functrace
-set -o errtrace
-
 # Log script start
-log "Starting fullparse.sh"
-log "Arguments: $@"
+log "Starting fullparse.sh with arguments: $@"
 
 # Function to display usage
 usage() {
@@ -126,57 +118,21 @@ do
             outputFile="${outputFile%.*}"
             if [ -z "$(printf '%s\n' "$ignore_files" | grep -Fx "$file")" ] && [ -z "$(printf '%s\n' "$ontology_files" | grep -Fx "$file")" ]
             then
-                mkdir -p "$contents_folder/temp_results/ontologies/imports/$outputFile/$date/metrics"
-                mkdir -p "$contents_folder/temp_results/ontologies/imports/$outputFile/$date/img"
                 outputFilePath="${contents_folder#./}/temp_results/ontologies/imports/$outputFile/$date/metrics/$outputFile.xml"
-                log "Creating output directory: $(dirname "$outputFilePath")"
                 mkdir -p "$(dirname "$outputFilePath")"
-                log "Checking if metrics file already exists: $outputFilePath"
-                if [ -f "$outputFilePath" ]; then
-                    log "Metrics file already exists, skipping Java execution"
-                else
+                if [ ! -f "$outputFilePath" ]; then
                     log "Running OQuaRE for file: $file"
-                    log "Output path: $outputFilePath"
-                    log "Reasoner: $reasoner"
-                    log "Ontology file: $file"
                     java_command="java -jar ./libs/oquare-versions.jar --ontology \"$file\" --reasoner \"$reasoner\" --outputFile \"$outputFilePath\""
-                    log "Executing Java command: $java_command"
-                    if ! eval $java_command > >(tee "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_output.log") 2> >(tee "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log" >&2)
+                    if ! eval $java_command > "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_output.log" 2> "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log"
                     then
-                        exit_status=$?
-                        log "Java command failed with exit status: $exit_status"
-                        log "Java command error output:"
-                        cat "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log"
-                        exit $exit_status
-                    fi
-                    log "Java command completed successfully"
-                    log "Java command output:"
-                    cat "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_output.log"
-                
-                    # Check if the output file was actually created
-                    if [ ! -f "$outputFilePath" ]; then
-                        log "Error: Output file was not created: $outputFilePath"
-                        log "Contents of output directory:"
-                        ls -R "$contents_folder/temp_results/$ontology_source/$outputFile/$date/"
+                        log "Java command failed. Check error log: $contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log"
                         exit 1
                     fi
+                    log "Java command completed successfully"
                 fi
                 
-                log "Checking metrics file"
-                if [ -f "$outputFilePath" ]; then
-                    log "Metrics file exists: $outputFilePath"
-                    log "File size: $(du -h "$outputFilePath" | cut -f1)"
-                    log "File contents (first 10 lines):"
-                    head -n 10 "$outputFilePath"
-                    
-                    # Images will be generated separately using generate_images.py
-                else
+                if [ ! -f "$outputFilePath" ]; then
                     log "Error: Metrics file was not generated: $outputFilePath"
-                    log "Current directory: $(pwd)"
-                    log "Contents of output directory:"
-                    ls -R "$contents_folder/temp_results/$ontology_source/$outputFile/$date/"
-                    log "Contents of Java error log:"
-                    cat "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log"
                     exit 1
                 fi
             fi
@@ -192,62 +148,21 @@ do
     full_ontology_path="$ontology_folders/$ontology_file"
     if [ -f "$full_ontology_path" ]
     then
-        dir=$(dirname "$full_ontology_path")
         outputFile=$(basename "$full_ontology_path")
         outputFile="${outputFile%.*}"
-        mkdir -p "$contents_folder/temp_results/ontologies/imports/$outputFile/$date/metrics"
-        mkdir -p "$contents_folder/temp_results/ontologies/imports/$outputFile/$date/img"
         outputFilePath="${contents_folder#./}/temp_results/ontologies/imports/$outputFile/$date/metrics/$outputFile.xml"
-        log "Ontology file: $full_ontology_path"
-        log "Output file path: $outputFilePath"
-        log "Checking if ontology file exists:"
-        if [ -f "$full_ontology_path" ]; then
-            log "Ontology file exists"
-        else
-            log "Error: Ontology file does not exist"
-            log "Contents of $(dirname "$full_ontology_path"):"
-            ls -la "$(dirname "$full_ontology_path")"
-            exit 1
-        fi
-        
-        # Create the directory for the output file if it doesn't exist
         mkdir -p "$(dirname "$outputFilePath")"
         
-        # Create an empty metrics file
-        touch "$outputFilePath"
-        log "Created empty metrics file: $outputFilePath"
-        
         java_command="java -jar ./libs/oquare-versions.jar --ontology \"$ontology_file\" --reasoner \"$reasoner\" --outputFile \"$outputFilePath\""
-        log "Executing Java command: $java_command"
-        if eval $java_command > >(tee "$contents_folder/temp_results/$dir/$outputFile/$date/java_output.log") 2> >(tee "$contents_folder/temp_results/$dir/$outputFile/$date/java_error.log" >&2)
+        if ! eval $java_command > "$contents_folder/temp_results/$ontology_folders/$outputFile/$date/java_output.log" 2> "$contents_folder/temp_results/$ontology_folders/$outputFile/$date/java_error.log"
         then
-            log "Java command completed successfully"
-            log "Java command output:"
-            cat "$contents_folder/temp_results/$dir/$outputFile/$date/java_output.log"
-        else
-            exit_status=$?
-            log "Java command failed with exit status: $exit_status"
-            log "Java command error output:"
-            cat "$contents_folder/temp_results/$dir/$outputFile/$date/java_error.log"
-            log "Java command standard output:"
-            cat "$contents_folder/temp_results/$dir/$outputFile/$date/java_output.log"
-            log "Contents of $(dirname "$outputFilePath"):"
-            ls -la "$(dirname "$outputFilePath")"
-            exit $exit_status
+            log "Java command failed for $ontology_file. Check error log: $contents_folder/temp_results/$ontology_folders/$outputFile/$date/java_error.log"
+            exit 1
         fi
 
-        if [ -f "$outputFilePath" ]
+        if [ ! -f "$outputFilePath" ]
         then
-            log "Metrics file generated successfully: $outputFilePath"
-            log "File size: $(du -h "$outputFilePath" | cut -f1)"
-            log "File contents (first 10 lines):"
-            head -n 10 "$outputFilePath"
-            
-            # Images will be generated separately using generate_images.py
-        else
             log "Error: Metrics file was not generated for $ontology_file"
-            log "Contents of Java error log:"
-            cat "$contents_folder/temp_results/$dir/$outputFile/$date/java_error.log"
             exit 1
         fi
     else
