@@ -29,15 +29,26 @@ def main():
         args.file += '.owl'
     
     # Construct the path to the metrics file
-    metrics_file = os.path.join(args.input, "temp_results", args.source, os.path.splitext(args.file)[0], args.date, "metrics", f"{os.path.splitext(args.file)[0]}.xml")
-    
-    # Normalize the path
-    metrics_file = os.path.normpath(metrics_file)
+    metrics_file = os.path.normpath(os.path.join(
+        args.input,
+        "temp_results",
+        args.source.lstrip('./\\'),  # Remove leading ./ or .\ if present
+        os.path.splitext(args.file)[0],
+        args.date,
+        "metrics",
+        f"{os.path.splitext(args.file)[0]}.xml"
+    ))
     
     logging.info(f"Looking for metrics file at: {metrics_file}")
     
     if not os.path.exists(metrics_file):
         logging.error(f"Metrics file not found: {metrics_file}")
+        logging.error(f"Current working directory: {os.getcwd()}")
+        logging.error(f"Directory contents of {os.path.dirname(metrics_file)}:")
+        try:
+            logging.error(os.listdir(os.path.dirname(metrics_file)))
+        except FileNotFoundError:
+            logging.error(f"Directory {os.path.dirname(metrics_file)} does not exist")
         exit(1)
 
     # Initialize the Controller
