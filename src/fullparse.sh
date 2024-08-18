@@ -19,6 +19,19 @@ subcharacteristics_plot=$8
 metrics_plot=$9
 evolution_plot=${10}
 
+# Log all input parameters
+log "Input parameters:"
+log "1. Contents folder: $contents_folder"
+log "2. Ontology folders: $ontology_folders"
+log "3. Ignore files: $ignore_files"
+log "4. Ontology files: $ontology_files"
+log "5. Reasoner: $reasoner"
+log "6. Model plot: $model_plot"
+log "7. Characteristics plot: $characteristics_plot"
+log "8. Subcharacteristics plot: $subcharacteristics_plot"
+log "9. Metrics plot: $metrics_plot"
+log "10. Evolution plot: $evolution_plot"
+
 date=$(powershell -Command "Get-Date -Format 'yyyy-MM-dd_HH-mm-ss'")
 
 log "Starting fullparse.sh"

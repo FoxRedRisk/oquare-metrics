@@ -45,6 +45,9 @@ def main():
         str(args.metrics).lower(),
         str(args.evolution).lower()
     ]
+    
+    # Log the full command
+    logging.info(f"Full fullparse.sh command: {' '.join(fullparse_command)}")
     logging.info(f"Running fullparse.sh with command: {' '.join(fullparse_command)}")
     result = subprocess.run(fullparse_command, text=True, capture_output=True)
     
