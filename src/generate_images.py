@@ -86,7 +86,7 @@ def main():
     logging.info(f"Output path for images: {output_path}")
 
     if args.model:
-        controller.plot_oquare_values(metrics_file, output_path)
+        controller.plot_oquare_value(metrics_file, output_path)
     if args.characteristics:
         controller.plot_oquare_characteristics(metrics_file, output_path)
     if args.subcharacteristics:
