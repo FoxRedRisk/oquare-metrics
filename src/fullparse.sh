@@ -127,12 +127,18 @@ do
                 if [ -f "$outputFilePath" ]
                 then
                     log "Metrics file generated successfully: $outputFilePath"
-                    python ./src/main.py -i "$contents_folder" -s "$ontology_source" -f "$outputFile" \
-                        $([ "$model_plot" = true ] && echo "-M") \
-                        $([ "$characteristics_plot" = true ] && echo "-c") \
-                        $([ "$subcharacteristics_plot" = true ] && echo "-S") \
-                        $([ "$metrics_plot" = true ] && echo "-m") \
-                        $([ "$evolution_plot" = true ] && echo "-e")
+                    python_command="python ./src/main.py -i \"$contents_folder\" -s \"$ontology_source\" -f \"$outputFile\" $([ "$model_plot" = true ] && echo "-M") $([ "$characteristics_plot" = true ] && echo "-c") $([ "$subcharacteristics_plot" = true ] && echo "-S") $([ "$metrics_plot" = true ] && echo "-m") $([ "$evolution_plot" = true ] && echo "-e")"
+                    log "Executing Python command: $python_command"
+                    if eval $python_command > "$contents_folder/temp_results/$ontology_source/$outputFile/$date/python_output.log" 2> "$contents_folder/temp_results/$ontology_source/$outputFile/$date/python_error.log"
+                    then
+                        log "Python command completed successfully"
+                        log "Python command output:"
+                        cat "$contents_folder/temp_results/$ontology_source/$outputFile/$date/python_output.log"
+                    else
+                        log "Python command failed with exit status: $?"
+                        log "Python command error output:"
+                        cat "$contents_folder/temp_results/$ontology_source/$outputFile/$date/python_error.log"
+                    fi
                 else
                     log "Error: Metrics file was not generated for $file"
                     log "Current directory: $(pwd)"
@@ -172,12 +178,18 @@ do
         if [ -f "$outputFilePath" ]
         then
             log "Metrics file generated successfully: $outputFilePath"
-            python ./src/main.py -i "$contents_folder" -s "$dir" -f "$outputFile" \
-                $([ "$model_plot" = true ] && echo "-M") \
-                $([ "$characteristics_plot" = true ] && echo "-c") \
-                $([ "$subcharacteristics_plot" = true ] && echo "-S") \
-                $([ "$metrics_plot" = true ] && echo "-m") \
-                $([ "$evolution_plot" = true ] && echo "-e")
+            python_command="python ./src/main.py -i \"$contents_folder\" -s \"$dir\" -f \"$outputFile\" $([ "$model_plot" = true ] && echo "-M") $([ "$characteristics_plot" = true ] && echo "-c") $([ "$subcharacteristics_plot" = true ] && echo "-S") $([ "$metrics_plot" = true ] && echo "-m") $([ "$evolution_plot" = true ] && echo "-e")"
+            log "Executing Python command: $python_command"
+            if eval $python_command > "$contents_folder/temp_results/$dir/$outputFile/$date/python_output.log" 2> "$contents_folder/temp_results/$dir/$outputFile/$date/python_error.log"
+            then
+                log "Python command completed successfully"
+                log "Python command output:"
+                cat "$contents_folder/temp_results/$dir/$outputFile/$date/python_output.log"
+            else
+                log "Python command failed with exit status: $?"
+                log "Python command error output:"
+                cat "$contents_folder/temp_results/$dir/$outputFile/$date/python_error.log"
+            fi
         else
             log "Error: Metrics file was not generated for $ontology_file"
             log "Contents of Java error log:"
