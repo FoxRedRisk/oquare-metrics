@@ -29,7 +29,7 @@ def main():
         args.file += '.owl'
     
     # Construct the path to the metrics file
-    metrics_file = os.path.normpath(os.path.join(
+    metrics_file = os.path.join(
         args.input,
         "results",
         "ontologies",
@@ -38,7 +38,7 @@ def main():
         args.date,
         "metrics",
         f"{os.path.splitext(args.file)[0]}.xml"
-    ))
+    )
     
     logging.info(f"Looking for metrics file at: {metrics_file}")
     
@@ -82,7 +82,6 @@ def main():
 
     # Generate the images
     output_path = os.path.dirname(os.path.dirname(metrics_file))
-    output_path = os.path.normpath(output_path)
     logging.info(f"Output path for images: {output_path}")
 
     file_name = os.path.splitext(os.path.basename(args.file))[0]

@@ -31,12 +31,12 @@ def main():
     if not args.file.lower().endswith(('.owl', '.rdf', '.ttl')):
         args.file += '.owl'
     
-    # Get the absolute path of the ontology file
-    ontology_file = os.path.abspath(os.path.join(args.source, args.file))
+    # Get the relative path of the ontology file
+    ontology_file = os.path.join(args.source, args.file)
     
     # Log the constructed file path and current working directory
     logging.debug(f"Current working directory: {os.getcwd()}")
-    logging.debug(f"Looking for ontology file at (absolute path): {ontology_file}")
+    logging.debug(f"Looking for ontology file at (relative path): {ontology_file}")
     
     # Check if the ontology file exists
     if not os.path.isfile(ontology_file):
