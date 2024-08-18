@@ -151,13 +151,9 @@ do
                     log "File size: $(du -h "$outputFilePath" | cut -f1)"
                     log "File contents (first 10 lines):"
                     head -n 10 "$outputFilePath"
-                else
-                    log "Error: Metrics file was not generated: $outputFilePath"
-                fi
-                
-                if [ -f "$outputFilePath" ]
-                then
-                    log "Metrics file generated successfully: $outputFilePath"
+                    
+                    # Generate images
+                    log "Generating images from existing metrics file"
                     python_command="python ./src/main.py -i \"$contents_folder\" -s \"$ontology_source\" -f \"$outputFile\" $([ "$model_plot" = true ] && echo "-M") $([ "$characteristics_plot" = true ] && echo "-c") $([ "$subcharacteristics_plot" = true ] && echo "-S") $([ "$metrics_plot" = true ] && echo "-m") $([ "$evolution_plot" = true ] && echo "-e")"
                     log "Executing Python command: $python_command"
                     if eval $python_command > >(tee "$contents_folder/temp_results/$ontology_source/$outputFile/$date/python_output.log") 2> >(tee "$contents_folder/temp_results/$ontology_source/$outputFile/$date/python_error.log" >&2)
@@ -175,12 +171,13 @@ do
                         exit $exit_status
                     fi
                 else
-                    log "Error: Metrics file was not generated for $file"
+                    log "Error: Metrics file was not generated: $outputFilePath"
                     log "Current directory: $(pwd)"
                     log "Contents of output directory:"
                     ls -R "$contents_folder/temp_results/$ontology_source/$outputFile/$date/"
                     log "Contents of Java error log:"
                     cat "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log"
+                    exit 1
                 fi
             fi
         done
@@ -224,25 +221,29 @@ do
             log "File size: $(du -h "$outputFilePath" | cut -f1)"
             log "File contents (first 10 lines):"
             head -n 10 "$outputFilePath"
-        else
-            log "Error: Metrics file was not generated: $outputFilePath"
-            exit 1
+            
+            # Generate images
             python_command="python ./src/main.py -i \"$contents_folder\" -s \"$dir\" -f \"$outputFile\" $([ "$model_plot" = true ] && echo "-M") $([ "$characteristics_plot" = true ] && echo "-c") $([ "$subcharacteristics_plot" = true ] && echo "-S") $([ "$metrics_plot" = true ] && echo "-m") $([ "$evolution_plot" = true ] && echo "-e")"
             log "Executing Python command: $python_command"
-            if eval $python_command > "$contents_folder/temp_results/$dir/$outputFile/$date/python_output.log" 2> "$contents_folder/temp_results/$dir/$outputFile/$date/python_error.log"
+            if eval $python_command > >(tee "$contents_folder/temp_results/$dir/$outputFile/$date/python_output.log") 2> >(tee "$contents_folder/temp_results/$dir/$outputFile/$date/python_error.log" >&2)
             then
                 log "Python command completed successfully"
                 log "Python command output:"
                 cat "$contents_folder/temp_results/$dir/$outputFile/$date/python_output.log"
             else
-                log "Python command failed with exit status: $?"
+                exit_status=$?
+                log "Python command failed with exit status: $exit_status"
                 log "Python command error output:"
                 cat "$contents_folder/temp_results/$dir/$outputFile/$date/python_error.log"
+                log "Python command standard output:"
+                cat "$contents_folder/temp_results/$dir/$outputFile/$date/python_output.log"
+                exit $exit_status
             fi
         else
             log "Error: Metrics file was not generated for $ontology_file"
             log "Contents of Java error log:"
             cat "$contents_folder/temp_results/$dir/$outputFile/$date/java_error.log"
+            exit 1
         fi
     else
         log "Warning: Individual ontology file not found: $ontology_file"
