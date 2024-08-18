@@ -206,6 +206,14 @@ do
             ls -la "$(dirname "$ontology_file")"
             exit 1
         fi
+        
+        # Create the directory for the output file if it doesn't exist
+        mkdir -p "$(dirname "$outputFilePath")"
+        
+        # Create an empty metrics file
+        touch "$outputFilePath"
+        log "Created empty metrics file: $outputFilePath"
+        
         java_command="java -jar ./libs/oquare-versions.jar --ontology \"$ontology_file\" --reasoner \"$reasoner\" --outputFile \"$outputFilePath\""
         log "Executing Java command: $java_command"
         if eval $java_command > >(tee "$contents_folder/temp_results/$dir/$outputFile/$date/java_output.log") 2> >(tee "$contents_folder/temp_results/$dir/$outputFile/$date/java_error.log" >&2)
