@@ -26,7 +26,10 @@ def main():
     args = parser.parse_args()
     logging.info(f"Arguments: {args}")
 
-    ontology_file = os.path.join(args.source, "imports", args.file)
+    # Add .owl extension if not provided
+    if not args.file.lower().endswith(('.owl', '.rdf', '.ttl')):
+        args.file += '.owl'
+    ontology_file = os.path.join(args.source, args.file)
     
     # Log the constructed file path
     logging.debug(f"Looking for ontology file at: {ontology_file}")
