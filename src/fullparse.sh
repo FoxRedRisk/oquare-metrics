@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -e  # Exit immediately if a command exits with a non-zero status.
-set -x  # Print commands and their arguments as they are executed
 
 # Function to log messages
 log() {
@@ -21,6 +20,16 @@ trap 'error_handler $LINENO' ERR
 
 # Log script start
 log "Starting fullparse.sh with arguments: $@"
+
+# Check if the Java tool exists
+if [ ! -f "./libs/oquare-versions.jar" ]; then
+    log "Error: OQuaRE Java tool not found at ./libs/oquare-versions.jar"
+    exit 1
+fi
+
+# Check Java version
+java_version=$(java -version 2>&1 | awk -F '"' '/version/ {print $2}')
+log "Java version: $java_version"
 
 # Function to display usage
 usage() {
@@ -107,12 +116,12 @@ fi
 java_version=$(java -version 2>&1 | awk -F '"' '/version/ {print $2}')
 log "Java version: $java_version"
 
-for ontology_source in $ontology_folders
+for ontology_source in "$ontology_folders"
 do
     if [ -d "$ontology_source" ]
     then
         log "Processing ontology source: $ontology_source"
-        find "$ontology_source" -maxdepth 1 -type f \( -name "*.rdf" -o -name "*.owl" -o -name "*.ttl" -o -name "*.nt" -o -name "*.n3" -o -name "*.jsonld" \) | while read -r file
+        while IFS= read -r -d '' file
         do
             outputFile=$(basename "$file")
             outputFile="${outputFile%.*}"
@@ -122,8 +131,7 @@ do
                 mkdir -p "$(dirname "$outputFilePath")"
                 if [ ! -f "$outputFilePath" ]; then
                     log "Running OQuaRE for file: $file"
-                    java_command="java -jar ./libs/oquare-versions.jar --ontology \"$file\" --reasoner \"$reasoner\" --outputFile \"$outputFilePath\""
-                    if ! eval $java_command > "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_output.log" 2> "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log"
+                    if ! java -jar ./libs/oquare-versions.jar --ontology "$file" --reasoner "$reasoner" --outputFile "$outputFilePath" > "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_output.log" 2> "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log"
                     then
                         log "Java command failed. Check error log: $contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log"
                         exit 1
@@ -136,7 +144,7 @@ do
                     exit 1
                 fi
             fi
-        done
+        done < <(find "$ontology_source" -maxdepth 1 -type f \( -name "*.rdf" -o -name "*.owl" -o -name "*.ttl" -o -name "*.nt" -o -name "*.n3" -o -name "*.jsonld" \) -print0)
     else
         log "Warning: Ontology source directory not found: $ontology_source"
     fi

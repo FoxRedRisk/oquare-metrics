@@ -60,22 +60,21 @@ def main():
     if not args.file.lower().endswith(('.owl', '.rdf', '.ttl')):
         args.file += '.owl'
     
-    # Get the absolute path of the ontology file
-    ontology_file = os.path.abspath(os.path.join(args.source, args.file))
+    # Find the ontology file in the source folder or its subdirectories
+    ontology_file = None
+    for root, dirs, files in os.walk(args.source):
+        if args.file in files:
+            ontology_file = os.path.abspath(os.path.join(root, args.file))
+            break
     
-    # Log the constructed file path and current working directory
+    # Log the found file path and current working directory
     logger.debug(f"Current working directory: {os.getcwd()}")
     logger.debug(f"Looking for ontology file at (absolute path): {ontology_file}")
     
     # Check if the ontology file exists
-    if not os.path.isfile(ontology_file):
-        logger.error(f"Ontology file not found: {ontology_file}")
-        if os.path.isdir(args.source):
-            logger.error(f"Contents of {args.source}:")
-            for file in os.listdir(args.source):
-                logger.error(f"  {file}")
-        else:
-            logger.error(f"Source folder not found: {args.source}")
+    if not ontology_file or not os.path.isfile(ontology_file):
+        logger.error(f"Ontology file not found: {args.file}")
+        logger.error(f"Searched in: {args.source}")
         exit(1)
 
     # Run fullparse.sh to generate the metrics XML file
@@ -110,8 +109,9 @@ def main():
     # Log the full command
     logger.info(f"Full fullparse.sh command: {' '.join(map(str, fullparse_command))}")
     
-    # Check if the metrics file already exists
-    metrics_file = os.path.join(args.input, "temp_results", args.source, os.path.splitext(args.file)[0], datetime.now().strftime("%Y-%m-%d_%H-%M-%S"), "metrics", f"{os.path.splitext(args.file)[0]}.xml")
+    # Construct the metrics file path
+    relative_path = os.path.relpath(os.path.dirname(ontology_file), args.source)
+    metrics_file = os.path.join(args.input, "temp_results", relative_path, os.path.splitext(os.path.basename(ontology_file))[0], datetime.now().strftime("%Y-%m-%d_%H-%M-%S"), "metrics", f"{os.path.splitext(os.path.basename(ontology_file))[0]}.xml")
     
     # Run fullparse.sh to generate the metrics XML file
     try:
@@ -119,17 +119,13 @@ def main():
         process = subprocess.Popen(fullparse_command, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         
         # Real-time logging of stdout and stderr
-        while True:
-            output = process.stdout.readline()
-            error = process.stderr.readline()
-            if output == '' and error == '' and process.poll() is not None:
-                break
-            if output:
-                logger.info(f"fullparse.sh stdout: {output.strip()}")
-            if error:
-                logger.error(f"fullparse.sh stderr: {error.strip()}")
+        for line in process.stdout:
+            logger.info(f"fullparse.sh stdout: {line.strip()}")
+        for line in process.stderr:
+            logger.error(f"fullparse.sh stderr: {line.strip()}")
         
-        returncode = process.poll()
+        process.wait()
+        returncode = process.returncode
         logger.info(f"fullparse.sh exit code: {returncode}")
         
         if returncode != 0:
