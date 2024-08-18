@@ -2,6 +2,7 @@ import argparse
 import logging
 import os
 import subprocess
+import os
 from datetime import datetime
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -120,7 +121,7 @@ def main():
         # Check if bash is available and its version
         try:
             bash_version = subprocess.run(["bash", "--version"], check=True, text=True, capture_output=True)
-            logging.info(f"Bash version: {bash_version.stdout.split('\n')[0]}")
+            logging.info(f"Bash version: {bash_version.stdout.split(os.linesep)[0]}")
         except subprocess.CalledProcessError as bash_error:
             logging.error(f"Failed to get bash version: {bash_error}")
         
