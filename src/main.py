@@ -23,21 +23,28 @@ def main():
 
     ontology_file = os.path.join(args.input, args.source, args.file)
     
-    # Run fullparse.py to generate the metrics XML file
+    # Run fullparse.sh to generate the metrics XML file
     fullparse_command = [
-        "python", "src/fullparse.py",
-        args.input, ontology_file, args.reasoner
+        "bash", "src/fullparse.sh",
+        args.input,
+        args.source,
+        "",  # ignore_files (empty for now)
+        ontology_file,
+        args.reasoner,
+        str(args.model).lower(),
+        str(args.characteristics).lower(),
+        str(args.subcharacteristics).lower(),
+        str(args.metrics).lower(),
+        str(args.evolution).lower()
     ]
-    logging.info(f"Running fullparse.py with command: {' '.join(fullparse_command)}")
+    logging.info(f"Running fullparse.sh with command: {' '.join(fullparse_command)}")
     try:
         subprocess.run(fullparse_command, check=True, text=True, capture_output=True)
-        logging.info("fullparse.py completed successfully")
+        logging.info("fullparse.sh completed successfully")
     except subprocess.CalledProcessError as e:
-        logging.error(f"fullparse.py failed with exit code: {e.returncode}")
+        logging.error(f"fullparse.sh failed with exit code: {e.returncode}")
         logging.error(f"Error output: {e.stderr}")
         exit(1)
-
-    # TODO: Add logic to handle plot generation based on the new arguments
 
     logging.info("Main script completed successfully")
 
