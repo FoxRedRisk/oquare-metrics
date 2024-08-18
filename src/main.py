@@ -23,6 +23,9 @@ def main():
 
     ontology_file = os.path.join(args.input, args.source, "import", args.file)
     
+    # Log the constructed file path
+    logging.debug(f"Looking for ontology file at: {ontology_file}")
+    
     # Check if the ontology file exists
     if not os.path.isfile(ontology_file):
         logging.error(f"Ontology file not found: {ontology_file}")
