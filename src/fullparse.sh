@@ -13,6 +13,9 @@ error_handler() {
     local exit_code=$?
     log "Error occurred in line $1 with exit code $exit_code"
     log "Last command executed: $BASH_COMMAND"
+    log "Current working directory: $(pwd)"
+    log "Contents of current directory:"
+    ls -la
     exit $exit_code
 }
 
@@ -22,6 +25,10 @@ trap 'error_handler $LINENO' ERR
 # Enable debug mode
 set -o functrace
 set -o errtrace
+
+# Log script start
+log "Starting fullparse.sh"
+log "Arguments: $@"
 
 # Function to display usage
 usage() {
@@ -181,6 +188,16 @@ do
         mkdir -p "$contents_folder/temp_results/$dir/$outputFile/$date/img"
         outputFilePath="${contents_folder#./}/temp_results/${dir#./}/$outputFile/$date/metrics/$outputFile.xml"
         log "Ontology file: $ontology_file"
+        log "Output file path: $outputFilePath"
+        log "Checking if ontology file exists:"
+        if [ -f "$ontology_file" ]; then
+            log "Ontology file exists"
+        else
+            log "Error: Ontology file does not exist"
+            log "Contents of $(dirname "$ontology_file"):"
+            ls -la "$(dirname "$ontology_file")"
+            exit 1
+        fi
         java_command="java -jar ./libs/oquare-versions.jar --ontology \"$ontology_file\" --reasoner \"$reasoner\" --outputFile \"$outputFilePath\""
         log "Executing Java command: $java_command"
         if eval $java_command > >(tee "$contents_folder/temp_results/$dir/$outputFile/$date/java_output.log") 2> >(tee "$contents_folder/temp_results/$dir/$outputFile/$date/java_error.log" >&2)
@@ -195,6 +212,8 @@ do
             cat "$contents_folder/temp_results/$dir/$outputFile/$date/java_error.log"
             log "Java command standard output:"
             cat "$contents_folder/temp_results/$dir/$outputFile/$date/java_output.log"
+            log "Contents of $(dirname "$outputFilePath"):"
+            ls -la "$(dirname "$outputFilePath")"
             exit $exit_status
         fi
 
