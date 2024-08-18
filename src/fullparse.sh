@@ -98,7 +98,7 @@ log "Subcharacteristics plot: $subcharacteristics_plot"
 log "Metrics plot: $metrics_plot"
 log "Evolution plot: $evolution_plot"
 
-date=$(powershell -Command "Get-Date -Format 'yyyy-MM-dd_HH-mm-ss'")
+date=$(date '+%Y-%m-%d_%H-%M-%S')
 
 log "Starting fullparse.sh"
 log "Contents folder: $contents_folder"
@@ -106,76 +106,32 @@ log "Ontology folders: $ontology_folders"
 log "Ontology files: $ontology_files"
 log "Reasoner: $reasoner"
 
-# Check if the Java tool exists
-if [ ! -f "./libs/oquare-versions.jar" ]; then
-    log "Error: OQuaRE Java tool not found at ./libs/oquare-versions.jar"
+# Create necessary directories
+mkdir -p "$contents_folder/temp_results/ontologies/imports"
+log "Created directory: $contents_folder/temp_results/ontologies/imports"
+
+# Process individual ontology file
+log "Processing individual ontology file: $ontology_files"
+outputFile=$(basename "$ontology_files")
+outputFile="${outputFile%.*}"
+outputFilePath="$contents_folder/temp_results/ontologies/imports/$outputFile/$date/metrics/$outputFile.xml"
+mkdir -p "$(dirname "$outputFilePath")"
+log "Created directory: $(dirname "$outputFilePath")"
+
+java_command="java -jar ./libs/oquare-versions.jar --ontology \"$ontology_files\" --reasoner \"$reasoner\" --outputFile \"$outputFilePath\""
+log "Executing Java command: $java_command"
+if ! eval $java_command > "$contents_folder/temp_results/ontologies/imports/$outputFile/$date/java_output.log" 2> "$contents_folder/temp_results/ontologies/imports/$outputFile/$date/java_error.log"
+then
+    log "Java command failed for $ontology_files. Check error log: $contents_folder/temp_results/ontologies/imports/$outputFile/$date/java_error.log"
     exit 1
 fi
 
-# Check Java version
-java_version=$(java -version 2>&1 | awk -F '"' '/version/ {print $2}')
-log "Java version: $java_version"
+if [ ! -f "$outputFilePath" ]
+then
+    log "Error: Metrics file was not generated for $ontology_files"
+    exit 1
+else
+    log "Metrics file generated successfully: $outputFilePath"
+fi
 
-for ontology_source in "$ontology_folders"
-do
-    if [ -d "$ontology_source" ]
-    then
-        log "Processing ontology source: $ontology_source"
-        while IFS= read -r -d '' file
-        do
-            outputFile=$(basename "$file")
-            outputFile="${outputFile%.*}"
-            if [ -z "$(printf '%s\n' "$ignore_files" | grep -Fx "$file")" ] && [ -z "$(printf '%s\n' "$ontology_files" | grep -Fx "$file")" ]
-            then
-                outputFilePath="${contents_folder#./}/temp_results/ontologies/imports/$outputFile/$date/metrics/$outputFile.xml"
-                mkdir -p "$(dirname "$outputFilePath")"
-                if [ ! -f "$outputFilePath" ]; then
-                    log "Running OQuaRE for file: $file"
-                    if ! java -jar ./libs/oquare-versions.jar --ontology "$file" --reasoner "$reasoner" --outputFile "$outputFilePath" > "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_output.log" 2> "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log"
-                    then
-                        log "Java command failed. Check error log: $contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log"
-                        exit 1
-                    fi
-                    log "Java command completed successfully"
-                fi
-                
-                if [ ! -f "$outputFilePath" ]; then
-                    log "Error: Metrics file was not generated: $outputFilePath"
-                    exit 1
-                fi
-            fi
-        done < <(find "$ontology_source" -maxdepth 1 -type f \( -name "*.rdf" -o -name "*.owl" -o -name "*.ttl" -o -name "*.nt" -o -name "*.n3" -o -name "*.jsonld" \) -print0)
-    else
-        log "Warning: Ontology source directory not found: $ontology_source"
-    fi
-done
-
-for ontology_file in $ontology_files
-do
-    log "Processing individual ontology file: $ontology_file"
-    full_ontology_path="$ontology_folders/$ontology_file"
-    if [ -f "$full_ontology_path" ]
-    then
-        outputFile=$(basename "$full_ontology_path")
-        outputFile="${outputFile%.*}"
-        outputFilePath="${contents_folder#./}/temp_results/ontologies/imports/$outputFile/$date/metrics/$outputFile.xml"
-        mkdir -p "$(dirname "$outputFilePath")"
-        
-        java_command="java -jar ./libs/oquare-versions.jar --ontology \"$ontology_file\" --reasoner \"$reasoner\" --outputFile \"$outputFilePath\""
-        if ! eval $java_command > "$contents_folder/temp_results/$ontology_folders/$outputFile/$date/java_output.log" 2> "$contents_folder/temp_results/$ontology_folders/$outputFile/$date/java_error.log"
-        then
-            log "Java command failed for $ontology_file. Check error log: $contents_folder/temp_results/$ontology_folders/$outputFile/$date/java_error.log"
-            exit 1
-        fi
-
-        if [ ! -f "$outputFilePath" ]
-        then
-            log "Error: Metrics file was not generated for $ontology_file"
-            exit 1
-        fi
-    else
-        log "Warning: Individual ontology file not found: $ontology_file"
-    fi
-done
-
-log "fullparse.sh completed"
+log "fullparse.sh completed successfully"
