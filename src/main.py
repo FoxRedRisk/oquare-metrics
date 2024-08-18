@@ -88,6 +88,21 @@ def main():
         else:
             logging.error("fullparse.sh file does not exist in the expected location")
         
+        # Check the content of fullparse.sh
+        try:
+            with open("src/fullparse.sh", "r") as f:
+                logging.info("Content of fullparse.sh:")
+                logging.info(f.read())
+        except Exception as read_error:
+            logging.error(f"Failed to read fullparse.sh: {read_error}")
+        
+        # Check if bash is available and its version
+        try:
+            bash_version = subprocess.run(["bash", "--version"], check=True, text=True, capture_output=True)
+            logging.info(f"Bash version: {bash_version.stdout.split('\n')[0]}")
+        except subprocess.CalledProcessError as bash_error:
+            logging.error(f"Failed to get bash version: {bash_error}")
+        
         exit(1)
 
     logging.info("Main script completed successfully")

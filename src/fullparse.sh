@@ -10,12 +10,18 @@ log() {
 
 # Function to handle errors
 error_handler() {
-    log "Error occurred in line $1"
-    exit 1
+    local exit_code=$?
+    log "Error occurred in line $1 with exit code $exit_code"
+    log "Last command executed: $BASH_COMMAND"
+    exit $exit_code
 }
 
 # Set up error handling
 trap 'error_handler $LINENO' ERR
+
+# Enable debug mode
+set -o functrace
+set -o errtrace
 
 # Function to display usage
 usage() {
@@ -139,15 +145,19 @@ do
                     log "Metrics file generated successfully: $outputFilePath"
                     python_command="python ./src/main.py -i \"$contents_folder\" -s \"$ontology_source\" -f \"$outputFile\" $([ "$model_plot" = true ] && echo "-M") $([ "$characteristics_plot" = true ] && echo "-c") $([ "$subcharacteristics_plot" = true ] && echo "-S") $([ "$metrics_plot" = true ] && echo "-m") $([ "$evolution_plot" = true ] && echo "-e")"
                     log "Executing Python command: $python_command"
-                    if eval $python_command > "$contents_folder/temp_results/$ontology_source/$outputFile/$date/python_output.log" 2> "$contents_folder/temp_results/$ontology_source/$outputFile/$date/python_error.log"
+                    if eval $python_command > >(tee "$contents_folder/temp_results/$ontology_source/$outputFile/$date/python_output.log") 2> >(tee "$contents_folder/temp_results/$ontology_source/$outputFile/$date/python_error.log" >&2)
                     then
                         log "Python command completed successfully"
                         log "Python command output:"
                         cat "$contents_folder/temp_results/$ontology_source/$outputFile/$date/python_output.log"
                     else
-                        log "Python command failed with exit status: $?"
+                        exit_status=$?
+                        log "Python command failed with exit status: $exit_status"
                         log "Python command error output:"
                         cat "$contents_folder/temp_results/$ontology_source/$outputFile/$date/python_error.log"
+                        log "Python command standard output:"
+                        cat "$contents_folder/temp_results/$ontology_source/$outputFile/$date/python_output.log"
+                        exit $exit_status
                     fi
                 else
                     log "Error: Metrics file was not generated for $file"
