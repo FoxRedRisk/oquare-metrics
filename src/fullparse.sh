@@ -109,6 +109,7 @@ do
                 log "Running OQuaRE for file: $file"
                 log "Output path: $outputFilePath"
                 log "Reasoner: $reasoner"
+                log "Ontology file: $file"
                 java_command="java -jar ./libs/oquare-versions.jar --ontology \"$file\" --reasoner \"$reasoner\" --outputFile \"$outputFilePath\""
                 log "Executing Java command: $java_command"
                 if eval $java_command > "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_output.log" 2> "$contents_folder/temp_results/$ontology_source/$outputFile/$date/java_error.log"
@@ -158,7 +159,10 @@ do
         mkdir -p "$contents_folder/temp_results/$dir/$outputFile/$date/metrics"
         mkdir -p "$contents_folder/temp_results/$dir/$outputFile/$date/img"
         outputFilePath="$contents_folder/temp_results/$dir/$outputFile/$date/metrics/$outputFile.xml"
-        if java -jar ./libs/oquare-versions.jar --ontology "$ontology_file" --reasoner "$reasoner" --outputFile "$outputFilePath" > "$contents_folder/temp_results/$dir/$outputFile/$date/java_output.log" 2> "$contents_folder/temp_results/$dir/$outputFile/$date/java_error.log"
+        log "Ontology file: $ontology_file"
+        java_command="java -jar ./libs/oquare-versions.jar --ontology \"$ontology_file\" --reasoner \"$reasoner\" --outputFile \"$outputFilePath\""
+        log "Executing Java command: $java_command"
+        if eval $java_command > "$contents_folder/temp_results/$dir/$outputFile/$date/java_output.log" 2> "$contents_folder/temp_results/$dir/$outputFile/$date/java_error.log"
         then
             log "Java command completed successfully"
         else
