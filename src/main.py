@@ -49,23 +49,14 @@ def main():
             logging.error(f"Source folder not found: {args.source}")
         exit(1)
 
-    # Run fullparse.sh (or fullparse.ps1 on Windows) to generate the metrics XML file
-    if os.name == 'nt':
-        fullparse_command = [
-            "powershell", "-File", ".\\src\\fullparse.ps1",
-            "-InputPath", args.input,
-            "-SourceFolder", args.source,
-            "-OntologyFile", ontology_file,
-            "-Reasoner", args.reasoner
-        ]
-    else:
-        fullparse_command = [
-            "bash", "./src/fullparse.sh",
-            "-i", args.input,
-            "-s", args.source,
-            "-f", ontology_file,
-            "-r", args.reasoner
-        ]
+    # Run fullparse.sh to generate the metrics XML file
+    fullparse_command = [
+        "bash", "./src/fullparse.sh",
+        "-i", args.input,
+        "-s", args.source,
+        "-f", ontology_file,
+        "-r", args.reasoner
+    ]
     
     if args.model:
         fullparse_command.append("-M")
@@ -136,31 +127,17 @@ def main():
         except Exception as read_error:
             logging.error(f"Failed to read fullparse.sh: {read_error}")
         
-        # Check if we're on Windows
-        if os.name == 'nt':
-            # Use PowerShell instead of Bash
-            try:
-                ps_version = subprocess.run(["powershell", "-Command", "$PSVersionTable.PSVersion"], check=True, text=True, capture_output=True)
-                logging.info(f"PowerShell version: {ps_version.stdout.strip()}")
-            except subprocess.CalledProcessError as ps_error:
-                logging.error(f"Failed to get PowerShell version: {ps_error}")
-                logging.error("PowerShell may not be installed or not in the system PATH.")
-                logging.error("Please ensure that PowerShell is installed and accessible from the command line.")
-            except FileNotFoundError:
-                logging.error("PowerShell executable not found.")
-                logging.error("Please ensure that PowerShell is installed and accessible from the command line.")
-        else:
-            # Check if bash is available and its version
-            try:
-                bash_version = subprocess.run(["bash", "--version"], check=True, text=True, capture_output=True)
-                logging.info(f"Bash version: {bash_version.stdout.split(os.linesep)[0]}")
-            except subprocess.CalledProcessError as bash_error:
-                logging.error(f"Failed to get bash version: {bash_error}")
-                logging.error("Bash may not be installed or not in the system PATH.")
-                logging.error("Please ensure that Bash is installed and accessible from the command line.")
-            except FileNotFoundError:
-                logging.error("Bash executable not found.")
-                logging.error("Please ensure that Bash is installed and accessible from the command line.")
+        # Check if bash is available and its version
+        try:
+            bash_version = subprocess.run(["bash", "--version"], check=True, text=True, capture_output=True)
+            logging.info(f"Bash version: {bash_version.stdout.split(os.linesep)[0]}")
+        except subprocess.CalledProcessError as bash_error:
+            logging.error(f"Failed to get bash version: {bash_error}")
+            logging.error("Bash may not be installed or not in the system PATH.")
+            logging.error("Please ensure that Bash is installed and accessible from the command line.")
+        except FileNotFoundError:
+            logging.error("Bash executable not found.")
+            logging.error("Please ensure that Bash is installed and accessible from the command line.")
         
         exit(1)
 
