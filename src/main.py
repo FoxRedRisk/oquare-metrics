@@ -6,6 +6,11 @@ from datetime import datetime
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
+# How to run:
+# python src/main.py -i <input_path> -s <source_folder> -f <ontology_file> -r <reasoner> [-M] [-c] [-S] [-m] [-e]
+# Example:
+# python src/main.py -i ./output -s ./ontologies -f my_ontology.owl -r HermiT -M -c -S -m -e
+
 def main():
     parser = argparse.ArgumentParser(description='OQuaRE Metrics Generator')
     parser.add_argument('-i', '--input', required=True, help='Input path')
