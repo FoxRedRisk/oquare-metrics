@@ -103,7 +103,7 @@ def main():
     
     # Construct the metrics file path
     date_str = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    metrics_file = os.path.join(args.input, "temp_results", "ontologies", "imports", os.path.splitext(os.path.basename(ontology_file))[0], date_str, "metrics", f"{os.path.splitext(os.path.basename(ontology_file))[0]}.xml")
+    metrics_file = os.path.normpath(os.path.join(args.input, "temp_results", "ontologies", "imports", os.path.splitext(os.path.basename(ontology_file))[0], date_str, "metrics", f"{os.path.splitext(os.path.basename(ontology_file))[0]}.xml"))
     
     # Run fullparse.sh to generate the metrics XML file
     try:
@@ -140,12 +140,13 @@ def main():
 
     # Check if the metrics file was created
     if not os.path.exists(metrics_file):
-        logger.error(f"Metrics file not found after running fullparse.sh: {metrics_file}")
-        logger.error(f"Contents of {os.path.dirname(metrics_file)}:")
+        logger.error(f"Metrics file not found after running fullparse.sh: {os.path.normpath(metrics_file)}")
+        metrics_dir = os.path.dirname(metrics_file)
+        logger.error(f"Contents of {os.path.normpath(metrics_dir)}:")
         try:
-            logger.error(os.listdir(os.path.dirname(metrics_file)))
+            logger.error(os.listdir(metrics_dir))
         except FileNotFoundError:
-            logger.error(f"Directory {os.path.dirname(metrics_file)} does not exist")
+            logger.error(f"Directory {os.path.normpath(metrics_dir)} does not exist")
         exit(1)
 
     # Generate images using generate_images.py
