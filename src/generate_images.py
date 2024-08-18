@@ -29,53 +29,32 @@ def main():
         args.file += '.owl'
     
     # Construct the path to the metrics file
-    metrics_file = os.path.join(
-        args.input,
-        "results",
-        "ontologies",
-        "imports",
-        os.path.splitext(args.file)[0],
-        args.date,
-        "metrics",
-        f"{os.path.splitext(args.file)[0]}.xml"
-    )
-    
-    logging.info(f"Looking for metrics file at: {metrics_file}")
-    
-    if not os.path.exists(metrics_file):
-        logging.error(f"Metrics file not found: {metrics_file}")
-        logging.error(f"Current working directory: {os.getcwd()}")
-        logging.error(f"Input path: {args.input}")
-        logging.error(f"Source path: {args.source}")
-        logging.error(f"File: {args.file}")
-        logging.error(f"Date: {args.date}")
-        
-        # Check if the input directory exists
-        if not os.path.exists(args.input):
-            logging.error(f"Input directory does not exist: {args.input}")
-        else:
-            logging.info(f"Contents of input directory {args.input}:")
-            logging.info(os.listdir(args.input))
-        
-        # Check the temp_results directory
-        temp_results_dir = os.path.join(args.input, "temp_results")
-        if not os.path.exists(temp_results_dir):
-            logging.error(f"temp_results directory does not exist: {temp_results_dir}")
-        else:
-            logging.info(f"Contents of temp_results directory {temp_results_dir}:")
-            logging.info(os.listdir(temp_results_dir))
-        
-        # Try to list contents of parent directories
-        parent_dir = os.path.dirname(metrics_file)
-        for _ in range(4):  # Go up to 4 levels
-            logging.error(f"Checking contents of {parent_dir}:")
-            try:
-                logging.error(os.listdir(parent_dir))
-            except FileNotFoundError:
-                logging.error(f"Directory {parent_dir} does not exist")
-            parent_dir = os.path.dirname(parent_dir)
-        
+    # Try to find the metrics file in different locations
+    possible_locations = [
+        os.path.join(args.input, "results", "ontologies", "imports", os.path.splitext(args.file)[0], args.date, "metrics"),
+        os.path.join(args.input, "temp_results", "ontologies", "imports", os.path.splitext(args.file)[0], args.date, "metrics"),
+        os.path.join(args.input, "temp_results", args.source, os.path.splitext(args.file)[0], args.date, "metrics")
+    ]
+
+    metrics_file = None
+    for location in possible_locations:
+        potential_file = os.path.join(location, f"{os.path.splitext(args.file)[0]}.xml")
+        if os.path.exists(potential_file):
+            metrics_file = potential_file
+            break
+
+    if metrics_file is None:
+        logging.error("Metrics file not found in any of the expected locations.")
+        for location in possible_locations:
+            logging.error(f"Checked location: {location}")
+            if os.path.exists(os.path.dirname(location)):
+                logging.info(f"Contents of {os.path.dirname(location)}:")
+                logging.info(os.listdir(os.path.dirname(location)))
+            else:
+                logging.error(f"Directory does not exist: {os.path.dirname(location)}")
         exit(1)
+
+    logging.info(f"Found metrics file at: {metrics_file}")
 
     # Initialize the Controller
     controller = Controller()
