@@ -178,9 +178,9 @@ done
 
 for ontology_file in $ontology_files
 do
+    log "Processing individual ontology file: $ontology_file"
     if [ -f "$ontology_file" ]
     then
-        log "Processing individual ontology file: $ontology_file"
         dir=$(dirname "$ontology_file")
         outputFile=$(basename "$ontology_file")
         outputFile="${outputFile%.*}"
