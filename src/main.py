@@ -78,22 +78,14 @@ def main():
         exit(1)
 
     # Run fullparse.sh to generate the metrics XML file
-    if os.name == 'nt':  # Windows
-        fullparse_command = [
-            "sh", "./src/fullparse.sh",
-            "-i", args.input,
-            "-s", args.source,
-            "-f", args.file,
-            "-r", args.reasoner
-        ]
-    else:  # Unix-like systems
-        fullparse_command = [
-            "bash", "./src/fullparse.sh",
-            "-i", args.input,
-            "-s", args.source,
-            "-f", args.file,
-            "-r", args.reasoner
-        ]
+    fullparse_command = [
+        "bash" if os.name != 'nt' else "sh",
+        "./src/fullparse.sh",
+        "-i", args.input,
+        "-s", args.source,
+        "-f", ontology_file,  # Use the full path to the ontology file
+        "-r", args.reasoner
+    ]
     
     if args.model:
         fullparse_command.append("-M")
@@ -116,16 +108,20 @@ def main():
     # Run fullparse.sh to generate the metrics XML file
     try:
         logger.info("Starting execution of fullparse.sh")
-        process = subprocess.Popen(fullparse_command, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = subprocess.Popen(fullparse_command, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
         
         # Real-time logging of stdout and stderr
-        for line in process.stdout:
-            logger.info(f"fullparse.sh stdout: {line.strip()}")
-        for line in process.stderr:
-            logger.error(f"fullparse.sh stderr: {line.strip()}")
+        while True:
+            output = process.stdout.readline()
+            error = process.stderr.readline()
+            if output == '' and error == '' and process.poll() is not None:
+                break
+            if output:
+                logger.info(f"fullparse.sh stdout: {output.strip()}")
+            if error:
+                logger.error(f"fullparse.sh stderr: {error.strip()}")
         
-        process.wait()
-        returncode = process.returncode
+        returncode = process.poll()
         logger.info(f"fullparse.sh exit code: {returncode}")
         
         if returncode != 0:
