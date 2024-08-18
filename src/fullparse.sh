@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Inputs
 contents_folder=$1
@@ -12,7 +12,7 @@ subcharacteristics_plot=$8
 metrics_plot=$9
 evolution_plot=${10}
 
-date="$(date +%Y-%m-%d_%H-%M-%S)"
+date=$(powershell -Command "Get-Date -Format 'yyyy-MM-dd_HH-mm-ss'")
 
 for ontology_source in $ontology_folders
 do

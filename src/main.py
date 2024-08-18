@@ -20,10 +20,8 @@ def main():
     date = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     
     # Run fullparse.sh to generate the metrics XML file
-    subprocess.run(['bash', 'src/fullparse.sh', args.input, args.source, '', args.file, 'HermiT', 
-                    str(args.model).lower(), str(args.characteristics).lower(), 
-                    str(args.subcharacteristics).lower(), str(args.metrics).lower(), 
-                    str(args.evolution).lower()], check=True)
+    command = f'src\\fullparse.sh {args.input} {args.source} "" {args.file} HermiT {str(args.model).lower()} {str(args.characteristics).lower()} {str(args.subcharacteristics).lower()} {str(args.metrics).lower()} {str(args.evolution).lower()}'
+    subprocess.run(command, shell=True, check=True)
 
     controller = Controller()
 
