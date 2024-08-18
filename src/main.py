@@ -133,6 +133,11 @@ def main():
             logging.info(f"Bash version: {bash_version.stdout.split(os.linesep)[0]}")
         except subprocess.CalledProcessError as bash_error:
             logging.error(f"Failed to get bash version: {bash_error}")
+            logging.error("Bash may not be installed or not in the system PATH.")
+            logging.error("Please ensure that Bash is installed and accessible from the command line.")
+        except FileNotFoundError:
+            logging.error("Bash executable not found.")
+            logging.error("Please ensure that Bash is installed and accessible from the command line.")
         
         exit(1)
 
