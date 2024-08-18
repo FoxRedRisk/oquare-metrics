@@ -3,6 +3,7 @@ import glob
 from rdflib import Graph, exceptions, URIRef
 from owlready2 import get_ontology, OwlReadyOntologyParsingError
 import urllib.parse
+import urllib.parse
 
 def fix_owl_files(imports_folder="ontologies/imports"):
     """
