@@ -203,16 +203,30 @@ do
         log "Ontology file: $ontology_file"
         java_command="java -jar ./libs/oquare-versions.jar --ontology \"$ontology_file\" --reasoner \"$reasoner\" --outputFile \"$outputFilePath\""
         log "Executing Java command: $java_command"
-        if eval $java_command > "$contents_folder/temp_results/$dir/$outputFile/$date/java_output.log" 2> "$contents_folder/temp_results/$dir/$outputFile/$date/java_error.log"
+        if eval $java_command > >(tee "$contents_folder/temp_results/$dir/$outputFile/$date/java_output.log") 2> >(tee "$contents_folder/temp_results/$dir/$outputFile/$date/java_error.log" >&2)
         then
             log "Java command completed successfully"
+            log "Java command output:"
+            cat "$contents_folder/temp_results/$dir/$outputFile/$date/java_output.log"
         else
-            log "Java command failed with exit status: $?"
+            exit_status=$?
+            log "Java command failed with exit status: $exit_status"
+            log "Java command error output:"
+            cat "$contents_folder/temp_results/$dir/$outputFile/$date/java_error.log"
+            log "Java command standard output:"
+            cat "$contents_folder/temp_results/$dir/$outputFile/$date/java_output.log"
+            exit $exit_status
         fi
 
         if [ -f "$outputFilePath" ]
         then
             log "Metrics file generated successfully: $outputFilePath"
+            log "File size: $(du -h "$outputFilePath" | cut -f1)"
+            log "File contents (first 10 lines):"
+            head -n 10 "$outputFilePath"
+        else
+            log "Error: Metrics file was not generated: $outputFilePath"
+            exit 1
             python_command="python ./src/main.py -i \"$contents_folder\" -s \"$dir\" -f \"$outputFile\" $([ "$model_plot" = true ] && echo "-M") $([ "$characteristics_plot" = true ] && echo "-c") $([ "$subcharacteristics_plot" = true ] && echo "-S") $([ "$metrics_plot" = true ] && echo "-m") $([ "$evolution_plot" = true ] && echo "-e")"
             log "Executing Python command: $python_command"
             if eval $python_command > "$contents_folder/temp_results/$dir/$outputFile/$date/python_output.log" 2> "$contents_folder/temp_results/$dir/$outputFile/$date/python_error.log"
