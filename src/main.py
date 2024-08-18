@@ -23,6 +23,11 @@ def main():
 
     ontology_file = os.path.join(args.input, args.source, args.file)
     
+    # Check if the ontology file exists
+    if not os.path.isfile(ontology_file):
+        logging.error(f"Ontology file not found: {ontology_file}")
+        exit(1)
+
     # Run fullparse.sh to generate the metrics XML file
     fullparse_command = [
         "bash", "src/fullparse.sh",
@@ -39,11 +44,13 @@ def main():
     ]
     logging.info(f"Running fullparse.sh with command: {' '.join(fullparse_command)}")
     try:
-        subprocess.run(fullparse_command, check=True, text=True, capture_output=True)
+        result = subprocess.run(fullparse_command, check=True, text=True, capture_output=True)
         logging.info("fullparse.sh completed successfully")
+        logging.debug(f"fullparse.sh stdout: {result.stdout}")
     except subprocess.CalledProcessError as e:
         logging.error(f"fullparse.sh failed with exit code: {e.returncode}")
         logging.error(f"Error output: {e.stderr}")
+        logging.debug(f"fullparse.sh stdout: {e.stdout}")
         exit(1)
 
     logging.info("Main script completed successfully")
