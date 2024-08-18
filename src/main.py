@@ -32,7 +32,7 @@ def main():
         args.file += '.owl'
     
     # Get the relative path of the ontology file
-    ontology_file = os.path.join(args.source, args.file)
+    ontology_file = os.path.normpath(os.path.join(args.source, args.file))
     
     # Log the constructed file path and current working directory
     logging.debug(f"Current working directory: {os.getcwd()}")
@@ -70,8 +70,8 @@ def main():
         fullparse_command.append("-e")
     
     # Log the full command
-    logging.info(f"Full fullparse.sh command: {' '.join(fullparse_command)}")
-    logging.info(f"Running fullparse.sh with command: {' '.join(fullparse_command)}")
+    logging.info(f"Full fullparse.sh command: {' '.join(map(str, fullparse_command))}")
+    logging.info(f"Running fullparse.sh with command: {' '.join(map(str, fullparse_command))}")
     
     # Check if the metrics file already exists
     metrics_file = os.path.join(args.input, "temp_results", args.source, os.path.splitext(args.file)[0], datetime.now().strftime("%Y-%m-%d_%H-%M-%S"), "metrics", f"{os.path.splitext(args.file)[0]}.xml")
