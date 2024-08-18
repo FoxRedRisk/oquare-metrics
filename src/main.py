@@ -34,17 +34,22 @@ def main():
     # Run fullparse.sh to generate the metrics XML file
     fullparse_command = [
         "bash", "./src/fullparse.sh",
-        args.input,
-        args.source,
-        "",  # ignore_files (empty for now)
-        ontology_file,
-        args.reasoner,
-        str(args.model).lower(),
-        str(args.characteristics).lower(),
-        str(args.subcharacteristics).lower(),
-        str(args.metrics).lower(),
-        str(args.evolution).lower()
+        "-i", args.input,
+        "-s", args.source,
+        "-f", ontology_file,
+        "-r", args.reasoner
     ]
+    
+    if args.model:
+        fullparse_command.append("-M")
+    if args.characteristics:
+        fullparse_command.append("-c")
+    if args.subcharacteristics:
+        fullparse_command.append("-S")
+    if args.metrics:
+        fullparse_command.append("-m")
+    if args.evolution:
+        fullparse_command.append("-e")
     
     # Log the full command
     logging.info(f"Full fullparse.sh command: {' '.join(fullparse_command)}")

@@ -7,33 +7,72 @@ log() {
     echo "$(date '+%Y-%m-%d %H:%M:%S') - $1"
 }
 
-# Inputs
-contents_folder="$1"
-ontology_folders="$2"
-ignore_files="$3"
-ontology_files="$4"
-reasoner="$5"
-model_plot="$6"
-characteristics_plot="$7"
-subcharacteristics_plot="$8"
-metrics_plot="$9"
-evolution_plot="${10}"
+# Function to display usage
+usage() {
+    echo "Usage: $0 -i <contents_folder> -s <ontology_folders> -f <ontology_files> [-g <ignore_files>] [-r <reasoner>] [-M] [-c] [-S] [-m] [-e]"
+    echo "  -i: Contents folder"
+    echo "  -s: Ontology folders"
+    echo "  -f: Ontology files"
+    echo "  -g: Ignore files (optional)"
+    echo "  -r: Reasoner (optional, default: HermiT)"
+    echo "  -M: Generate model plot"
+    echo "  -c: Generate characteristics plot"
+    echo "  -S: Generate subcharacteristics plot"
+    echo "  -m: Generate metrics plot"
+    echo "  -e: Generate evolution plot"
+    exit 1
+}
+
+# Initialize variables
+contents_folder=""
+ontology_folders=""
+ontology_files=""
+ignore_files=""
+reasoner="HermiT"
+model_plot=false
+characteristics_plot=false
+subcharacteristics_plot=false
+metrics_plot=false
+evolution_plot=false
+
+# Parse command-line options
+while getopts "i:s:f:g:r:McSme" opt; do
+    case $opt in
+        i) contents_folder="$OPTARG" ;;
+        s) ontology_folders="$OPTARG" ;;
+        f) ontology_files="$OPTARG" ;;
+        g) ignore_files="$OPTARG" ;;
+        r) reasoner="$OPTARG" ;;
+        M) model_plot=true ;;
+        c) characteristics_plot=true ;;
+        S) subcharacteristics_plot=true ;;
+        m) metrics_plot=true ;;
+        e) evolution_plot=true ;;
+        *) usage ;;
+    esac
+done
+
+# Check for required arguments
+if [ -z "$contents_folder" ] || [ -z "$ontology_folders" ] || [ -z "$ontology_files" ]; then
+    log "Error: Missing required arguments"
+    usage
+fi
 
 # Convert backslashes to forward slashes in ontology_files
 ontology_files=$(echo "$ontology_files" | sed 's/\\/\//g')
 
 # Log all input parameters
 log "Input parameters:"
-log "1. Contents folder: $contents_folder"
-log "2. Ontology folders: $ontology_folders"
-log "3. Ignore files: $ignore_files"
-log "4. Ontology files: $ontology_files"
-log "5. Reasoner: $reasoner"
-log "6. Model plot: $model_plot"
-log "7. Characteristics plot: $characteristics_plot"
-log "8. Subcharacteristics plot: $subcharacteristics_plot"
-log "9. Metrics plot: $metrics_plot"
-log "10. Evolution plot: $evolution_plot"
+log "Contents folder: $contents_folder"
+log "Ontology folders: $ontology_folders"
+log "Ontology files: $ontology_files"
+log "Ignore files: $ignore_files"
+log "Reasoner: $reasoner"
+log "Model plot: $model_plot"
+log "Characteristics plot: $characteristics_plot"
+log "Subcharacteristics plot: $subcharacteristics_plot"
+log "Metrics plot: $metrics_plot"
+log "Evolution plot: $evolution_plot"
 
 date=$(powershell -Command "Get-Date -Format 'yyyy-MM-dd_HH-mm-ss'")
 
