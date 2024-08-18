@@ -41,9 +41,12 @@ def main():
     # Check if the ontology file exists
     if not os.path.isfile(ontology_file):
         logging.error(f"Ontology file not found: {ontology_file}")
-        logging.error(f"Contents of {source_folder}:")
-        for file in os.listdir(source_folder):
-            logging.error(f"  {file}")
+        if os.path.isdir(args.source):
+            logging.error(f"Contents of {args.source}:")
+            for file in os.listdir(args.source):
+                logging.error(f"  {file}")
+        else:
+            logging.error(f"Source folder not found: {args.source}")
         exit(1)
 
     # Run fullparse.sh to generate the metrics XML file
