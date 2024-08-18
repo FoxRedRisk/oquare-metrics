@@ -28,9 +28,16 @@ OQuaRE is a framework developed by Astrid Duque Ramos which defines an ontology 
    ```
    pip install -r requirements.txt
    ```
-3. Run the main script:
+3. You can run the application in two ways:
+
+   a. Using the main Python script:
    ```
    python src/main.py -i <input_path> -s <ontology_source> -f <file> -r <reasoner> [-M] [-c] [-S] [-m] [-e]
+   ```
+
+   b. Directly using the fullparse.sh script:
+   ```
+   bash ./src/fullparse.sh -i <input_path> -s <ontology_source> -f <file> -r <reasoner> [-M] [-c] [-S] [-m] [-e]
    ```
 
    Where:
@@ -48,8 +55,12 @@ OQuaRE is a framework developed by Astrid Duque Ramos which defines an ontology 
    ```
    python src/main.py -i ./output -s ./ontologies -f my_ontology.owl -r HermiT -M -c -S -m -e
    ```
+   or
+   ```
+   bash ./src/fullparse.sh -i ./output -s ./ontologies -f my_ontology.owl -r HermiT -M -c -S -m -e
+   ```
 
-   This example will run the application on the ontology file "my_ontology.owl" in the "./ontologies" folder, using the HermiT reasoner, and generate all available plots. The output will be stored in the "./output" directory.
+   These examples will run the application on the ontology file "my_ontology.owl" in the "./ontologies" folder, using the HermiT reasoner, and generate all available plots. The output will be stored in the "./output" directory.
 
 ## Contact
 
