@@ -31,6 +31,7 @@ def main():
     # Construct the path to the metrics file
     metrics_file = os.path.normpath(os.path.join(
         args.input,
+        "temp_results",
         args.source.lstrip('./\\'),  # Remove leading ./ or .\ if present
         os.path.splitext(args.file)[0],
         args.date,
@@ -47,21 +48,31 @@ def main():
         logging.error(f"Source path: {args.source}")
         logging.error(f"File: {args.file}")
         logging.error(f"Date: {args.date}")
-        logging.error(f"Directory contents of {os.path.dirname(metrics_file)}:")
-        try:
-            logging.error(os.listdir(os.path.dirname(metrics_file)))
-        except FileNotFoundError:
-            logging.error(f"Directory {os.path.dirname(metrics_file)} does not exist")
+        
+        # Check if the input directory exists
+        if not os.path.exists(args.input):
+            logging.error(f"Input directory does not exist: {args.input}")
+        else:
+            logging.info(f"Contents of input directory {args.input}:")
+            logging.info(os.listdir(args.input))
+        
+        # Check the temp_results directory
+        temp_results_dir = os.path.join(args.input, "temp_results")
+        if not os.path.exists(temp_results_dir):
+            logging.error(f"temp_results directory does not exist: {temp_results_dir}")
+        else:
+            logging.info(f"Contents of temp_results directory {temp_results_dir}:")
+            logging.info(os.listdir(temp_results_dir))
         
         # Try to list contents of parent directories
         parent_dir = os.path.dirname(metrics_file)
-        for _ in range(3):  # Go up to 3 levels
-            parent_dir = os.path.dirname(parent_dir)
-            logging.error(f"Contents of {parent_dir}:")
+        for _ in range(4):  # Go up to 4 levels
+            logging.error(f"Checking contents of {parent_dir}:")
             try:
                 logging.error(os.listdir(parent_dir))
             except FileNotFoundError:
                 logging.error(f"Directory {parent_dir} does not exist")
+            parent_dir = os.path.dirname(parent_dir)
         
         exit(1)
 
