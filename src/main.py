@@ -33,7 +33,7 @@ def main():
 
     # Run fullparse.sh to generate the metrics XML file
     fullparse_command = [
-        "bash", "src/fullparse.sh",
+        "bash", "./src/fullparse.sh",
         args.input,
         args.source,
         "",  # ignore_files (empty for now)
