@@ -129,6 +129,8 @@ do
                 mkdir -p "$contents_folder/temp_results/ontologies/imports/$outputFile/$date/metrics"
                 mkdir -p "$contents_folder/temp_results/ontologies/imports/$outputFile/$date/img"
                 outputFilePath="${contents_folder#./}/temp_results/ontologies/imports/$outputFile/$date/metrics/$outputFile.xml"
+                log "Creating output directory: $(dirname "$outputFilePath")"
+                mkdir -p "$(dirname "$outputFilePath")"
                 log "Checking if metrics file already exists: $outputFilePath"
                 if [ -f "$outputFilePath" ]; then
                     log "Metrics file already exists, skipping Java execution"
