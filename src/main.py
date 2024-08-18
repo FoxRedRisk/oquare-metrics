@@ -21,7 +21,7 @@ def main():
     args = parser.parse_args()
     logging.info(f"Arguments: {args}")
 
-    ontology_file = os.path.join(args.input, args.source, "import", args.file)
+    ontology_file = os.path.join(args.source, "import", args.file)
     
     # Log the constructed file path
     logging.debug(f"Looking for ontology file at: {ontology_file}")
