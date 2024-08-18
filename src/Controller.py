@@ -166,11 +166,15 @@ class Controller:
         date -- Current date of module execution
 
         """
+        import os
+
         archive_path = input_path + '/archives/' + ontology_source + '/' + file + '/'
         results_path = input_path + '/results/' + ontology_source + '/' + file + '/'
         temp_path = input_path + '/temp_results/' + ontology_source + '/' + file + '/' + date
         oquare_model_values = {}
 
+        # Create necessary directories
+        os.makedirs(temp_path + '/metrics/', exist_ok=True)
 
         archive_list = sorted(glob.glob(archive_path + '*/metrics/' + file + '.xml'))[-18:]
         for path in archive_list:
@@ -181,7 +185,12 @@ class Controller:
             results_file_path = results_file_path[0]
             self.parse_entry(results_path, results_file_path, oquare_model_values, 'oquare_value')
 
-        parsed_metrics = MetricsParser(temp_path + '/metrics/' + file + '.xml')
+        metrics_file = temp_path + '/metrics/' + file + '.xml'
+        if not os.path.exists(metrics_file):
+            print(f"Warning: Metrics file not found: {metrics_file}")
+            return
+
+        parsed_metrics = MetricsParser(metrics_file)
         oquare_model_values[date] = parsed_metrics.parse_oquare_value()
 
         self.graphPlotter.plot_oquare_values(oquare_model_values, file, temp_path)
