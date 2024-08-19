@@ -33,6 +33,8 @@ class oquareGraphs:
         values = list(data.values())
         xpos = range(len(values))
 
+        line_labels = list(data.keys())
+        line_labels = list(data.keys())
         with plt.style.context(matplotx.styles.ayu["light"]):
             plt.rc('font', size=10)
             plt.ylim([0, 5.5])
@@ -153,6 +155,8 @@ class oquareGraphs:
             values = list(subcharacteristics.values())
             ypos = range(len(values))
 
+            img_dir = os.path.join(output_path, 'img')
+            os.makedirs(img_dir, exist_ok=True)
             with plt.style.context(matplotx.styles.ayu["light"]):
 
                 if len(values) == 1:
@@ -264,6 +268,8 @@ class oquareGraphs:
         
         with plt.style.context(matplotx.styles.ayu["light"]):
 
+            img_dir = os.path.join(output_path, 'img')
+            os.makedirs(img_dir, exist_ok=True)
             fig, axs = plt.subplots(4, 5, figsize=(12,12))
             
             row = 0
