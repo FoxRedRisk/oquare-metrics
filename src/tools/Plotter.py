@@ -63,6 +63,7 @@ class oquareGraphs:
         """
         line_labels = list(data.keys())
         line_labels = list(data.keys())
+        line_labels = list(data.keys())
         img_dir = os.path.join(output_path, 'img')
         os.makedirs(img_dir, exist_ok=True)
         
