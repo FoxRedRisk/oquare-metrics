@@ -62,7 +62,7 @@ def main():
     
     # Construct the ontology file path relative to the script
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    ontology_file = os.path.normpath(os.path.join(script_dir, '..', args.source, args.file))
+    ontology_file = os.path.join(script_dir, '..', args.source, args.file).replace('\\', '/')
     
     # Log the constructed file path
     logger.debug(f"Script directory: {script_dir}")
@@ -75,13 +75,13 @@ def main():
 
     # Run fullparse.sh to generate the metrics XML file
     def convert_path(path):
-        return path.replace("\\", "/")
+        return path.replace("\\", "/") if path else path
 
     fullparse_command = [
         convert_path(os.path.join(script_dir, "fullparse.sh")),
         "-i", convert_path(os.path.abspath(args.input)),
         "-s", convert_path(os.path.dirname(ontology_file)),
-        "-f", convert_path(os.path.abspath(ontology_file)),
+        "-f", convert_path(ontology_file),
         "-r", args.reasoner
     ]
     if os.name == 'nt':  # Windows system
@@ -124,7 +124,7 @@ def main():
     
     # Generate timestamp once and use it consistently
     date_str = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    metrics_file = os.path.normpath(os.path.join(args.input, "temp_results", "ontologies", "imports", os.path.splitext(os.path.basename(ontology_file))[0], date_str, "metrics", f"{os.path.splitext(os.path.basename(ontology_file))[0]}.xml"))
+    metrics_file = os.path.join(args.input, "temp_results", "ontologies", "imports", os.path.splitext(os.path.basename(ontology_file))[0], date_str, "metrics", f"{os.path.splitext(os.path.basename(ontology_file))[0]}.xml").replace('\\', '/')
     
     # Run fullparse.sh to generate the metrics XML file
     try:
