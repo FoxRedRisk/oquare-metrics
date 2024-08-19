@@ -47,7 +47,7 @@ def main():
         file_name = os.path.splitext(os.path.basename(args.file))[0].replace('.owl', '')
         
         # Define the location for the metrics file
-        metrics_file = os.path.normpath(os.path.join(args.input, "temp_results", args.source, file_name, args.date, "metrics", f"{file_name}.xml")).replace('\\', '/')
+        metrics_file = os.path.normpath(os.path.join(args.input, "metrics", f"{file_name}.xml")).replace('\\', '/')
         
         logger.info(f"Checking for metrics file at: {metrics_file}")
         if not os.path.exists(metrics_file):
