@@ -42,9 +42,9 @@ def main():
         args = parser.parse_args()
         logger.info(f"Arguments: {args}")
 
-        # Add .owl extension if not provided
-        if not args.file.lower().endswith(('.owl', '.rdf', '.ttl')):
-            args.file += '.owl'
+        # Add .xml extension if not provided
+        if not args.file.lower().endswith('.xml'):
+            args.file += '.xml'
         
         # Define the location for the metrics file
         metrics_file = os.path.join(args.input, "metrics", f"{os.path.splitext(args.file)[0]}.xml").replace('\\', '/')

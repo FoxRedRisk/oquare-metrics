@@ -56,9 +56,9 @@ def main():
     args = parser.parse_args()
     logger.info(f"Arguments: {args}")
 
-    # Add .owl extension if not provided
-    if not args.file.lower().endswith(('.owl', '.rdf', '.ttl')):
-        args.file += '.owl'
+    # Add .xml extension if not provided
+    if not args.file.lower().endswith('.xml'):
+        args.file += '.xml'
     
     # Construct the ontology file path relative to the script
     script_dir = os.path.dirname(os.path.abspath(__file__))
