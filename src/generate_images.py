@@ -40,7 +40,7 @@ def main():
         parser.add_argument('-e', '--evolution', action='store_true', help='Generate evolution plot')
     
         args = parser.parse_args()
-        logging.info(f"Arguments: {args}")
+        logger.info(f"Arguments: {args}")
 
         # Add .owl extension if not provided
         if not args.file.lower().endswith(('.owl', '.rdf', '.ttl')):
@@ -57,43 +57,43 @@ def main():
         metrics_file = None
         for location in possible_locations:
             potential_file = os.path.normpath(os.path.join(location, f"./{os.path.splitext(args.file)[0]}.xml")).replace('\\', '/')
-            logging.info(f"Checking for metrics file at: {potential_file}")
+            logger.info(f"Checking for metrics file at: {potential_file}")
             if os.path.exists(potential_file):
                 metrics_file = potential_file
-                logging.info(f"Found metrics file at: {metrics_file}")
+                logger.info(f"Found metrics file at: {metrics_file}")
                 break
             else:
-                logging.warning(f"Metrics file not found at: {potential_file}")
+                logger.warning(f"Metrics file not found at: {potential_file}")
 
         if metrics_file is None:
-            logging.error("Metrics file not found in any of the expected locations.")
+            logger.error("Metrics file not found in any of the expected locations.")
             for location in possible_locations:
-                logging.error(f"Checked location: {location}")
+                logger.error(f"Checked location: {location}")
                 if os.path.exists(os.path.dirname(location)):
-                    logging.info(f"Contents of {os.path.dirname(location)}:")
-                    logging.info(os.listdir(os.path.dirname(location)))
+                    logger.info(f"Contents of {os.path.dirname(location)}:")
+                    logger.info(os.listdir(os.path.dirname(location)))
                 else:
-                    logging.error(f"Directory does not exist: {os.path.dirname(location)}")
+                    logger.error(f"Directory does not exist: {os.path.dirname(location)}")
             exit(1)
 
-        logging.info(f"Using metrics file: {metrics_file}")
+        logger.info(f"Using metrics file: {metrics_file}")
         
         # Verify the content of the metrics file
         try:
             with open(metrics_file, 'r') as f:
                 metrics_content = f.read()
-                logging.info(f"Metrics file content (first 100 characters): {metrics_content[:100]}")
+                logger.info(f"Metrics file content (first 100 characters): {metrics_content[:100]}")
         except Exception as e:
-            logging.error(f"Error reading metrics file: {str(e)}")
+            logger.error(f"Error reading metrics file: {str(e)}")
 
         # Initialize the Controller
         controller = Controller()
 
         # Generate the images
         output_path = os.path.normpath(os.path.dirname(os.path.dirname(f"./{metrics_file}"))).replace('\\', '/')
-        logging.info(f"Output path for images: {output_path}")
+        logger.info(f"Output path for images: {output_path}")
 
-        file_name = os.path.normpath(os.path.splitext(os.path.basename(f"./{args.file}"))[0]).replace('\\', '/')
+        file_name = os.path.normpath(os.path.splitext(os.path.basename(args.file))[0]).replace('\\', '/')
         if args.model:
             controller.handle_oquare_model(file_name, args.input, args.source, args.date)
         if args.characteristics:
@@ -107,11 +107,11 @@ def main():
             controller.handle_characteristics_evolution(file_name, args.input, args.source, args.date)
             controller.handle_subcharacteristics_evolution(file_name, args.input, args.source, args.date)
 
-        logging.info("Image generation completed successfully")
+        logger.info("Image generation completed successfully")
     except Exception as e:
         logger.error(f"An error occurred during image generation: {str(e)}")
         logger.error(traceback.format_exc())
 
 if __name__ == '__main__':
-    logging.info("Starting generate_images.py")
+    logger.info("Starting generate_images.py")
     main()
