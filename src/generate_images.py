@@ -47,7 +47,7 @@ def main():
             args.file += '.xml'
         
         # Define the location for the metrics file
-        metrics_file = os.path.join(args.input, "metrics", f"{os.path.splitext(os.path.basename(args.file))[0]}.xml").replace('\\', '/')
+        metrics_file = os.path.join(args.input, "metrics", f"{os.path.splitext(args.file)[0]}.xml").replace('\\', '/')
         
         logger.info(f"Checking for metrics file at: {metrics_file}")
         if not os.path.exists(metrics_file):
