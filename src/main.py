@@ -87,7 +87,9 @@ def main():
     else:
         logger.info(f"Directory already exists: {os.path.dirname(metrics_file)}")
 
-    # Run OQuaRE tool
+    # Create an empty metrics file before running the OQuaRE tool
+    with open(metrics_file, 'w') as f:
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n<metrics>\n</metrics>')
     logger.info("Running OQuaRE tool...")
     full_ontology_path = os.path.join(args.source, args.file).replace('\\', '/')
     logger.info(f"Relative ontology file path: {full_ontology_path}")
