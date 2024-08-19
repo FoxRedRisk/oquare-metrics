@@ -56,10 +56,6 @@ def main():
     args = parser.parse_args()
     logger.info(f"Arguments: {args}")
 
-    # Add .xml extension if not provided
-    if not args.file.lower().endswith('.xml'):
-        args.file += '.xml'
-    
     # Construct the ontology file path relative to the script
     script_dir = os.path.dirname(os.path.abspath(__file__))
     ontology_file = os.path.abspath(os.path.join(script_dir, '..', args.source, args.file)).replace('\\', '/')
