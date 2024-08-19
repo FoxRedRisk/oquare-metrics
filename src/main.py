@@ -60,30 +60,26 @@ def main():
     if not args.file.lower().endswith(('.owl', '.rdf', '.ttl')):
         args.file += '.owl'
     
-    # Find the ontology file in the source folder or its subdirectories
-    ontology_file = None
-    for root, dirs, files in os.walk(args.source):
-        if args.file in files:
-            ontology_file = os.path.abspath(os.path.join(root, args.file))
-            break
+    # Construct the ontology file path relative to the script
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    ontology_file = os.path.normpath(os.path.join(script_dir, '..', 'ontologies', 'imports', args.file))
     
-    # Log the found file path and current working directory
-    logger.debug(f"Current working directory: {os.getcwd()}")
-    logger.debug(f"Looking for ontology file at (absolute path): {ontology_file}")
+    # Log the constructed file path
+    logger.debug(f"Script directory: {script_dir}")
+    logger.debug(f"Constructed ontology file path: {ontology_file}")
     
     # Check if the ontology file exists
-    if not ontology_file or not os.path.isfile(ontology_file):
-        logger.error(f"Ontology file not found: {args.file}")
-        logger.error(f"Searched in: {args.source}")
+    if not os.path.isfile(ontology_file):
+        logger.error(f"Ontology file not found: {ontology_file}")
         exit(1)
 
     # Run fullparse.sh to generate the metrics XML file
     fullparse_command = [
         "bash" if os.name != 'nt' else "sh",
-        "./src/fullparse.sh",
-        "-i", args.input,
-        "-s", args.source,
-        "-f", ontology_file,  # Use the full path to the ontology file
+        os.path.join(script_dir, "fullparse.sh"),
+        "-i", os.path.abspath(args.input),
+        "-s", os.path.dirname(ontology_file),
+        "-f", os.path.basename(ontology_file),
         "-r", args.reasoner
     ]
     
