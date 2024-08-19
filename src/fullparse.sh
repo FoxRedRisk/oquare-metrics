@@ -1,6 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e  # Exit immediately if a command exits with a non-zero status.
+
+# Check if running on Windows
+if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
+    # Use forward slashes for paths on Windows
+    SCRIPT_DIR=$(dirname "$(readlink -f "$0")" | sed 's/\\/\//g')
+else
+    SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
+fi
 
 # Function to log messages
 log() {
@@ -22,8 +30,9 @@ trap 'error_handler $LINENO' ERR
 log "Starting fullparse.sh with arguments: $@"
 
 # Check if the OQuaRE tool exists
-if [ ! -f "./libs/oquare-versions.jar" ]; then
-    log "Error: OQuaRE tool not found at ./libs/oquare-versions.jar"
+OQUARE_PATH="$SCRIPT_DIR/../libs/oquare-versions.jar"
+if [ ! -f "$OQUARE_PATH" ]; then
+    log "Error: OQuaRE tool not found at $OQUARE_PATH"
     exit 1
 fi
 
