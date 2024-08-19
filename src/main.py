@@ -99,8 +99,10 @@ def main():
     ]
 
     try:
-        subprocess.run(oquare_command, check=True, text=True, capture_output=True)
+        result = subprocess.run(oquare_command, check=True, text=True, capture_output=True)
         logger.info("OQuaRE tool completed successfully")
+        logger.debug(f"OQuaRE tool output: {result.stdout}")
+        logger.debug(f"OQuaRE tool error output: {result.stderr}")
     except subprocess.CalledProcessError as e:
         logger.error(f"OQuaRE tool failed with exit code: {e.returncode}")
         logger.error(f"Error output: {e.stderr}")
