@@ -89,8 +89,8 @@ def main():
 
     # Run OQuaRE tool
     logger.info("Running OQuaRE tool...")
-    full_ontology_path = os.path.abspath(os.path.join(args.source, args.file)).replace('\\', '/')
-    logger.info(f"Full ontology file path: {full_ontology_path}")
+    full_ontology_path = os.path.join(args.source, args.file).replace('\\', '/')
+    logger.info(f"Relative ontology file path: {full_ontology_path}")
     oquare_command = [
         "java", "-jar", os.path.join(script_dir, "../libs/oquare-versions.jar"),
         "-o", full_ontology_path,

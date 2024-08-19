@@ -94,8 +94,8 @@ if [ -z "$contents_folder" ] || [ -z "$ontology_folders" ] || [ -z "$ontology_fi
     usage
 fi
 
-# Construct the full path to the ontology file
-ontology_files=$(realpath "$ontology_folders/$ontology_files" | sed 's/\\/\//g')
+# Construct the relative path to the ontology file
+ontology_files="$ontology_folders/$ontology_files"
 
 # Log all input parameters
 log "Input parameters:"
