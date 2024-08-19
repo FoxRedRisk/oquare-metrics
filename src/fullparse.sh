@@ -57,7 +57,7 @@ evolution_plot=false
 
 # Convert Windows paths to Unix-style paths
 convert_path() {
-    echo "$1" | sed 's/\\/\//g' | sed 's/://' | sed 's/^\/*//' | sed 's/^/\//'
+    echo "$1" | sed 's/\\/\//g' | sed 's/://' | sed 's/^/\//'
 }
 
 # Parse command-line options
@@ -122,7 +122,7 @@ log "Created directory: $(dirname "$outputFilePath")"
 
 # Run OQuaRE tool
 log "Running OQuaRE tool..."
-java -jar "../libs/oquare-versions.jar" -o "$(convert_path "$ontology_files")" -m "$(convert_path "$outputFilePath")" -r "$reasoner"
+java -jar "$(convert_path "../libs/oquare-versions.jar")" -o "$(convert_path "$ontology_files")" -m "$(convert_path "$outputFilePath")" -r "$reasoner"
 
 if [ ! -f "$outputFilePath" ]
 then

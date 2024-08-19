@@ -76,10 +76,10 @@ def main():
     # Run fullparse.sh to generate the metrics XML file
     fullparse_command = [
         "bash" if os.name != 'nt' else "sh",
-        os.path.join(script_dir, "fullparse.sh"),
-        "-i", os.path.abspath(args.input),
-        "-s", os.path.dirname(ontology_file),
-        "-f", os.path.abspath(ontology_file),
+        os.path.join(script_dir, "fullparse.sh").replace("\\", "/"),
+        "-i", os.path.abspath(args.input).replace("\\", "/"),
+        "-s", os.path.dirname(ontology_file).replace("\\", "/"),
+        "-f", os.path.abspath(ontology_file).replace("\\", "/"),
         "-r", args.reasoner
     ]
     
