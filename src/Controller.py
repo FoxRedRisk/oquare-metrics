@@ -121,7 +121,7 @@ class Controller:
         
         oquare_characteristics_values = {}
 
-        metrics_file = os.path.join(temp_path, "metrics", f"{os.path.splitext(os.path.basename(file))[0]}.xml").replace('\\', '/')
+        metrics_file = os.path.normpath(os.path.join(temp_path, "metrics", f"{os.path.splitext(os.path.basename(file))[0]}.xml")).replace('\\', '/')
         logging.info(f"Using metrics file: {metrics_file}")
         
         if not os.path.exists(metrics_file):
@@ -155,7 +155,8 @@ class Controller:
         file -- Current ontology file being analysed
 
         """
-        parsed_metrics = MetricsParser(temp_path + '/metrics/' + file + '.xml')
+        metrics_file = os.path.normpath(os.path.join(temp_path, "metrics", f"{file}.xml")).replace('\\', '/')
+        parsed_metrics = MetricsParser(metrics_file)
         characteristics = parsed_metrics.parse_characteristics_metrics()
         logging.info(f"Generating subcharacteristics plot at: {temp_path}")
         self.graphPlotter.plot_oquare_subcharacteristics(characteristics, file, temp_path)
@@ -171,7 +172,8 @@ class Controller:
         file -- Current ontology file being analysed
 
         """
-        parsed_metrics = MetricsParser(temp_path + '/metrics/' + file + '.xml')
+        metrics_file = os.path.normpath(os.path.join(temp_path, "metrics", f"{file}.xml")).replace('\\', '/')
+        parsed_metrics = MetricsParser(metrics_file)
         metrics = parsed_metrics.parse_metrics()
         scaled_metrics = parsed_metrics.parse_scaled_metrics()
 
@@ -222,7 +224,7 @@ class Controller:
             logger.debug(f"Parsing results file: {results_file_path}")
             self.parse_entry(results_path, results_file_path, oquare_model_values, 'oquare_value')
 
-        metrics_file = temp_path + '/metrics/' + file + '.xml'
+        metrics_file = os.path.normpath(os.path.join(temp_path, "metrics", f"{file}.xml")).replace('\\', '/')
         if not os.path.exists(metrics_file):
             logger.warning(f"Metrics file not found: {metrics_file}")
             return
@@ -267,7 +269,8 @@ class Controller:
             self.parse_entry(results_path, results_file_path, metrics_evolution, 'metrics')
             self.parse_entry(results_path, results_file_path, metrics_evolution_scaled, 'metrics-scaled')
 
-        parsed_metrics = MetricsParser(temp_path + '/metrics/' + file + '.xml')
+        metrics_file = os.path.normpath(os.path.join(temp_path, "metrics", f"{file}.xml")).replace('\\', '/')
+        parsed_metrics = MetricsParser(metrics_file)
         metrics = parsed_metrics.parse_metrics()
         scaled_metrics = parsed_metrics.parse_scaled_metrics()
         self.store_metrics_evolution(metrics, metrics_evolution, date)
@@ -304,7 +307,8 @@ class Controller:
             results_file_path = results_file_path[0]
             self.parse_entry(results_path, results_file_path, characteristics_evolution, 'characteristics')
                 
-        parsed_metrics = MetricsParser(temp_path + '/metrics/' + file + '.xml')
+        metrics_file = os.path.normpath(os.path.join(temp_path, "metrics", f"{file}.xml")).replace('\\', '/')
+        parsed_metrics = MetricsParser(metrics_file)
         characteristics = parsed_metrics.parse_characteristics_metrics()
         self.store_characteristics_evolution(characteristics, characteristics_evolution, date)
 
@@ -337,7 +341,8 @@ class Controller:
             results_file_path = results_file_path[0]
             self.parse_entry(results_path, results_file_path, subcharacteristics_evolution, 'subcharacteristics')
                 
-        parsed_metrics = MetricsParser(temp_path + '/metrics/' + file + '.xml')
+        metrics_file = os.path.normpath(os.path.join(temp_path, "metrics", f"{file}.xml")).replace('\\', '/')
+        parsed_metrics = MetricsParser(metrics_file)
         characteristics = parsed_metrics.parse_characteristics_metrics()
         self.store_subcharacteristics_evolution(characteristics, subcharacteristics_evolution, date)
 
