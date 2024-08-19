@@ -78,7 +78,7 @@ def main():
         return path.replace("\\", "/") if path else path
 
     fullparse_command = [
-        convert_path(os.path.join(script_dir, "fullparse.sh")),
+        "fullparse.sh",
         "-i", convert_path(os.path.abspath(args.input)),
         "-s", convert_path(os.path.dirname(ontology_file)),
         "-f", convert_path(ontology_file),
@@ -91,17 +91,10 @@ def main():
             bash_paths = result.stdout.strip().split('\n')
             bash_path = next((path for path in bash_paths if "Git" in path), bash_paths[0])
             logger.info(f"Bash found at: {bash_path}")
-            fullparse_command.insert(0, bash_path)
+            fullparse_command = [bash_path, "-c", " ".join(fullparse_command)]
         except subprocess.CalledProcessError:
-            logger.warning("Bash not found using 'where' command. Trying 'bash --version'...")
-            try:
-                subprocess.run(["bash", "--version"], check=True, capture_output=True, text=True)
-                logger.info("Bash is accessible on this Windows system.")
-                fullparse_command.insert(0, "bash")
-            except subprocess.CalledProcessError:
-                logger.warning("Bash is not accessible on this Windows system.")
-            except FileNotFoundError:
-                logger.warning("Bash is not found on this Windows system.")
+            logger.error("Bash not found on this Windows system. Please ensure Git Bash is installed and in the system PATH.")
+            exit(1)
     else:  # Non-Windows systems
         fullparse_command.insert(0, "bash")
     
