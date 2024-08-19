@@ -1320,3 +1320,414 @@ Traceback (most recent call last):
   File "D:\Code\oquare-metrics\src\main.py", line 140, in main
     raise subprocess.CalledProcessError(returncode, fullparse_command)
 subprocess.CalledProcessError: Command '['cmd', '/c', 'bash D:/Code/oquare-metrics/src/fullparse.sh -i "./output" -s "./ontologies/imports" -f "TD1.owl" -r HermiT -M -c -S -m -e']' returned non-zero exit status 1.
+2024-08-19 09:40:10,828 - INFO - Starting main.py
+2024-08-19 09:40:10,845 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', reasoner='HermiT', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 09:40:10,845 - DEBUG - Script directory: D:\Code\oquare-metrics\src
+2024-08-19 09:40:10,845 - DEBUG - Constructed ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 09:40:10,854 - INFO - Final fullparse_command: ['cmd', '/c', 'bash D:/Code/oquare-metrics/src/fullparse.sh -i "./output" -s "./ontologies/imports" -f "TD1.owl" -r HermiT']
+2024-08-19 09:40:10,854 - INFO - Full fullparse.sh command: cmd /c bash D:/Code/oquare-metrics/src/fullparse.sh -i "./output" -s "./ontologies/imports" -f "TD1.owl" -r HermiT -M -c -S -m -e
+2024-08-19 09:40:10,854 - INFO - Executing command: cmd /c "bash D:/Code/oquare-metrics/src/fullparse.sh -i \"./output\" -s \"./ontologies/imports\" -f \"TD1.owl\" -r HermiT -M -c -S -m -e"
+2024-08-19 09:40:10,855 - INFO - Starting execution of fullparse.sh
+2024-08-19 09:40:10,855 - INFO - Executing command: cmd /c bash D:/Code/oquare-metrics/src/fullparse.sh -i "./output" -s "./ontologies/imports" -f "TD1.owl" -r HermiT -M -c -S -m -e
+2024-08-19 09:40:11,122 - INFO - fullparse.sh stdout: Usage: D:/Code/oquare-metrics/src/fullparse.sh -i <contents_folder> -s <ontology_folders> -f <ontology_files> [-g <ignore_files>] [-r <reasoner>] [-M] [-c] [-S] [-m] [-e]
+2024-08-19 09:40:11,122 - INFO - fullparse.sh stdout: -i: Contents folder
+2024-08-19 09:40:11,122 - INFO - fullparse.sh stdout: -s: Ontology folders
+2024-08-19 09:40:11,122 - INFO - fullparse.sh stdout: -f: Ontology files
+2024-08-19 09:40:11,122 - INFO - fullparse.sh stdout: -g: Ignore files (optional)
+2024-08-19 09:40:11,122 - INFO - fullparse.sh stdout: -r: Reasoner (optional, default: HermiT)
+2024-08-19 09:40:11,122 - INFO - fullparse.sh stdout: -M: Generate model plot
+2024-08-19 09:40:11,122 - INFO - fullparse.sh stdout: -c: Generate characteristics plot
+2024-08-19 09:40:11,122 - INFO - fullparse.sh stdout: -S: Generate subcharacteristics plot
+2024-08-19 09:40:11,122 - INFO - fullparse.sh stdout: -m: Generate metrics plot
+2024-08-19 09:40:11,122 - INFO - fullparse.sh stdout: -e: Generate evolution plot
+2024-08-19 09:40:11,144 - ERROR - fullparse.sh stderr: 2024-08-19 09:40:11 - Starting fullparse.sh with arguments: -i
+2024-08-19 09:40:11,144 - ERROR - fullparse.sh stderr: 2024-08-19 09:40:11 - Error: Missing required arguments
+2024-08-19 09:40:11,144 - INFO - fullparse.sh exit code: 1
+2024-08-19 09:40:11,144 - ERROR - fullparse.sh failed with exit code: 1
+2024-08-19 09:40:11,144 - ERROR - Command that failed: cmd /c bash D:/Code/oquare-metrics/src/fullparse.sh -i "./output" -s "./ontologies/imports" -f "TD1.owl" -r HermiT -M -c -S -m -e
+2024-08-19 09:40:11,144 - ERROR - Exception details:
+Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\main.py", line 140, in main
+    raise subprocess.CalledProcessError(returncode, fullparse_command)
+subprocess.CalledProcessError: Command '['cmd', '/c', 'bash D:/Code/oquare-metrics/src/fullparse.sh -i "./output" -s "./ontologies/imports" -f "TD1.owl" -r HermiT -M -c -S -m -e']' returned non-zero exit status 1.
+2024-08-19 10:03:36,707 - INFO - Starting main.py
+2024-08-19 10:03:36,707 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', reasoner='HermiT', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 10:03:36,707 - DEBUG - Script directory: D:\Code\oquare-metrics\src
+2024-08-19 10:03:36,720 - DEBUG - Constructed ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 10:03:36,720 - INFO - Final fullparse_command: ['cmd', '/c', 'bash D:/Code/oquare-metrics/src/fullparse.sh -i "./output" -s "./ontologies/imports" -f "TD1.owl" -r HermiT']
+2024-08-19 10:03:36,721 - INFO - Full fullparse.sh command: cmd /c bash D:/Code/oquare-metrics/src/fullparse.sh -i "./output" -s "./ontologies/imports" -f "TD1.owl" -r HermiT -M -c -S -m -e
+2024-08-19 10:03:36,722 - INFO - Executing command: cmd /c "bash D:/Code/oquare-metrics/src/fullparse.sh -i \"./output\" -s \"./ontologies/imports\" -f \"TD1.owl\" -r HermiT -M -c -S -m -e"
+2024-08-19 10:03:36,722 - INFO - Starting execution of fullparse.sh
+2024-08-19 10:03:36,722 - INFO - Executing command: cmd /c bash D:/Code/oquare-metrics/src/fullparse.sh -i "./output" -s "./ontologies/imports" -f "TD1.owl" -r HermiT -M -c -S -m -e
+2024-08-19 10:03:36,960 - INFO - fullparse.sh stdout: Usage: D:/Code/oquare-metrics/src/fullparse.sh -i <contents_folder> -s <ontology_folders> -f <ontology_files> [-g <ignore_files>] [-r <reasoner>] [-M] [-c] [-S] [-m] [-e]
+2024-08-19 10:03:36,960 - INFO - fullparse.sh stdout: -i: Contents folder
+2024-08-19 10:03:36,960 - INFO - fullparse.sh stdout: -s: Ontology folders
+2024-08-19 10:03:36,960 - INFO - fullparse.sh stdout: -f: Ontology files
+2024-08-19 10:03:36,960 - INFO - fullparse.sh stdout: -g: Ignore files (optional)
+2024-08-19 10:03:36,960 - INFO - fullparse.sh stdout: -r: Reasoner (optional, default: HermiT)
+2024-08-19 10:03:36,960 - INFO - fullparse.sh stdout: -M: Generate model plot
+2024-08-19 10:03:36,960 - INFO - fullparse.sh stdout: -c: Generate characteristics plot
+2024-08-19 10:03:36,960 - INFO - fullparse.sh stdout: -S: Generate subcharacteristics plot
+2024-08-19 10:03:36,960 - INFO - fullparse.sh stdout: -m: Generate metrics plot
+2024-08-19 10:03:36,960 - INFO - fullparse.sh stdout: -e: Generate evolution plot
+2024-08-19 10:03:36,960 - ERROR - fullparse.sh stderr: 2024-08-19 10:03:36 - Starting fullparse.sh with arguments: -i
+2024-08-19 10:03:36,960 - ERROR - fullparse.sh stderr: 2024-08-19 10:03:36 - Error: Missing required arguments
+2024-08-19 10:03:36,960 - INFO - fullparse.sh exit code: 1
+2024-08-19 10:03:36,960 - ERROR - fullparse.sh failed with exit code: 1
+2024-08-19 10:03:36,975 - ERROR - Command that failed: cmd /c bash D:/Code/oquare-metrics/src/fullparse.sh -i "./output" -s "./ontologies/imports" -f "TD1.owl" -r HermiT -M -c -S -m -e
+2024-08-19 10:03:36,975 - ERROR - Exception details:
+Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\main.py", line 143, in main
+    raise subprocess.CalledProcessError(returncode, fullparse_command)
+subprocess.CalledProcessError: Command '['cmd', '/c', 'bash D:/Code/oquare-metrics/src/fullparse.sh -i "./output" -s "./ontologies/imports" -f "TD1.owl" -r HermiT -M -c -S -m -e']' returned non-zero exit status 1.
+2024-08-19 10:06:41,883 - INFO - Starting main.py
+2024-08-19 10:06:41,883 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', reasoner='HermiT', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 10:06:41,883 - DEBUG - Script directory: D:\Code\oquare-metrics\src
+2024-08-19 10:06:41,883 - DEBUG - Constructed ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 10:06:41,898 - INFO - Created directory: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-06-41/metrics
+2024-08-19 10:06:41,898 - INFO - Running OQuaRE tool...
+2024-08-19 10:06:41,898 - INFO - Full ontology file path: ./ontologies/imports/TD1.owl
+2024-08-19 10:06:42,159 - ERROR - OQuaRE tool failed with exit code: 1
+2024-08-19 10:06:42,159 - ERROR - Error output: ERROR found: 
+[um.cmd.RunOquare.run(RunOquare.java:69), um.cmd.RunOquare.main(RunOquare.java:39)]
+java.lang.IllegalArgumentException: The parameter --ontology can not be null.
+	at um.cmd.RunOquare.run(RunOquare.java:69)
+	at um.cmd.RunOquare.main(RunOquare.java:39)
+Exception in thread "main" java.lang.IllegalArgumentException: The parameter --ontology can not be null.
+	at um.cmd.RunOquare.run(RunOquare.java:69)
+	at um.cmd.RunOquare.main(RunOquare.java:39)
+
+2024-08-19 10:10:00,024 - INFO - Starting main.py
+2024-08-19 10:10:00,024 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', reasoner='HermiT', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 10:10:00,024 - DEBUG - Script directory: D:\Code\oquare-metrics\src
+2024-08-19 10:10:00,024 - DEBUG - Constructed ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 10:10:00,041 - INFO - Created directory: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-10-00/metrics
+2024-08-19 10:10:00,041 - INFO - Running OQuaRE tool...
+2024-08-19 10:10:00,041 - INFO - Full ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 10:10:00,311 - ERROR - OQuaRE tool failed with exit code: 1
+2024-08-19 10:10:00,311 - ERROR - Error output: ERROR found: 
+[um.cmd.RunOquare.run(RunOquare.java:69), um.cmd.RunOquare.main(RunOquare.java:39)]
+java.lang.IllegalArgumentException: The parameter --ontology can not be null.
+	at um.cmd.RunOquare.run(RunOquare.java:69)
+	at um.cmd.RunOquare.main(RunOquare.java:39)
+Exception in thread "main" java.lang.IllegalArgumentException: The parameter --ontology can not be null.
+	at um.cmd.RunOquare.run(RunOquare.java:69)
+	at um.cmd.RunOquare.main(RunOquare.java:39)
+
+2024-08-19 10:13:52,799 - INFO - Starting main.py
+2024-08-19 10:13:52,810 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', reasoner='HermiT', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 10:13:52,810 - DEBUG - Script directory: D:\Code\oquare-metrics\src
+2024-08-19 10:13:52,810 - DEBUG - Constructed ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 10:13:52,812 - INFO - Created directory: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-13-52/metrics
+2024-08-19 10:13:52,812 - INFO - Running OQuaRE tool...
+2024-08-19 10:13:52,813 - INFO - Full ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 10:13:53,074 - ERROR - OQuaRE tool failed with exit code: 1
+2024-08-19 10:13:53,074 - ERROR - Error output: ERROR found: 
+[um.cmd.RunOquare.run(RunOquare.java:69), um.cmd.RunOquare.main(RunOquare.java:39)]
+java.lang.IllegalArgumentException: The parameter --ontology can not be null.
+	at um.cmd.RunOquare.run(RunOquare.java:69)
+	at um.cmd.RunOquare.main(RunOquare.java:39)
+Exception in thread "main" java.lang.IllegalArgumentException: The parameter --ontology can not be null.
+	at um.cmd.RunOquare.run(RunOquare.java:69)
+	at um.cmd.RunOquare.main(RunOquare.java:39)
+
+2024-08-19 10:18:00,250 - INFO - Starting main.py
+2024-08-19 10:18:00,252 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', reasoner='HermiT', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 10:18:00,252 - DEBUG - Script directory: D:\Code\oquare-metrics\src
+2024-08-19 10:18:00,252 - DEBUG - Constructed ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 10:18:00,263 - INFO - Created directory: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-18-00/metrics
+2024-08-19 10:18:00,263 - INFO - Running OQuaRE tool...
+2024-08-19 10:18:00,263 - INFO - Relative ontology file path: ./ontologies/imports/TD1.owl
+2024-08-19 10:18:00,541 - ERROR - OQuaRE tool failed with exit code: 1
+2024-08-19 10:18:00,541 - ERROR - Error output: ERROR found: 
+[um.cmd.RunOquare.run(RunOquare.java:69), um.cmd.RunOquare.main(RunOquare.java:39)]
+java.lang.IllegalArgumentException: The parameter --ontology can not be null.
+	at um.cmd.RunOquare.run(RunOquare.java:69)
+	at um.cmd.RunOquare.main(RunOquare.java:39)
+Exception in thread "main" java.lang.IllegalArgumentException: The parameter --ontology can not be null.
+	at um.cmd.RunOquare.run(RunOquare.java:69)
+	at um.cmd.RunOquare.main(RunOquare.java:39)
+
+2024-08-19 10:20:24,274 - INFO - Starting main.py
+2024-08-19 10:20:24,289 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', reasoner='HermiT', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 10:20:24,290 - DEBUG - Script directory: D:\Code\oquare-metrics\src
+2024-08-19 10:20:24,290 - DEBUG - Constructed ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 10:20:24,293 - INFO - Created directory: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-20-24/metrics
+2024-08-19 10:20:24,293 - INFO - Running OQuaRE tool...
+2024-08-19 10:20:24,294 - INFO - Relative ontology file path: ./ontologies/imports/TD1.owl
+2024-08-19 10:20:24,557 - ERROR - OQuaRE tool failed with exit code: 1
+2024-08-19 10:20:24,557 - ERROR - Error output: ERROR found: 
+[um.cmd.RunOquare.run(RunOquare.java:69), um.cmd.RunOquare.main(RunOquare.java:39)]
+java.lang.IllegalArgumentException: The parameter --ontology can not be null.
+	at um.cmd.RunOquare.run(RunOquare.java:69)
+	at um.cmd.RunOquare.main(RunOquare.java:39)
+Exception in thread "main" java.lang.IllegalArgumentException: The parameter --ontology can not be null.
+	at um.cmd.RunOquare.run(RunOquare.java:69)
+	at um.cmd.RunOquare.main(RunOquare.java:39)
+
+2024-08-19 10:25:12,948 - INFO - Starting main.py
+2024-08-19 10:25:12,948 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', reasoner='HermiT', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 10:25:12,948 - DEBUG - Script directory: D:\Code\oquare-metrics\src
+2024-08-19 10:25:12,948 - DEBUG - Constructed ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 10:25:12,964 - INFO - Created directory: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-25-12/metrics
+2024-08-19 10:25:12,964 - INFO - Running OQuaRE tool...
+2024-08-19 10:25:12,965 - INFO - Relative ontology file path: ./ontologies/imports/TD1.owl
+2024-08-19 10:25:16,093 - INFO - OQuaRE tool completed successfully
+2024-08-19 10:25:16,093 - ERROR - Metrics file not found after running OQuaRE tool: output\temp_results\ontologies\imports\TD1\2024-08-19_10-25-12\metrics\TD1.xml
+2024-08-19 10:25:16,093 - ERROR - Contents of output\temp_results\ontologies\imports\TD1\2024-08-19_10-25-12\metrics:
+2024-08-19 10:25:16,093 - ERROR - []
+2024-08-19 10:27:05,441 - INFO - Starting main.py
+2024-08-19 10:27:05,441 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', reasoner='HermiT', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 10:27:05,441 - DEBUG - Script directory: D:\Code\oquare-metrics\src
+2024-08-19 10:27:05,441 - DEBUG - Constructed ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 10:27:05,456 - INFO - Created directory: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-27-05/metrics
+2024-08-19 10:27:05,457 - INFO - Running OQuaRE tool...
+2024-08-19 10:27:05,457 - INFO - Relative ontology file path: ./ontologies/imports/TD1.owl
+2024-08-19 10:27:08,655 - INFO - OQuaRE tool completed successfully
+2024-08-19 10:27:08,655 - ERROR - Metrics file not found after running OQuaRE tool: output\temp_results\ontologies\imports\TD1\2024-08-19_10-27-05\metrics\TD1.xml
+2024-08-19 10:27:08,655 - ERROR - Contents of output\temp_results\ontologies\imports\TD1\2024-08-19_10-27-05\metrics:
+2024-08-19 10:27:08,655 - ERROR - []
+2024-08-19 10:28:39,066 - INFO - Starting main.py
+2024-08-19 10:28:39,084 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', reasoner='HermiT', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 10:28:39,084 - DEBUG - Script directory: D:\Code\oquare-metrics\src
+2024-08-19 10:28:39,085 - DEBUG - Constructed ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 10:28:39,086 - INFO - Created directory: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-28-39/metrics
+2024-08-19 10:28:39,087 - INFO - Running OQuaRE tool...
+2024-08-19 10:28:39,087 - INFO - Relative ontology file path: ./ontologies/imports/TD1.owl
+2024-08-19 10:28:42,267 - INFO - OQuaRE tool completed successfully
+2024-08-19 10:28:42,322 - DEBUG - OQuaRE tool output: Calculate OQuare metrics  --ontology ././ontologies/imports/TD1.owl --metrics ././output/temp_results/ontologies/imports/TD1/2024-08-19_10-28-39/metrics/TD1.xml -r HermiT
+Inferece options:
+class assertions
+class hierarchy
+data property assertions
+data property hierarchy
+different individuals
+disjoint classes
+object property assertions
+object property hierarchy
+same individuals
+Building Neo4j graph from ontology model...
+Graph builded in 1295 msec
+Number of nodes: 14
+Number of relationships: 21
+[1/7] Searching paths from leaves (maxDepth=8)...Finish. Execution Time = 2884 msec
+
+2024-08-19 10:28:42,322 - DEBUG - OQuaRE tool error output: Running Hermit reasoner
+Classifying
+Classifying time in 15 msec
+Oquare metrics calculated in 2744 msec.
+Results saved in: "C:\Users\steph\AppData\Local\Temp\oquareResults213293569498497606.xml".
+
+2024-08-19 10:28:42,322 - INFO - Executing generate_images.py with command: python ./src/generate_images.py -i ./output -s ./ontologies/imports -f TD1.owl -d 2024-08-19_10-28-39 -M -c -S -m -e
+2024-08-19 10:28:42,356 - ERROR - Image generation failed with exit code: 1
+2024-08-19 10:28:42,356 - ERROR - Error output:   File "D:\Code\oquare-metrics\src\generate_images.py", line 42
+    args = parser.parse_args()
+    ^^^^
+SyntaxError: expected 'except' or 'finally' block
+
+2024-08-19 10:28:42,356 - INFO - Main script completed successfully
+2024-08-19 10:39:03,678 - INFO - Starting main.py
+2024-08-19 10:39:03,694 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', reasoner='HermiT', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 10:39:03,694 - DEBUG - Script directory: D:\Code\oquare-metrics\src
+2024-08-19 10:39:03,694 - DEBUG - Constructed ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 10:39:03,705 - INFO - Created directory: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-39-03/metrics
+2024-08-19 10:39:03,707 - INFO - Running OQuaRE tool...
+2024-08-19 10:39:03,707 - INFO - Relative ontology file path: ./ontologies/imports/TD1.owl
+2024-08-19 10:39:06,838 - INFO - OQuaRE tool completed successfully
+2024-08-19 10:39:07,067 - DEBUG - OQuaRE tool output: Calculate OQuare metrics  --ontology ././ontologies/imports/TD1.owl --metrics ././output/temp_results/ontologies/imports/TD1/2024-08-19_10-39-03/metrics/TD1.xml -r HermiT
+Inferece options:
+class assertions
+class hierarchy
+data property assertions
+data property hierarchy
+different individuals
+disjoint classes
+object property assertions
+object property hierarchy
+same individuals
+Building Neo4j graph from ontology model...
+Graph builded in 1303 msec
+Number of nodes: 14
+Number of relationships: 21
+[1/7] Searching paths from leaves (maxDepth=8)...Finish. Execution Time = 2858 msec
+
+2024-08-19 10:39:07,067 - DEBUG - OQuaRE tool error output: Running Hermit reasoner
+Classifying
+Classifying time in 16 msec
+Oquare metrics calculated in 2701 msec.
+Results saved in: "C:\Users\steph\AppData\Local\Temp\oquareResults2265185700234500653.xml".
+
+2024-08-19 10:39:07,083 - INFO - Executing generate_images.py with command: python ./src/generate_images.py -i ./output -s ./ontologies/imports -f TD1.owl -d 2024-08-19_10-39-03 -M -c -S -m -e
+2024-08-19 10:39:07,741 - INFO - Image generation completed successfully
+2024-08-19 10:39:07,741 - INFO - Main script completed successfully
+2024-08-19 10:40:32,897 - INFO - Starting main.py
+2024-08-19 10:40:32,897 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', reasoner='HermiT', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 10:40:32,897 - DEBUG - Script directory: D:\Code\oquare-metrics\src
+2024-08-19 10:40:32,897 - DEBUG - Constructed ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 10:40:32,909 - INFO - Created directory: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-40-32/metrics
+2024-08-19 10:40:32,910 - INFO - Running OQuaRE tool...
+2024-08-19 10:40:32,911 - INFO - Relative ontology file path: ./ontologies/imports/TD1.owl
+2024-08-19 10:40:36,183 - INFO - OQuaRE tool completed successfully
+2024-08-19 10:40:36,183 - DEBUG - OQuaRE tool output: Calculate OQuare metrics  --ontology ././ontologies/imports/TD1.owl --metrics ././output/temp_results/ontologies/imports/TD1/2024-08-19_10-40-32/metrics/TD1.xml -r HermiT
+Inferece options:
+class assertions
+class hierarchy
+data property assertions
+data property hierarchy
+different individuals
+disjoint classes
+object property assertions
+object property hierarchy
+same individuals
+Building Neo4j graph from ontology model...
+Graph builded in 1383 msec
+Number of nodes: 14
+Number of relationships: 21
+[1/7] Searching paths from leaves (maxDepth=8)...Finish. Execution Time = 2970 msec
+
+2024-08-19 10:40:36,183 - DEBUG - OQuaRE tool error output: Running Hermit reasoner
+Classifying
+Classifying time in 15 msec
+Oquare metrics calculated in 2803 msec.
+Results saved in: "C:\Users\steph\AppData\Local\Temp\oquareResults12092911807348481795.xml".
+
+2024-08-19 10:40:36,183 - INFO - Executing generate_images.py with command: python ./src/generate_images.py -i ./output -s ./ontologies/imports -f TD1.owl -d 2024-08-19_10-40-32 -M -c -S -m -e
+2024-08-19 10:40:36,873 - INFO - Image generation completed successfully
+2024-08-19 10:40:36,873 - INFO - Main script completed successfully
+2024-08-19 10:41:43,504 - INFO - Starting main.py
+2024-08-19 10:41:43,523 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', reasoner='HermiT', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 10:41:43,523 - DEBUG - Script directory: D:\Code\oquare-metrics\src
+2024-08-19 10:41:43,524 - DEBUG - Constructed ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 10:41:43,526 - INFO - Created directory: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-41-43/metrics
+2024-08-19 10:41:43,526 - INFO - Running OQuaRE tool...
+2024-08-19 10:41:43,526 - INFO - Relative ontology file path: ./ontologies/imports/TD1.owl
+2024-08-19 10:41:46,698 - INFO - OQuaRE tool completed successfully
+2024-08-19 10:41:46,698 - DEBUG - OQuaRE tool output: Calculate OQuare metrics  --ontology ././ontologies/imports/TD1.owl --metrics ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-41-43/metrics/TD1.xml -r HermiT
+Inferece options:
+class assertions
+class hierarchy
+data property assertions
+data property hierarchy
+different individuals
+disjoint classes
+object property assertions
+object property hierarchy
+same individuals
+Building Neo4j graph from ontology model...
+Graph builded in 1324 msec
+Number of nodes: 14
+Number of relationships: 21
+[1/7] Searching paths from leaves (maxDepth=8)...Finish. Execution Time = 2887 msec
+
+2024-08-19 10:41:46,698 - DEBUG - OQuaRE tool error output: Running Hermit reasoner
+Classifying
+Classifying time in 4 msec
+Oquare metrics calculated in 2715 msec.
+Results saved in: "C:\Users\steph\AppData\Local\Temp\oquareResults17556577007405971253.xml".
+
+2024-08-19 10:41:46,698 - INFO - Executing generate_images.py with command: python ./src/generate_images.py -i ./output -s ./ontologies/imports -f TD1.owl -d 2024-08-19_10-41-43 -M -c -S -m -e
+2024-08-19 10:41:47,421 - INFO - Image generation completed successfully
+2024-08-19 10:41:47,421 - INFO - Main script completed successfully
+2024-08-19 10:43:31,168 - INFO - Starting main.py
+2024-08-19 10:43:31,192 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', reasoner='HermiT', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 10:43:31,193 - DEBUG - Script directory: D:\Code\oquare-metrics\src
+2024-08-19 10:43:31,193 - DEBUG - Constructed ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 10:43:31,195 - INFO - Created directory: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-43-31/metrics
+2024-08-19 10:43:31,196 - INFO - Running OQuaRE tool...
+2024-08-19 10:43:31,196 - INFO - Relative ontology file path: ./ontologies/imports/TD1.owl
+2024-08-19 10:43:34,494 - INFO - OQuaRE tool completed successfully
+2024-08-19 10:43:34,494 - DEBUG - OQuaRE tool output: Calculate OQuare metrics  --ontology ././ontologies/imports/TD1.owl --metrics ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-43-31/metrics/TD1.xml -r HermiT --output ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-43-31/metrics/TD1.xml
+Inferece options:
+class assertions
+class hierarchy
+data property assertions
+data property hierarchy
+different individuals
+disjoint classes
+object property assertions
+object property hierarchy
+same individuals
+Building Neo4j graph from ontology model...
+Graph builded in 1415 msec
+Number of nodes: 14
+Number of relationships: 21
+[1/7] Searching paths from leaves (maxDepth=8)...Finish. Execution Time = 3015 msec
+
+2024-08-19 10:43:34,494 - DEBUG - OQuaRE tool error output: Running Hermit reasoner
+Classifying
+Classifying time in 15 msec
+Oquare metrics calculated in 2859 msec.
+Results saved in: "C:\Users\steph\AppData\Local\Temp\oquareResults3604046057991182653.xml".
+
+2024-08-19 10:43:34,509 - INFO - Executing generate_images.py with command: python ./src/generate_images.py -i ./output -s ./ontologies/imports -f TD1.owl -d 2024-08-19_10-43-31 -M -c -S -m -e
+2024-08-19 10:43:35,173 - INFO - Image generation completed successfully
+2024-08-19 10:43:35,174 - INFO - Main script completed successfully
+2024-08-19 10:44:56,078 - INFO - Starting main.py
+2024-08-19 10:44:56,078 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', reasoner='HermiT', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 10:44:56,078 - DEBUG - Script directory: D:\Code\oquare-metrics\src
+2024-08-19 10:44:56,078 - DEBUG - Constructed ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 10:44:56,094 - INFO - Created directory: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-44-56/metrics
+2024-08-19 10:44:56,094 - INFO - Running OQuaRE tool...
+2024-08-19 10:44:56,095 - INFO - Relative ontology file path: ./ontologies/imports/TD1.owl
+2024-08-19 10:44:59,270 - INFO - OQuaRE tool completed successfully
+2024-08-19 10:44:59,270 - DEBUG - OQuaRE tool output: Calculate OQuare metrics  --ontology ././ontologies/imports/TD1.owl --metrics ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-44-56/metrics/TD1.xml -r HermiT
+Inferece options:
+class assertions
+class hierarchy
+data property assertions
+data property hierarchy
+different individuals
+disjoint classes
+object property assertions
+object property hierarchy
+same individuals
+Building Neo4j graph from ontology model...
+Graph builded in 1346 msec
+Number of nodes: 14
+Number of relationships: 21
+[1/7] Searching paths from leaves (maxDepth=8)...Finish. Execution Time = 2930 msec
+
+2024-08-19 10:44:59,270 - DEBUG - OQuaRE tool error output: Running Hermit reasoner
+Classifying
+Classifying time in 16 msec
+Oquare metrics calculated in 2754 msec.
+Results saved in: "C:\Users\steph\AppData\Local\Temp\oquareResults18407298294863508580.xml".
+
+2024-08-19 10:44:59,270 - INFO - Executing generate_images.py with command: python ./src/generate_images.py -i ./output -s ./ontologies/imports -f TD1.owl -d 2024-08-19_10-44-56 -M -c -S -m -e
+2024-08-19 10:44:59,946 - INFO - Image generation completed successfully
+2024-08-19 10:44:59,946 - INFO - Main script completed successfully
+2024-08-19 11:05:50,807 - INFO - Starting main.py
+2024-08-19 11:05:50,807 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', reasoner='HermiT', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 11:05:50,807 - DEBUG - Script directory: D:\Code\oquare-metrics\src
+2024-08-19 11:05:50,807 - DEBUG - Constructed ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 11:05:50,823 - INFO - Created directory: ./output/temp_results/ontologies/imports/TD1/2024-08-19_11-05-50/metrics
+2024-08-19 11:05:50,823 - INFO - Running OQuaRE tool...
+2024-08-19 11:05:50,824 - INFO - Relative ontology file path: ./ontologies/imports/TD1.owl
+2024-08-19 11:06:21,604 - INFO - Starting main.py
+2024-08-19 11:06:21,619 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', reasoner='HermiT', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 11:06:21,619 - DEBUG - Script directory: D:\Code\oquare-metrics\src
+2024-08-19 11:06:21,619 - DEBUG - Constructed ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 11:06:21,619 - INFO - Created directory: ./output/temp_results/ontologies/imports/TD1/2024-08-19_11-06-21/metrics
+2024-08-19 11:06:21,619 - INFO - Running OQuaRE tool...
+2024-08-19 11:06:21,619 - INFO - Relative ontology file path: ./ontologies/imports/TD1.owl
+2024-08-19 11:16:36,588 - INFO - Starting main.py
+2024-08-19 11:16:36,630 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', reasoner='HermiT', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 11:16:36,630 - DEBUG - Script directory: D:\Code\oquare-metrics\src
+2024-08-19 11:16:36,630 - DEBUG - Constructed ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 11:16:36,630 - INFO - Created directory: ./output/temp_results/ontologies/imports/TD1/2024-08-19_11-16-36/metrics
+2024-08-19 11:16:36,630 - INFO - Running OQuaRE tool...
+2024-08-19 11:16:36,630 - INFO - Relative ontology file path: ./ontologies/imports/TD1.owl
+2024-08-19 11:18:09,310 - INFO - Starting main.py
+2024-08-19 11:18:09,326 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', reasoner='HermiT', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 11:18:09,326 - DEBUG - Script directory: D:\Code\oquare-metrics\src
+2024-08-19 11:18:09,326 - DEBUG - Constructed ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 11:18:09,326 - INFO - Created directory: ./output/temp_results/ontologies/imports/TD1/2024-08-19_11-18-09/metrics
+2024-08-19 11:18:09,326 - INFO - Running OQuaRE tool...
+2024-08-19 11:18:09,326 - INFO - Relative ontology file path: ./ontologies/imports/TD1.owl
+2024-08-19 11:28:45,015 - INFO - Starting main.py
+2024-08-19 11:28:45,035 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', reasoner='HermiT', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 11:28:45,036 - DEBUG - Script directory: D:\Code\oquare-metrics\src
+2024-08-19 11:28:45,036 - DEBUG - Constructed ontology file path: D:/Code/oquare-metrics/ontologies/imports/TD1.owl
+2024-08-19 11:28:45,037 - INFO - Created directory: ./output/temp_results/ontologies/imports/TD1/2024-08-19_11-28-45/metrics
+2024-08-19 11:28:45,037 - INFO - Running OQuaRE tool...
+2024-08-19 11:28:45,037 - INFO - Relative ontology file path: ./ontologies/imports/TD1.owl

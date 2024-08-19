@@ -36,10 +36,10 @@ then
                 then
                     outputFile=$(basename "$file")
                     outputFile="${outputFile%.*}" 
-                    mkdir -p $contents_folder/temp_results/$ontology_source/$outputFile/$date/metrics
-                    mkdir -p $contents_folder/temp_results/$ontology_source/$outputFile/$date/img
-                    outputFilePath="$contents_folder/temp_results/$ontology_source/$outputFile/$date/metrics/$outputFile.xml"
-                    java -jar $GITHUB_ACTION_PATH/libs/oquare-versions.jar --ontology "$file" --reasoner "$reasoner" --outputFile "$outputFilePath"
+                    mkdir -p $contents_folder/metrics
+                    mkdir -p $contents_folder/img
+                    outputFilePath="$contents_folder/metrics/$outputFile.xml"
+                    java -jar $GITHUB_ACTION_PATH/libs/oquare-versions.jar --ontology "$(readlink -f "$file")" --reasoner "$reasoner" --outputFile "$(dirname "$(readlink -f "$outputFilePath")")"
                     
                     if [ -f "$outputFilePath" ]
                     then
@@ -58,9 +58,9 @@ then
             dir=$(dirname "$ontology_file")
             outputFile=$(basename "$ontology_file")
             outputFile="${outputFile%.*}"
-            mkdir -p $contents_folder/temp_results/$dir/$outputFile/$date/metrics
-            mkdir -p $contents_folder/temp_results/$dir/$outputFile/$date/img
-            outputFilePath="$contents_folder/temp_results/$dir/$outputFile/$date/metrics/$outputFile.xml"
+            mkdir -p $contents_folder/metrics
+            mkdir -p $contents_folder/img
+            outputFilePath="$contents_folder/metrics/$outputFile.xml"
             java -jar $GITHUB_ACTION_PATH/libs/oquare-versions.jar --ontology "$ontology_file" --reasoner "$reasoner" --outputFile "$outputFilePath"
 
             if [ -f "$outputFilePath" ]

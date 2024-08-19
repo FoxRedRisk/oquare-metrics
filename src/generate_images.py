@@ -1,6 +1,6 @@
+import os
 import argparse
 import logging
-import os
 import traceback
 from datetime import datetime
 from Controller import Controller
