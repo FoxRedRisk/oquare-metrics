@@ -47,7 +47,7 @@ def main():
             args.file += '.xml'
         
         # Define the location for the metrics file
-        metrics_file = os.path.join(args.input, "temp_results", "ontologies", "imports", f"{os.path.splitext(os.path.basename(args.file))[0]}", args.date, "metrics", f"{os.path.splitext(os.path.basename(args.file))[0]}.xml").replace('\\', '/')
+        metrics_file = os.path.join(args.input, "metrics", f"{os.path.splitext(os.path.basename(args.file))[0]}.xml").replace('\\', '/')
         
         logger.info(f"Checking for metrics file at: {metrics_file}")
         if not os.path.exists(metrics_file):
@@ -70,7 +70,7 @@ def main():
         controller = Controller()
 
         # Generate the images
-        output_path = os.path.normpath(os.path.dirname(os.path.dirname(f"./{metrics_file}"))).replace('\\', '/')
+        output_path = os.path.normpath(os.path.join(args.input, "metrics")).replace('\\', '/')
         if not output_path.startswith("./"):
             output_path = f"./{output_path}"
         logger.info(f"Output path for images: {output_path}")

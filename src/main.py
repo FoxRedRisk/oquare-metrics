@@ -71,10 +71,10 @@ def main():
 
     # Generate timestamp once and use it consistently
     date_str = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    def construct_metrics_file_path(input_path, ontology_file, date_str):
-        return os.path.join(input_path, "temp_results", "ontologies", "imports", os.path.splitext(os.path.basename(ontology_file))[0], date_str, "metrics", f"{os.path.splitext(os.path.basename(ontology_file))[0]}.xml").replace('\\', '/')
+    def construct_metrics_file_path(input_path, ontology_file):
+        return os.path.join(input_path, "metrics", f"{os.path.splitext(os.path.basename(ontology_file))[0]}.xml").replace('\\', '/')
 
-    metrics_file = construct_metrics_file_path(args.input, ontology_file, date_str)
+    metrics_file = construct_metrics_file_path(args.input, ontology_file)
 
     # Create necessary directories if they don't exist
     if not os.path.exists(os.path.dirname(metrics_file)):
