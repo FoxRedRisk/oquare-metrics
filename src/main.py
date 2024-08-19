@@ -92,7 +92,7 @@ def main():
 
     jar_path = os.path.abspath(os.path.join(script_dir, "../libs/oquare-versions.jar")).replace('\\', '/')
     full_ontology_path = os.path.abspath(full_ontology_path).replace('\\', '/')
-    metrics_folder_path = os.path.abspath(os.path.join(args.input, "output", "metrics")).replace('\\', '/')
+    metrics_folder_path = os.path.abspath(os.path.join(args.input, "metrics")).replace('\\', '/')
     oquare_command = [
         "java", "-jar", jar_path,
         "--ontology", full_ontology_path,
