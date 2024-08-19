@@ -57,6 +57,8 @@ def main():
         metrics_file = None
         for location in possible_locations:
             potential_file = os.path.normpath(os.path.join(location, f"./{os.path.splitext(args.file)[0]}.xml")).replace('\\', '/')
+            if not potential_file.startswith("./"):
+                potential_file = f"./{potential_file}"
             logger.info(f"Checking for metrics file at: {potential_file}")
             if os.path.exists(potential_file):
                 metrics_file = potential_file
@@ -91,6 +93,8 @@ def main():
 
         # Generate the images
         output_path = os.path.normpath(os.path.dirname(os.path.dirname(f"./{metrics_file}"))).replace('\\', '/')
+        if not output_path.startswith("./"):
+            output_path = f"./{output_path}"
         logger.info(f"Output path for images: {output_path}")
 
         file_name = os.path.normpath(os.path.splitext(os.path.basename(args.file))[0]).replace('\\', '/')
