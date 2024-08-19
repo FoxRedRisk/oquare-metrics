@@ -69,8 +69,6 @@ class oquareGraphs:
         angles += angles[:1]
 
         ax = plt.subplot(111, polar=True)
-        img_dir = os.path.join(output_path, 'img')
-        os.makedirs(img_dir, exist_ok=True)
         plt.xticks(angles[:-1], names, color='grey', size=12)
         plt.yticks([1, 2, 3, 4], ["1", "2", "3", "4"], color="grey", size='7')
         plt.ylim([0, 5])
@@ -141,6 +139,9 @@ class oquareGraphs:
         output_path -- Path to where the figure will be saved to
         
         """
+        img_dir = os.path.join(output_path, 'img')
+        os.makedirs(img_dir, exist_ok=True)
+        
         for characteristic in data.keys():
             subcharacteristics: dict = data.get(characteristic).get('subcharacteristics')
 
