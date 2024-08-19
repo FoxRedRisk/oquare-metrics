@@ -57,7 +57,7 @@ evolution_plot=false
 
 # Convert Windows paths to Unix-style paths
 convert_path() {
-    echo "$1" | sed 's/\\/\//g' | sed 's/://'
+    echo "$1" | sed 's/\\/\//g' | sed 's/://' | sed 's/^\/*//'
 }
 
 # Parse command-line options
@@ -109,14 +109,14 @@ log "Ontology files: $ontology_files"
 log "Reasoner: $reasoner"
 
 # Create necessary directories
-mkdir -p "$contents_folder\\temp_results\\ontologies\\imports"
-log "Created directory: $contents_folder\\temp_results\\ontologies\\imports"
+mkdir -p "$contents_folder/temp_results/ontologies/imports"
+log "Created directory: $contents_folder/temp_results/ontologies/imports"
 
 # Process individual ontology file
 log "Processing individual ontology file: $ontology_files"
 outputFile=$(basename "$ontology_files")
 outputFile="${outputFile%.*}"
-outputFilePath="$contents_folder\\temp_results\\ontologies\\imports\\$outputFile\\$date\\metrics\\$outputFile.xml"
+outputFilePath="$contents_folder/temp_results/ontologies/imports/$outputFile/$date/metrics/$outputFile.xml"
 mkdir -p "$(dirname "$outputFilePath")"
 log "Created directory: $(dirname "$outputFilePath")"
 
