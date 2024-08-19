@@ -93,7 +93,7 @@ def main():
     logger.info(f"Relative ontology file path: {full_ontology_path}")
     oquare_command = [
         "java", "-jar", os.path.join(script_dir, "../libs/oquare-versions.jar"),
-        "-o", f"./{full_ontology_path}",
+        "--ontology", f"./{full_ontology_path}",
         "-m", f"./{metrics_file}",
         "-r", args.reasoner
     ]
