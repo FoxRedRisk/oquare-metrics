@@ -43,7 +43,7 @@ def main():
         logger.info(f"Arguments: {args}")
 
         # Ensure the file has the correct extension
-        file_name = os.path.splitext(os.path.basename(args.file))[0]
+        file_name = os.path.splitext(os.path.basename(args.file))[0].replace('.owl', '')
         
         # Define the location for the metrics file
         metrics_file = os.path.join(args.input, "metrics", f"{file_name}.xml").replace('\\', '/')
