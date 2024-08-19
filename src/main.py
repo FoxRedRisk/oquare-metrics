@@ -72,7 +72,7 @@ def main():
     # Generate timestamp once and use it consistently
     date_str = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     def construct_metrics_file_path(input_path, ontology_file):
-        return os.path.join(input_path, "metrics", f"{os.path.splitext(os.path.basename(ontology_file))[0]}.xml").replace('\\', '/')
+        return os.path.join(input_path, "output", "metrics", f"{os.path.splitext(os.path.basename(ontology_file))[0]}.xml").replace('\\', '/')
 
     metrics_file = construct_metrics_file_path(args.input, ontology_file)
 
@@ -92,7 +92,7 @@ def main():
 
     jar_path = os.path.abspath(os.path.join(script_dir, "../libs/oquare-versions.jar")).replace('\\', '/')
     full_ontology_path = os.path.abspath(full_ontology_path).replace('\\', '/')
-    metrics_folder_path = os.path.abspath(os.path.dirname(metrics_file)).replace('\\', '/')
+    metrics_folder_path = os.path.abspath(os.path.join(args.input, "output", "metrics")).replace('\\', '/')
     oquare_command = [
         "java", "-jar", jar_path,
         "--ontology", full_ontology_path,
