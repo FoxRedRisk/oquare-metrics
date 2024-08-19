@@ -117,17 +117,25 @@ log "Ontology folders: $ontology_folders"
 log "Ontology files: $ontology_files"
 log "Reasoner: $reasoner"
 
-# Create necessary directories
-mkdir -p "$contents_folder/temp_results/ontologies/imports"
-log "Created directory: $contents_folder/temp_results/ontologies/imports"
+# Create necessary directories if they don't exist
+if [ ! -d "$contents_folder/temp_results/ontologies/imports" ]; then
+    mkdir -p "$contents_folder/temp_results/ontologies/imports"
+    log "Created directory: $contents_folder/temp_results/ontologies/imports"
+else
+    log "Directory already exists: $contents_folder/temp_results/ontologies/imports"
+fi
 
 # Process individual ontology file
 log "Processing individual ontology file: $ontology_files"
 outputFile=$(basename "$ontology_files")
 outputFile="${outputFile%.*}"
 outputFilePath="$contents_folder/temp_results/ontologies/imports/$outputFile/$date/metrics/$outputFile.xml"
-mkdir -p "$(dirname "$outputFilePath")"
-log "Created directory: $(dirname "$outputFilePath")"
+if [ ! -d "$(dirname "$outputFilePath")" ]; then
+    mkdir -p "$(dirname "$outputFilePath")"
+    log "Created directory: $(dirname "$outputFilePath")"
+else
+    log "Directory already exists: $(dirname "$outputFilePath")"
+fi
 
 # Run OQuaRE tool
 log "Running OQuaRE tool..."
