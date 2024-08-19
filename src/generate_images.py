@@ -48,11 +48,6 @@ def main():
         
         # Construct the path to the metrics file
         # Try to find the metrics file in different locations
-        possible_locations = [
-            os.path.join(args.input, "results", "ontologies", "imports", os.path.splitext(args.file)[0], args.date, "metrics"),
-            os.path.join(args.input, "temp_results", "ontologies", "imports", os.path.splitext(args.file)[0], args.date, "metrics"),
-            os.path.join(args.input, "temp_results", args.source, os.path.splitext(args.file)[0], args.date, "metrics")
-        ]
 
         metrics_file = None
         for location in possible_locations:

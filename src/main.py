@@ -93,12 +93,6 @@ def main():
     logger.info("Running OQuaRE tool...")
     full_ontology_path = os.path.join(args.source, args.file).replace('\\', '/')
     logger.info(f"Relative ontology file path: {full_ontology_path}")
-    oquare_command = [
-        "java", "-jar", os.path.join(script_dir, "../libs/oquare-versions.jar"),
-        "--ontology", f"./{full_ontology_path}",
-        "--metrics", metrics_file,
-        "-r", args.reasoner
-    ]
 
     try:
         result = subprocess.run(oquare_command, check=True, text=True, capture_output=True)
