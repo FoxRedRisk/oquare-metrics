@@ -122,7 +122,7 @@ log "Created directory: $(dirname "$outputFilePath")"
 
 # Run OQuaRE tool
 log "Running OQuaRE tool..."
-java -jar ./libs/oquare-versions.jar -o "$ontology_files" -m "$outputFilePath" -r "$reasoner"
+java -jar "../libs/oquare-versions.jar" -o "$ontology_files" -m "$outputFilePath" -r "$reasoner"
 
 if [ ! -f "$outputFilePath" ]
 then

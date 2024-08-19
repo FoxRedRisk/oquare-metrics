@@ -62,7 +62,7 @@ def main():
     
     # Construct the ontology file path relative to the script
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    ontology_file = os.path.normpath(os.path.join(script_dir, '..', 'ontologies', 'imports', args.file))
+    ontology_file = os.path.normpath(os.path.join(script_dir, '..', args.source, args.file))
     
     # Log the constructed file path
     logger.debug(f"Script directory: {script_dir}")
@@ -79,7 +79,7 @@ def main():
         os.path.join(script_dir, "fullparse.sh"),
         "-i", os.path.abspath(args.input),
         "-s", os.path.dirname(ontology_file),
-        "-f", os.path.basename(ontology_file),
+        "-f", ontology_file,
         "-r", args.reasoner
     ]
     
