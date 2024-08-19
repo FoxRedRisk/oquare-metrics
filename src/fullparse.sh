@@ -127,6 +127,14 @@ else
     log "Directory already exists: $contents_folder/temp_results/ontologies/imports"
 fi
 
+# Log the value of ontology_files
+log "Ontology file path: $ontology_files"
+
+# Verify that ontology_files is not empty
+if [ -z "$ontology_files" ]; then
+    log "Error: Ontology file path is empty"
+    exit 1
+fi
 
 # Run OQuaRE tool
 log "Running OQuaRE tool..."
