@@ -120,6 +120,9 @@ outputFilePath="$contents_folder/temp_results/ontologies/imports/$outputFile/$da
 mkdir -p "$(dirname "$outputFilePath")"
 log "Created directory: $(dirname "$outputFilePath")"
 
+# Run OQuaRE tool
+log "Running OQuaRE tool..."
+java -jar ./libs/oquare-versions.jar -o "$ontology_files" -m "$outputFilePath" -r "$reasoner"
 
 if [ ! -f "$outputFilePath" ]
 then
