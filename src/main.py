@@ -84,7 +84,7 @@ def main():
         fullparse_command = [
             "bash",
             "-c",
-            f"{fullparse_sh_path} -i \"{convert_path(args.input)}\" -s \"{convert_path(args.source)}\" -f \"{convert_path(args.file)}\" -r {args.reasoner}"
+            f"{fullparse_sh_path} -i \"{convert_path(args.input)}\" -s \"./ontologies/imports\" -f \"{convert_path(args.file)}\" -r {args.reasoner}"
         ]
     else:  # Unix-like systems
         fullparse_command = [

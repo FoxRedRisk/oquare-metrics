@@ -141,7 +141,7 @@ fi
 log "Running OQuaRE tool..."
 full_ontology_path="$ontology_folders/$ontology_files"
 log "Full ontology file path: $full_ontology_path"
-java -jar "$OQUARE_PATH" -o "$(convert_path "$full_ontology_path")" -m "$(convert_path "$outputFilePath")" -r "$reasoner"
+java -jar "$OQUARE_PATH" -o "$full_ontology_path" -m "$(convert_path "$outputFilePath")" -r "$reasoner"
 
 if [ ! -f "$outputFilePath" ]
 then
