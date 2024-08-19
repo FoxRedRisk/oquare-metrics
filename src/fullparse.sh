@@ -131,9 +131,8 @@ log "Created directory: $(dirname "$outputFilePath")"
 
 # Run OQuaRE tool
 log "Running OQuaRE tool..."
-full_ontology_path=$(realpath "$ontology_files")
-log "Full ontology path: $full_ontology_path"
-java -jar "$OQUARE_PATH" -o "$(convert_path "$full_ontology_path")" -m "$(convert_path "$outputFilePath")" -r "$reasoner"
+log "Ontology file path: $ontology_files"
+java -jar "$OQUARE_PATH" -o "$(convert_path "$ontology_files")" -m "$(convert_path "$outputFilePath")" -r "$reasoner"
 
 if [ ! -f "$outputFilePath" ]
 then
