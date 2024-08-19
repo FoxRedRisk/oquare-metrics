@@ -119,7 +119,7 @@ class Controller:
         
         oquare_characteristics_values = {}
 
-        metrics_file = temp_path + '/metrics/' + file + '.xml'
+        metrics_file = os.path.join(temp_path, "metrics", f"{os.path.splitext(os.path.basename(file))[0]}.xml").replace('\\', '/')
         logging.info(f"Using metrics file: {metrics_file}")
         
         if not os.path.exists(metrics_file):
