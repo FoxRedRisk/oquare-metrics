@@ -30,7 +30,7 @@ trap 'error_handler $LINENO' ERR
 log "Starting fullparse.sh with arguments: $@"
 
 # Check if the OQuaRE tool exists
-OQUARE_PATH="$SCRIPT_DIR/../libs/oquare-versions.jar"
+OQUARE_PATH="$SCRIPT_DIR/libs/oquare-versions.jar"
 if [ ! -f "$OQUARE_PATH" ]; then
     log "Error: OQuaRE tool not found at $OQUARE_PATH"
     exit 1
@@ -131,7 +131,7 @@ log "Created directory: $(dirname "$outputFilePath")"
 
 # Run OQuaRE tool
 log "Running OQuaRE tool..."
-java -jar "$(convert_path "../libs/oquare-versions.jar")" -o "$(convert_path "$ontology_files")" -m "$(convert_path "$outputFilePath")" -r "$reasoner"
+java -jar "$OQUARE_PATH" -o "$(convert_path "$ontology_files")" -m "$(convert_path "$outputFilePath")" -r "$reasoner"
 
 if [ ! -f "$outputFilePath" ]
 then
