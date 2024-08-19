@@ -41,6 +41,7 @@ def main():
     
         args = parser.parse_args()
         logger.info(f"Arguments: {args}")
+        logger.info(f"Input path: {args.input}")
 
         # Ensure the file has the correct extension
         file_name = os.path.splitext(os.path.basename(args.file))[0].replace('.owl', '')
