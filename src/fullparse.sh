@@ -66,7 +66,7 @@ evolution_plot=false
 
 # Convert Windows paths to Unix-style paths
 convert_path() {
-    echo "$1" | sed 's/\\/\//g' | sed 's/://' | sed 's/^/\//'
+    echo "$1" | sed 's/\\/\//g'
 }
 
 # Parse command-line options

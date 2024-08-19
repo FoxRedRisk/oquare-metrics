@@ -74,11 +74,14 @@ def main():
         exit(1)
 
     # Run fullparse.sh to generate the metrics XML file
+    def convert_path(path):
+        return path.replace("\\", "/")
+
     fullparse_command = [
-        os.path.join(script_dir, "fullparse.sh").replace("\\", "/"),
-        "-i", "/".join(os.path.abspath(args.input).split("\\")),
-        "-s", "/".join(os.path.dirname(ontology_file).split("\\")),
-        "-f", "/".join(os.path.abspath(ontology_file).split("\\")),
+        convert_path(os.path.join(script_dir, "fullparse.sh")),
+        "-i", convert_path(os.path.abspath(args.input)),
+        "-s", convert_path(os.path.dirname(ontology_file)),
+        "-f", convert_path(os.path.abspath(ontology_file)),
         "-r", args.reasoner
     ]
     if os.name == 'nt':  # Windows system
