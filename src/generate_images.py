@@ -42,12 +42,11 @@ def main():
         args = parser.parse_args()
         logger.info(f"Arguments: {args}")
 
-        # Add .xml extension if not provided
-        if not args.file.lower().endswith('.xml'):
-            args.file += '.xml'
+        # Ensure the file has the correct extension
+        file_name = os.path.splitext(os.path.basename(args.file))[0]
         
         # Define the location for the metrics file
-        metrics_file = os.path.join(args.input, "metrics", f"{os.path.splitext(os.path.basename(args.file))[0]}.xml").replace('\\', '/')
+        metrics_file = os.path.join(args.input, "metrics", f"{file_name}.xml").replace('\\', '/')
         
         logger.info(f"Checking for metrics file at: {metrics_file}")
         if not os.path.exists(metrics_file):
