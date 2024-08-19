@@ -72,7 +72,7 @@ convert_path() {
 # Parse command-line options
 while [[ $# -gt 0 ]]; do
     case $1 in
-        -i) contents_folder=$(convert_path "$2"); shift 2 ;;
+        -i) contents_folder=$(convert_path "./$2"); shift 2 ;;
         -s) ontology_folders=$(convert_path "$2"); shift 2 ;;
         -f) ontology_files=$(convert_path "$2"); shift 2 ;;
         -g) ignore_files=$(convert_path "$2"); shift 2 ;;
