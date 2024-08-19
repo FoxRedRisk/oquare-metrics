@@ -242,7 +242,9 @@ class oquareGraphs:
         output_path -- Path to where the figure will be saved to
 
         """
-        line_labels = list(data.keys())
+        img_dir = os.path.join(output_path, 'img')
+        os.makedirs(img_dir, exist_ok=True)
+        
         with plt.style.context(matplotx.styles.ayu["light"]):
 
             for label in line_labels:
