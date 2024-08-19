@@ -85,7 +85,8 @@ def main():
         # Check if bash is accessible
         try:
             result = subprocess.run(["where", "bash"], check=True, capture_output=True, text=True)
-            bash_path = result.stdout.strip()
+            bash_paths = result.stdout.strip().split('\n')
+            bash_path = next((path for path in bash_paths if "Git" in path), bash_paths[0])
             logger.info(f"Bash found at: {bash_path}")
             fullparse_command.insert(0, bash_path)
         except subprocess.CalledProcessError:
@@ -116,6 +117,7 @@ def main():
     
     # Log the full command
     logger.info(f"Full fullparse.sh command: {' '.join(map(str, fullparse_command))}")
+    logger.info(f"Executing command: {subprocess.list2cmdline(fullparse_command)}")
     
     # Generate timestamp once and use it consistently
     date_str = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
