@@ -42,6 +42,7 @@ class oquareGraphs:
             plt.xticks(xpos, dates, fontsize=8, rotation=-45, ha="left", rotation_mode="anchor")
             plt.gca().grid(True, which='major', axis='both', color='#888888', linestyle='--')
             plt.title('OQuaRE model values')
+            line_labels = list(data.keys())
             img_dir = os.path.join(output_path, 'img')
             os.makedirs(img_dir, exist_ok=True)
             plt.savefig(os.path.join(img_dir, file + '_OQuaRE_model_values.png'), format="png", bbox_inches='tight')
