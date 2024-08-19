@@ -136,6 +136,7 @@ class Controller:
             
             logging.info(f"Characteristics values: {oquare_characteristics_values}")
             
+            logger.info(f"Generating characteristics plot at: {temp_path}")
             self.graphPlotter.plot_oquare_characteristics(oquare_characteristics_values, file, temp_path)
             self.readmeGenerator.append_characteristics(file, temp_path)
             logging.info("Characteristics handling completed successfully")
@@ -154,6 +155,7 @@ class Controller:
         """
         parsed_metrics = MetricsParser(temp_path + '/metrics/' + file + '.xml')
         characteristics = parsed_metrics.parse_characteristics_metrics()
+        logger.info(f"Generating subcharacteristics plot at: {temp_path}")
         self.graphPlotter.plot_oquare_subcharacteristics(characteristics, file, temp_path)
         self.readmeGenerator.append_subcharacteristics(file, temp_path, list(characteristics.keys()))
 
@@ -171,7 +173,9 @@ class Controller:
         metrics = parsed_metrics.parse_metrics()
         scaled_metrics = parsed_metrics.parse_scaled_metrics()
 
+        logger.info(f"Generating metrics plot at: {temp_path}")
         self.graphPlotter.plot_metrics(metrics, file, temp_path, False)
+        logger.info(f"Generating scaled metrics plot at: {temp_path}")
         self.graphPlotter.plot_metrics(scaled_metrics, file, temp_path, True)
         self.readmeGenerator.append_metrics(file, temp_path)
      
@@ -226,6 +230,7 @@ class Controller:
         oquare_model_values[date] = parsed_metrics.parse_oquare_value()
 
         logger.info("Plotting OQuaRE values")
+        logger.info(f"Generating OQuaRE values plot at: {temp_path}")
         self.graphPlotter.plot_oquare_values(oquare_model_values, file, temp_path)
         logger.info("Appending OQuaRE value to README")
         self.readmeGenerator.append_oquare_value(file, temp_path)
@@ -266,7 +271,9 @@ class Controller:
         self.store_metrics_evolution(metrics, metrics_evolution, date)
         self.store_metrics_evolution(scaled_metrics, metrics_evolution_scaled, date)
             
+        logger.info(f"Generating metrics evolution plot at: {temp_path}")
         self.graphPlotter.plot_metrics_evolution(metrics_evolution, file, temp_path)
+        logger.info(f"Generating scaled metrics evolution plot at: {temp_path}")
         self.graphPlotter.plot_scaled_metrics_evolution(metrics_evolution_scaled, file, temp_path)
         self.readmeGenerator.append_scaled_metrics_evolution(file, temp_path)
         self.readmeGenerator.append_metrics_evolution(file, temp_path, list(metrics_evolution.keys()))
@@ -299,6 +306,7 @@ class Controller:
         characteristics = parsed_metrics.parse_characteristics_metrics()
         self.store_characteristics_evolution(characteristics, characteristics_evolution, date)
 
+        logger.info(f"Generating characteristics evolution plot at: {temp_path}")
         self.graphPlotter.plot_oquare_characteristics_evolution(characteristics_evolution, file, temp_path)
         self.readmeGenerator.append_characteristics_evolution(file, temp_path)
 
@@ -331,6 +339,7 @@ class Controller:
         characteristics = parsed_metrics.parse_characteristics_metrics()
         self.store_subcharacteristics_evolution(characteristics, subcharacteristics_evolution, date)
 
+        logger.info(f"Generating subcharacteristics evolution plot at: {temp_path}")
         self.graphPlotter.plot_oquare_subcharacteristics_evolution(subcharacteristics_evolution, file, temp_path)
         self.readmeGenerator.append_subcharacteristics_evolution(file, temp_path, list(characteristics.keys()))
             
