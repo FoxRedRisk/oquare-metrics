@@ -84,15 +84,15 @@ def main():
     ]
     
     if args.model:
-        fullparse_command.append("-M")
+        fullparse_command.extend(["-M"])
     if args.characteristics:
-        fullparse_command.append("-c")
+        fullparse_command.extend(["-c"])
     if args.subcharacteristics:
-        fullparse_command.append("-S")
+        fullparse_command.extend(["-S"])
     if args.metrics:
-        fullparse_command.append("-m")
+        fullparse_command.extend(["-m"])
     if args.evolution:
-        fullparse_command.append("-e")
+        fullparse_command.extend(["-e"])
     
     # Log the full command
     logger.info(f"Full fullparse.sh command: {' '.join(map(str, fullparse_command))}")
@@ -104,20 +104,16 @@ def main():
     # Run fullparse.sh to generate the metrics XML file
     try:
         logger.info("Starting execution of fullparse.sh")
-        process = subprocess.Popen(fullparse_command, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+        logger.info(f"Executing command: {' '.join(fullparse_command)}")
+        process = subprocess.Popen(fullparse_command, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         
         # Real-time logging of stdout and stderr
-        while True:
-            output = process.stdout.readline()
-            error = process.stderr.readline()
-            if output == '' and error == '' and process.poll() is not None:
-                break
-            if output:
-                logger.info(f"fullparse.sh stdout: {output.strip()}")
-            if error:
-                logger.error(f"fullparse.sh stderr: {error.strip()}")
+        for line in process.stdout:
+            logger.info(f"fullparse.sh stdout: {line.strip()}")
+        for line in process.stderr:
+            logger.error(f"fullparse.sh stderr: {line.strip()}")
         
-        returncode = process.poll()
+        returncode = process.wait()
         logger.info(f"fullparse.sh exit code: {returncode}")
         
         if returncode != 0:
