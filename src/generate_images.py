@@ -46,7 +46,15 @@ def main():
         if not args.file.lower().endswith(('.owl', '.rdf', '.ttl')):
             args.file += '.owl'
         
-        # Construct the path to the metrics file
+        # Define possible locations for the metrics file
+        possible_locations = [
+            os.path.join(args.input, "temp_results", "ontologies", "imports", os.path.splitext(args.file)[0], args.date, "metrics"),
+            os.path.join(args.input, "temp_results", "ontologies", "imports", os.path.splitext(args.file)[0], "metrics"),
+            os.path.join(args.input, "temp_results", "ontologies", "imports", os.path.splitext(args.file)[0]),
+            os.path.join(args.input, "temp_results", "ontologies", "imports"),
+            os.path.join(args.input, "temp_results"),
+            os.path.join(args.input)
+        ]
         # Try to find the metrics file in different locations
 
         metrics_file = None
