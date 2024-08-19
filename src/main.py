@@ -84,15 +84,24 @@ def main():
     if os.name == 'nt':  # Windows system
         # Check if bash is accessible
         try:
-            subprocess.run(["bash", "--version"], check=True, capture_output=True, text=True)
-            logger.info("Bash is accessible on this Windows system.")
-            fullparse_command.insert(0, "bash")
+            result = subprocess.run(["where", "bash"], check=True, capture_output=True, text=True)
+            bash_path = result.stdout.strip()
+            logger.info(f"Bash found at: {bash_path}")
+            fullparse_command.insert(0, bash_path)
         except subprocess.CalledProcessError:
-            logger.warning("Bash is not accessible on this Windows system.")
-        except FileNotFoundError:
-            logger.warning("Bash is not found on this Windows system.")
+            logger.warning("Bash not found using 'where' command. Trying 'bash --version'...")
+            try:
+                subprocess.run(["bash", "--version"], check=True, capture_output=True, text=True)
+                logger.info("Bash is accessible on this Windows system.")
+                fullparse_command.insert(0, "bash")
+            except subprocess.CalledProcessError:
+                logger.warning("Bash is not accessible on this Windows system.")
+            except FileNotFoundError:
+                logger.warning("Bash is not found on this Windows system.")
     else:  # Non-Windows systems
         fullparse_command.insert(0, "bash")
+    
+    logger.info(f"Final fullparse_command: {fullparse_command}")
     
     if args.model:
         fullparse_command.append("-M")
