@@ -127,31 +127,5 @@ else
     log "Directory already exists: $contents_folder/temp_results/ontologies/imports"
 fi
 
-# Process individual ontology file
-log "Processing individual ontology file: $ontology_files"
-outputFile=$(basename "$ontology_files")
-outputFile="${outputFile%.*}"
-outputFilePath=$(python -c "from main import construct_metrics_file_path; print(construct_metrics_file_path('$contents_folder', '$ontology_files', '$date'))")
-outputFilePath=$(normalize_path "$outputFilePath")
-if [ ! -d "$(dirname "$outputFilePath")" ]; then
-    mkdir -p "$(dirname "$outputFilePath")"
-    log "Created directory: $(dirname "$outputFilePath")"
-else
-    log "Directory already exists: $(dirname "$outputFilePath")"
-fi
-
-# Run OQuaRE tool
-log "Running OQuaRE tool..."
-full_ontology_path="$ontology_folders/$ontology_files"
-log "Full ontology file path: $full_ontology_path"
-java -jar "$OQUARE_PATH" -o "$full_ontology_path" -m "$outputFilePath" -r "$reasoner"
-
-if [ ! -f "$outputFilePath" ]
-then
-    log "Error: Metrics file was not generated for $ontology_files"
-    exit 1
-else
-    log "Metrics file generated successfully: $outputFilePath"
-fi
 
 log "fullparse.sh completed successfully"

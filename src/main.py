@@ -73,89 +73,42 @@ def main():
         logger.error(f"Ontology file not found: {ontology_file}")
         exit(1)
 
-    # Run fullparse.sh to generate the metrics XML file
-    def convert_path(path):
-        return path.replace("\\", "/") if path else path
-
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    fullparse_sh_path = os.path.join(script_dir, "fullparse.sh").replace("\\", "/")
-    
-    if os.name == 'nt':  # Windows
-        fullparse_command = [
-            "cmd",
-            "/c",
-            f"bash {fullparse_sh_path} -i \"{convert_path(args.input)}\" -s \"./ontologies/imports\" -f \"{convert_path(args.file)}\" -r {args.reasoner}"
-        ]
-    else:  # Unix-like systems
-        fullparse_command = [
-            "bash",
-            fullparse_sh_path,
-            "-i", convert_path(args.input),
-            "-s", convert_path(args.source),
-            "-f", convert_path(args.file),
-            "-r", args.reasoner
-        ]
-    
-    logger.info(f"Final fullparse_command: {fullparse_command}")
-    
-    additional_args = []
-    if args.model:
-        additional_args.append("-M")
-    if args.characteristics:
-        additional_args.append("-c")
-    if args.subcharacteristics:
-        additional_args.append("-S")
-    if args.metrics:
-        additional_args.append("-m")
-    if args.evolution:
-        additional_args.append("-e")
-    
-    if additional_args:
-        fullparse_command[2] += " " + " ".join(additional_args)
-    
-    # Log the full command
-    logger.info(f"Full fullparse.sh command: {' '.join(map(str, fullparse_command))}")
-    logger.info(f"Executing command: {subprocess.list2cmdline(fullparse_command)}")
-    
     # Generate timestamp once and use it consistently
     date_str = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     def construct_metrics_file_path(input_path, ontology_file, date_str):
         return os.path.join(input_path, "temp_results", "ontologies", "imports", os.path.splitext(os.path.basename(ontology_file))[0], date_str, "metrics", f"{os.path.splitext(os.path.basename(ontology_file))[0]}.xml").replace('\\', '/')
 
     metrics_file = construct_metrics_file_path(args.input, ontology_file, date_str)
-    
-    # Run fullparse.sh to generate the metrics XML file
+
+    # Create necessary directories if they don't exist
+    if not os.path.exists(os.path.dirname(metrics_file)):
+        os.makedirs(os.path.dirname(metrics_file))
+        logger.info(f"Created directory: {os.path.dirname(metrics_file)}")
+    else:
+        logger.info(f"Directory already exists: {os.path.dirname(metrics_file)}")
+
+    # Run OQuaRE tool
+    logger.info("Running OQuaRE tool...")
+    full_ontology_path = os.path.join(args.source, args.file).replace('\\', '/')
+    logger.info(f"Full ontology file path: {full_ontology_path}")
+    oquare_command = [
+        "java", "-jar", os.path.join(script_dir, "../libs/oquare-versions.jar"),
+        "-o", full_ontology_path,
+        "-m", metrics_file,
+        "-r", args.reasoner
+    ]
+
     try:
-        logger.info("Starting execution of fullparse.sh")
-        logger.info(f"Executing command: {' '.join(fullparse_command)}")
-        process = subprocess.Popen(fullparse_command, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        
-        # Real-time logging of stdout and stderr
-        for line in process.stdout:
-            logger.info(f"fullparse.sh stdout: {line.strip()}")
-        for line in process.stderr:
-            logger.error(f"fullparse.sh stderr: {line.strip()}")
-        
-        returncode = process.wait()
-        logger.info(f"fullparse.sh exit code: {returncode}")
-        
-        if returncode != 0:
-            raise subprocess.CalledProcessError(returncode, fullparse_command)
-        
-        logger.info("fullparse.sh completed successfully")
+        subprocess.run(oquare_command, check=True, text=True, capture_output=True)
+        logger.info("OQuaRE tool completed successfully")
     except subprocess.CalledProcessError as e:
-        logger.error(f"fullparse.sh failed with exit code: {e.returncode}")
-        logger.error(f"Command that failed: {' '.join(e.cmd)}")
-        logger.exception("Exception details:")
-        exit(1)
-    except Exception as e:
-        logger.error(f"An unexpected error occurred while running fullparse.sh: {str(e)}")
-        logger.exception("Exception details:")
+        logger.error(f"OQuaRE tool failed with exit code: {e.returncode}")
+        logger.error(f"Error output: {e.stderr}")
         exit(1)
 
     # Check if the metrics file was created
     if not os.path.exists(metrics_file):
-        logger.error(f"Metrics file not found after running fullparse.sh: {os.path.normpath(metrics_file)}")
+        logger.error(f"Metrics file not found after running OQuaRE tool: {os.path.normpath(metrics_file)}")
         metrics_dir = os.path.dirname(metrics_file)
         logger.error(f"Contents of {os.path.normpath(metrics_dir)}:")
         try:
