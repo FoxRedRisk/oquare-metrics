@@ -79,7 +79,7 @@ def main():
         os.path.join(script_dir, "fullparse.sh"),
         "-i", os.path.abspath(args.input),
         "-s", os.path.dirname(ontology_file),
-        "-f", ontology_file,
+        "-f", os.path.abspath(ontology_file),
         "-r", args.reasoner
     ]
     
