@@ -62,7 +62,7 @@ def main():
     
     # Construct the ontology file path relative to the script
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    ontology_file = os.path.join(script_dir, '..', args.source, args.file).replace('\\', '/')
+    ontology_file = os.path.abspath(os.path.join(script_dir, '..', args.source, args.file)).replace('\\', '/')
     
     # Log the constructed file path
     logger.debug(f"Script directory: {script_dir}")
@@ -79,9 +79,9 @@ def main():
 
     fullparse_command = [
         "fullparse.sh",
-        "-i", convert_path(os.path.abspath(args.input)),
-        "-s", convert_path(os.path.dirname(ontology_file)),
-        "-f", convert_path(ontology_file),
+        "-i", convert_path(args.input),
+        "-s", convert_path(args.source),
+        "-f", convert_path(args.file),
         "-r", args.reasoner
     ]
     if os.name == 'nt':  # Windows system
