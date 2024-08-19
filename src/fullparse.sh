@@ -64,18 +64,20 @@ subcharacteristics_plot=false
 metrics_plot=false
 evolution_plot=false
 
-# Convert Windows paths to Unix-style paths
-convert_path() {
-    echo "$1" | sed 's/\\/\//g'
+# Normalize paths to remove redundant './' prefixes
+normalize_path() {
+    local path="$1"
+    # Remove leading './' and convert backslashes to forward slashes
+    echo "${path#./}" | sed 's/\\/\//g'
 }
 
 # Parse command-line options
 while [[ $# -gt 0 ]]; do
     case $1 in
-        -i) contents_folder=$(convert_path "./$2"); shift 2 ;;
-        -s) ontology_folders=$(convert_path "$2"); shift 2 ;;
-        -f) ontology_files=$(convert_path "$2"); shift 2 ;;
-        -g) ignore_files=$(convert_path "$2"); shift 2 ;;
+        -i) contents_folder=$(normalize_path "$2"); shift 2 ;;
+        -s) ontology_folders=$(normalize_path "$2"); shift 2 ;;
+        -f) ontology_files=$(normalize_path "$2"); shift 2 ;;
+        -g) ignore_files=$(normalize_path "$2"); shift 2 ;;
         -r) reasoner="$2"; shift 2 ;;
         -M) model_plot=true; shift ;;
         -c) characteristics_plot=true; shift ;;
@@ -129,8 +131,8 @@ fi
 log "Processing individual ontology file: $ontology_files"
 outputFile=$(basename "$ontology_files")
 outputFile="${outputFile%.*}"
-outputFilePath="$contents_folder/temp_results/ontologies/imports/$outputFile/$date/metrics/$outputFile.xml"
-outputFilePath=$(echo "$outputFilePath" | sed 's|^\.\/|/|')
+outputFilePath=$(python -c "from main import construct_metrics_file_path; print(construct_metrics_file_path('$contents_folder', '$ontology_files', '$date'))")
+outputFilePath=$(normalize_path "$outputFilePath")
 if [ ! -d "$(dirname "$outputFilePath")" ]; then
     mkdir -p "$(dirname "$outputFilePath")"
     log "Created directory: $(dirname "$outputFilePath")"

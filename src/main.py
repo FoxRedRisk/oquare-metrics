@@ -119,7 +119,10 @@ def main():
     
     # Generate timestamp once and use it consistently
     date_str = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    metrics_file = os.path.join(args.input, "temp_results", "ontologies", "imports", os.path.splitext(os.path.basename(ontology_file))[0], date_str, "metrics", f"{os.path.splitext(os.path.basename(ontology_file))[0]}.xml").replace('\\', '/')
+    def construct_metrics_file_path(input_path, ontology_file, date_str):
+        return os.path.join(input_path, "temp_results", "ontologies", "imports", os.path.splitext(os.path.basename(ontology_file))[0], date_str, "metrics", f"{os.path.splitext(os.path.basename(ontology_file))[0]}.xml").replace('\\', '/')
+
+    metrics_file = construct_metrics_file_path(args.input, ontology_file, date_str)
     
     # Run fullparse.sh to generate the metrics XML file
     try:
