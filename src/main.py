@@ -80,11 +80,21 @@ def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     fullparse_sh_path = os.path.join(script_dir, "fullparse.sh").replace("\\", "/")
     
-    fullparse_command = [
-        bash_path,
-        "-c",
-        f"{fullparse_sh_path} -i \"{convert_path(args.input)}\" -s \"{convert_path(args.source)}\" -f \"{convert_path(args.file)}\" -r {args.reasoner}"
-    ]
+    if os.name == 'nt':  # Windows
+        fullparse_command = [
+            "bash",
+            "-c",
+            f"{fullparse_sh_path} -i \"{convert_path(args.input)}\" -s \"{convert_path(args.source)}\" -f \"{convert_path(args.file)}\" -r {args.reasoner}"
+        ]
+    else:  # Unix-like systems
+        fullparse_command = [
+            "bash",
+            fullparse_sh_path,
+            "-i", convert_path(args.input),
+            "-s", convert_path(args.source),
+            "-f", convert_path(args.file),
+            "-r", args.reasoner
+        ]
     
     logger.info(f"Final fullparse_command: {fullparse_command}")
     
