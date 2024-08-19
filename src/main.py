@@ -94,7 +94,7 @@ def main():
     oquare_command = [
         "java", "-jar", os.path.join(script_dir, "../libs/oquare-versions.jar"),
         "--ontology", f"./{full_ontology_path}",
-        "-m", f"./{metrics_file}",
+        "--metrics", f"./{metrics_file}",
         "-r", args.reasoner
     ]
 
