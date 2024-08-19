@@ -84,15 +84,15 @@ def main():
     ]
     
     if args.model:
-        fullparse_command.extend(["-M"])
+        fullparse_command.append("-M")
     if args.characteristics:
-        fullparse_command.extend(["-c"])
+        fullparse_command.append("-c")
     if args.subcharacteristics:
-        fullparse_command.extend(["-S"])
+        fullparse_command.append("-S")
     if args.metrics:
-        fullparse_command.extend(["-m"])
+        fullparse_command.append("-m")
     if args.evolution:
-        fullparse_command.extend(["-e"])
+        fullparse_command.append("-e")
     
     # Log the full command
     logger.info(f"Full fullparse.sh command: {' '.join(map(str, fullparse_command))}")

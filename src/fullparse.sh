@@ -61,18 +61,18 @@ convert_path() {
 }
 
 # Parse command-line options
-while getopts "i:s:f:g:r:McSme" opt; do
-    case $opt in
-        i) contents_folder=$(convert_path "$OPTARG") ;;
-        s) ontology_folders=$(convert_path "$OPTARG") ;;
-        f) ontology_files=$(convert_path "$OPTARG") ;;
-        g) ignore_files=$(convert_path "$OPTARG") ;;
-        r) reasoner="$OPTARG" ;;
-        M) model_plot=true ;;
-        c) characteristics_plot=true ;;
-        S) subcharacteristics_plot=true ;;
-        m) metrics_plot=true ;;
-        e) evolution_plot=true ;;
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -i) contents_folder=$(convert_path "$2"); shift 2 ;;
+        -s) ontology_folders=$(convert_path "$2"); shift 2 ;;
+        -f) ontology_files=$(convert_path "$2"); shift 2 ;;
+        -g) ignore_files=$(convert_path "$2"); shift 2 ;;
+        -r) reasoner="$2"; shift 2 ;;
+        -M) model_plot=true; shift ;;
+        -c) characteristics_plot=true; shift ;;
+        -S) subcharacteristics_plot=true; shift ;;
+        -m) metrics_plot=true; shift ;;
+        -e) evolution_plot=true; shift ;;
         *) usage ;;
     esac
 done
