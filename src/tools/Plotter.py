@@ -39,7 +39,9 @@ class oquareGraphs:
             plt.xticks(xpos, dates, fontsize=8, rotation=-45, ha="left", rotation_mode="anchor")
             plt.gca().grid(True, which='major', axis='both', color='#888888', linestyle='--')
             plt.title('OQuaRE model values')
-            plt.savefig(output_path + '/img/' + file + '_OQuaRE_model_values.png', format="png", bbox_inches='tight')
+            img_dir = os.path.join(output_path, 'img')
+            os.makedirs(img_dir, exist_ok=True)
+            plt.savefig(os.path.join(img_dir, file + '_OQuaRE_model_values.png'), format="png", bbox_inches='tight')
 
         plt.clf()
 
@@ -66,6 +68,8 @@ class oquareGraphs:
         angles += angles[:1]
 
         ax = plt.subplot(111, polar=True)
+        img_dir = os.path.join(output_path, 'img')
+        os.makedirs(img_dir, exist_ok=True)
         plt.xticks(angles[:-1], names, color='grey', size=12)
         plt.yticks([1, 2, 3, 4], ["1", "2", "3", "4"], color="grey", size='7')
         plt.ylim([0, 5])
@@ -73,7 +77,7 @@ class oquareGraphs:
         ax.fill(angles, values, 'skyblue', alpha=0.4)
 
         plt.title('OQuaRE characteristics values')
-        plt.savefig(output_path + '/img/' + file + "_characteristics_values.png", format="png", bbox_inches='tight')
+        plt.savefig(os.path.join(img_dir, file + "_characteristics_values.png"), format="png", bbox_inches='tight')
         
         plt.clf()
 
@@ -160,7 +164,7 @@ class oquareGraphs:
                     plt.annotate('%s' % values[i], xy=(values[i] + 0.1, i), textcoords='data', fontsize=8)
                     
                 plt.title(characteristic + ' metrics')
-                plt.savefig(output_path + '/img/' + file + "_" + characteristic + "_subcharacteristics_metrics.png", format="png", bbox_inches='tight')
+                plt.savefig(os.path.join(img_dir, file + "_" + characteristic + "_subcharacteristics_metrics.png"), format="png", bbox_inches='tight')
                 plt.clf()
     
     def plot_oquare_characteristics_evolution(self, data: dict, file: str,  output_path: str) -> None:
@@ -189,7 +193,7 @@ class oquareGraphs:
             plt.rc('figure', titlesize=12)
             plt.title('characteristics evolution over time')
             matplotx.line_labels()
-            plt.savefig(output_path + '/img/' + file + '_characteristics_evolution.png', format='png', bbox_inches='tight')
+            plt.savefig(os.path.join(img_dir, file + '_characteristics_evolution.png'), format='png', bbox_inches='tight')
         plt.clf()
     
     def plot_oquare_subcharacteristics_evolution(self, data: dict, file:str,  output_path: str) -> None:
@@ -217,7 +221,7 @@ class oquareGraphs:
                 plt.yticks(fontsize=10)
                 plt.title(characteristic + ' metrics evolution over time', fontsize=11)
                 matplotx.line_labels()
-                plt.savefig(output_path + '/img/' + file + "_" + characteristic + '_subcharacteristics_evolution.png', format='png', bbox_inches='tight')
+                plt.savefig(os.path.join(img_dir, file + "_" + characteristic + '_subcharacteristics_evolution.png'), format='png', bbox_inches='tight')
             plt.clf() 
 
 
@@ -241,7 +245,7 @@ class oquareGraphs:
                 plt.xticks(fontsize=8, rotation=-45, ha="left", rotation_mode="anchor")
                 plt.yticks(fontsize=10)
                 plt.title(label + ' evolution over time')
-                plt.savefig(output_path + '/img/' + file + '_' + label +'_metric_evolution.png', format='png', bbox_inches='tight')
+                plt.savefig(os.path.join(img_dir, file + '_' + label +'_metric_evolution.png'), format='png', bbox_inches='tight')
                 plt.clf()
 
     def plot_scaled_metrics_evolution(self, data: dict, file: str, output_path: str) -> None:
@@ -273,7 +277,7 @@ class oquareGraphs:
             for ax in axs.flat:
                     ax.label_outer()
             
-            plt.savefig(output_path + '/img/' + file + '_scaled_metrics_evolution.png', format='png', bbox_inches='tight')
+            plt.savefig(os.path.join(img_dir, file + '_scaled_metrics_evolution.png'), format='png', bbox_inches='tight')
 
 
 
