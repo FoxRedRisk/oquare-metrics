@@ -94,8 +94,8 @@ if [ -z "$contents_folder" ] || [ -z "$ontology_folders" ] || [ -z "$ontology_fi
     usage
 fi
 
-# Convert backslashes to forward slashes in ontology_files
-ontology_files=$(echo "$ontology_files" | sed 's/\\/\//g')
+# Construct the full path to the ontology file
+ontology_files=$(realpath "$ontology_folders/$ontology_files" | sed 's/\\/\//g')
 
 # Log all input parameters
 log "Input parameters:"
