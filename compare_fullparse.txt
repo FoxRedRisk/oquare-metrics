@@ -1,0 +1,43 @@
+# This file is used to compare the results of the full parse process.
+# Add your comparison logic here.
+
+def compare_results(result1, result2):
+    """
+    Compare two sets of results and return the differences.
+    
+    Args:
+        result1 (dict): The first set of results.
+        result2 (dict): The second set of results.
+    
+    Returns:
+        dict: A dictionary containing the differences between the two sets of results.
+    """
+    differences = {}
+    for key in result1:
+        if key in result2:
+            if result1[key] != result2[key]:
+                differences[key] = (result1[key], result2[key])
+        else:
+            differences[key] = (result1[key], None)
+    
+    for key in result2:
+        if key not in result1:
+            differences[key] = (None, result2[key])
+    
+    return differences
+
+# Example usage
+result1 = {
+    "metric1": 10,
+    "metric2": 20,
+    "metric3": 30
+}
+
+result2 = {
+    "metric1": 10,
+    "metric2": 25,
+    "metric4": 40
+}
+
+differences = compare_results(result1, result2)
+print("Differences:", differences)
