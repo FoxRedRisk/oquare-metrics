@@ -138,7 +138,7 @@ fi
 
 # Run OQuaRE tool
 log "Running OQuaRE tool..."
-java -jar "$OQUARE_PATH" --ontology "./$ontology_files" --metrics "$contents_folder/temp_results/ontologies/imports/metrics.xml" -r "$reasoner" --output "$contents_folder/temp_results/ontologies/imports/metrics.xml"
+java -jar "$OQUARE_PATH" --ontology "./$ontology_files" --metrics "$contents_folder/temp_results/ontologies/imports/metrics.xml" -r "$reasoner"
 log "OQuaRE tool completed successfully"
 
 log "fullparse.sh completed successfully"

@@ -97,8 +97,7 @@ def main():
         "java", "-jar", os.path.join(script_dir, "../libs/oquare-versions.jar"),
         "--ontology", f"./{full_ontology_path}",
         "--metrics", metrics_file,
-        "-r", args.reasoner,
-        "--output", metrics_file  # Ensure the output is saved to the metrics folder
+        "-r", args.reasoner
     ]
 
     try:
