@@ -55,13 +55,18 @@ subcharacteristics_plot=false
 metrics_plot=false
 evolution_plot=false
 
+# Convert Windows paths to Unix-style paths
+convert_path() {
+    echo "$1" | sed 's/\\/\//g' | sed 's/://'
+}
+
 # Parse command-line options
 while getopts "i:s:f:g:r:McSme" opt; do
     case $opt in
-        i) contents_folder="$OPTARG" ;;
-        s) ontology_folders="$OPTARG" ;;
-        f) ontology_files="$OPTARG" ;;
-        g) ignore_files="$OPTARG" ;;
+        i) contents_folder=$(convert_path "$OPTARG") ;;
+        s) ontology_folders=$(convert_path "$OPTARG") ;;
+        f) ontology_files=$(convert_path "$OPTARG") ;;
+        g) ignore_files=$(convert_path "$OPTARG") ;;
         r) reasoner="$OPTARG" ;;
         M) model_plot=true ;;
         c) characteristics_plot=true ;;
@@ -93,6 +98,7 @@ log "Characteristics plot: $characteristics_plot"
 log "Subcharacteristics plot: $subcharacteristics_plot"
 log "Metrics plot: $metrics_plot"
 log "Evolution plot: $evolution_plot"
+log "All arguments: $@"
 
 date=$(date '+%Y-%m-%d_%H-%M-%S')
 
