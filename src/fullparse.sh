@@ -130,6 +130,7 @@ log "Processing individual ontology file: $ontology_files"
 outputFile=$(basename "$ontology_files")
 outputFile="${outputFile%.*}"
 outputFilePath="$contents_folder/temp_results/ontologies/imports/$outputFile/$date/metrics/$outputFile.xml"
+outputFilePath=$(echo "$outputFilePath" | sed 's|^\.\/|/|')
 if [ ! -d "$(dirname "$outputFilePath")" ]; then
     mkdir -p "$(dirname "$outputFilePath")"
     log "Created directory: $(dirname "$outputFilePath")"
@@ -141,7 +142,7 @@ fi
 log "Running OQuaRE tool..."
 full_ontology_path="$ontology_folders/$ontology_files"
 log "Full ontology file path: $full_ontology_path"
-java -jar "$OQUARE_PATH" -o "$full_ontology_path" -m "$(convert_path "$outputFilePath")" -r "$reasoner"
+java -jar "$OQUARE_PATH" -o "$full_ontology_path" -m "$outputFilePath" -r "$reasoner"
 
 if [ ! -f "$outputFilePath" ]
 then
