@@ -114,13 +114,6 @@ outputFilePath="$contents_folder/temp_results/ontologies/imports/$outputFile/$da
 mkdir -p "$(dirname "$outputFilePath")"
 log "Created directory: $(dirname "$outputFilePath")"
 
-oquare_command="java -jar ./libs/oquare-versions.jar --ontology \"$ontology_files\" --reasoner \"$reasoner\" --outputFile \"$outputFilePath\""
-log "Executing OQuaRE command: $oquare_command"
-if ! eval $oquare_command > "$contents_folder/temp_results/ontologies/imports/$outputFile/$date/oquare_output.log" 2> "$contents_folder/temp_results/ontologies/imports/$outputFile/$date/oquare_error.log"
-then
-    log "OQuaRE command failed for $ontology_files. Check error log: $contents_folder/temp_results/ontologies/imports/$outputFile/$date/oquare_error.log"
-    exit 1
-fi
 
 if [ ! -f "$outputFilePath" ]
 then
