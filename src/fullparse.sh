@@ -21,15 +21,11 @@ trap 'error_handler $LINENO' ERR
 # Log script start
 log "Starting fullparse.sh with arguments: $@"
 
-# Check if the Java tool exists
+# Check if the OQuaRE tool exists
 if [ ! -f "./libs/oquare-versions.jar" ]; then
-    log "Error: OQuaRE Java tool not found at ./libs/oquare-versions.jar"
+    log "Error: OQuaRE tool not found at ./libs/oquare-versions.jar"
     exit 1
 fi
-
-# Check Java version
-java_version=$(java -version 2>&1 | awk -F '"' '/version/ {print $2}')
-log "Java version: $java_version"
 
 # Function to display usage
 usage() {
@@ -118,11 +114,11 @@ outputFilePath="$contents_folder/temp_results/ontologies/imports/$outputFile/$da
 mkdir -p "$(dirname "$outputFilePath")"
 log "Created directory: $(dirname "$outputFilePath")"
 
-java_command="java -jar ./libs/oquare-versions.jar --ontology \"$ontology_files\" --reasoner \"$reasoner\" --outputFile \"$outputFilePath\""
-log "Executing Java command: $java_command"
-if ! eval $java_command > "$contents_folder/temp_results/ontologies/imports/$outputFile/$date/java_output.log" 2> "$contents_folder/temp_results/ontologies/imports/$outputFile/$date/java_error.log"
+oquare_command="java -jar ./libs/oquare-versions.jar --ontology \"$ontology_files\" --reasoner \"$reasoner\" --outputFile \"$outputFilePath\""
+log "Executing OQuaRE command: $oquare_command"
+if ! eval $oquare_command > "$contents_folder/temp_results/ontologies/imports/$outputFile/$date/oquare_output.log" 2> "$contents_folder/temp_results/ontologies/imports/$outputFile/$date/oquare_error.log"
 then
-    log "Java command failed for $ontology_files. Check error log: $contents_folder/temp_results/ontologies/imports/$outputFile/$date/java_error.log"
+    log "OQuaRE command failed for $ontology_files. Check error log: $contents_folder/temp_results/ontologies/imports/$outputFile/$date/oquare_error.log"
     exit 1
 fi
 
