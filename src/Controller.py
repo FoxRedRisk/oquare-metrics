@@ -1,5 +1,6 @@
 
 import glob
+import logging
 from tools.Plotter import oquareGraphs
 from tools.Parser import MetricsParser
 from tools.Reporter import readmeGen
