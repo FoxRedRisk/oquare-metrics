@@ -69,9 +69,7 @@ def main():
         controller = Controller()
 
         # Generate the images
-        output_path = os.path.normpath(os.path.join(args.input, "output", "metrics")).replace('\\', '/')
-        if not output_path.startswith("./"):
-            output_path = f"./{output_path}"
+        output_path = os.path.normpath(os.path.join(args.input, "metrics")).replace('\\', '/')
         logger.info(f"Output path for images: {output_path}")
 
         file_name = os.path.normpath(os.path.splitext(os.path.basename(args.file))[0]).replace('\\', '/')
