@@ -81,7 +81,17 @@ def main():
         "-f", "/".join(os.path.abspath(ontology_file).split("\\")),
         "-r", args.reasoner
     ]
-    if os.name != 'nt':  # Add 'bash' only for non-Windows systems
+    if os.name == 'nt':  # Windows system
+        # Check if bash is accessible
+        try:
+            subprocess.run(["bash", "--version"], check=True, capture_output=True, text=True)
+            logger.info("Bash is accessible on this Windows system.")
+            fullparse_command.insert(0, "bash")
+        except subprocess.CalledProcessError:
+            logger.warning("Bash is not accessible on this Windows system.")
+        except FileNotFoundError:
+            logger.warning("Bash is not found on this Windows system.")
+    else:  # Non-Windows systems
         fullparse_command.insert(0, "bash")
     
     if args.model:
