@@ -46,45 +46,15 @@ def main():
         if not args.file.lower().endswith(('.owl', '.rdf', '.ttl')):
             args.file += '.owl'
         
-        # Define possible locations for the metrics file
-        possible_locations = [
-            os.path.join(args.input, "temp_results", "ontologies", "imports", os.path.splitext(args.file)[0], args.date, "metrics").replace('\\', '/'),
-            os.path.join(args.input, "temp_results", "ontologies", "imports", os.path.splitext(args.file)[0], "metrics").replace('\\', '/'),
-            os.path.join(args.input, "temp_results", "ontologies", "imports", os.path.splitext(args.file)[0]).replace('\\', '/'),
-            os.path.join(args.input, "temp_results", "ontologies", "imports").replace('\\', '/'),
-            os.path.join(args.input, "temp_results").replace('\\', '/'),
-            os.path.join(args.input).replace('\\', '/')
-        ]
-        # Try to find the metrics file in different locations
-
-        metrics_file = None
-        for location in possible_locations:
-            potential_file = os.path.normpath(os.path.join(location, f"./{os.path.splitext(args.file)[0]}.xml")).replace('\\', '/')
-            if not potential_file.startswith("./"):
-                potential_file = f"./{potential_file}"
-            logger.info(f"Checking for metrics file at: {potential_file}")
-            if os.path.exists(potential_file):
-                metrics_file = potential_file
-                logger.info(f"Found metrics file at: {metrics_file}")
-                break
-            else:
-                logger.warning(f"Metrics file not found at: {potential_file}")
-                if os.path.exists(os.path.dirname(potential_file)):
-                    logger.info(f"Contents of {os.path.dirname(potential_file)}:")
-                    logger.info(os.listdir(os.path.dirname(potential_file)))
-                else:
-                    logger.error(f"Directory does not exist: {os.path.dirname(potential_file)}")
-
-        if metrics_file is None:
-            logger.error("Metrics file not found in any of the expected locations.")
-            for location in possible_locations:
-                logger.error(f"Checked location: {location}")
-                if os.path.exists(os.path.dirname(location)):
-                    logger.info(f"Contents of {os.path.dirname(location)}:")
-                    logger.info(os.listdir(os.path.dirname(location)))
-                else:
-                    logger.error(f"Directory does not exist: {os.path.dirname(location)}")
+        # Define the location for the metrics file
+        metrics_file = os.path.join(args.input, "metrics", f"{os.path.splitext(args.file)[0]}.xml").replace('\\', '/')
+        
+        logger.info(f"Checking for metrics file at: {metrics_file}")
+        if not os.path.exists(metrics_file):
+            logger.error(f"Metrics file not found at: {metrics_file}")
             exit(1)
+        
+        logger.info(f"Found metrics file at: {metrics_file}")
 
         logger.info(f"Using metrics file: {metrics_file}")
         
