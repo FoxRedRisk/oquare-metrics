@@ -100,16 +100,20 @@ def main():
     
     logger.info(f"Final fullparse_command: {fullparse_command}")
     
+    additional_args = []
     if args.model:
-        fullparse_command.append("-M")
+        additional_args.append("-M")
     if args.characteristics:
-        fullparse_command.append("-c")
+        additional_args.append("-c")
     if args.subcharacteristics:
-        fullparse_command.append("-S")
+        additional_args.append("-S")
     if args.metrics:
-        fullparse_command.append("-m")
+        additional_args.append("-m")
     if args.evolution:
-        fullparse_command.append("-e")
+        additional_args.append("-e")
+    
+    if additional_args:
+        fullparse_command[2] += " " + " ".join(additional_args)
     
     # Log the full command
     logger.info(f"Full fullparse.sh command: {' '.join(map(str, fullparse_command))}")
