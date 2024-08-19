@@ -66,6 +66,11 @@ def main():
                 break
             else:
                 logger.warning(f"Metrics file not found at: {potential_file}")
+                if os.path.exists(os.path.dirname(potential_file)):
+                    logger.info(f"Contents of {os.path.dirname(potential_file)}:")
+                    logger.info(os.listdir(os.path.dirname(potential_file)))
+                else:
+                    logger.error(f"Directory does not exist: {os.path.dirname(potential_file)}")
 
         if metrics_file is None:
             logger.error("Metrics file not found in any of the expected locations.")
