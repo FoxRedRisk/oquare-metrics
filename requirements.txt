@@ -2,3 +2,6 @@ matplotlib
 matplotx[all]
 rdflib
 owlready2
+numpy
+pandas
+seaborn
