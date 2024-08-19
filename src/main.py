@@ -82,9 +82,9 @@ def main():
     
     if os.name == 'nt':  # Windows
         fullparse_command = [
-            "bash",
-            "-c",
-            f"{fullparse_sh_path} -i \"{convert_path(args.input)}\" -s \"./ontologies/imports\" -f \"{convert_path(args.file)}\" -r {args.reasoner}"
+            "cmd",
+            "/c",
+            f"bash {fullparse_sh_path} -i \"{convert_path(args.input)}\" -s \"./ontologies/imports\" -f \"{convert_path(args.file)}\" -r {args.reasoner}"
         ]
     else:  # Unix-like systems
         fullparse_command = [
