@@ -57,7 +57,7 @@ python src/main.py -i <input_path> -s <source_folder> -f <ontology_file> -r <rea
 ### Example:
 
 ```
-python src/main.py -i ./output -s ./ontologies -f my_ontology.owl -r HermiT -M -c -S -m -e
+python src/main.py -i ./output -s ./ontologies/imports -f TD1.owl -r HermiT -M -c -S -m -e
 ```
 
 This example will run the analysis on the ontology file "my_ontology.owl" in the "./ontologies" folder, using the HermiT reasoner, and generate all available plots. The output will be stored in the "./output" directory.

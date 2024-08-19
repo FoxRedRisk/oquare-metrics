@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+>
+  <owl:Class rdf:about="#Scalability">
+    <rdfs:label>Scalability</rdfs:label>
+    <rdfs:comment>Limitations in the system's ability to handle increased load or expand in functionality due to architectural constraints.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Architecture%20debt"/>
+    <rdfs:subClassOf rdf:resource="#Architectural%20debt"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Structural%20debt">
+    <rdfs:label>Structural debt</rdfs:label>
+    <rdfs:comment>Difficulties in updating and modifying the system due to complex, convoluted, or poorly organized code and architecture.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Architecture%20debt"/>
+    <rdfs:subClassOf rdf:resource="#Architectural%20debt"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Build%20debt">
+    <rdfs:label>Build debt</rdfs:label>
+    <rdfs:comment>The accumulation of problems and inefficiencies in the build process, such as slow build times or complex build scripts, which can hinder development speed and reliability.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Process%20debt"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Code%20debt">
+    <rdfs:label>Code debt</rdfs:label>
+    <rdfs:comment>The result of poor coding practices, such as lack of code quality, readability, or maintainability, which can lead to increased bugs and difficulty in making changes.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Technical%20Debt"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Infrastructure%20debt">
+    <rdfs:label>Infrastructure debt</rdfs:label>
+    <rdfs:comment>Infrastructure is a subcategory of Technical Debt. Technical debt refers to the long-term consequences and additional work that arise from choosing quick, easy, or suboptimal solutions in software development, which can hinder future progress and require extra effort to address.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Technical%20Debt"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Test%20debt">
+    <rdfs:label>Test debt</rdfs:label>
+    <rdfs:comment>The accumulation of inadequate or missing tests, which can result in lower test coverage, increased bugs, and reduced confidence in the system's stability.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Technical%20Debt"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Documentation%20debt">
+    <rdfs:label>Documentation debt</rdfs:label>
+    <rdfs:comment>Documentation is a subcategory of Technical Debt. Technical debt refers to the long-term consequences and additional work that arise from choosing quick, easy, or suboptimal solutions in software development, which can hinder future progress and require extra effort to address.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Technical%20Debt"/>
+  </owl:Class>
+  <owl:Ontology rdf:about="http://example.org/ontologies/TechnicalDebt"/>
+  <owl:Class rdf:about="#Architectural%20debt">
+    <rdfs:label>Architectural debt</rdfs:label>
+    <rdfs:comment>Architecture is a subcategory of Technical Debt. Technical debt refers to the long-term consequences and additional work that arise from choosing quick, easy, or suboptimal solutions in software development, which can hinder future progress and require extra effort to address.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Design%20debt"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Design%20debt">
+    <rdfs:label>Design debt</rdfs:label>
+    <rdfs:comment>The consequences of inadequate or rushed design decisions, which can result in a system that is difficult to extend, modify, or understand.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Technical%20Debt"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Architecture%20debt">
+    <rdfs:label>Architecture debt</rdfs:label>
+    <rdfs:comment>The long-term issues and inefficiencies that arise from suboptimal architectural decisions, which can limit scalability, performance, and maintainability.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Technical%20Debt"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Process%20debt">
+    <rdfs:label>Process debt</rdfs:label>
+    <rdfs:comment>The inefficiencies and problems caused by suboptimal development processes, such as lack of automation or poor workflow management, which can slow down development and increase errors.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Technical%20Debt"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Technical%20Debt">
+    <rdfs:label>Technical Debt</rdfs:label>
+    <rdfs:comment>Technical debt refers to the long-term consequences and additional work that arise from choosing quick, easy, or suboptimal solutions in software development, which can hinder future progress and require extra effort to address.</rdfs:comment>
+  </owl:Class>
+</rdf:RDF>
