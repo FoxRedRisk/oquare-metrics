@@ -18,6 +18,12 @@ class Controller:
     generate a report which shows different metrics in a visual way.
 
     """
+    
+    # Path constants to avoid duplication
+    ARCHIVES_PATH = 'archives'
+    RESULTS_PATH = 'results'
+    TEMP_RESULTS_PATH = 'temp_results'
+    METRICS_GLOB_PATH = os.path.join('*', 'metrics')
 
     def __init__(self):
         """ Controller init method
@@ -25,8 +31,8 @@ class Controller:
         Class has a plotter and reporter instances as fields for easy usage
 
         """
-        self.graphPlotter = oquareGraphs()
-        self.readmeGenerator = readmeGen()
+        self.graph_plotter = oquareGraphs()
+        self.readme_generator = readmeGen()
 
     def store_metrics_evolution(self, metrics: dict, data_store: dict, date: str) -> None:
         """Stores values of metrics at a certain date in a dictionary
@@ -142,12 +148,11 @@ class Controller:
             logging.info(f"Characteristics values: {oquare_characteristics_values}")
             
             logging.info(f"Generating characteristics plot at: {temp_path}")
-            self.graphPlotter.plot_oquare_characteristics(oquare_characteristics_values, file, temp_path)
-            self.readmeGenerator.append_characteristics(file, temp_path)
+            self.graph_plotter.plot_oquare_characteristics(oquare_characteristics_values, file, temp_path)
+            self.readme_generator.append_characteristics(file, temp_path)
             logging.info("Characteristics handling completed successfully")
         except Exception as e:
-            logging.error(f"Error handling characteristics: {str(e)}")
-            logging.exception("Exception details:")
+            logging.exception("Error handling characteristics")
 
     def handle_subcharacteristics(self, temp_path: str, file: str, metrics_file: str = None) -> None:
         """Handles subcharacteristics data extraction, plotting and reporting
@@ -165,8 +170,8 @@ class Controller:
         parsed_metrics = MetricsParser(metrics_file)
         characteristics = parsed_metrics.parse_characteristics_metrics()
         logging.info(f"Generating subcharacteristics plot at: {temp_path}")
-        self.graphPlotter.plot_oquare_subcharacteristics(characteristics, file, temp_path)
-        self.readmeGenerator.append_subcharacteristics(file, temp_path, list(characteristics.keys()))
+        self.graph_plotter.plot_oquare_subcharacteristics(characteristics, file, temp_path)
+        self.readme_generator.append_subcharacteristics(file, temp_path, list(characteristics.keys()))
 
 
     def handle_metrics(self, temp_path: str, file: str, metrics_file: str = None) -> None:
@@ -187,10 +192,10 @@ class Controller:
         scaled_metrics = parsed_metrics.parse_scaled_metrics()
 
         logging.info(f"Generating metrics plot at: {temp_path}")
-        self.graphPlotter.plot_metrics(metrics, file, temp_path, False)
+        self.graph_plotter.plot_metrics(metrics, file, temp_path, False)
         logging.info(f"Generating scaled metrics plot at: {temp_path}")
-        self.graphPlotter.plot_metrics(scaled_metrics, file, temp_path, True)
-        self.readmeGenerator.append_metrics(file, temp_path)
+        self.graph_plotter.plot_metrics(scaled_metrics, file, temp_path, True)
+        self.readme_generator.append_metrics(file, temp_path)
      
     def handle_oquare_model(self, file: str, input_path: str, ontology_source: str, date: str) -> None:
         """Handles oquare model evolution data extraction, plotting and reporting
@@ -208,9 +213,9 @@ class Controller:
         logger = logging.getLogger(__name__)
         logger.info(f"Starting handle_oquare_model for file: {file}")
 
-        archive_path = input_path + '/archives/' + ontology_source + '/' + file + '/'
-        results_path = input_path + '/results/' + ontology_source + '/' + file + '/'
-        temp_path = input_path + '/temp_results/' + ontology_source + '/' + file + '/' + date
+        archive_path = os.path.join(input_path, self.ARCHIVES_PATH, ontology_source, file)
+        results_path = os.path.join(input_path, self.RESULTS_PATH, ontology_source, file)
+        temp_path = os.path.join(input_path, self.TEMP_RESULTS_PATH, ontology_source, file, date)
         oquare_model_values = {}
 
         logger.debug(f"Archive path: {archive_path}")
@@ -218,16 +223,16 @@ class Controller:
         logger.debug(f"Temp path: {temp_path}")
 
         # Create necessary directories
-        os.makedirs(temp_path + '/metrics/', exist_ok=True)
-        logger.info(f"Created directory: {temp_path}/metrics/")
+        os.makedirs(os.path.join(temp_path, 'metrics'), exist_ok=True)
+        logger.info(f"Created directory: {os.path.join(temp_path, 'metrics')}")
 
-        archive_list = sorted(glob.glob(archive_path + '*/metrics/' + file + '.xml'))[-18:]
+        archive_list = sorted(glob.glob(os.path.join(archive_path, self.METRICS_GLOB_PATH, file + '.xml')))[-18:]
         logger.debug(f"Found {len(archive_list)} archive files")
         for path in archive_list:
             logger.debug(f"Parsing archive file: {path}")
             self.parse_entry(archive_path, path, oquare_model_values, 'oquare_value') 
 
-        results_file_path = glob.glob(results_path + '*/metrics/' + file + '.xml')
+        results_file_path = glob.glob(os.path.join(results_path, self.METRICS_GLOB_PATH, file + '.xml'))
         if len(results_file_path) > 0:
             results_file_path = results_file_path[0]
             logger.debug(f"Parsing results file: {results_file_path}")
@@ -245,9 +250,9 @@ class Controller:
 
         logger.info("Plotting OQuaRE values")
         logger.info(f"Generating OQuaRE values plot at: {temp_path}")
-        self.graphPlotter.plot_oquare_values(oquare_model_values, file, temp_path)
+        self.graph_plotter.plot_oquare_values(oquare_model_values, file, temp_path)
         logger.info("Appending OQuaRE value to README")
-        self.readmeGenerator.append_oquare_value(file, temp_path)
+        self.readme_generator.append_oquare_value(file, temp_path)
 
         logger.info("Finished handle_oquare_model")
 
@@ -262,18 +267,18 @@ class Controller:
         date -- Current date of module execution
 
         """
-        archive_path = input_path + '/archives/' + ontology_source + '/' + file + '/'
-        results_path = input_path + '/results/' + ontology_source + '/' + file + '/'
-        temp_path = input_path + '/temp_results/' + ontology_source + '/' + file + '/' + date
+        archive_path = os.path.join(input_path, self.ARCHIVES_PATH, ontology_source, file)
+        results_path = os.path.join(input_path, self.RESULTS_PATH, ontology_source, file)
+        temp_path = os.path.join(input_path, self.TEMP_RESULTS_PATH, ontology_source, file, date)
         metrics_evolution = {}
         metrics_evolution_scaled = {}
 
-        archive_list = sorted(glob.glob(archive_path + '*/metrics/' + file + '.xml'))[-18:]
+        archive_list = sorted(glob.glob(os.path.join(archive_path, self.METRICS_GLOB_PATH, file + '.xml')))[-18:]
         for path in archive_list:
             self.parse_entry(archive_path, path, metrics_evolution, 'metrics')
             self.parse_entry(archive_path, path, metrics_evolution_scaled, 'metrics-scaled')
 
-        results_file_path = glob.glob(results_path + '*/metrics/' + file + '.xml')
+        results_file_path = glob.glob(os.path.join(results_path, self.METRICS_GLOB_PATH, file + '.xml'))
         if len(results_file_path) > 0:
             results_file_path = results_file_path[0]
             self.parse_entry(results_path, results_file_path, metrics_evolution, 'metrics')
@@ -288,11 +293,11 @@ class Controller:
         self.store_metrics_evolution(scaled_metrics, metrics_evolution_scaled, date)
             
         logging.info(f"Generating metrics evolution plot at: {temp_path}")
-        self.graphPlotter.plot_metrics_evolution(metrics_evolution, file, temp_path)
+        self.graph_plotter.plot_metrics_evolution(metrics_evolution, file, temp_path)
         logging.info(f"Generating scaled metrics evolution plot at: {temp_path}")
-        self.graphPlotter.plot_scaled_metrics_evolution(metrics_evolution_scaled, file, temp_path)
-        self.readmeGenerator.append_scaled_metrics_evolution(file, temp_path)
-        self.readmeGenerator.append_metrics_evolution(file, temp_path, list(metrics_evolution.keys()))
+        self.graph_plotter.plot_scaled_metrics_evolution(metrics_evolution_scaled, file, temp_path)
+        self.readme_generator.append_scaled_metrics_evolution(file, temp_path)
+        self.readme_generator.append_metrics_evolution(file, temp_path, list(metrics_evolution.keys()))
 
     def handle_characteristics_evolution(self, file: str, input_path: str, ontology_source: str, date: str) -> None:
         """Handles characteristics evolution data extraction, plotting and reporting
@@ -304,16 +309,16 @@ class Controller:
         date -- Current date of module execution
         
         """
-        archive_path = input_path + '/archives/' + ontology_source + '/' + file + '/'
-        results_path = input_path + '/results/' + ontology_source + '/' + file + '/'
-        temp_path = input_path + '/temp_results/' + ontology_source + '/' + file + '/' + date
+        archive_path = os.path.join(input_path, self.ARCHIVES_PATH, ontology_source, file)
+        results_path = os.path.join(input_path, self.RESULTS_PATH, ontology_source, file)
+        temp_path = os.path.join(input_path, self.TEMP_RESULTS_PATH, ontology_source, file, date)
         characteristics_evolution = {}
 
-        archive_list = sorted(glob.glob(archive_path + '*/metrics/' + file + '.xml'))[-18:]
+        archive_list = sorted(glob.glob(os.path.join(archive_path, self.METRICS_GLOB_PATH, file + '.xml')))[-18:]
         for path in archive_list:
             self.parse_entry(archive_path, path, characteristics_evolution, 'characteristics')
 
-        results_file_path = glob.glob(results_path + '*/metrics/' + file + '.xml')
+        results_file_path = glob.glob(os.path.join(results_path, self.METRICS_GLOB_PATH, file + '.xml'))
         if len(results_file_path) > 0:
             results_file_path = results_file_path[0]
             self.parse_entry(results_path, results_file_path, characteristics_evolution, 'characteristics')
@@ -324,8 +329,8 @@ class Controller:
         self.store_characteristics_evolution(characteristics, characteristics_evolution, date)
 
         logging.info(f"Generating characteristics evolution plot at: {temp_path}")
-        self.graphPlotter.plot_oquare_characteristics_evolution(characteristics_evolution, file, temp_path)
-        self.readmeGenerator.append_characteristics_evolution(file, temp_path)
+        self.graph_plotter.plot_oquare_characteristics_evolution(characteristics_evolution, file, temp_path)
+        self.readme_generator.append_characteristics_evolution(file, temp_path)
 
 
     def handle_subcharacteristics_evolution(self, file: str, input_path: str, ontology_source: str, date: str) -> None:
@@ -338,16 +343,16 @@ class Controller:
         date -- Current date of module execution
         
         """
-        archive_path = input_path + '/archives/' + ontology_source + '/' + file + '/'
-        results_path = input_path + '/results/' + ontology_source + '/' + file + '/'
-        temp_path = input_path + '/temp_results/' + ontology_source + '/' + file + '/' + date
+        archive_path = os.path.join(input_path, self.ARCHIVES_PATH, ontology_source, file)
+        results_path = os.path.join(input_path, self.RESULTS_PATH, ontology_source, file)
+        temp_path = os.path.join(input_path, self.TEMP_RESULTS_PATH, ontology_source, file, date)
         subcharacteristics_evolution = {}
 
-        archive_list = sorted(glob.glob(archive_path + '*/metrics/' + file + '.xml'))[-18:]
+        archive_list = sorted(glob.glob(os.path.join(archive_path, self.METRICS_GLOB_PATH, file + '.xml')))[-18:]
         for path in archive_list:
             self.parse_entry(archive_path, path, subcharacteristics_evolution, 'subcharacteristics')
 
-        results_file_path = glob.glob(results_path + '*/metrics/' + file + '.xml')
+        results_file_path = glob.glob(os.path.join(results_path, self.METRICS_GLOB_PATH, file + '.xml'))
         if len(results_file_path) > 0:
             results_file_path = results_file_path[0]
             self.parse_entry(results_path, results_file_path, subcharacteristics_evolution, 'subcharacteristics')
@@ -358,6 +363,5 @@ class Controller:
         self.store_subcharacteristics_evolution(characteristics, subcharacteristics_evolution, date)
 
         logging.info(f"Generating subcharacteristics evolution plot at: {temp_path}")
-        self.graphPlotter.plot_oquare_subcharacteristics_evolution(subcharacteristics_evolution, file, temp_path)
-        self.readmeGenerator.append_subcharacteristics_evolution(file, temp_path, list(characteristics.keys()))
-            
+        self.graph_plotter.plot_oquare_subcharacteristics_evolution(subcharacteristics_evolution, file, temp_path)
+        self.readme_generator.append_subcharacteristics_evolution(file, temp_path, list(characteristics.keys()))
