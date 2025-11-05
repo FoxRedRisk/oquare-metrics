@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<ontologyMetrics>
+  <ontologyName>ontologies\imports\Lecture_improved</ontologyName>
+  <timestamp>2025-11-04T19:52:25.396371</timestamp>
+  <generator>OQuaRE-Python-v1.0</generator>
+  <basicMetrics>
+    <numberOfClasses>6</numberOfClasses>
+    <numberOfLeafClasses>3</numberOfLeafClasses>
+    <numberOfObjectProperties>4</numberOfObjectProperties>
+    <numberOfDataProperties>3</numberOfDataProperties>
+    <numberOfProperties>7</numberOfProperties>
+    <numberOfIndividuals>5</numberOfIndividuals>
+    <sumOfAnnotations>0</sumOfAnnotations>
+    <sumOfRelationships>5</sumOfRelationships>
+    <thingRelationships>2</thingRelationships>
+    <sumOfDirectParents>7</sumOfDirectParents>
+    <sumOfDirectParentsLeaf>4</sumOfDirectParentsLeaf>
+    <classesWithMultipleParents>1</classesWithMultipleParents>
+    <sumOfAttributes>3</sumOfAttributes>
+    <maximumDepth>3</maximumDepth>
+  </basicMetrics>
+  <oquareMetrics>
+    <ANOnto>0.000000000000000</ANOnto>
+    <CROnto>0.833333333333333</CROnto>
+    <NOMOnto>1.166666666666667</NOMOnto>
+    <INROnto>0.833333333333333</INROnto>
+    <AROnto>0.500000000000000</AROnto>
+    <DITOnto>3</DITOnto>
+    <NACOnto>1.333333333333333</NACOnto>
+    <NOCOnto>1.250000000000000</NOCOnto>
+    <CBOOnto>1.750000000000000</CBOOnto>
+    <WMCOnto>2.000000000000000</WMCOnto>
+    <RFCOnto>3.500000000000000</RFCOnto>
+    <RROnto>0.636363636363636</RROnto>
+    <LCOMOnto>3.500000000000000</LCOMOnto>
+    <TMOnto>1.000000000000000</TMOnto>
+  </oquareMetrics>
+</ontologyMetrics>

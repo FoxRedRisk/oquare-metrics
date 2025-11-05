@@ -71,37 +71,51 @@ def main():
 
     # Generate timestamp once and use it consistently
     date_str = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    metrics_file = "./output/metrics/TD1.xml"
+    
+    # Extract base filename without extension for output naming
+    base_filename = os.path.splitext(args.file)[0]
+    
+    # Create metrics file path with proper filename
+    metrics_dir = os.path.join(args.input, "metrics")
+    metrics_file = os.path.join(metrics_dir, f"{base_filename}.xml")
 
     # Create necessary directories if they don't exist
-    if not os.path.exists(os.path.dirname(metrics_file)):
-        os.makedirs(os.path.dirname(metrics_file))
-        logger.info(f"Created directory: {os.path.dirname(metrics_file)}")
+    if not os.path.exists(metrics_dir):
+        os.makedirs(metrics_dir)
+        logger.info(f"Created directory: {metrics_dir}")
     else:
-        logger.info(f"Directory already exists: {os.path.dirname(metrics_file)}")
+        logger.info(f"Directory already exists: {metrics_dir}")
 
-    # Create an empty metrics file before running the OQuaRE tool
-    with open(metrics_file, 'w') as f:
-        f.write('<?xml version="1.0" encoding="UTF-8"?>\n<metrics>\n</metrics>')
     logger.info("Running OQuaRE tool...")
     full_ontology_path = os.path.join(args.source, args.file).replace('\\', '/')
     logger.info(f"Relative ontology file path: {full_ontology_path}")
 
     jar_path = os.path.abspath(os.path.join(script_dir, "../libs/oquare-versions.jar")).replace('\\', '/')
     full_ontology_path = os.path.abspath(full_ontology_path).replace('\\', '/')
-    metrics_folder_path = os.path.abspath(os.path.join(args.input, "metrics")).replace('\\', '/')
+    metrics_file_path = os.path.abspath(metrics_file).replace('\\', '/')
     oquare_command = [
         "java", "-jar", jar_path,
         "--ontology", full_ontology_path,
-        "--outputFile", metrics_folder_path,
-        "-r", args.reasoner
+        "--outputFile", metrics_file_path,
+        "--reasoner", args.reasoner
     ]
 
     try:
-        result = subprocess.run(oquare_command, check=True, text=True, capture_output=True)
+        # Add timeout to prevent hanging on large ontologies (30 minutes max)
+        logger.info(f"Running command: {' '.join(oquare_command)}")
+        logger.info("Note: Large ontologies may take several minutes to process...")
+        result = subprocess.run(oquare_command, check=True, text=True, capture_output=True, timeout=1800)
         logger.info("OQuaRE tool completed successfully")
         logger.debug(f"OQuaRE tool output: {result.stdout}")
         logger.debug(f"OQuaRE tool error output: {result.stderr}")
+    except subprocess.TimeoutExpired:
+        logger.error(f"OQuaRE tool timed out after 1800 seconds (30 minutes)")
+        logger.error("The ontology is too large or complex for the reasoner to process.")
+        logger.error("Suggestions:")
+        logger.error("  1. Try with a simpler/smaller ontology")
+        logger.error("  2. Disable reasoning by modifying the OQuaRE tool parameters")
+        logger.error("  3. Split the ontology into smaller modules")
+        exit(1)
     except subprocess.CalledProcessError as e:
         logger.error(f"OQuaRE tool failed with exit code: {e.returncode}")
         logger.error(f"Error output: {e.stderr}")

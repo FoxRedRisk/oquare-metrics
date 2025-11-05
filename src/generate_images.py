@@ -44,10 +44,10 @@ def main():
         logger.info(f"Input path: {args.input}")
 
         # Ensure the file has the correct extension
-        file_name = os.path.splitext(os.path.basename(args.file))[0].replace('.owl', '')
+        file_name = os.path.splitext(os.path.basename(args.file))[0]
         
-        # Define the location for the metrics file
-        metrics_file = "./output/metrics/TD1.xml"
+        # Define the location for the metrics file based on actual input parameters
+        metrics_file = os.path.join(args.input, "metrics", f"{file_name}.xml")
         
         logger.info(f"Checking for metrics file at: {metrics_file}")
         if not os.path.exists(metrics_file):
@@ -55,7 +55,6 @@ def main():
             exit(1)
         
         logger.info(f"Found metrics file at: {metrics_file}")
-
         logger.info(f"Using metrics file: {metrics_file}")
         
         # Verify the content of the metrics file
@@ -74,14 +73,16 @@ def main():
         logger.info(f"Output path for images: {output_path}")
 
         file_name = os.path.normpath(os.path.splitext(os.path.basename(args.file))[0]).replace('\\', '/')
+        
+        # Use the actual metrics file we found
         if args.model:
             controller.handle_oquare_model(file_name, args.input, args.source, args.date)
         if args.characteristics:
-            controller.handle_characteristics(output_path, file_name)
+            controller.handle_characteristics(output_path, file_name, metrics_file)
         if args.subcharacteristics:
-            controller.handle_subcharacteristics(output_path, file_name)
+            controller.handle_subcharacteristics(output_path, file_name, metrics_file)
         if args.metrics:
-            controller.handle_metrics(output_path, file_name)
+            controller.handle_metrics(output_path, file_name, metrics_file)
         if args.evolution:
             controller.handle_metrics_evolution(file_name, args.input, args.source, args.date)
             controller.handle_characteristics_evolution(file_name, args.input, args.source, args.date)

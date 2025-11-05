@@ -1,0 +1,497 @@
+{
+  "ontology1": "bfo-core",
+  "ontology2": "Lecture_improved",
+  "timestamp": "2025-10-27T12:43:11.650898",
+  "summary": {
+    "metrics_improved": 10,
+    "metrics_degraded": 6,
+    "metrics_unchanged": 3,
+    "scaled_metrics_improved": 4,
+    "scaled_metrics_degraded": 3,
+    "scaled_metrics_unchanged": 12,
+    "characteristics_improved": 5,
+    "characteristics_degraded": 0,
+    "characteristics_unchanged": 2,
+    "avg_metrics_change": -6.15,
+    "avg_scaled_metrics_change": 19.91,
+    "avg_characteristics_change": 10.29
+  },
+  "metrics": {
+    "NOCOnto": {
+      "bfo-core": 2.11,
+      "Lecture_improved": 1.75,
+      "difference": -0.36,
+      "percent_change": -17.06
+    },
+    "POnto": {
+      "bfo-core": 0.94,
+      "Lecture_improved": 0.71,
+      "difference": -0.23,
+      "percent_change": -24.47
+    },
+    "TMOnto": {
+      "bfo-core": 0.0,
+      "Lecture_improved": 0.16,
+      "difference": 0.16,
+      "percent_change": null
+    },
+    "RROnto": {
+      "bfo-core": 0.14,
+      "Lecture_improved": 0.14,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "WMCOnto": {
+      "bfo-core": 5.05,
+      "Lecture_improved": 3.33,
+      "difference": -1.72,
+      "percent_change": -34.06
+    },
+    "WMCOnto2": {
+      "bfo-core": 1.0,
+      "Lecture_improved": 1.33,
+      "difference": 0.33,
+      "percent_change": 33.0
+    },
+    "PROnto": {
+      "bfo-core": 0.85,
+      "Lecture_improved": 0.85,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "AROnto": {
+      "bfo-core": 11.21,
+      "Lecture_improved": 2.28,
+      "difference": -8.93,
+      "percent_change": -79.66
+    },
+    "NOMOnto": {
+      "bfo-core": 5.67,
+      "Lecture_improved": 5.71,
+      "difference": 0.04,
+      "percent_change": 0.71
+    },
+    "RFCOnto": {
+      "bfo-core": 6.64,
+      "Lecture_improved": 6.71,
+      "difference": 0.07,
+      "percent_change": 1.05
+    },
+    "CROnto": {
+      "bfo-core": 0.0,
+      "Lecture_improved": 0.71,
+      "difference": 0.71,
+      "percent_change": null
+    },
+    "CBOnto2": {
+      "bfo-core": 0.97,
+      "Lecture_improved": 1.0,
+      "difference": 0.03,
+      "percent_change": 3.09
+    },
+    "INROnto": {
+      "bfo-core": 0.97,
+      "Lecture_improved": 1.0,
+      "difference": 0.03,
+      "percent_change": 3.09
+    },
+    "CBOOnto": {
+      "bfo-core": 1.0,
+      "Lecture_improved": 1.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "ANOnto": {
+      "bfo-core": 0.97,
+      "Lecture_improved": 1.71,
+      "difference": 0.74,
+      "percent_change": 76.29
+    },
+    "DITOnto": {
+      "bfo-core": 7.0,
+      "Lecture_improved": 4.0,
+      "difference": -3.0,
+      "percent_change": -42.86
+    },
+    "LCOMOnto": {
+      "bfo-core": 5.05,
+      "Lecture_improved": 2.5,
+      "difference": -2.55,
+      "percent_change": -50.5
+    },
+    "NACOnto": {
+      "bfo-core": 1.0,
+      "Lecture_improved": 1.33,
+      "difference": 0.33,
+      "percent_change": 33.0
+    },
+    "TMOnto2": {
+      "bfo-core": 0.0,
+      "Lecture_improved": 2.0,
+      "difference": 2.0,
+      "percent_change": null
+    }
+  },
+  "scaled_metrics": {
+    "NOCOnto": {
+      "bfo-core": 5.0,
+      "Lecture_improved": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "POnto": {
+      "bfo-core": 5.0,
+      "Lecture_improved": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "TMOnto": {
+      "bfo-core": 5.0,
+      "Lecture_improved": 4.0,
+      "difference": -1.0,
+      "percent_change": -20.0
+    },
+    "RROnto": {
+      "bfo-core": 1.0,
+      "Lecture_improved": 1.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "WMCOnto": {
+      "bfo-core": 4.0,
+      "Lecture_improved": 5.0,
+      "difference": 1.0,
+      "percent_change": 25.0
+    },
+    "WMCOnto2": {
+      "bfo-core": 5.0,
+      "Lecture_improved": 4.0,
+      "difference": -1.0,
+      "percent_change": -20.0
+    },
+    "PROnto": {
+      "bfo-core": 5.0,
+      "Lecture_improved": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "AROnto": {
+      "bfo-core": 5.0,
+      "Lecture_improved": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "NOMOnto": {
+      "bfo-core": 3.0,
+      "Lecture_improved": 3.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "RFCOnto": {
+      "bfo-core": 3.0,
+      "Lecture_improved": 3.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "CROnto": {
+      "bfo-core": 1.0,
+      "Lecture_improved": 4.0,
+      "difference": 3.0,
+      "percent_change": 300.0
+    },
+    "CBOnto2": {
+      "bfo-core": 5.0,
+      "Lecture_improved": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "INROnto": {
+      "bfo-core": 5.0,
+      "Lecture_improved": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "CBOOnto": {
+      "bfo-core": 5.0,
+      "Lecture_improved": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "ANOnto": {
+      "bfo-core": 5.0,
+      "Lecture_improved": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "DITOnto": {
+      "bfo-core": 2.0,
+      "Lecture_improved": 4.0,
+      "difference": 2.0,
+      "percent_change": 100.0
+    },
+    "LCOMOnto": {
+      "bfo-core": 3.0,
+      "Lecture_improved": 4.0,
+      "difference": 1.0,
+      "percent_change": 33.33
+    },
+    "NACOnto": {
+      "bfo-core": 5.0,
+      "Lecture_improved": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "TMOnto2": {
+      "bfo-core": 5.0,
+      "Lecture_improved": 3.0,
+      "difference": -2.0,
+      "percent_change": -40.0
+    }
+  },
+  "characteristics": {
+    "operability": {
+      "value": {
+        "bfo-core": 3.16,
+        "Lecture_improved": 3.5,
+        "difference": 0.34,
+        "percent_change": 10.76
+      },
+      "subcharacteristics": {
+        "lerneability": {
+          "bfo-core": 3.16,
+          "Lecture_improved": 3.5,
+          "difference": 0.34,
+          "percent_change": 10.76
+        }
+      }
+    },
+    "reliability": {
+      "value": {
+        "bfo-core": 3.0,
+        "Lecture_improved": 3.0,
+        "difference": 0.0,
+        "percent_change": 0.0
+      },
+      "subcharacteristics": {
+        "availability": {
+          "bfo-core": 3.0,
+          "Lecture_improved": 4.0,
+          "difference": 1.0,
+          "percent_change": 33.33
+        },
+        "recoverability": {
+          "bfo-core": 3.0,
+          "Lecture_improved": 2.0,
+          "difference": -1.0,
+          "percent_change": -33.33
+        }
+      }
+    },
+    "compatibility": {
+      "value": {
+        "bfo-core": 3.5,
+        "Lecture_improved": 4.25,
+        "difference": 0.75,
+        "percent_change": 21.43
+      },
+      "subcharacteristics": {
+        "replaceability": {
+          "bfo-core": 3.5,
+          "Lecture_improved": 4.25,
+          "difference": 0.75,
+          "percent_change": 21.43
+        }
+      }
+    },
+    "maintainability": {
+      "value": {
+        "bfo-core": 3.62,
+        "Lecture_improved": 4.17,
+        "difference": 0.55,
+        "percent_change": 15.19
+      },
+      "subcharacteristics": {
+        "reusability": {
+          "bfo-core": 3.0,
+          "Lecture_improved": 3.5,
+          "difference": 0.5,
+          "percent_change": 16.67
+        },
+        "analysability": {
+          "bfo-core": 3.33,
+          "Lecture_improved": 4.0,
+          "difference": 0.67,
+          "percent_change": 20.12
+        },
+        "testeability": {
+          "bfo-core": 3.33,
+          "Lecture_improved": 4.0,
+          "difference": 0.67,
+          "percent_change": 20.12
+        },
+        "modificationStability": {
+          "bfo-core": 4.0,
+          "Lecture_improved": 4.4,
+          "difference": 0.4,
+          "percent_change": 10.0
+        },
+        "modularity": {
+          "bfo-core": 4.5,
+          "Lecture_improved": 5.0,
+          "difference": 0.5,
+          "percent_change": 11.11
+        },
+        "changeability": {
+          "bfo-core": 3.57,
+          "Lecture_improved": 4.14,
+          "difference": 0.57,
+          "percent_change": 15.97
+        }
+      }
+    },
+    "structural": {
+      "value": {
+        "bfo-core": 4.0,
+        "Lecture_improved": 4.0,
+        "difference": 0.0,
+        "percent_change": 0.0
+      },
+      "subcharacteristics": {
+        "cohesion": {
+          "bfo-core": 3.0,
+          "Lecture_improved": 4.0,
+          "difference": 1.0,
+          "percent_change": 33.33
+        },
+        "tagledness": {
+          "bfo-core": 5.0,
+          "Lecture_improved": 4.0,
+          "difference": -1.0,
+          "percent_change": -20.0
+        },
+        "consistency": {
+          "bfo-core": 5.0,
+          "Lecture_improved": 5.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "formalisation": {
+          "bfo-core": 5.0,
+          "Lecture_improved": 5.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "redundancy": {
+          "bfo-core": 5.0,
+          "Lecture_improved": 5.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "formalRelationSupport": {
+          "bfo-core": 1.0,
+          "Lecture_improved": 1.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        }
+      }
+    },
+    "transferability": {
+      "value": {
+        "bfo-core": 3.5,
+        "Lecture_improved": 4.25,
+        "difference": 0.75,
+        "percent_change": 21.43
+      },
+      "subcharacteristics": {
+        "adaptability": {
+          "bfo-core": 3.5,
+          "Lecture_improved": 4.25,
+          "difference": 0.75,
+          "percent_change": 21.43
+        }
+      }
+    },
+    "functionalAdequacy": {
+      "value": {
+        "bfo-core": 4.03,
+        "Lecture_improved": 4.16,
+        "difference": 0.13,
+        "percent_change": 3.23
+      },
+      "subcharacteristics": {
+        "resultsRepresentation": {
+          "bfo-core": 3.0,
+          "Lecture_improved": 4.5,
+          "difference": 1.5,
+          "percent_change": 50.0
+        },
+        "schemaAndValueReconciliation": {
+          "bfo-core": 4.0,
+          "Lecture_improved": 4.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "guidanceAndDecisionTrees": {
+          "bfo-core": 5.0,
+          "Lecture_improved": 5.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "referenceOntology": {
+          "bfo-core": 3.0,
+          "Lecture_improved": 3.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "knowledgeAcquisition": {
+          "bfo-core": 3.0,
+          "Lecture_improved": 3.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "infering": {
+          "bfo-core": 5.0,
+          "Lecture_improved": 5.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "knowledgeReuse": {
+          "bfo-core": 4.5,
+          "Lecture_improved": 4.62,
+          "difference": 0.12,
+          "percent_change": 2.67
+        },
+        "controlledVocabulary": {
+          "bfo-core": 5.0,
+          "Lecture_improved": 5.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "textAnalysis": {
+          "bfo-core": 5.0,
+          "Lecture_improved": 5.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "consistentSearchAndQuery": {
+          "bfo-core": 4.2,
+          "Lecture_improved": 4.2,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "clusteringAndSimilarity": {
+          "bfo-core": 3.0,
+          "Lecture_improved": 3.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "indexingAndLinking": {
+          "bfo-core": 3.66,
+          "Lecture_improved": 3.66,
+          "difference": 0.0,
+          "percent_change": 0.0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,497 @@
+{
+  "ontology1": "bfo-core",
+  "ontology2": "iao",
+  "timestamp": "2025-10-27T12:37:00.013707",
+  "summary": {
+    "metrics_improved": 11,
+    "metrics_degraded": 4,
+    "metrics_unchanged": 4,
+    "scaled_metrics_improved": 3,
+    "scaled_metrics_degraded": 5,
+    "scaled_metrics_unchanged": 11,
+    "characteristics_improved": 5,
+    "characteristics_degraded": 1,
+    "characteristics_unchanged": 1,
+    "avg_metrics_change": 11.84,
+    "avg_scaled_metrics_change": 7.9,
+    "avg_characteristics_change": 4.64
+  },
+  "metrics": {
+    "TMOnto": {
+      "bfo-core": 0.0,
+      "iao": 0.0,
+      "difference": 0.0,
+      "percent_change": null
+    },
+    "INROnto": {
+      "bfo-core": 0.97,
+      "iao": 1.0,
+      "difference": 0.03,
+      "percent_change": 3.09
+    },
+    "CBOOnto": {
+      "bfo-core": 1.0,
+      "iao": 1.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "NOMOnto": {
+      "bfo-core": 5.67,
+      "iao": 1.28,
+      "difference": -4.39,
+      "percent_change": -77.43
+    },
+    "DITOnto": {
+      "bfo-core": 7.0,
+      "iao": 12.0,
+      "difference": 5.0,
+      "percent_change": 71.43
+    },
+    "AROnto": {
+      "bfo-core": 11.21,
+      "iao": 4.75,
+      "difference": -6.46,
+      "percent_change": -57.63
+    },
+    "WMCOnto2": {
+      "bfo-core": 1.0,
+      "iao": 1.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "POnto": {
+      "bfo-core": 0.94,
+      "iao": 0.99,
+      "difference": 0.05,
+      "percent_change": 5.32
+    },
+    "CBOnto2": {
+      "bfo-core": 0.97,
+      "iao": 1.0,
+      "difference": 0.03,
+      "percent_change": 3.09
+    },
+    "ANOnto": {
+      "bfo-core": 0.97,
+      "iao": 1.06,
+      "difference": 0.09,
+      "percent_change": 9.28
+    },
+    "WMCOnto": {
+      "bfo-core": 5.05,
+      "iao": 6.1,
+      "difference": 1.05,
+      "percent_change": 20.79
+    },
+    "RROnto": {
+      "bfo-core": 0.14,
+      "iao": 0.43,
+      "difference": 0.29,
+      "percent_change": 207.14
+    },
+    "NACOnto": {
+      "bfo-core": 1.0,
+      "iao": 1.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "PROnto": {
+      "bfo-core": 0.85,
+      "iao": 0.56,
+      "difference": -0.29,
+      "percent_change": -34.12
+    },
+    "TMOnto2": {
+      "bfo-core": 0.0,
+      "iao": 2.0,
+      "difference": 2.0,
+      "percent_change": null
+    },
+    "RFCOnto": {
+      "bfo-core": 6.64,
+      "iao": 2.28,
+      "difference": -4.36,
+      "percent_change": -65.66
+    },
+    "CROnto": {
+      "bfo-core": 0.0,
+      "iao": 0.07,
+      "difference": 0.07,
+      "percent_change": null
+    },
+    "LCOMOnto": {
+      "bfo-core": 5.05,
+      "iao": 6.07,
+      "difference": 1.02,
+      "percent_change": 20.2
+    },
+    "NOCOnto": {
+      "bfo-core": 2.11,
+      "iao": 3.88,
+      "difference": 1.77,
+      "percent_change": 83.89
+    }
+  },
+  "scaled_metrics": {
+    "TMOnto": {
+      "bfo-core": 5.0,
+      "iao": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "INROnto": {
+      "bfo-core": 5.0,
+      "iao": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "CBOOnto": {
+      "bfo-core": 5.0,
+      "iao": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "NOMOnto": {
+      "bfo-core": 3.0,
+      "iao": 5.0,
+      "difference": 2.0,
+      "percent_change": 66.67
+    },
+    "DITOnto": {
+      "bfo-core": 2.0,
+      "iao": 1.0,
+      "difference": -1.0,
+      "percent_change": -50.0
+    },
+    "AROnto": {
+      "bfo-core": 5.0,
+      "iao": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "WMCOnto2": {
+      "bfo-core": 5.0,
+      "iao": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "POnto": {
+      "bfo-core": 5.0,
+      "iao": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "CBOnto2": {
+      "bfo-core": 5.0,
+      "iao": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "ANOnto": {
+      "bfo-core": 5.0,
+      "iao": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "WMCOnto": {
+      "bfo-core": 4.0,
+      "iao": 4.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "RROnto": {
+      "bfo-core": 1.0,
+      "iao": 3.0,
+      "difference": 2.0,
+      "percent_change": 200.0
+    },
+    "NACOnto": {
+      "bfo-core": 5.0,
+      "iao": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "PROnto": {
+      "bfo-core": 5.0,
+      "iao": 3.0,
+      "difference": -2.0,
+      "percent_change": -40.0
+    },
+    "TMOnto2": {
+      "bfo-core": 5.0,
+      "iao": 3.0,
+      "difference": -2.0,
+      "percent_change": -40.0
+    },
+    "RFCOnto": {
+      "bfo-core": 3.0,
+      "iao": 5.0,
+      "difference": 2.0,
+      "percent_change": 66.67
+    },
+    "CROnto": {
+      "bfo-core": 1.0,
+      "iao": 1.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "LCOMOnto": {
+      "bfo-core": 3.0,
+      "iao": 2.0,
+      "difference": -1.0,
+      "percent_change": -33.33
+    },
+    "NOCOnto": {
+      "bfo-core": 5.0,
+      "iao": 4.0,
+      "difference": -1.0,
+      "percent_change": -20.0
+    }
+  },
+  "characteristics": {
+    "transferability": {
+      "value": {
+        "bfo-core": 3.5,
+        "iao": 3.75,
+        "difference": 0.25,
+        "percent_change": 7.14
+      },
+      "subcharacteristics": {
+        "adaptability": {
+          "bfo-core": 3.5,
+          "iao": 3.75,
+          "difference": 0.25,
+          "percent_change": 7.14
+        }
+      }
+    },
+    "functionalAdequacy": {
+      "value": {
+        "bfo-core": 4.03,
+        "iao": 4.44,
+        "difference": 0.41,
+        "percent_change": 10.17
+      },
+      "subcharacteristics": {
+        "infering": {
+          "bfo-core": 5.0,
+          "iao": 5.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "clusteringAndSimilarity": {
+          "bfo-core": 3.0,
+          "iao": 4.0,
+          "difference": 1.0,
+          "percent_change": 33.33
+        },
+        "textAnalysis": {
+          "bfo-core": 5.0,
+          "iao": 5.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "knowledgeReuse": {
+          "bfo-core": 4.5,
+          "iao": 4.62,
+          "difference": 0.12,
+          "percent_change": 2.67
+        },
+        "schemaAndValueReconciliation": {
+          "bfo-core": 4.0,
+          "iao": 4.5,
+          "difference": 0.5,
+          "percent_change": 12.5
+        },
+        "referenceOntology": {
+          "bfo-core": 3.0,
+          "iao": 4.0,
+          "difference": 1.0,
+          "percent_change": 33.33
+        },
+        "knowledgeAcquisition": {
+          "bfo-core": 3.0,
+          "iao": 4.33,
+          "difference": 1.33,
+          "percent_change": 44.33
+        },
+        "controlledVocabulary": {
+          "bfo-core": 5.0,
+          "iao": 5.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "indexingAndLinking": {
+          "bfo-core": 3.66,
+          "iao": 4.33,
+          "difference": 0.67,
+          "percent_change": 18.31
+        },
+        "consistentSearchAndQuery": {
+          "bfo-core": 4.2,
+          "iao": 4.59,
+          "difference": 0.39,
+          "percent_change": 9.29
+        },
+        "resultsRepresentation": {
+          "bfo-core": 3.0,
+          "iao": 3.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "guidanceAndDecisionTrees": {
+          "bfo-core": 5.0,
+          "iao": 5.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        }
+      }
+    },
+    "reliability": {
+      "value": {
+        "bfo-core": 3.0,
+        "iao": 2.5,
+        "difference": -0.5,
+        "percent_change": -16.67
+      },
+      "subcharacteristics": {
+        "availability": {
+          "bfo-core": 3.0,
+          "iao": 2.0,
+          "difference": -1.0,
+          "percent_change": -33.33
+        },
+        "recoverability": {
+          "bfo-core": 3.0,
+          "iao": 3.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        }
+      }
+    },
+    "maintainability": {
+      "value": {
+        "bfo-core": 3.62,
+        "iao": 3.86,
+        "difference": 0.24,
+        "percent_change": 6.63
+      },
+      "subcharacteristics": {
+        "changeability": {
+          "bfo-core": 3.57,
+          "iao": 3.71,
+          "difference": 0.14,
+          "percent_change": 3.92
+        },
+        "modularity": {
+          "bfo-core": 4.5,
+          "iao": 4.5,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "modificationStability": {
+          "bfo-core": 4.0,
+          "iao": 4.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "testeability": {
+          "bfo-core": 3.33,
+          "iao": 3.66,
+          "difference": 0.33,
+          "percent_change": 9.91
+        },
+        "analysability": {
+          "bfo-core": 3.33,
+          "iao": 3.66,
+          "difference": 0.33,
+          "percent_change": 9.91
+        },
+        "reusability": {
+          "bfo-core": 3.0,
+          "iao": 3.66,
+          "difference": 0.66,
+          "percent_change": 22.0
+        }
+      }
+    },
+    "compatibility": {
+      "value": {
+        "bfo-core": 3.5,
+        "iao": 3.5,
+        "difference": 0.0,
+        "percent_change": 0.0
+      },
+      "subcharacteristics": {
+        "replaceability": {
+          "bfo-core": 3.5,
+          "iao": 3.5,
+          "difference": 0.0,
+          "percent_change": 0.0
+        }
+      }
+    },
+    "operability": {
+      "value": {
+        "bfo-core": 3.16,
+        "iao": 3.83,
+        "difference": 0.67,
+        "percent_change": 21.2
+      },
+      "subcharacteristics": {
+        "lerneability": {
+          "bfo-core": 3.16,
+          "iao": 3.83,
+          "difference": 0.67,
+          "percent_change": 21.2
+        }
+      }
+    },
+    "structural": {
+      "value": {
+        "bfo-core": 4.0,
+        "iao": 4.16,
+        "difference": 0.16,
+        "percent_change": 4.0
+      },
+      "subcharacteristics": {
+        "consistency": {
+          "bfo-core": 5.0,
+          "iao": 5.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "redundancy": {
+          "bfo-core": 5.0,
+          "iao": 5.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "formalRelationSupport": {
+          "bfo-core": 1.0,
+          "iao": 3.0,
+          "difference": 2.0,
+          "percent_change": 200.0
+        },
+        "cohesion": {
+          "bfo-core": 3.0,
+          "iao": 2.0,
+          "difference": -1.0,
+          "percent_change": -33.33
+        },
+        "formalisation": {
+          "bfo-core": 5.0,
+          "iao": 5.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "tagledness": {
+          "bfo-core": 5.0,
+          "iao": 5.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        }
+      }
+    }
+  }
+}

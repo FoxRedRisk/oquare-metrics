@@ -107,13 +107,14 @@ class Controller:
             characteristics = parsed_metrics.parse_characteristics_metrics()
             self.store_subcharacteristics_evolution(characteristics, data_store, entry_date)
 
-    def handle_characteristics(self, temp_path: str, file: str) -> None:
+    def handle_characteristics(self, temp_path: str, file: str, metrics_file: str = None) -> None:
         """Handles characteristics data extraction, plotting and reporting
         
         Keyword arguments:
         temp_path -- Fully structured path to current execution temp_folder. The path is
         as it follows: input_path/temp_results/ontology_source/file/date. No trailing slash
         file -- Current ontology file being analysed
+        metrics_file -- Path to the metrics XML file (optional, will be constructed if not provided)
 
         """
         logging.info(f"Handling characteristics for file: {file}")
@@ -121,7 +122,9 @@ class Controller:
         
         oquare_characteristics_values = {}
 
-        metrics_file = "./output/metrics/TD1.xml"
+        if metrics_file is None:
+            metrics_file = os.path.join(temp_path, f"{file}.xml")
+        
         logging.info(f"Using metrics file: {metrics_file}")
         
         if not os.path.exists(metrics_file):
@@ -146,16 +149,19 @@ class Controller:
             logging.error(f"Error handling characteristics: {str(e)}")
             logging.exception("Exception details:")
 
-    def handle_subcharacteristics(self, temp_path: str, file: str) -> None:
+    def handle_subcharacteristics(self, temp_path: str, file: str, metrics_file: str = None) -> None:
         """Handles subcharacteristics data extraction, plotting and reporting
         
         Keyword arguments:
         temp_path -- Fully structured path to current execution temp_folder. The path is
         as it follows: input_path/temp_results/ontology_source/file/date. No trailing slash
         file -- Current ontology file being analysed
+        metrics_file -- Path to the metrics XML file (optional, will be constructed if not provided)
 
         """
-        metrics_file = "./output/metrics/TD1.xml"
+        if metrics_file is None:
+            metrics_file = os.path.join(temp_path, f"{file}.xml")
+        
         parsed_metrics = MetricsParser(metrics_file)
         characteristics = parsed_metrics.parse_characteristics_metrics()
         logging.info(f"Generating subcharacteristics plot at: {temp_path}")
@@ -163,16 +169,19 @@ class Controller:
         self.readmeGenerator.append_subcharacteristics(file, temp_path, list(characteristics.keys()))
 
 
-    def handle_metrics(self, temp_path: str, file: str) -> None:
+    def handle_metrics(self, temp_path: str, file: str, metrics_file: str = None) -> None:
         """Handles metrics data extraction, plotting and reporting
         
         Keyword arguments:
         temp_path -- Fully structured path to current execution temp_folder. The path is
         as it follows: input_path/temp_results/ontology_source/file/date. No trailing slash
         file -- Current ontology file being analysed
+        metrics_file -- Path to the metrics XML file (optional, will be constructed if not provided)
 
         """
-        metrics_file = "./output/metrics/TD1.xml"
+        if metrics_file is None:
+            metrics_file = os.path.join(temp_path, f"{file}.xml")
+        
         parsed_metrics = MetricsParser(metrics_file)
         metrics = parsed_metrics.parse_metrics()
         scaled_metrics = parsed_metrics.parse_scaled_metrics()
@@ -224,13 +233,14 @@ class Controller:
             logger.debug(f"Parsing results file: {results_file_path}")
             self.parse_entry(results_path, results_file_path, oquare_model_values, 'oquare_value')
 
-        metrics_file = "./output/metrics/TD1.xml"
-        if not os.path.exists(metrics_file):
-            logger.warning(f"Metrics file not found: {metrics_file}")
+        # Construct metrics file path
+        metrics_file_path = os.path.join(temp_path, "metrics", f"{file}.xml")
+        if not os.path.exists(metrics_file_path):
+            logger.warning(f"Metrics file not found: {metrics_file_path}")
             return
 
-        logger.debug(f"Parsing metrics file: {metrics_file}")
-        parsed_metrics = MetricsParser(metrics_file)
+        logger.debug(f"Parsing metrics file: {metrics_file_path}")
+        parsed_metrics = MetricsParser(metrics_file_path)
         oquare_model_values[date] = parsed_metrics.parse_oquare_value()
 
         logger.info("Plotting OQuaRE values")
@@ -269,8 +279,9 @@ class Controller:
             self.parse_entry(results_path, results_file_path, metrics_evolution, 'metrics')
             self.parse_entry(results_path, results_file_path, metrics_evolution_scaled, 'metrics-scaled')
 
-        metrics_file = "./output/metrics/TD1.xml"
-        parsed_metrics = MetricsParser(metrics_file)
+        # Construct metrics file path
+        metrics_file_path = os.path.join(temp_path, "metrics", f"{file}.xml")
+        parsed_metrics = MetricsParser(metrics_file_path)
         metrics = parsed_metrics.parse_metrics()
         scaled_metrics = parsed_metrics.parse_scaled_metrics()
         self.store_metrics_evolution(metrics, metrics_evolution, date)

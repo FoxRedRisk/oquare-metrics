@@ -1,0 +1,497 @@
+{
+  "ontology1": "lecture",
+  "ontology2": "bfo-core",
+  "timestamp": "2025-10-27T12:28:33.229203",
+  "summary": {
+    "metrics_improved": 13,
+    "metrics_degraded": 1,
+    "metrics_unchanged": 5,
+    "scaled_metrics_improved": 3,
+    "scaled_metrics_degraded": 6,
+    "scaled_metrics_unchanged": 10,
+    "characteristics_improved": 0,
+    "characteristics_degraded": 7,
+    "characteristics_unchanged": 0,
+    "avg_metrics_change": 133.27,
+    "avg_scaled_metrics_change": -8.68,
+    "avg_characteristics_change": -16.7
+  },
+  "metrics": {
+    "ANOnto": {
+      "lecture": 0.8,
+      "bfo-core": 0.97,
+      "difference": 0.17,
+      "percent_change": 21.25
+    },
+    "NOMOnto": {
+      "lecture": 1.8,
+      "bfo-core": 5.67,
+      "difference": 3.87,
+      "percent_change": 215.0
+    },
+    "CBOnto2": {
+      "lecture": 0.8,
+      "bfo-core": 0.97,
+      "difference": 0.17,
+      "percent_change": 21.25
+    },
+    "TMOnto": {
+      "lecture": 0.0,
+      "bfo-core": 0.0,
+      "difference": 0.0,
+      "percent_change": null
+    },
+    "CROnto": {
+      "lecture": 0.0,
+      "bfo-core": 0.0,
+      "difference": 0.0,
+      "percent_change": null
+    },
+    "CBOOnto": {
+      "lecture": 0.8,
+      "bfo-core": 1.0,
+      "difference": 0.2,
+      "percent_change": 25.0
+    },
+    "NACOnto": {
+      "lecture": 1.0,
+      "bfo-core": 1.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "WMCOnto2": {
+      "lecture": 1.0,
+      "bfo-core": 1.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "WMCOnto": {
+      "lecture": 1.66,
+      "bfo-core": 5.05,
+      "difference": 3.39,
+      "percent_change": 204.22
+    },
+    "RFCOnto": {
+      "lecture": 2.6,
+      "bfo-core": 6.64,
+      "difference": 4.04,
+      "percent_change": 155.38
+    },
+    "DITOnto": {
+      "lecture": 3.0,
+      "bfo-core": 7.0,
+      "difference": 4.0,
+      "percent_change": 133.33
+    },
+    "NOCOnto": {
+      "lecture": 2.0,
+      "bfo-core": 2.11,
+      "difference": 0.11,
+      "percent_change": 5.5
+    },
+    "INROnto": {
+      "lecture": 0.8,
+      "bfo-core": 0.97,
+      "difference": 0.17,
+      "percent_change": 21.25
+    },
+    "POnto": {
+      "lecture": 0.4,
+      "bfo-core": 0.94,
+      "difference": 0.54,
+      "percent_change": 135.0
+    },
+    "AROnto": {
+      "lecture": 1.0,
+      "bfo-core": 11.21,
+      "difference": 10.21,
+      "percent_change": 1021.0
+    },
+    "LCOMOnto": {
+      "lecture": 1.66,
+      "bfo-core": 5.05,
+      "difference": 3.39,
+      "percent_change": 204.22
+    },
+    "PROnto": {
+      "lecture": 0.69,
+      "bfo-core": 0.85,
+      "difference": 0.16,
+      "percent_change": 23.19
+    },
+    "RROnto": {
+      "lecture": 0.3,
+      "bfo-core": 0.14,
+      "difference": -0.16,
+      "percent_change": -53.33
+    },
+    "TMOnto2": {
+      "lecture": 0.0,
+      "bfo-core": 0.0,
+      "difference": 0.0,
+      "percent_change": null
+    }
+  },
+  "scaled_metrics": {
+    "ANOnto": {
+      "lecture": 4.0,
+      "bfo-core": 5.0,
+      "difference": 1.0,
+      "percent_change": 25.0
+    },
+    "NOMOnto": {
+      "lecture": 5.0,
+      "bfo-core": 3.0,
+      "difference": -2.0,
+      "percent_change": -40.0
+    },
+    "CBOnto2": {
+      "lecture": 5.0,
+      "bfo-core": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "TMOnto": {
+      "lecture": 5.0,
+      "bfo-core": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "CROnto": {
+      "lecture": 1.0,
+      "bfo-core": 1.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "CBOOnto": {
+      "lecture": 5.0,
+      "bfo-core": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "NACOnto": {
+      "lecture": 5.0,
+      "bfo-core": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "WMCOnto2": {
+      "lecture": 5.0,
+      "bfo-core": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "WMCOnto": {
+      "lecture": 5.0,
+      "bfo-core": 4.0,
+      "difference": -1.0,
+      "percent_change": -20.0
+    },
+    "RFCOnto": {
+      "lecture": 5.0,
+      "bfo-core": 3.0,
+      "difference": -2.0,
+      "percent_change": -40.0
+    },
+    "DITOnto": {
+      "lecture": 4.0,
+      "bfo-core": 2.0,
+      "difference": -2.0,
+      "percent_change": -50.0
+    },
+    "NOCOnto": {
+      "lecture": 5.0,
+      "bfo-core": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "INROnto": {
+      "lecture": 4.0,
+      "bfo-core": 5.0,
+      "difference": 1.0,
+      "percent_change": 25.0
+    },
+    "POnto": {
+      "lecture": 5.0,
+      "bfo-core": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "AROnto": {
+      "lecture": 5.0,
+      "bfo-core": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    },
+    "LCOMOnto": {
+      "lecture": 5.0,
+      "bfo-core": 3.0,
+      "difference": -2.0,
+      "percent_change": -40.0
+    },
+    "PROnto": {
+      "lecture": 4.0,
+      "bfo-core": 5.0,
+      "difference": 1.0,
+      "percent_change": 25.0
+    },
+    "RROnto": {
+      "lecture": 2.0,
+      "bfo-core": 1.0,
+      "difference": -1.0,
+      "percent_change": -50.0
+    },
+    "TMOnto2": {
+      "lecture": 5.0,
+      "bfo-core": 5.0,
+      "difference": 0.0,
+      "percent_change": 0.0
+    }
+  },
+  "characteristics": {
+    "structural": {
+      "value": {
+        "lecture": 4.33,
+        "bfo-core": 4.0,
+        "difference": -0.33,
+        "percent_change": -7.62
+      },
+      "subcharacteristics": {
+        "formalisation": {
+          "lecture": 5.0,
+          "bfo-core": 5.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "cohesion": {
+          "lecture": 5.0,
+          "bfo-core": 3.0,
+          "difference": -2.0,
+          "percent_change": -40.0
+        },
+        "formalRelationSupport": {
+          "lecture": 2.0,
+          "bfo-core": 1.0,
+          "difference": -1.0,
+          "percent_change": -50.0
+        },
+        "tagledness": {
+          "lecture": 5.0,
+          "bfo-core": 5.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "consistency": {
+          "lecture": 5.0,
+          "bfo-core": 5.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "redundancy": {
+          "lecture": 4.0,
+          "bfo-core": 5.0,
+          "difference": 1.0,
+          "percent_change": 25.0
+        }
+      }
+    },
+    "compatibility": {
+      "value": {
+        "lecture": 4.75,
+        "bfo-core": 3.5,
+        "difference": -1.25,
+        "percent_change": -26.32
+      },
+      "subcharacteristics": {
+        "replaceability": {
+          "lecture": 4.75,
+          "bfo-core": 3.5,
+          "difference": -1.25,
+          "percent_change": -26.32
+        }
+      }
+    },
+    "transferability": {
+      "value": {
+        "lecture": 4.75,
+        "bfo-core": 3.5,
+        "difference": -1.25,
+        "percent_change": -26.32
+      },
+      "subcharacteristics": {
+        "adaptability": {
+          "lecture": 4.75,
+          "bfo-core": 3.5,
+          "difference": -1.25,
+          "percent_change": -26.32
+        }
+      }
+    },
+    "operability": {
+      "value": {
+        "lecture": 4.33,
+        "bfo-core": 3.16,
+        "difference": -1.17,
+        "percent_change": -27.02
+      },
+      "subcharacteristics": {
+        "lerneability": {
+          "lecture": 4.33,
+          "bfo-core": 3.16,
+          "difference": -1.17,
+          "percent_change": -27.02
+        }
+      }
+    },
+    "maintainability": {
+      "value": {
+        "lecture": 4.78,
+        "bfo-core": 3.62,
+        "difference": -1.16,
+        "percent_change": -24.27
+      },
+      "subcharacteristics": {
+        "modularity": {
+          "lecture": 5.0,
+          "bfo-core": 4.5,
+          "difference": -0.5,
+          "percent_change": -10.0
+        },
+        "analysability": {
+          "lecture": 4.83,
+          "bfo-core": 3.33,
+          "difference": -1.5,
+          "percent_change": -31.06
+        },
+        "modificationStability": {
+          "lecture": 5.0,
+          "bfo-core": 4.0,
+          "difference": -1.0,
+          "percent_change": -20.0
+        },
+        "changeability": {
+          "lecture": 4.85,
+          "bfo-core": 3.57,
+          "difference": -1.28,
+          "percent_change": -26.39
+        },
+        "testeability": {
+          "lecture": 4.83,
+          "bfo-core": 3.33,
+          "difference": -1.5,
+          "percent_change": -31.06
+        },
+        "reusability": {
+          "lecture": 4.16,
+          "bfo-core": 3.0,
+          "difference": -1.16,
+          "percent_change": -27.88
+        }
+      }
+    },
+    "functionalAdequacy": {
+      "value": {
+        "lecture": 4.09,
+        "bfo-core": 4.03,
+        "difference": -0.06,
+        "percent_change": -1.47
+      },
+      "subcharacteristics": {
+        "knowledgeAcquisition": {
+          "lecture": 4.0,
+          "bfo-core": 3.0,
+          "difference": -1.0,
+          "percent_change": -25.0
+        },
+        "textAnalysis": {
+          "lecture": 5.0,
+          "bfo-core": 5.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "referenceOntology": {
+          "lecture": 3.5,
+          "bfo-core": 3.0,
+          "difference": -0.5,
+          "percent_change": -14.29
+        },
+        "knowledgeReuse": {
+          "lecture": 4.75,
+          "bfo-core": 4.5,
+          "difference": -0.25,
+          "percent_change": -5.26
+        },
+        "guidanceAndDecisionTrees": {
+          "lecture": 4.5,
+          "bfo-core": 5.0,
+          "difference": 0.5,
+          "percent_change": 11.11
+        },
+        "indexingAndLinking": {
+          "lecture": 3.66,
+          "bfo-core": 3.66,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "clusteringAndSimilarity": {
+          "lecture": 3.5,
+          "bfo-core": 3.0,
+          "difference": -0.5,
+          "percent_change": -14.29
+        },
+        "resultsRepresentation": {
+          "lecture": 3.0,
+          "bfo-core": 3.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        },
+        "controlledVocabulary": {
+          "lecture": 4.0,
+          "bfo-core": 5.0,
+          "difference": 1.0,
+          "percent_change": 25.0
+        },
+        "consistentSearchAndQuery": {
+          "lecture": 4.0,
+          "bfo-core": 4.2,
+          "difference": 0.2,
+          "percent_change": 5.0
+        },
+        "schemaAndValueReconciliation": {
+          "lecture": 4.25,
+          "bfo-core": 4.0,
+          "difference": -0.25,
+          "percent_change": -5.88
+        },
+        "infering": {
+          "lecture": 5.0,
+          "bfo-core": 5.0,
+          "difference": 0.0,
+          "percent_change": 0.0
+        }
+      }
+    },
+    "reliability": {
+      "value": {
+        "lecture": 3.12,
+        "bfo-core": 3.0,
+        "difference": -0.12,
+        "percent_change": -3.85
+      },
+      "subcharacteristics": {
+        "availability": {
+          "lecture": 5.0,
+          "bfo-core": 3.0,
+          "difference": -2.0,
+          "percent_change": -40.0
+        },
+        "recoverability": {
+          "lecture": 1.25,
+          "bfo-core": 3.0,
+          "difference": 1.75,
+          "percent_change": 140.0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<ontologyMetrics>
+  <ontologyName>ontologies\imports\iao</ontologyName>
+  <timestamp>2025-11-04T20:36:21.223472</timestamp>
+  <generator>OQuaRE-Python-v1.0</generator>
+  <basicMetrics>
+    <numberOfClasses>264</numberOfClasses>
+    <numberOfLeafClasses>196</numberOfLeafClasses>
+    <numberOfObjectProperties>53</numberOfObjectProperties>
+    <numberOfDataProperties>4</numberOfDataProperties>
+    <numberOfProperties>57</numberOfProperties>
+    <numberOfIndividuals>20</numberOfIndividuals>
+    <sumOfAnnotations>2746</sumOfAnnotations>
+    <sumOfRelationships>264</sumOfRelationships>
+    <thingRelationships>2</thingRelationships>
+    <sumOfDirectParents>264</sumOfDirectParents>
+    <sumOfDirectParentsLeaf>197</sumOfDirectParentsLeaf>
+    <classesWithMultipleParents>1</classesWithMultipleParents>
+    <sumOfAttributes>8</sumOfAttributes>
+    <maximumDepth>11</maximumDepth>
+  </basicMetrics>
+  <oquareMetrics>
+    <ANOnto>10.401515151515152</ANOnto>
+    <CROnto>0.075757575757576</CROnto>
+    <NOMOnto>0.215909090909091</NOMOnto>
+    <INROnto>1.000000000000000</INROnto>
+    <AROnto>0.030303030303030</AROnto>
+    <DITOnto>11</DITOnto>
+    <NACOnto>1.005102040816326</NACOnto>
+    <NOCOnto>1.007633587786259</NOCOnto>
+    <CBOOnto>1.007633587786259</CBOOnto>
+    <WMCOnto>1.215909090909091</WMCOnto>
+    <RFCOnto>1.225190839694656</RFCOnto>
+    <RROnto>0.107954545454545</RROnto>
+    <LCOMOnto>7.071065989847716</LCOMOnto>
+    <TMOnto>1.003802281368821</TMOnto>
+  </oquareMetrics>
+</ontologyMetrics>

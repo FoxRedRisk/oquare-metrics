@@ -1,0 +1,1336 @@
+2024-08-19 10:30:34,677 - INFO - Starting generate_images.py
+2024-08-19 10:30:34,677 - ERROR - An error occurred during image generation: 'NoneType' object has no attribute 'attrib'
+2024-08-19 10:30:34,685 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 98, in main
+    controller.handle_oquare_model(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 226, in handle_oquare_model
+    oquare_model_values[date] = parsed_metrics.parse_oquare_value()
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Code\oquare-metrics\src\tools\Parser.py", line 32, in parse_oquare_value
+    oquare_value = math.floor(float(self.root.find('oquareModel').attrib.get('oquareValue')) * 10 ** 2) / 10 ** 2
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'attrib'
+
+2024-08-19 10:31:26,842 - INFO - Starting generate_images.py
+2024-08-19 10:31:26,842 - ERROR - An error occurred during image generation: 'NoneType' object has no attribute 'attrib'
+2024-08-19 10:31:26,842 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 98, in main
+    controller.handle_oquare_model(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 226, in handle_oquare_model
+    oquare_model_values[date] = parsed_metrics.parse_oquare_value()
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Code\oquare-metrics\src\tools\Parser.py", line 32, in parse_oquare_value
+    oquare_value = math.floor(float(self.root.find('oquareModel').attrib.get('oquareValue')) * 10 ** 2) / 10 ** 2
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'attrib'
+
+2024-08-19 10:33:14,117 - INFO - Starting generate_images.py
+2024-08-19 10:33:14,117 - ERROR - An error occurred during image generation: 'NoneType' object has no attribute 'attrib'
+2024-08-19 10:33:14,117 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 98, in main
+    controller.handle_oquare_model(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 226, in handle_oquare_model
+    oquare_model_values[date] = parsed_metrics.parse_oquare_value()
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Code\oquare-metrics\src\tools\Parser.py", line 32, in parse_oquare_value
+    oquare_value = math.floor(float(self.root.find('oquareModel').attrib.get('oquareValue')) * 10 ** 2) / 10 ** 2
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'attrib'
+
+2024-08-19 10:35:27,217 - INFO - Starting generate_images.py
+2024-08-19 10:35:27,217 - INFO - Starting generate_images.py
+2024-08-19 10:35:27,217 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2024-08-19_10-28-39', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 10:35:27,217 - INFO - Checking for metrics file at: ./output/results/ontologies/imports/TD1/2024-08-19_10-28-39/metrics/TD1.xml
+2024-08-19 10:35:27,217 - WARNING - Metrics file not found at: ./output/results/ontologies/imports/TD1/2024-08-19_10-28-39/metrics/TD1.xml
+2024-08-19 10:35:27,217 - INFO - Checking for metrics file at: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-28-39/metrics/TD1.xml
+2024-08-19 10:35:27,217 - INFO - Found metrics file at: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-28-39/metrics/TD1.xml
+2024-08-19 10:35:27,217 - INFO - Using metrics file: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-28-39/metrics/TD1.xml
+2024-08-19 10:35:27,217 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8"?>
+<metrics>
+</metrics>
+2024-08-19 10:35:27,217 - INFO - Output path for images: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-28-39
+2024-08-19 10:35:27,226 - ERROR - An error occurred during image generation: 'NoneType' object has no attribute 'attrib'
+2024-08-19 10:35:27,228 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 102, in main
+    controller.handle_oquare_model(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 226, in handle_oquare_model
+    oquare_model_values[date] = parsed_metrics.parse_oquare_value()
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Code\oquare-metrics\src\tools\Parser.py", line 32, in parse_oquare_value
+    oquare_value = math.floor(float(self.root.find('oquareModel').attrib.get('oquareValue')) * 10 ** 2) / 10 ** 2
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'attrib'
+
+2024-08-19 10:37:31,986 - INFO - Starting generate_images.py
+2024-08-19 10:37:31,986 - INFO - Starting generate_images.py
+2024-08-19 10:37:32,002 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2024-08-19_10-28-39', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 10:37:32,002 - INFO - Checking for metrics file at: ./output/results/ontologies/imports/TD1/2024-08-19_10-28-39/metrics/TD1.xml
+2024-08-19 10:37:32,002 - WARNING - Metrics file not found at: ./output/results/ontologies/imports/TD1/2024-08-19_10-28-39/metrics/TD1.xml
+2024-08-19 10:37:32,002 - ERROR - Directory does not exist: ./output/results/ontologies/imports/TD1/2024-08-19_10-28-39/metrics
+2024-08-19 10:37:32,002 - INFO - Checking for metrics file at: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-28-39/metrics/TD1.xml
+2024-08-19 10:37:32,002 - INFO - Found metrics file at: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-28-39/metrics/TD1.xml
+2024-08-19 10:37:32,002 - INFO - Using metrics file: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-28-39/metrics/TD1.xml
+2024-08-19 10:37:32,002 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8"?>
+<metrics>
+</metrics>
+2024-08-19 10:37:32,008 - INFO - Output path for images: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-28-39
+2024-08-19 10:37:32,010 - ERROR - An error occurred during image generation: 'NoneType' object has no attribute 'attrib'
+2024-08-19 10:37:32,012 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 107, in main
+    controller.handle_oquare_model(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 226, in handle_oquare_model
+    oquare_model_values[date] = parsed_metrics.parse_oquare_value()
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Code\oquare-metrics\src\tools\Parser.py", line 32, in parse_oquare_value
+    oquare_value = math.floor(float(self.root.find('oquareModel').attrib.get('oquareValue')) * 10 ** 2) / 10 ** 2
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'attrib'
+
+2024-08-19 10:39:07,663 - INFO - Starting generate_images.py
+2024-08-19 10:39:07,663 - INFO - Starting generate_images.py
+2024-08-19 10:39:07,679 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2024-08-19_10-39-03', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 10:39:07,679 - INFO - Checking for metrics file at: ./output/results/ontologies/imports/TD1/2024-08-19_10-39-03/metrics/TD1.xml
+2024-08-19 10:39:07,679 - WARNING - Metrics file not found at: ./output/results/ontologies/imports/TD1/2024-08-19_10-39-03/metrics/TD1.xml
+2024-08-19 10:39:07,679 - ERROR - Directory does not exist: ./output/results/ontologies/imports/TD1/2024-08-19_10-39-03/metrics
+2024-08-19 10:39:07,679 - INFO - Checking for metrics file at: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-39-03/metrics/TD1.xml
+2024-08-19 10:39:07,679 - INFO - Found metrics file at: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-39-03/metrics/TD1.xml
+2024-08-19 10:39:07,679 - INFO - Using metrics file: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-39-03/metrics/TD1.xml
+2024-08-19 10:39:07,679 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8"?>
+<metrics>
+</metrics>
+2024-08-19 10:39:07,679 - INFO - Output path for images: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-39-03
+2024-08-19 10:39:07,679 - ERROR - An error occurred during image generation: 'NoneType' object has no attribute 'attrib'
+2024-08-19 10:39:07,679 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 107, in main
+    controller.handle_oquare_model(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 226, in handle_oquare_model
+    oquare_model_values[date] = parsed_metrics.parse_oquare_value()
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Code\oquare-metrics\src\tools\Parser.py", line 32, in parse_oquare_value
+    oquare_value = math.floor(float(self.root.find('oquareModel').attrib.get('oquareValue')) * 10 ** 2) / 10 ** 2
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'attrib'
+
+2024-08-19 10:40:36,810 - INFO - Starting generate_images.py
+2024-08-19 10:40:36,810 - INFO - Starting generate_images.py
+2024-08-19 10:40:36,810 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2024-08-19_10-40-32', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 10:40:36,810 - INFO - Checking for metrics file at: ./output/results/ontologies/imports/TD1/2024-08-19_10-40-32/metrics/TD1.xml
+2024-08-19 10:40:36,810 - WARNING - Metrics file not found at: ./output/results/ontologies/imports/TD1/2024-08-19_10-40-32/metrics/TD1.xml
+2024-08-19 10:40:36,810 - ERROR - Directory does not exist: ./output/results/ontologies/imports/TD1/2024-08-19_10-40-32/metrics
+2024-08-19 10:40:36,810 - INFO - Checking for metrics file at: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-40-32/metrics/TD1.xml
+2024-08-19 10:40:36,810 - INFO - Found metrics file at: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-40-32/metrics/TD1.xml
+2024-08-19 10:40:36,810 - INFO - Using metrics file: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-40-32/metrics/TD1.xml
+2024-08-19 10:40:36,810 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8"?>
+<metrics>
+</metrics>
+2024-08-19 10:40:36,810 - INFO - Output path for images: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-40-32
+2024-08-19 10:40:36,810 - ERROR - An error occurred during image generation: 'NoneType' object has no attribute 'attrib'
+2024-08-19 10:40:36,810 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 107, in main
+    controller.handle_oquare_model(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 230, in handle_oquare_model
+    oquare_model_values[date] = parsed_metrics.parse_oquare_value()
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Code\oquare-metrics\src\tools\Parser.py", line 32, in parse_oquare_value
+    oquare_value = math.floor(float(self.root.find('oquareModel').attrib.get('oquareValue')) * 10 ** 2) / 10 ** 2
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'attrib'
+
+2024-08-19 10:41:47,352 - INFO - Starting generate_images.py
+2024-08-19 10:41:47,352 - INFO - Starting generate_images.py
+2024-08-19 10:41:47,352 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2024-08-19_10-41-43', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 10:41:47,352 - INFO - Checking for metrics file at: ./output/results/ontologies/imports/TD1/2024-08-19_10-41-43/metrics/TD1.xml
+2024-08-19 10:41:47,352 - WARNING - Metrics file not found at: ./output/results/ontologies/imports/TD1/2024-08-19_10-41-43/metrics/TD1.xml
+2024-08-19 10:41:47,352 - ERROR - Directory does not exist: ./output/results/ontologies/imports/TD1/2024-08-19_10-41-43/metrics
+2024-08-19 10:41:47,352 - INFO - Checking for metrics file at: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-41-43/metrics/TD1.xml
+2024-08-19 10:41:47,352 - INFO - Found metrics file at: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-41-43/metrics/TD1.xml
+2024-08-19 10:41:47,352 - INFO - Using metrics file: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-41-43/metrics/TD1.xml
+2024-08-19 10:41:47,352 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8"?>
+<metrics>
+</metrics>
+2024-08-19 10:41:47,352 - INFO - Output path for images: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-41-43
+2024-08-19 10:41:47,352 - ERROR - An error occurred during image generation: 'NoneType' object has no attribute 'attrib'
+2024-08-19 10:41:47,352 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 107, in main
+    controller.handle_oquare_model(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 230, in handle_oquare_model
+    oquare_model_values[date] = parsed_metrics.parse_oquare_value()
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Code\oquare-metrics\src\tools\Parser.py", line 32, in parse_oquare_value
+    oquare_value = math.floor(float(self.root.find('oquareModel').attrib.get('oquareValue')) * 10 ** 2) / 10 ** 2
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'attrib'
+
+2024-08-19 10:43:35,109 - INFO - Starting generate_images.py
+2024-08-19 10:43:35,109 - INFO - Starting generate_images.py
+2024-08-19 10:43:35,110 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2024-08-19_10-43-31', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 10:43:35,110 - INFO - Checking for metrics file at: ./output/results/ontologies/imports/TD1/2024-08-19_10-43-31/metrics/TD1.xml
+2024-08-19 10:43:35,110 - WARNING - Metrics file not found at: ./output/results/ontologies/imports/TD1/2024-08-19_10-43-31/metrics/TD1.xml
+2024-08-19 10:43:35,111 - ERROR - Directory does not exist: ./output/results/ontologies/imports/TD1/2024-08-19_10-43-31/metrics
+2024-08-19 10:43:35,111 - INFO - Checking for metrics file at: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-43-31/metrics/TD1.xml
+2024-08-19 10:43:35,111 - INFO - Found metrics file at: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-43-31/metrics/TD1.xml
+2024-08-19 10:43:35,111 - INFO - Using metrics file: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-43-31/metrics/TD1.xml
+2024-08-19 10:43:35,112 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8"?>
+<metrics>
+</metrics>
+2024-08-19 10:43:35,112 - INFO - Output path for images: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-43-31
+2024-08-19 10:43:35,113 - ERROR - An error occurred during image generation: 'NoneType' object has no attribute 'attrib'
+2024-08-19 10:43:35,114 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 107, in main
+    controller.handle_oquare_model(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 230, in handle_oquare_model
+    oquare_model_values[date] = parsed_metrics.parse_oquare_value()
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Code\oquare-metrics\src\tools\Parser.py", line 32, in parse_oquare_value
+    oquare_value = math.floor(float(self.root.find('oquareModel').attrib.get('oquareValue')) * 10 ** 2) / 10 ** 2
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'attrib'
+
+2024-08-19 10:44:59,868 - INFO - Starting generate_images.py
+2024-08-19 10:44:59,868 - INFO - Starting generate_images.py
+2024-08-19 10:44:59,883 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2024-08-19_10-44-56', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 10:44:59,883 - INFO - Checking for metrics file at: ./output/results/ontologies/imports/TD1/2024-08-19_10-44-56/metrics/TD1.xml
+2024-08-19 10:44:59,883 - WARNING - Metrics file not found at: ./output/results/ontologies/imports/TD1/2024-08-19_10-44-56/metrics/TD1.xml
+2024-08-19 10:44:59,883 - ERROR - Directory does not exist: ./output/results/ontologies/imports/TD1/2024-08-19_10-44-56/metrics
+2024-08-19 10:44:59,883 - INFO - Checking for metrics file at: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-44-56/metrics/TD1.xml
+2024-08-19 10:44:59,883 - INFO - Found metrics file at: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-44-56/metrics/TD1.xml
+2024-08-19 10:44:59,883 - INFO - Using metrics file: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-44-56/metrics/TD1.xml
+2024-08-19 10:44:59,883 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8"?>
+<metrics>
+</metrics>
+2024-08-19 10:44:59,883 - INFO - Output path for images: ./output/temp_results/ontologies/imports/TD1/2024-08-19_10-44-56
+2024-08-19 10:44:59,883 - ERROR - An error occurred during image generation: 'NoneType' object has no attribute 'attrib'
+2024-08-19 10:44:59,883 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 107, in main
+    controller.handle_oquare_model(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 230, in handle_oquare_model
+    oquare_model_values[date] = parsed_metrics.parse_oquare_value()
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Code\oquare-metrics\src\tools\Parser.py", line 32, in parse_oquare_value
+    oquare_value = math.floor(float(self.root.find('oquareModel').attrib.get('oquareValue')) * 10 ** 2) / 10 ** 2
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'attrib'
+
+2024-08-19 11:48:44,855 - INFO - Starting generate_images.py
+2024-08-19 11:48:44,855 - INFO - Starting generate_images.py
+2024-08-19 11:49:52,396 - INFO - Starting generate_images.py
+2024-08-19 11:49:52,396 - INFO - Starting generate_images.py
+2024-08-19 11:49:52,411 - INFO - Arguments: Namespace(input='./output/metrics', source='./ontologies', file='TD1.xml', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 11:49:52,411 - ERROR - An error occurred during image generation: name 'possible_locations' is not defined
+2024-08-19 11:49:52,411 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 53, in main
+    for location in possible_locations:
+                    ^^^^^^^^^^^^^^^^^^
+NameError: name 'possible_locations' is not defined
+
+2024-08-19 11:50:28,224 - INFO - Starting generate_images.py
+2024-08-19 11:50:28,224 - INFO - Starting generate_images.py
+2024-08-19 11:50:28,224 - INFO - Arguments: Namespace(input='./output/metrics', source='./ontologies', file='TD1.xml', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 11:50:28,224 - ERROR - An error occurred during image generation: name 'possible_locations' is not defined
+2024-08-19 11:50:28,224 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 53, in main
+    for location in possible_locations:
+                    ^^^^^^^^^^^^^^^^^^
+NameError: name 'possible_locations' is not defined
+
+2024-08-19 11:52:13,893 - INFO - Starting generate_images.py
+2024-08-19 11:52:13,893 - INFO - Starting generate_images.py
+2024-08-19 11:52:13,893 - INFO - Arguments: Namespace(input='./output/metrics', source='./ontologies', file='TD1.xml', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 11:52:13,893 - INFO - Checking for metrics file at: ./output/metrics/temp_results/ontologies/imports/TD1.xml/2023-08-18_14-30-00/metrics/TD1.xml.xml
+2024-08-19 11:52:13,893 - WARNING - Metrics file not found at: ./output/metrics/temp_results/ontologies/imports/TD1.xml/2023-08-18_14-30-00/metrics/TD1.xml.xml
+2024-08-19 11:52:13,893 - ERROR - Directory does not exist: ./output/metrics/temp_results/ontologies/imports/TD1.xml/2023-08-18_14-30-00/metrics
+2024-08-19 11:52:13,893 - INFO - Checking for metrics file at: ./output/metrics/temp_results/ontologies/imports/TD1.xml/metrics/TD1.xml.xml
+2024-08-19 11:52:13,893 - WARNING - Metrics file not found at: ./output/metrics/temp_results/ontologies/imports/TD1.xml/metrics/TD1.xml.xml
+2024-08-19 11:52:13,903 - ERROR - Directory does not exist: ./output/metrics/temp_results/ontologies/imports/TD1.xml/metrics
+2024-08-19 11:52:13,903 - INFO - Checking for metrics file at: ./output/metrics/temp_results/ontologies/imports/TD1.xml/TD1.xml.xml
+2024-08-19 11:52:13,904 - WARNING - Metrics file not found at: ./output/metrics/temp_results/ontologies/imports/TD1.xml/TD1.xml.xml
+2024-08-19 11:52:13,904 - ERROR - Directory does not exist: ./output/metrics/temp_results/ontologies/imports/TD1.xml
+2024-08-19 11:52:13,904 - INFO - Checking for metrics file at: ./output/metrics/temp_results/ontologies/imports/TD1.xml.xml
+2024-08-19 11:52:13,905 - WARNING - Metrics file not found at: ./output/metrics/temp_results/ontologies/imports/TD1.xml.xml
+2024-08-19 11:52:13,905 - ERROR - Directory does not exist: ./output/metrics/temp_results/ontologies/imports
+2024-08-19 11:52:13,905 - INFO - Checking for metrics file at: ./output/metrics/temp_results/TD1.xml.xml
+2024-08-19 11:52:13,905 - WARNING - Metrics file not found at: ./output/metrics/temp_results/TD1.xml.xml
+2024-08-19 11:52:13,905 - ERROR - Directory does not exist: ./output/metrics/temp_results
+2024-08-19 11:52:13,905 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml.xml
+2024-08-19 11:52:13,906 - WARNING - Metrics file not found at: ./output/metrics/TD1.xml.xml
+2024-08-19 11:52:13,906 - INFO - Contents of ./output/metrics:
+2024-08-19 11:52:13,906 - INFO - ['TD1.xml']
+2024-08-19 11:52:13,906 - ERROR - Metrics file not found in any of the expected locations.
+2024-08-19 11:52:13,907 - ERROR - Checked location: ./output/metrics\temp_results\ontologies\imports\TD1.xml\2023-08-18_14-30-00\metrics
+2024-08-19 11:52:13,907 - ERROR - Directory does not exist: ./output/metrics\temp_results\ontologies\imports\TD1.xml\2023-08-18_14-30-00
+2024-08-19 11:52:13,907 - ERROR - Checked location: ./output/metrics\temp_results\ontologies\imports\TD1.xml\metrics
+2024-08-19 11:52:13,907 - ERROR - Directory does not exist: ./output/metrics\temp_results\ontologies\imports\TD1.xml
+2024-08-19 11:52:13,907 - ERROR - Checked location: ./output/metrics\temp_results\ontologies\imports\TD1.xml
+2024-08-19 11:52:13,907 - ERROR - Directory does not exist: ./output/metrics\temp_results\ontologies\imports
+2024-08-19 11:52:13,909 - ERROR - Checked location: ./output/metrics\temp_results\ontologies\imports
+2024-08-19 11:52:13,909 - ERROR - Directory does not exist: ./output/metrics\temp_results\ontologies
+2024-08-19 11:52:13,909 - ERROR - Checked location: ./output/metrics\temp_results
+2024-08-19 11:52:13,910 - INFO - Contents of ./output/metrics:
+2024-08-19 11:52:13,910 - INFO - ['TD1.xml']
+2024-08-19 11:52:13,910 - ERROR - Checked location: ./output/metrics
+2024-08-19 11:52:13,910 - INFO - Contents of ./output:
+2024-08-19 11:52:13,911 - INFO - ['metrics']
+2024-08-19 11:53:50,358 - INFO - Starting generate_images.py
+2024-08-19 11:53:50,358 - INFO - Starting generate_images.py
+2024-08-19 11:53:50,358 - INFO - Arguments: Namespace(input='./output/metrics', source='./ontologies', file='TD1.xml', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 11:53:50,358 - INFO - Checking for metrics file at: ./output/metrics/metrics/TD1.xml.xml
+2024-08-19 11:53:50,358 - ERROR - Metrics file not found at: ./output/metrics/metrics/TD1.xml.xml
+2024-08-19 11:54:23,347 - INFO - Starting generate_images.py
+2024-08-19 11:54:23,347 - INFO - Starting generate_images.py
+2024-08-19 11:54:23,347 - INFO - Arguments: Namespace(input='./output/metrics', source='./ontologies', file='TD1.xml', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 11:54:23,347 - INFO - Checking for metrics file at: ./output/metrics/metrics/TD1.xml
+2024-08-19 11:54:23,347 - ERROR - Metrics file not found at: ./output/metrics/metrics/TD1.xml
+2024-08-19 11:55:02,221 - INFO - Starting generate_images.py
+2024-08-19 11:55:02,221 - INFO - Starting generate_images.py
+2024-08-19 11:55:02,224 - INFO - Arguments: Namespace(input='./output/metrics', source='./ontologies', file='TD1.xml', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 11:55:02,224 - INFO - Checking for metrics file at: ./output/metrics/temp_results/ontologies/imports/TD1.xml
+2024-08-19 11:55:02,225 - ERROR - Metrics file not found at: ./output/metrics/temp_results/ontologies/imports/TD1.xml
+2024-08-19 11:56:10,670 - INFO - Starting generate_images.py
+2024-08-19 11:56:10,671 - INFO - Starting generate_images.py
+2024-08-19 11:56:10,673 - INFO - Arguments: Namespace(input='./output/metrics', source='./ontologies', file='TD1.xml', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 11:56:10,674 - INFO - Checking for metrics file at: ./output/metrics/metrics/TD1.xml
+2024-08-19 11:56:10,674 - ERROR - Metrics file not found at: ./output/metrics/metrics/TD1.xml
+2024-08-19 11:56:41,270 - INFO - Starting generate_images.py
+2024-08-19 11:56:41,271 - INFO - Starting generate_images.py
+2024-08-19 11:56:41,274 - INFO - Arguments: Namespace(input='./output/metrics', source='./ontologies', file='TD1.xml', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 11:56:41,274 - INFO - Checking for metrics file at: ./output/metrics/metrics/TD1.xml
+2024-08-19 11:56:41,275 - ERROR - Metrics file not found at: ./output/metrics/metrics/TD1.xml
+2024-08-19 11:57:29,536 - INFO - Starting generate_images.py
+2024-08-19 11:57:29,536 - INFO - Starting generate_images.py
+2024-08-19 11:57:29,539 - INFO - Arguments: Namespace(input='./output/metrics', source='./ontologies', file='TD1.xml', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 11:57:29,540 - INFO - Checking for metrics file at: ./output/metrics/metrics/TD1.xml
+2024-08-19 11:57:29,540 - ERROR - Metrics file not found at: ./output/metrics/metrics/TD1.xml
+2024-08-19 11:57:49,200 - INFO - Starting generate_images.py
+2024-08-19 11:57:49,201 - INFO - Starting generate_images.py
+2024-08-19 11:57:49,204 - INFO - Arguments: Namespace(input='./output/', source='./ontologies', file='TD1.xml', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 11:57:49,205 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 11:57:49,205 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 11:57:49,206 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 11:57:49,206 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 11:57:49,207 - INFO - Output path for images: ./output
+2024-08-19 11:57:49,209 - ERROR - An error occurred during image generation: name 'logging' is not defined
+2024-08-19 11:57:49,211 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 82, in main
+    controller.handle_characteristics(output_path, file_name)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 117, in handle_characteristics
+    logging.info(f"Handling characteristics for file: {file}")
+    ^^^^^^^
+NameError: name 'logging' is not defined
+
+2024-08-19 11:58:40,135 - INFO - Starting generate_images.py
+2024-08-19 11:58:40,136 - INFO - Starting generate_images.py
+2024-08-19 11:58:40,138 - INFO - Arguments: Namespace(input='./output', source='./ontologies', file='TD1.xml', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 11:58:40,138 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 11:58:40,139 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 11:58:40,139 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 11:58:40,140 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 11:58:40,140 - INFO - Output path for images: ./output
+2024-08-19 11:58:40,141 - ERROR - An error occurred during image generation: name 'logging' is not defined
+2024-08-19 11:58:40,143 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 82, in main
+    controller.handle_characteristics(output_path, file_name)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 117, in handle_characteristics
+    logging.info(f"Handling characteristics for file: {file}")
+    ^^^^^^^
+NameError: name 'logging' is not defined
+
+2024-08-19 11:59:58,536 - INFO - Starting generate_images.py
+2024-08-19 11:59:58,536 - INFO - Starting generate_images.py
+2024-08-19 11:59:58,539 - INFO - Arguments: Namespace(input='./output', source='./ontologies', file='TD1.xml', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 11:59:58,540 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 11:59:58,540 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 11:59:58,541 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 11:59:58,541 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 11:59:58,542 - INFO - Output path for images: ./output
+2024-08-19 11:59:58,544 - ERROR - An error occurred during image generation: name 'logging' is not defined
+2024-08-19 11:59:58,545 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 82, in main
+    controller.handle_characteristics(output_path, file_name)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 117, in handle_characteristics
+    logging.info(f"Handling characteristics for file: {file}")
+    ^^^^^^^
+NameError: name 'logging' is not defined
+
+2024-08-19 12:01:15,832 - INFO - Starting generate_images.py
+2024-08-19 12:01:15,833 - INFO - Starting generate_images.py
+2024-08-19 12:01:15,835 - INFO - Arguments: Namespace(input='./output', source='./ontologies', file='TD1.xml', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 12:01:15,836 - INFO - Checking for metrics file at: ./output/temp_results/ontologies/imports/TD1/2023-08-18_14-30-00/metrics/TD1.xml
+2024-08-19 12:01:15,836 - ERROR - Metrics file not found at: ./output/temp_results/ontologies/imports/TD1/2023-08-18_14-30-00/metrics/TD1.xml
+2024-08-19 12:02:45,573 - INFO - Starting generate_images.py
+2024-08-19 12:02:45,573 - INFO - Starting generate_images.py
+2024-08-19 12:02:45,576 - INFO - Arguments: Namespace(input='./output', source='./ontologies', file='TD1.xml', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 12:02:45,577 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 12:02:45,577 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 12:02:45,577 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 12:02:45,577 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 12:02:45,578 - INFO - Output path for images: ./output/metrics
+2024-08-19 12:02:45,579 - ERROR - An error occurred during image generation: name 'logging' is not defined
+2024-08-19 12:02:45,581 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 82, in main
+    controller.handle_characteristics(output_path, file_name)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 117, in handle_characteristics
+    logging.info(f"Handling characteristics for file: {file}")
+    ^^^^^^^
+NameError: name 'logging' is not defined
+
+2024-08-19 12:05:29,764 - INFO - Starting generate_images.py
+2024-08-19 12:05:29,765 - INFO - Starting generate_images.py
+2024-08-19 12:05:29,768 - INFO - Arguments: Namespace(input='./output', source='./ontologies', file='TD1.xml', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 12:05:29,769 - INFO - Checking for metrics file at: ./output/output/metrics/TD1.xml
+2024-08-19 12:05:29,769 - ERROR - Metrics file not found at: ./output/output/metrics/TD1.xml
+2024-08-19 12:05:49,241 - INFO - Starting generate_images.py
+2024-08-19 12:05:49,242 - INFO - Starting generate_images.py
+2024-08-19 12:05:49,245 - INFO - Arguments: Namespace(input='./', source='./ontologies', file='TD1.xml', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 12:05:49,245 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 12:05:49,246 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 12:05:49,246 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 12:05:49,247 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 12:05:49,247 - INFO - Output path for images: ./output/metrics
+2024-08-19 12:05:49,250 - ERROR - An error occurred during image generation: name 'logging' is not defined
+2024-08-19 12:05:49,251 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 82, in main
+    controller.handle_characteristics(output_path, file_name)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 117, in handle_characteristics
+    logging.info(f"Handling characteristics for file: {file}")
+    ^^^^^^^
+NameError: name 'logging' is not defined
+
+2024-08-19 12:06:59,267 - INFO - Starting generate_images.py
+2024-08-19 12:06:59,267 - INFO - Starting generate_images.py
+2024-08-19 12:06:59,271 - INFO - Arguments: Namespace(input='./', source='./ontologies', file='TD1.xml', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 12:06:59,271 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 12:06:59,272 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 12:06:59,272 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 12:06:59,273 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 12:06:59,274 - INFO - Output path for images: ./output/metrics
+2024-08-19 12:06:59,275 - ERROR - An error occurred during image generation: name 'logging' is not defined
+2024-08-19 12:06:59,277 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 82, in main
+    controller.handle_characteristics(output_path, file_name)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 117, in handle_characteristics
+    logging.info(f"Handling characteristics for file: {file}")
+    ^^^^^^^
+NameError: name 'logging' is not defined
+
+2024-08-19 12:08:44,303 - INFO - Starting generate_images.py
+2024-08-19 12:08:44,303 - INFO - Starting generate_images.py
+2024-08-19 12:08:44,306 - INFO - Arguments: Namespace(input='./', source='./ontologies', file='TD1.xml', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 12:08:44,306 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 12:08:44,307 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 12:08:44,307 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 12:08:44,307 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 12:08:44,308 - INFO - Output path for images: ./output/metrics
+2024-08-19 12:08:44,309 - ERROR - An error occurred during image generation: name 'logging' is not defined
+2024-08-19 12:08:44,311 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 82, in main
+    controller.handle_characteristics(output_path, file_name)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 117, in handle_characteristics
+    logging.info(f"Handling characteristics for file: {file}")
+    ^^^^^^^
+NameError: name 'logging' is not defined
+
+2024-08-19 12:08:52,078 - INFO - Starting generate_images.py
+2024-08-19 12:08:52,078 - INFO - Starting generate_images.py
+2024-08-19 12:08:52,080 - INFO - Arguments: Namespace(input='./output', source='./ontologies', file='TD1.xml', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 12:08:52,080 - INFO - Checking for metrics file at: ./output/output/metrics/TD1.xml
+2024-08-19 12:08:52,080 - ERROR - Metrics file not found at: ./output/output/metrics/TD1.xml
+2024-08-19 12:11:09,548 - INFO - Starting generate_images.py
+2024-08-19 12:11:09,548 - INFO - Starting generate_images.py
+2024-08-19 12:11:09,551 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 12:11:09,552 - INFO - Checking for metrics file at: ./output/output/metrics/TD1.owl.xml
+2024-08-19 12:11:09,552 - ERROR - Metrics file not found at: ./output/output/metrics/TD1.owl.xml
+2024-08-19 12:12:34,225 - INFO - Starting generate_images.py
+2024-08-19 12:12:34,226 - INFO - Starting generate_images.py
+2024-08-19 12:12:34,228 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 12:12:34,229 - INFO - Checking for metrics file at: ./output/metrics/TD1.owl.xml
+2024-08-19 12:12:34,229 - ERROR - Metrics file not found at: ./output/metrics/TD1.owl.xml
+2024-08-19 12:14:15,908 - INFO - Starting generate_images.py
+2024-08-19 12:14:15,908 - INFO - Starting generate_images.py
+2024-08-19 12:14:15,911 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 12:14:15,911 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 12:14:15,912 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 12:14:15,912 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 12:14:15,913 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 12:14:15,913 - INFO - Output path for images: ./output/output/metrics
+2024-08-19 12:14:15,915 - ERROR - An error occurred during image generation: name 'logging' is not defined
+2024-08-19 12:14:15,917 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 81, in main
+    controller.handle_characteristics(output_path, file_name)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 117, in handle_characteristics
+    logging.info(f"Handling characteristics for file: {file}")
+    ^^^^^^^
+NameError: name 'logging' is not defined
+
+2024-08-19 12:16:50,995 - INFO - Starting generate_images.py
+2024-08-19 12:16:50,995 - INFO - Starting generate_images.py
+2024-08-19 12:16:50,998 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 12:16:50,999 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 12:16:50,999 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 12:16:51,000 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 12:16:51,000 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 12:16:51,001 - INFO - Output path for images: output/metrics
+2024-08-19 12:16:51,003 - ERROR - An error occurred during image generation: name 'logging' is not defined
+2024-08-19 12:16:51,004 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 79, in main
+    controller.handle_characteristics(output_path, file_name)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 117, in handle_characteristics
+    logging.info(f"Handling characteristics for file: {file}")
+    ^^^^^^^
+NameError: name 'logging' is not defined
+
+2024-08-19 13:06:47,910 - INFO - Starting generate_images.py
+2024-08-19 13:06:47,910 - INFO - Starting generate_images.py
+2024-08-19 13:06:47,913 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 13:06:47,914 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 13:06:47,914 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 13:06:47,914 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 13:06:47,915 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 13:06:47,916 - INFO - Output path for images: output/metrics
+2024-08-19 13:06:47,918 - ERROR - An error occurred during image generation: name 'logging' is not defined
+2024-08-19 13:06:47,920 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 79, in main
+    controller.handle_characteristics(output_path, file_name)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 117, in handle_characteristics
+    logging.info(f"Handling characteristics for file: {file}")
+    ^^^^^^^
+NameError: name 'logging' is not defined
+
+2024-08-19 13:10:03,625 - INFO - Starting generate_images.py
+2024-08-19 13:10:03,625 - INFO - Starting generate_images.py
+2024-08-19 13:10:03,628 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 13:10:03,628 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 13:10:03,629 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 13:10:03,629 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 13:10:03,629 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 13:10:03,630 - INFO - Output path for images: output/metrics
+2024-08-19 13:10:03,631 - ERROR - An error occurred during image generation: name 'os' is not defined
+2024-08-19 13:10:03,633 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 79, in main
+    controller.handle_characteristics(output_path, file_name)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 123, in handle_characteristics
+    metrics_file = os.path.join(temp_path, "metrics", f"{os.path.splitext(os.path.basename(file))[0]}.xml").replace('\\', '/')
+                   ^^
+NameError: name 'os' is not defined
+
+2024-08-19 13:10:58,219 - INFO - Starting generate_images.py
+2024-08-19 13:10:58,219 - INFO - Starting generate_images.py
+2024-08-19 13:10:58,222 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 13:10:58,223 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 13:10:58,223 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 13:10:58,223 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 13:10:58,224 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 13:10:58,225 - INFO - Output path for images: output/metrics
+2024-08-19 13:10:58,227 - ERROR - An error occurred during image generation: [Errno 2] No such file or directory: 'output/metrics/metrics/TD1.xml'
+2024-08-19 13:10:58,236 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 81, in main
+    controller.handle_subcharacteristics(output_path, file_name)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 158, in handle_subcharacteristics
+    parsed_metrics = MetricsParser(temp_path + '/metrics/' + file + '.xml')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Code\oquare-metrics\src\tools\Parser.py", line 23, in __init__
+    self.tree = ET.parse(metrics_file)
+                ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python\Lib\xml\etree\ElementTree.py", line 1218, in parse
+    tree.parse(source, parser)
+  File "C:\Python\Lib\xml\etree\ElementTree.py", line 569, in parse
+    source = open(source, "rb")
+             ^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'output/metrics/metrics/TD1.xml'
+
+2024-08-19 13:20:12,015 - INFO - Starting generate_images.py
+2024-08-19 13:20:12,015 - INFO - Starting generate_images.py
+2024-08-19 13:20:12,018 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 13:20:12,019 - INFO - Input path: ./output
+2024-08-19 13:20:12,019 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 13:20:12,019 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 13:20:12,020 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 13:20:12,020 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 13:20:12,021 - INFO - Output path for images: output/metrics
+2024-08-19 13:20:12,023 - ERROR - An error occurred during image generation: [Errno 2] No such file or directory: 'output/metrics/metrics/TD1.xml'
+2024-08-19 13:20:12,026 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 82, in main
+    controller.handle_subcharacteristics(output_path, file_name)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 158, in handle_subcharacteristics
+    parsed_metrics = MetricsParser(temp_path + '/metrics/' + file + '.xml')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Code\oquare-metrics\src\tools\Parser.py", line 23, in __init__
+    self.tree = ET.parse(metrics_file)
+                ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python\Lib\xml\etree\ElementTree.py", line 1218, in parse
+    tree.parse(source, parser)
+  File "C:\Python\Lib\xml\etree\ElementTree.py", line 569, in parse
+    source = open(source, "rb")
+             ^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'output/metrics/metrics/TD1.xml'
+
+2024-08-19 13:22:50,999 - INFO - Starting generate_images.py
+2024-08-19 13:22:51,000 - INFO - Starting generate_images.py
+2024-08-19 13:22:51,002 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 13:22:51,003 - INFO - Input path: ./output
+2024-08-19 13:22:51,003 - INFO - Checking for metrics file at: output/temp_results/ontologies/imports/TD1/2023-08-18_14-30-00/metrics/TD1.xml
+2024-08-19 13:22:51,004 - ERROR - Metrics file not found at: output/temp_results/ontologies/imports/TD1/2023-08-18_14-30-00/metrics/TD1.xml
+2024-08-19 13:24:12,222 - INFO - Starting generate_images.py
+2024-08-19 13:24:12,223 - INFO - Starting generate_images.py
+2024-08-19 13:24:12,226 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 13:24:12,226 - INFO - Input path: ./output
+2024-08-19 13:24:12,227 - INFO - Checking for metrics file at: output/metrics/TD1.xml
+2024-08-19 13:24:12,227 - INFO - Found metrics file at: output/metrics/TD1.xml
+2024-08-19 13:24:12,227 - INFO - Using metrics file: output/metrics/TD1.xml
+2024-08-19 13:24:12,228 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 13:24:12,228 - INFO - Output path for images: output/metrics
+2024-08-19 13:24:12,230 - ERROR - An error occurred during image generation: [Errno 2] No such file or directory: 'output/metrics/metrics/TD1.xml'
+2024-08-19 13:24:12,233 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 82, in main
+    controller.handle_subcharacteristics(output_path, file_name)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 159, in handle_subcharacteristics
+    parsed_metrics = MetricsParser(metrics_file)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Code\oquare-metrics\src\tools\Parser.py", line 23, in __init__
+    self.tree = ET.parse(metrics_file)
+                ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python\Lib\xml\etree\ElementTree.py", line 1218, in parse
+    tree.parse(source, parser)
+  File "C:\Python\Lib\xml\etree\ElementTree.py", line 569, in parse
+    source = open(source, "rb")
+             ^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'output/metrics/metrics/TD1.xml'
+
+2024-08-19 13:24:51,618 - INFO - Starting generate_images.py
+2024-08-19 13:24:51,618 - INFO - Starting generate_images.py
+2024-08-19 13:24:51,621 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 13:24:51,622 - INFO - Input path: ./output
+2024-08-19 13:24:51,622 - INFO - Checking for metrics file at: output/metrics/TD1.xml
+2024-08-19 13:24:51,623 - INFO - Found metrics file at: output/metrics/TD1.xml
+2024-08-19 13:24:51,623 - INFO - Using metrics file: output/metrics/TD1.xml
+2024-08-19 13:24:51,624 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 13:24:51,624 - INFO - Output path for images: output/metrics
+2024-08-19 13:24:51,626 - ERROR - An error occurred during image generation: [Errno 2] No such file or directory: 'output/metrics/metrics/TD1.xml'
+2024-08-19 13:24:51,628 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 82, in main
+    controller.handle_subcharacteristics(output_path, file_name)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 159, in handle_subcharacteristics
+    parsed_metrics = MetricsParser(metrics_file)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Code\oquare-metrics\src\tools\Parser.py", line 23, in __init__
+    self.tree = ET.parse(metrics_file)
+                ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python\Lib\xml\etree\ElementTree.py", line 1218, in parse
+    tree.parse(source, parser)
+  File "C:\Python\Lib\xml\etree\ElementTree.py", line 569, in parse
+    source = open(source, "rb")
+             ^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'output/metrics/metrics/TD1.xml'
+
+2024-08-19 13:26:32,420 - INFO - Starting generate_images.py
+2024-08-19 13:26:32,420 - INFO - Starting generate_images.py
+2024-08-19 13:26:32,423 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 13:26:32,424 - INFO - Input path: ./output
+2024-08-19 13:26:32,424 - INFO - Checking for metrics file at: output/metrics/TD1.xml
+2024-08-19 13:26:32,424 - INFO - Found metrics file at: output/metrics/TD1.xml
+2024-08-19 13:26:32,425 - INFO - Using metrics file: output/metrics/TD1.xml
+2024-08-19 13:26:32,425 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 13:26:32,426 - INFO - Output path for images: output/metrics
+2024-08-19 13:26:32,428 - ERROR - An error occurred during image generation: [Errno 2] No such file or directory: 'output/metrics/metrics/TD1.xml'
+2024-08-19 13:26:32,430 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 82, in main
+    controller.handle_subcharacteristics(output_path, file_name)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 159, in handle_subcharacteristics
+    parsed_metrics = MetricsParser(metrics_file)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Code\oquare-metrics\src\tools\Parser.py", line 23, in __init__
+    self.tree = ET.parse(metrics_file)
+                ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python\Lib\xml\etree\ElementTree.py", line 1218, in parse
+    tree.parse(source, parser)
+  File "C:\Python\Lib\xml\etree\ElementTree.py", line 569, in parse
+    source = open(source, "rb")
+             ^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'output/metrics/metrics/TD1.xml'
+
+2024-08-19 13:28:08,009 - INFO - Starting generate_images.py
+2024-08-19 13:28:08,009 - INFO - Starting generate_images.py
+2024-08-19 13:28:08,012 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 13:28:08,013 - INFO - Input path: ./output
+2024-08-19 13:28:08,013 - INFO - Checking for metrics file at: output/metrics/TD1.xml
+2024-08-19 13:28:08,013 - INFO - Found metrics file at: output/metrics/TD1.xml
+2024-08-19 13:28:08,014 - INFO - Using metrics file: output/metrics/TD1.xml
+2024-08-19 13:28:08,014 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 13:28:08,015 - INFO - Output path for images: output/metrics
+2024-08-19 13:28:08,016 - ERROR - An error occurred during image generation: [Errno 2] No such file or directory: 'output/metrics/metrics/TD1.xml'
+2024-08-19 13:28:08,019 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 82, in main
+    controller.handle_subcharacteristics(output_path, file_name)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 159, in handle_subcharacteristics
+    parsed_metrics = MetricsParser(metrics_file)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Code\oquare-metrics\src\tools\Parser.py", line 23, in __init__
+    self.tree = ET.parse(metrics_file)
+                ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python\Lib\xml\etree\ElementTree.py", line 1218, in parse
+    tree.parse(source, parser)
+  File "C:\Python\Lib\xml\etree\ElementTree.py", line 569, in parse
+    source = open(source, "rb")
+             ^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'output/metrics/metrics/TD1.xml'
+
+2024-08-19 13:29:10,775 - INFO - Starting generate_images.py
+2024-08-19 13:29:10,776 - INFO - Starting generate_images.py
+2024-08-19 13:29:10,778 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 13:29:10,778 - INFO - Input path: ./output
+2024-08-19 13:29:10,778 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 13:29:10,779 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 13:29:10,779 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 13:29:10,780 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 13:29:10,780 - INFO - Output path for images: output/metrics
+2024-08-19 13:29:11,090 - ERROR - An error occurred during image generation: [Errno 2] No such file or directory: 'D:\\Code\\oquare-metrics\\output\\temp_results\\ontologies\\imports\\TD1\\2023-08-18_14-30-00\\img\\TD1_OQuaRE_model_values.png'
+2024-08-19 13:29:11,139 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 78, in main
+    controller.handle_oquare_model(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 238, in handle_oquare_model
+    self.graphPlotter.plot_oquare_values(oquare_model_values, file, temp_path)
+  File "D:\Code\oquare-metrics\src\tools\Plotter.py", line 42, in plot_oquare_values
+    plt.savefig(output_path + '/img/' + file + '_OQuaRE_model_values.png', format="png", bbox_inches='tight')
+  File "C:\Python\Lib\site-packages\matplotlib\pyplot.py", line 1228, in savefig
+    res = fig.savefig(*args, **kwargs)  # type: ignore[func-returns-value]
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python\Lib\site-packages\matplotlib\figure.py", line 3395, in savefig
+    self.canvas.print_figure(fname, **kwargs)
+  File "C:\Python\Lib\site-packages\matplotlib\backend_bases.py", line 2204, in print_figure
+    result = print_method(
+             ^^^^^^^^^^^^^
+  File "C:\Python\Lib\site-packages\matplotlib\backend_bases.py", line 2054, in <lambda>
+    print_method = functools.wraps(meth)(lambda *args, **kwargs: meth(
+                                                                 ^^^^^
+  File "C:\Python\Lib\site-packages\matplotlib\backends\backend_agg.py", line 496, in print_png
+    self._print_pil(filename_or_obj, "png", pil_kwargs, metadata)
+  File "C:\Python\Lib\site-packages\matplotlib\backends\backend_agg.py", line 445, in _print_pil
+    mpl.image.imsave(
+  File "C:\Python\Lib\site-packages\matplotlib\image.py", line 1676, in imsave
+    image.save(fname, **pil_kwargs)
+  File "C:\Python\Lib\site-packages\PIL\Image.py", line 2563, in save
+    fp = builtins.open(filename, "w+b")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Code\\oquare-metrics\\output\\temp_results\\ontologies\\imports\\TD1\\2023-08-18_14-30-00\\img\\TD1_OQuaRE_model_values.png'
+
+2024-08-19 14:03:43,440 - INFO - Starting generate_images.py
+2024-08-19 14:03:43,440 - INFO - Starting generate_images.py
+2024-08-19 14:03:43,440 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 14:03:43,440 - INFO - Input path: ./output
+2024-08-19 14:03:43,440 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:03:43,440 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:03:43,440 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 14:03:43,440 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 14:03:43,440 - INFO - Output path for images: output/metrics
+2024-08-19 14:03:43,589 - ERROR - An error occurred during image generation: name 'os' is not defined
+2024-08-19 14:03:43,605 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 78, in main
+    controller.handle_oquare_model(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 238, in handle_oquare_model
+    self.graphPlotter.plot_oquare_values(oquare_model_values, file, temp_path)
+  File "D:\Code\oquare-metrics\src\tools\Plotter.py", line 42, in plot_oquare_values
+    img_dir = os.path.join(output_path, 'img')
+              ^^
+NameError: name 'os' is not defined
+
+2024-08-19 14:04:13,493 - INFO - Starting generate_images.py
+2024-08-19 14:04:13,493 - INFO - Starting generate_images.py
+2024-08-19 14:04:13,503 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 14:04:13,503 - INFO - Input path: ./output
+2024-08-19 14:04:13,503 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:04:13,503 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:04:13,503 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 14:04:13,506 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 14:04:13,506 - INFO - Output path for images: output/metrics
+2024-08-19 14:04:13,651 - ERROR - An error occurred during image generation: name 'os' is not defined
+2024-08-19 14:04:13,666 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 78, in main
+    controller.handle_oquare_model(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 238, in handle_oquare_model
+    self.graphPlotter.plot_oquare_values(oquare_model_values, file, temp_path)
+  File "D:\Code\oquare-metrics\src\tools\Plotter.py", line 42, in plot_oquare_values
+    img_dir = os.path.join(output_path, 'img')
+              ^^
+NameError: name 'os' is not defined
+
+2024-08-19 14:04:39,867 - INFO - Starting generate_images.py
+2024-08-19 14:04:39,867 - INFO - Starting generate_images.py
+2024-08-19 14:04:39,883 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 14:04:39,883 - INFO - Input path: ./output
+2024-08-19 14:04:39,883 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:04:39,883 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:04:39,883 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 14:04:39,883 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 14:04:39,883 - INFO - Output path for images: output/metrics
+2024-08-19 14:04:40,035 - ERROR - An error occurred during image generation: name 'os' is not defined
+2024-08-19 14:04:40,035 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 78, in main
+    controller.handle_oquare_model(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 238, in handle_oquare_model
+    self.graphPlotter.plot_oquare_values(oquare_model_values, file, temp_path)
+  File "D:\Code\oquare-metrics\src\tools\Plotter.py", line 42, in plot_oquare_values
+    img_dir = os.path.join(output_path, 'img')
+              ^^
+NameError: name 'os' is not defined
+
+2024-08-19 14:05:00,360 - INFO - Starting generate_images.py
+2024-08-19 14:05:00,360 - INFO - Starting generate_images.py
+2024-08-19 14:05:00,360 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 14:05:00,360 - INFO - Input path: ./output
+2024-08-19 14:05:00,360 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:05:00,360 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:05:00,360 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 14:05:00,360 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 14:05:00,360 - INFO - Output path for images: output/metrics
+2024-08-19 14:05:00,538 - ERROR - An error occurred during image generation: name 'os' is not defined
+2024-08-19 14:05:00,540 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 78, in main
+    controller.handle_oquare_model(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 238, in handle_oquare_model
+    self.graphPlotter.plot_oquare_values(oquare_model_values, file, temp_path)
+  File "D:\Code\oquare-metrics\src\tools\Plotter.py", line 42, in plot_oquare_values
+    img_dir = os.path.join(output_path, 'img')
+              ^^
+NameError: name 'os' is not defined
+
+2024-08-19 14:05:29,046 - INFO - Starting generate_images.py
+2024-08-19 14:05:29,046 - INFO - Starting generate_images.py
+2024-08-19 14:05:29,048 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 14:05:29,048 - INFO - Input path: ./output
+2024-08-19 14:05:29,048 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:05:29,048 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:05:29,048 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 14:05:29,050 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 14:05:29,051 - INFO - Output path for images: output/metrics
+2024-08-19 14:05:29,193 - ERROR - An error occurred during image generation: name 'os' is not defined
+2024-08-19 14:05:29,193 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 78, in main
+    controller.handle_oquare_model(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 238, in handle_oquare_model
+    self.graphPlotter.plot_oquare_values(oquare_model_values, file, temp_path)
+  File "D:\Code\oquare-metrics\src\tools\Plotter.py", line 42, in plot_oquare_values
+    img_dir = os.path.join(output_path, 'img')
+              ^^
+NameError: name 'os' is not defined
+
+2024-08-19 14:06:07,583 - INFO - Starting generate_images.py
+2024-08-19 14:06:07,583 - INFO - Starting generate_images.py
+2024-08-19 14:06:07,583 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 14:06:07,583 - INFO - Input path: ./output
+2024-08-19 14:06:07,583 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:06:07,583 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:06:07,583 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 14:06:07,583 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 14:06:07,583 - INFO - Output path for images: output/metrics
+2024-08-19 14:06:07,732 - ERROR - An error occurred during image generation: name 'os' is not defined
+2024-08-19 14:06:07,732 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 78, in main
+    controller.handle_oquare_model(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 238, in handle_oquare_model
+    self.graphPlotter.plot_oquare_values(oquare_model_values, file, temp_path)
+  File "D:\Code\oquare-metrics\src\tools\Plotter.py", line 42, in plot_oquare_values
+    img_dir = os.path.join(output_path, 'img')
+              ^^
+NameError: name 'os' is not defined
+
+2024-08-19 14:07:07,652 - INFO - Starting generate_images.py
+2024-08-19 14:07:07,652 - INFO - Starting generate_images.py
+2024-08-19 14:07:07,652 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 14:07:07,652 - INFO - Input path: ./output
+2024-08-19 14:07:07,652 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:07:07,652 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:07:07,652 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 14:07:07,652 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 14:07:07,667 - INFO - Output path for images: output/metrics
+2024-08-19 14:07:07,854 - ERROR - An error occurred during image generation: name 'os' is not defined
+2024-08-19 14:07:07,854 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 78, in main
+    controller.handle_oquare_model(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 238, in handle_oquare_model
+    self.graphPlotter.plot_oquare_values(oquare_model_values, file, temp_path)
+  File "D:\Code\oquare-metrics\src\tools\Plotter.py", line 42, in plot_oquare_values
+    img_dir = os.path.join(output_path, 'img')
+              ^^
+NameError: name 'os' is not defined
+
+2024-08-19 14:08:25,116 - INFO - Starting generate_images.py
+2024-08-19 14:08:25,116 - INFO - Starting generate_images.py
+2024-08-19 14:08:25,131 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 14:08:25,131 - INFO - Input path: ./output
+2024-08-19 14:08:25,131 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:08:25,131 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:08:25,131 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 14:08:25,131 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 14:08:25,131 - INFO - Output path for images: output/metrics
+2024-08-19 14:08:25,512 - ERROR - An error occurred during image generation: name 'img_dir' is not defined
+2024-08-19 14:08:25,527 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 82, in main
+    controller.handle_subcharacteristics(output_path, file_name)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 162, in handle_subcharacteristics
+    self.graphPlotter.plot_oquare_subcharacteristics(characteristics, file, temp_path)
+  File "D:\Code\oquare-metrics\src\tools\Plotter.py", line 168, in plot_oquare_subcharacteristics
+    plt.savefig(os.path.join(img_dir, file + "_" + characteristic + "_subcharacteristics_metrics.png"), format="png", bbox_inches='tight')
+                             ^^^^^^^
+NameError: name 'img_dir' is not defined
+
+2024-08-19 14:09:27,271 - INFO - Starting generate_images.py
+2024-08-19 14:09:27,286 - INFO - Starting generate_images.py
+2024-08-19 14:09:27,286 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 14:09:27,286 - INFO - Input path: ./output
+2024-08-19 14:09:27,286 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:09:27,286 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:09:27,286 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 14:09:27,286 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 14:09:27,286 - INFO - Output path for images: output/metrics
+2024-08-19 14:09:27,682 - ERROR - An error occurred during image generation: name 'img_dir' is not defined
+2024-08-19 14:09:27,682 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 82, in main
+    controller.handle_subcharacteristics(output_path, file_name)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 162, in handle_subcharacteristics
+    self.graphPlotter.plot_oquare_subcharacteristics(characteristics, file, temp_path)
+  File "D:\Code\oquare-metrics\src\tools\Plotter.py", line 168, in plot_oquare_subcharacteristics
+    plt.savefig(os.path.join(img_dir, file + "_" + characteristic + "_subcharacteristics_metrics.png"), format="png", bbox_inches='tight')
+                             ^^^^^^^
+NameError: name 'img_dir' is not defined
+
+2024-08-19 14:11:55,125 - INFO - Starting generate_images.py
+2024-08-19 14:11:55,125 - INFO - Starting generate_images.py
+2024-08-19 14:11:55,125 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 14:11:55,125 - INFO - Input path: ./output
+2024-08-19 14:11:55,125 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:11:55,125 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:11:55,125 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 14:11:55,125 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 14:11:55,125 - INFO - Output path for images: output/metrics
+2024-08-19 14:11:56,387 - ERROR - An error occurred during image generation: name 'img_dir' is not defined
+2024-08-19 14:11:56,387 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 86, in main
+    controller.handle_metrics_evolution(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 280, in handle_metrics_evolution
+    self.graphPlotter.plot_metrics_evolution(metrics_evolution, file, temp_path)
+  File "D:\Code\oquare-metrics\src\tools\Plotter.py", line 250, in plot_metrics_evolution
+    plt.savefig(os.path.join(img_dir, file + '_' + label +'_metric_evolution.png'), format='png', bbox_inches='tight')
+                             ^^^^^^^
+NameError: name 'img_dir' is not defined
+
+2024-08-19 14:13:54,942 - INFO - Starting generate_images.py
+2024-08-19 14:13:54,942 - INFO - Starting generate_images.py
+2024-08-19 14:13:54,942 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 14:13:54,942 - INFO - Input path: ./output
+2024-08-19 14:13:54,942 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:13:54,942 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:13:54,942 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 14:13:54,942 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 14:13:54,942 - INFO - Output path for images: output/metrics
+2024-08-19 14:13:56,237 - ERROR - An error occurred during image generation: name 'img_dir' is not defined
+2024-08-19 14:13:56,237 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 86, in main
+    controller.handle_metrics_evolution(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 280, in handle_metrics_evolution
+    self.graphPlotter.plot_metrics_evolution(metrics_evolution, file, temp_path)
+  File "D:\Code\oquare-metrics\src\tools\Plotter.py", line 255, in plot_metrics_evolution
+    plt.savefig(os.path.join(img_dir, file + '_' + label +'_metric_evolution.png'), format='png', bbox_inches='tight')
+                             ^^^^^^^
+NameError: name 'img_dir' is not defined
+
+2024-08-19 14:16:38,818 - INFO - Starting generate_images.py
+2024-08-19 14:16:38,818 - INFO - Starting generate_images.py
+2024-08-19 14:16:38,818 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 14:16:38,818 - INFO - Input path: ./output
+2024-08-19 14:16:38,818 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:16:38,818 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:16:38,818 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 14:16:38,818 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 14:16:38,833 - INFO - Output path for images: output/metrics
+2024-08-19 14:16:40,136 - ERROR - An error occurred during image generation: name 'line_labels' is not defined
+2024-08-19 14:16:40,136 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 86, in main
+    controller.handle_metrics_evolution(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 280, in handle_metrics_evolution
+    self.graphPlotter.plot_metrics_evolution(metrics_evolution, file, temp_path)
+  File "D:\Code\oquare-metrics\src\tools\Plotter.py", line 250, in plot_metrics_evolution
+    for label in line_labels:
+                 ^^^^^^^^^^^
+NameError: name 'line_labels' is not defined
+
+2024-08-19 14:17:43,716 - INFO - Starting generate_images.py
+2024-08-19 14:17:43,716 - INFO - Starting generate_images.py
+2024-08-19 14:17:43,716 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 14:17:43,716 - INFO - Input path: ./output
+2024-08-19 14:17:43,716 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:17:43,716 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:17:43,716 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 14:17:43,723 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 14:17:43,724 - INFO - Output path for images: output/metrics
+2024-08-19 14:17:44,980 - ERROR - An error occurred during image generation: name 'line_labels' is not defined
+2024-08-19 14:17:44,980 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 86, in main
+    controller.handle_metrics_evolution(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 280, in handle_metrics_evolution
+    self.graphPlotter.plot_metrics_evolution(metrics_evolution, file, temp_path)
+  File "D:\Code\oquare-metrics\src\tools\Plotter.py", line 255, in plot_metrics_evolution
+    for label in line_labels:
+                 ^^^^^^^^^^^
+NameError: name 'line_labels' is not defined
+
+2024-08-19 14:19:31,847 - INFO - Starting generate_images.py
+2024-08-19 14:19:31,847 - INFO - Starting generate_images.py
+2024-08-19 14:19:31,847 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 14:19:31,847 - INFO - Input path: ./output
+2024-08-19 14:19:31,847 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:19:31,862 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:19:31,862 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 14:19:31,862 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 14:19:31,865 - INFO - Output path for images: output/metrics
+2024-08-19 14:19:33,142 - ERROR - An error occurred during image generation: name 'line_labels' is not defined
+2024-08-19 14:19:33,142 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 86, in main
+    controller.handle_metrics_evolution(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 280, in handle_metrics_evolution
+    self.graphPlotter.plot_metrics_evolution(metrics_evolution, file, temp_path)
+  File "D:\Code\oquare-metrics\src\tools\Plotter.py", line 256, in plot_metrics_evolution
+    for label in line_labels:
+                 ^^^^^^^^^^^
+NameError: name 'line_labels' is not defined
+
+2024-08-19 14:21:51,937 - INFO - Starting generate_images.py
+2024-08-19 14:21:51,937 - INFO - Starting generate_images.py
+2024-08-19 14:21:51,937 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='TD1.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 14:21:51,937 - INFO - Input path: ./output
+2024-08-19 14:21:51,937 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:21:51,937 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:21:51,937 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 14:21:51,945 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2024-08-19 14:21:51,946 - INFO - Output path for images: output/metrics
+2024-08-19 14:21:53,623 - ERROR - An error occurred during image generation: name 'line_labels' is not defined
+2024-08-19 14:21:53,625 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 86, in main
+    controller.handle_metrics_evolution(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 280, in handle_metrics_evolution
+    self.graphPlotter.plot_metrics_evolution(metrics_evolution, file, temp_path)
+  File "D:\Code\oquare-metrics\src\tools\Plotter.py", line 258, in plot_metrics_evolution
+    for label in line_labels:
+                 ^^^^^^^^^^^
+NameError: name 'line_labels' is not defined
+
+2024-08-19 14:32:09,740 - INFO - Starting generate_images.py
+2024-08-19 14:32:09,740 - INFO - Starting generate_images.py
+2024-08-19 14:32:09,740 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='obi2.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 14:32:09,740 - INFO - Input path: ./output
+2024-08-19 14:32:09,740 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:32:09,740 - ERROR - Metrics file not found at: ./output/metrics/TD1.xml
+2024-08-19 14:32:59,051 - INFO - Starting generate_images.py
+2024-08-19 14:32:59,051 - INFO - Starting generate_images.py
+2024-08-19 14:32:59,067 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='obi2.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 14:32:59,067 - INFO - Input path: ./output
+2024-08-19 14:32:59,067 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:32:59,067 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:32:59,067 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2024-08-19 14:32:59,067 - INFO - Metrics file content (first 100 characters): 
+2024-08-19 14:32:59,072 - INFO - Output path for images: output/metrics
+2024-08-19 14:32:59,076 - ERROR - An error occurred during image generation: no element found: line 1, column 0
+2024-08-19 14:32:59,078 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 78, in main
+    controller.handle_oquare_model(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 233, in handle_oquare_model
+    parsed_metrics = MetricsParser(metrics_file)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Code\oquare-metrics\src\tools\Parser.py", line 23, in __init__
+    self.tree = ET.parse(metrics_file)
+                ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python\Lib\xml\etree\ElementTree.py", line 1218, in parse
+    tree.parse(source, parser)
+  File "C:\Python\Lib\xml\etree\ElementTree.py", line 580, in parse
+    self._root = parser._parse_whole(source)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+xml.etree.ElementTree.ParseError: no element found: line 1, column 0
+
+2024-08-19 14:34:36,551 - INFO - Starting generate_images.py
+2024-08-19 14:34:36,551 - INFO - Starting generate_images.py
+2024-08-19 14:34:36,551 - INFO - Arguments: Namespace(input='./output', source='./ontologies/imports', file='obi2.owl', date='2023-08-18_14-30-00', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2024-08-19 14:34:36,551 - INFO - Input path: ./output
+2024-08-19 14:34:36,551 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2024-08-19 14:34:36,551 - ERROR - Metrics file not found at: ./output/metrics/TD1.xml
+2025-10-26 14:33:14,443 - INFO - Starting generate_images.py
+2025-10-26 14:33:14,444 - INFO - Starting generate_images.py
+2025-10-26 14:33:14,446 - INFO - Arguments: Namespace(input='./output/merge', source='./ontologies/imports', file='merged_ontology_20251020_114848.ttl', date='2025-10-26_14-33-11', model=False, characteristics=False, subcharacteristics=False, metrics=False, evolution=False)
+2025-10-26 14:33:14,446 - INFO - Input path: ./output/merge
+2025-10-26 14:33:14,446 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2025-10-26 14:33:14,446 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2025-10-26 14:33:14,446 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2025-10-26 14:33:14,446 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8"?>
+<metrics>
+</metrics>
+2025-10-26 14:33:14,446 - INFO - Output path for images: output/merge/metrics
+2025-10-26 14:33:14,447 - INFO - Image generation completed successfully
+2025-10-26 14:50:44,370 - INFO - Starting generate_images.py
+2025-10-26 14:50:44,370 - INFO - Starting generate_images.py
+2025-10-26 14:50:44,372 - INFO - Arguments: Namespace(input='./output/bfo', source='./ontologies/imports', file='bfo-core.owl', date='2025-10-26_14-50-38', model=False, characteristics=False, subcharacteristics=False, metrics=False, evolution=False)
+2025-10-26 14:50:44,372 - INFO - Input path: ./output/bfo
+2025-10-26 14:50:44,372 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2025-10-26 14:50:44,372 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2025-10-26 14:50:44,372 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2025-10-26 14:50:44,373 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8"?>
+<metrics>
+</metrics>
+2025-10-26 14:50:44,374 - INFO - Output path for images: output/bfo/metrics
+2025-10-26 14:50:44,374 - INFO - Image generation completed successfully
+2025-10-26 14:51:20,640 - INFO - Starting generate_images.py
+2025-10-26 14:51:20,640 - INFO - Starting generate_images.py
+2025-10-26 14:51:20,641 - INFO - Arguments: Namespace(input='./output/bfo', source='./ontologies/imports', file='bfo-core.owl', date='2025-10-26_14-51-14', model=False, characteristics=False, subcharacteristics=False, metrics=False, evolution=False)
+2025-10-26 14:51:20,642 - INFO - Input path: ./output/bfo
+2025-10-26 14:51:20,642 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2025-10-26 14:51:20,642 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2025-10-26 14:51:20,642 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2025-10-26 14:51:20,642 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8"?>
+<metrics>
+</metrics>
+2025-10-26 14:51:20,642 - INFO - Output path for images: output/bfo/metrics
+2025-10-26 14:51:20,642 - INFO - Image generation completed successfully
+2025-10-26 15:03:28,607 - INFO - Starting generate_images.py
+2025-10-26 15:03:28,607 - INFO - Starting generate_images.py
+2025-10-26 15:03:28,609 - INFO - Arguments: Namespace(input='./output/lecture', source='./ontologies/imports', file='lecture.owl', date='2025-10-26_15-03-23', model=False, characteristics=False, subcharacteristics=False, metrics=False, evolution=False)
+2025-10-26 15:03:28,609 - INFO - Input path: ./output/lecture
+2025-10-26 15:03:28,609 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2025-10-26 15:03:28,610 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2025-10-26 15:03:28,610 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2025-10-26 15:03:28,610 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8"?>
+<metrics>
+</metrics>
+2025-10-26 15:03:28,610 - INFO - Output path for images: output/lecture/metrics
+2025-10-26 15:03:28,610 - INFO - Image generation completed successfully
+2025-10-26 15:14:51,101 - INFO - Starting generate_images.py
+2025-10-26 15:14:51,101 - INFO - Starting generate_images.py
+2025-10-26 15:14:51,101 - INFO - Arguments: Namespace(input='./output/merged_elk', source='./ontologies/imports', file='merged_ontology_20251020_114848.owl', date='2025-10-26_15-14-00', model=False, characteristics=False, subcharacteristics=False, metrics=False, evolution=False)
+2025-10-26 15:14:51,101 - INFO - Input path: ./output/merged_elk
+2025-10-26 15:14:51,101 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2025-10-26 15:14:51,101 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2025-10-26 15:14:51,101 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2025-10-26 15:14:51,101 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8"?>
+<metrics>
+</metrics>
+2025-10-26 15:14:51,101 - INFO - Output path for images: output/merged_elk/metrics
+2025-10-26 15:14:51,101 - INFO - Image generation completed successfully
+2025-10-26 15:16:37,268 - INFO - Starting generate_images.py
+2025-10-26 15:16:37,268 - INFO - Starting generate_images.py
+2025-10-26 15:16:37,269 - INFO - Arguments: Namespace(input='./output/merged_elk', source='./ontologies/imports', file='merged_ontology_20251020_114848.owl', date='2025-10-26_15-15-44', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=True)
+2025-10-26 15:16:37,269 - INFO - Input path: ./output/merged_elk
+2025-10-26 15:16:37,269 - INFO - Checking for metrics file at: ./output/metrics/TD1.xml
+2025-10-26 15:16:37,270 - INFO - Found metrics file at: ./output/metrics/TD1.xml
+2025-10-26 15:16:37,270 - INFO - Using metrics file: ./output/metrics/TD1.xml
+2025-10-26 15:16:37,270 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8"?>
+<metrics>
+</metrics>
+2025-10-26 15:16:37,270 - INFO - Output path for images: output/merged_elk/metrics
+2025-10-26 15:16:37,273 - ERROR - An error occurred during image generation: 'NoneType' object has no attribute 'attrib'
+2025-10-26 15:16:37,275 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 78, in main
+    controller.handle_oquare_model(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 234, in handle_oquare_model
+    oquare_model_values[date] = parsed_metrics.parse_oquare_value()
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Code\oquare-metrics\src\tools\Parser.py", line 32, in parse_oquare_value
+    oquare_value = math.floor(float(self.root.find('oquareModel').attrib.get('oquareValue')) * 10 ** 2) / 10 ** 2
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'attrib'
+
+2025-10-26 15:18:53,227 - INFO - Starting generate_images.py
+2025-10-26 15:18:53,227 - INFO - Starting generate_images.py
+2025-10-26 15:18:53,231 - INFO - Arguments: Namespace(input='./output/merged_elk', source='./ontologies/imports', file='merged_ontology_20251020_114848.owl', date='2025-10-26_15-15-44', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=False)
+2025-10-26 15:18:53,231 - INFO - Input path: ./output/merged_elk
+2025-10-26 15:18:53,232 - INFO - Checking for metrics file at: ./output/merged_elk\metrics\merged_ontology_20251020_114848.xml
+2025-10-26 15:18:53,232 - INFO - Found metrics file at: ./output/merged_elk\metrics\merged_ontology_20251020_114848.xml
+2025-10-26 15:18:53,232 - INFO - Using metrics file: ./output/merged_elk\metrics\merged_ontology_20251020_114848.xml
+2025-10-26 15:18:53,233 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2025-10-26 15:18:53,233 - INFO - Output path for images: output/merged_elk/metrics
+2025-10-26 15:18:53,235 - ERROR - An error occurred during image generation: 'NoneType' object has no attribute 'attrib'
+2025-10-26 15:18:53,236 - ERROR - Traceback (most recent call last):
+  File "D:\Code\oquare-metrics\src\generate_images.py", line 77, in main
+    controller.handle_oquare_model(file_name, args.input, args.source, args.date)
+  File "D:\Code\oquare-metrics\src\Controller.py", line 234, in handle_oquare_model
+    oquare_model_values[date] = parsed_metrics.parse_oquare_value()
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Code\oquare-metrics\src\tools\Parser.py", line 32, in parse_oquare_value
+    oquare_value = math.floor(float(self.root.find('oquareModel').attrib.get('oquareValue')) * 10 ** 2) / 10 ** 2
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'attrib'
+
+2025-10-26 15:19:55,748 - INFO - Starting generate_images.py
+2025-10-26 15:19:55,748 - INFO - Starting generate_images.py
+2025-10-26 15:19:55,751 - INFO - Arguments: Namespace(input='./output/merged_elk', source='./ontologies/imports', file='merged_ontology_20251020_114848.owl', date='2025-10-26_15-15-44', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=False)
+2025-10-26 15:19:55,751 - INFO - Input path: ./output/merged_elk
+2025-10-26 15:19:55,752 - INFO - Checking for metrics file at: ./output/merged_elk\metrics\merged_ontology_20251020_114848.xml
+2025-10-26 15:19:55,752 - INFO - Found metrics file at: ./output/merged_elk\metrics\merged_ontology_20251020_114848.xml
+2025-10-26 15:19:55,752 - INFO - Using metrics file: ./output/merged_elk\metrics\merged_ontology_20251020_114848.xml
+2025-10-26 15:19:55,753 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2025-10-26 15:19:55,753 - INFO - Output path for images: output/merged_elk/metrics
+2025-10-26 15:19:57,478 - INFO - Image generation completed successfully
+2025-10-26 15:22:36,791 - INFO - Starting generate_images.py
+2025-10-26 15:22:36,791 - INFO - Starting generate_images.py
+2025-10-26 15:22:36,793 - INFO - Arguments: Namespace(input='./output/lecture', source='./ontologies/imports', file='lecture.owl', date='2025-10-26_15-22-32', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=False)
+2025-10-26 15:22:36,793 - INFO - Input path: ./output/lecture
+2025-10-26 15:22:36,793 - INFO - Checking for metrics file at: ./output/lecture\metrics\lecture.xml
+2025-10-26 15:22:36,794 - INFO - Found metrics file at: ./output/lecture\metrics\lecture.xml
+2025-10-26 15:22:36,794 - INFO - Using metrics file: ./output/lecture\metrics\lecture.xml
+2025-10-26 15:22:36,797 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2025-10-26 15:22:36,797 - INFO - Output path for images: output/lecture/metrics
+2025-10-26 15:22:38,023 - INFO - Image generation completed successfully
+2025-10-27 09:19:59,765 - INFO - Starting generate_images.py
+2025-10-27 09:19:59,858 - INFO - Starting generate_images.py
+2025-10-27 09:19:59,860 - INFO - Arguments: Namespace(input='./output/lecture_improved', source='./ontologies/imports', file='Lecture_improved.owl', date='2025-10-27_09-19-52', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=False)
+2025-10-27 09:19:59,860 - INFO - Input path: ./output/lecture_improved
+2025-10-27 09:19:59,861 - INFO - Checking for metrics file at: ./output/lecture_improved\metrics\Lecture_improved.xml
+2025-10-27 09:19:59,861 - INFO - Found metrics file at: ./output/lecture_improved\metrics\Lecture_improved.xml
+2025-10-27 09:19:59,861 - INFO - Using metrics file: ./output/lecture_improved\metrics\Lecture_improved.xml
+2025-10-27 09:19:59,865 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2025-10-27 09:19:59,865 - INFO - Output path for images: output/lecture_improved/metrics
+2025-10-27 09:20:01,610 - INFO - Image generation completed successfully
+2025-10-27 12:36:47,935 - INFO - Starting generate_images.py
+2025-10-27 12:36:47,936 - INFO - Starting generate_images.py
+2025-10-27 12:36:47,937 - INFO - Arguments: Namespace(input='./output/iao', source='./ontologies/imports', file='iao.owl', date='2025-10-27_12-36-36', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=False)
+2025-10-27 12:36:47,938 - INFO - Input path: ./output/iao
+2025-10-27 12:36:47,938 - INFO - Checking for metrics file at: ./output/iao\metrics\iao.xml
+2025-10-27 12:36:47,938 - INFO - Found metrics file at: ./output/iao\metrics\iao.xml
+2025-10-27 12:36:47,938 - INFO - Using metrics file: ./output/iao\metrics\iao.xml
+2025-10-27 12:36:47,941 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2025-10-27 12:36:47,941 - INFO - Output path for images: output/iao/metrics
+2025-10-27 12:36:49,130 - INFO - Image generation completed successfully
+2025-10-27 12:53:24,432 - INFO - Starting generate_images.py
+2025-10-27 12:53:24,432 - INFO - Starting generate_images.py
+2025-10-27 12:53:24,434 - INFO - Arguments: Namespace(input='./output/obi2', source='./ontologies/imports', file='obi2.owl', date='2025-10-27_12-51-22', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=False)
+2025-10-27 12:53:24,434 - INFO - Input path: ./output/obi2
+2025-10-27 12:53:24,435 - INFO - Checking for metrics file at: ./output/obi2\metrics\obi2.xml
+2025-10-27 12:53:24,435 - INFO - Found metrics file at: ./output/obi2\metrics\obi2.xml
+2025-10-27 12:53:24,435 - INFO - Using metrics file: ./output/obi2\metrics\obi2.xml
+2025-10-27 12:53:24,438 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2025-10-27 12:53:24,438 - INFO - Output path for images: output/obi2/metrics
+2025-10-27 12:53:26,250 - INFO - Image generation completed successfully
+2025-10-27 13:03:00,247 - INFO - Starting generate_images.py
+2025-10-27 13:03:00,247 - INFO - Starting generate_images.py
+2025-10-27 13:03:00,249 - INFO - Arguments: Namespace(input='./output/bfo', source='./ontologies/imports', file='bfo-core.owl', date='2025-10-27_13-02-55', model=True, characteristics=True, subcharacteristics=True, metrics=True, evolution=False)
+2025-10-27 13:03:00,249 - INFO - Input path: ./output/bfo
+2025-10-27 13:03:00,250 - INFO - Checking for metrics file at: ./output/bfo\metrics\bfo-core.xml
+2025-10-27 13:03:00,250 - INFO - Found metrics file at: ./output/bfo\metrics\bfo-core.xml
+2025-10-27 13:03:00,250 - INFO - Using metrics file: ./output/bfo\metrics\bfo-core.xml
+2025-10-27 13:03:00,254 - INFO - Metrics file content (first 100 characters): <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oquare>
+    <oquareBasicMetrics>
+        <m
+2025-10-27 13:03:00,254 - INFO - Output path for images: output/bfo/metrics
+2025-10-27 13:03:01,414 - INFO - Image generation completed successfully
