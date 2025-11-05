@@ -211,7 +211,7 @@ This script will check OWL files in the `ontologies/imports` folder for errors a
 If you encounter any issues or have questions about this module, please:
 
 1. Create an issue in this repository explaining the problem
-2. Or contact gonzalo.nicolasm@um.es
+2. Or contact info@foxredrisk.com
 
 Your feedback is valuable and helps improve the tool. Thank you!
 
