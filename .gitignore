@@ -1,1 +1,37 @@
 .env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Runtime data
+data/
+
+# Reports
+*.html
+*.json
+vt_report.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+*.html
+*.json
+*.txt
+*.md
+
+# Foleders
+
+/test_files/*.*
+/test_filessubfolder1/*.*
+/test_filessubfolder1subfolder2/*.*
