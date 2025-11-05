@@ -149,8 +149,6 @@ def print_comparison_summary(comparison_data) -> None:
     Args:
         comparison_data: ComparisonData object with comparison results
     """
-    logger = logging.getLogger(__name__)
-    
     # Get summary statistics
     summary = comparison_data.get_summary_statistics()
     
@@ -196,8 +194,12 @@ def print_comparison_summary(comparison_data) -> None:
     
     print("\n🔝 TOP 5 METRIC CHANGES (by absolute difference):")
     for i, (metric, data) in enumerate(sorted_metrics[:5], 1):
+        # Determine change symbol
         change_symbol = "✓" if data['difference'] > 0 else "✗" if data['difference'] < 0 else "-"
+        
+        # Format percent change
         percent_str = f"{data['percent_change']}%" if data['percent_change'] is not None else "N/A"
+        
         print(f"  {i}. {metric}: {data['difference']:+.2f} ({percent_str}) {change_symbol}")
     
     print("\n" + "="*80 + "\n")
@@ -238,7 +240,7 @@ def main() -> None:
         
         # Log success
         output_dir = os.path.join(args.output, f"{ontology1_name}_vs_{ontology2_name}")
-        logger.info(f"Comparison completed successfully!")
+        logger.info("Comparison completed successfully!")
         logger.info(f"Output directory: {output_dir}")
         logger.info(f"Image directory: {os.path.join(output_dir, 'img')}")
         
