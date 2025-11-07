@@ -8,7 +8,7 @@ Date: 2025-10-27
 """
 
 import sys
-from rdflib import Graph, Namespace, RDF, RDFS, OWL
+from rdflib import Graph, Namespace, RDF, RDFS, OWL, exceptions as rdflib_exceptions
 from collections import defaultdict
 
 # Define common namespaces
@@ -20,12 +20,12 @@ def analyze_annotation_properties(ontology_file):
     """
     Analyze both annotation instances and annotation property types.
     """
-    def print_section(title):
+    def print_section(title: str) -> None:
         print("\n" + "=" * 80)
         print(title)
         print("=" * 80)
 
-    def safe_divide(numerator, denominator):
+    def safe_divide(numerator: float, denominator: float) -> float:
         return numerator / denominator if denominator else 0
 
     print_section(f"Analyzing: {ontology_file}")
@@ -34,8 +34,11 @@ def analyze_annotation_properties(ontology_file):
     try:
         g.parse(ontology_file, format="xml")
         print("✓ Successfully loaded ontology")
-    except Exception as e:
-        print(f"✗ Error loading ontology: {e}")
+    except (KeyboardInterrupt, SystemExit):
+        # Re-raise system-level exceptions
+        raise
+    except (IOError, OSError, rdflib_exceptions.Error) as e:
+        print(f"✗ Error loading ontology: {str(e)}")
         return None
 
     annotation_properties = [

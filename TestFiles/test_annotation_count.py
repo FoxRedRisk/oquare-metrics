@@ -18,8 +18,7 @@ Date: 2025-10-27
 import sys
 import logging
 from pathlib import Path
-from typing import Optional
-from rdflib import Graph, Namespace, RDF, RDFS, OWL
+from rdflib import Graph, Namespace, RDF, RDFS, OWL, URIRef
 
 # Configure logging
 logging.basicConfig(
@@ -62,21 +61,21 @@ def _validate_file_path(ontology_file: str) -> bool:
     """
     ontology_path = Path(ontology_file)
     if not ontology_path.exists():
-        error_msg = f"File not found: {ontology_file}"
-        logger.error(error_msg)
-        print(f"✗ Error: {error_msg}")
+        error_msg = "File not found: %s"
+        logger.error(error_msg, ontology_file)
+        print("✗ Error: %s" % (error_msg % ontology_file))
         return False
     
     if not ontology_path.is_file():
-        error_msg = f"Path is not a file: {ontology_file}"
-        logger.error(error_msg)
-        print(f"✗ Error: {error_msg}")
+        error_msg = "Path is not a file: %s"
+        logger.error(error_msg, ontology_file)
+        print("✗ Error: %s" % (error_msg % ontology_file))
         return False
     
     return True
 
 
-def _load_ontology_graph(ontology_file: str) -> Optional[Graph]:
+def _load_ontology_graph(ontology_file: str) -> Graph | None:
     """
     Load an ontology file into an RDF graph.
     
@@ -94,42 +93,38 @@ def _load_ontology_graph(ontology_file: str) -> Optional[Graph]:
         print(f"  Total triples: {len(g)}")
         return g
     except FileNotFoundError as e:
-        error_msg = f"Ontology file not found: {ontology_file}"
-        logger.exception(error_msg)
-        print(f"✗ Error: {error_msg}")
-        print(f"  Details: {e}")
+        logger.exception("Ontology file not found: %s", ontology_file)
+        print("✗ Error: Ontology file not found: %s" % ontology_file)
+        print("  Details: %s" % e)
     except ValueError as e:
-        error_msg = "Invalid file format or corrupted ontology"
-        logger.exception(error_msg)
-        print(f"✗ Error: {error_msg}")
-        print(f"  Details: {e}")
+        logger.exception("Invalid file format or corrupted ontology")
+        print("✗ Error: Invalid file format or corrupted ontology")
+        print("  Details: %s" % e)
         print("  Hint: Ensure the file is valid RDF/XML format")
     except PermissionError as e:
-        error_msg = f"Permission denied accessing file: {ontology_file}"
-        logger.exception(error_msg)
-        print(f"✗ Error: {error_msg}")
-        print(f"  Details: {e}")
+        logger.exception("Permission denied accessing file: %s", ontology_file)
+        print("✗ Error: Permission denied accessing file: %s" % ontology_file)
+        print("  Details: %s" % e)
     except Exception as e:
-        error_msg = f"Unexpected error loading ontology: {type(e).__name__}"
-        logger.exception(error_msg)
-        print(f"✗ Error: {error_msg}")
-        print(f"  Details: {e}")
-        print(f"  File: {ontology_file}")
+        logger.exception("Unexpected error loading ontology: %s", type(e).__name__)
+        print("✗ Error: Unexpected error loading ontology: %s" % type(e).__name__)
+        print("  Details: %s" % e)
+        print("  File: %s" % ontology_file)
         import traceback
-        print(f"  Traceback:\n{traceback.format_exc()}")
+        print("  Traceback:\n%s" % traceback.format_exc())
     
     return None
 
 
-def _get_annotation_properties(custom_properties: Optional[set]) -> set:
+def _get_annotation_properties(custom_properties: set[URIRef] | None) -> set[URIRef]:
     """
     Get the set of annotation properties to check.
     
     Args:
-        custom_properties: Optional set of additional annotation properties
+        custom_properties: Optional set of additional annotation properties as URIRefs
         
     Returns:
-        Set of annotation properties
+        Set of annotation properties as URIRefs
     """
     annotation_properties = set(DEFAULT_ANNOTATION_PROPERTIES)
     if custom_properties:
@@ -138,7 +133,7 @@ def _get_annotation_properties(custom_properties: Optional[set]) -> set:
     return annotation_properties
 
 
-def _count_ontology_annotations(graph: Graph, subjects: set, annotation_properties: set, results: dict) -> None:
+def _count_ontology_annotations(graph: Graph, subjects: set[URIRef], annotation_properties: set[URIRef], results: dict[str, int | dict[str, int]]) -> None:
     """
     Count annotations for ontology-level entities with detailed breakdown.
     
@@ -155,10 +150,10 @@ def _count_ontology_annotations(graph: Graph, subjects: set, annotation_properti
                 results['ontology_annotations'] += count
                 prop_name = str(prop).split('#')[-1].split('/')[-1]
                 results['annotation_breakdown'][f"ontology_{prop_name}"] = count
-                print(f"  - {prop_name}: {count}")
+                print("  - %s: %d" % (prop_name, count))
 
 
-def _count_entity_annotations(graph: Graph, subjects: set, annotation_properties: set) -> int:
+def _count_entity_annotations(graph: Graph, subjects: set[URIRef], annotation_properties: set[URIRef]) -> int:
     """
     Count annotations for a set of entities.
     
@@ -180,7 +175,7 @@ def _count_entity_annotations(graph: Graph, subjects: set, annotation_properties
     return total
 
 
-def _print_entity_summary(entity_type, result_key: str, subjects: set, results: dict) -> None:
+def _print_entity_summary(entity_type, result_key: str, subjects: set[URIRef], results: dict[str, int | dict[str, int]]) -> None:
     """
     Print summary statistics for an entity type.
     
@@ -188,21 +183,21 @@ def _print_entity_summary(entity_type, result_key: str, subjects: set, results: 
         entity_type: OWL entity type
         result_key: Key in results dictionary
         subjects: Set of entity subjects
-        results: Results dictionary
+        results: Results dictionary mapping keys to counts or nested dictionaries
     """
-    print(f"  Total {result_key.replace('_', ' ')}: {results[result_key]}")
+    print("  Total %s: %d" % (result_key.replace('_', ' '), results[result_key]))
     if len(subjects) > 0 and entity_type in [OWL.Class, OWL.ObjectProperty]:
         avg = results[result_key] / len(subjects)
         entity_name = "class" if entity_type == OWL.Class else "property"
-        print(f"  Average per {entity_name}: {avg:.2f}")
+        print("  Average per %s: %.2f" % (entity_name, avg))
 
 
-def _get_entity_type_map() -> dict:
+def _get_entity_type_map() -> dict[URIRef, tuple[str, str]]:
     """
     Get the mapping of OWL entity types to result keys and descriptions.
     
     Returns:
-        Dictionary mapping entity types to tuples of (result_key, description)
+        Dictionary mapping OWL entity types (as URIRefs) to tuples of (result_key, description)
     """
     return {
         OWL.Ontology: ('ontology_annotations', '📋 ontology declaration(s)'),
@@ -214,12 +209,13 @@ def _get_entity_type_map() -> dict:
     }
 
 
-def _initialize_results() -> dict[str, int]:
+def _initialize_results() -> dict[str, int | dict[str, int]]:
     """
     Initialize the results dictionary structure.
     
     Returns:
-        Empty results dictionary with all required keys
+        Empty results dictionary with all required keys, mapping to either
+        integer counts or nested dictionaries of counts
     """
     return {
         'ontology_annotations': 0,
@@ -234,46 +230,48 @@ def _initialize_results() -> dict[str, int]:
     }
 
 
-def _print_summary(results: dict[str, int]) -> None:
+def _print_summary(results: dict[str, int | dict[str, int]]) -> None:
     """
     Print final summary of annotation counts.
     
     Args:
-        results: Dictionary containing annotation counts
+        results: Dictionary containing annotation counts and nested count dictionaries
     """
-    print(f"\n{'='*80}")
+    print("\n%s" % ('='*80))
     print("SUMMARY")
-    print(f"{'='*80}")
-    print(f"Ontology annotations:          {results['ontology_annotations']:>6}")
-    print(f"Class annotations:             {results['class_annotations']:>6}")
-    print(f"Object property annotations:   {results['object_property_annotations']:>6}")
-    print(f"Data property annotations:     {results['data_property_annotations']:>6}")
-    print(f"Annotation property annotations: {results['annotation_property_annotations']:>6}")
-    print(f"Individual annotations:        {results['individual_annotations']:>6}")
-    print(f"{'-'*80}")
-    print(f"TOTAL ANNOTATIONS:             {results['total_annotations']:>6}")
-    print(f"{'='*80}\n")
+    print("%s" % ('='*80))
+    print("Ontology annotations:          %6d" % results['ontology_annotations'])
+    print("Class annotations:             %6d" % results['class_annotations'])
+    print("Object property annotations:   %6d" % results['object_property_annotations'])
+    print("Data property annotations:     %6d" % results['data_property_annotations'])
+    print("Annotation property annotations: %6d" % results['annotation_property_annotations'])
+    print("Individual annotations:        %6d" % results['individual_annotations'])
+    print("%s" % ('-'*80))
+    print("TOTAL ANNOTATIONS:             %6d" % results['total_annotations'])
+    print("%s\n" % ('='*80))
 
 
-def count_annotations(ontology_file: str, custom_properties: Optional[set] = None) -> Optional[dict[str, int]]:
+def count_annotations(ontology_file: str, custom_properties: set[URIRef] | None = None) -> dict[str, int | dict[str, int]] | None:
     """
     Count all annotations in an OWL ontology file.
     
     Args:
         ontology_file: Path to the OWL file
-        custom_properties: Optional set of additional annotation properties to check
+        custom_properties: Additional RDF annotation properties to check, as URIRefs
         
     Returns:
-        Dictionary with annotation counts by category, or None if loading fails
+        Dictionary with annotation counts by category and breakdowns, or None if loading fails.
+        The dictionary maps strings to either integers (direct counts) or nested count
+        dictionaries (breakdowns)
         
     Raises:
         FileNotFoundError: If the ontology file doesn't exist
         ValueError: If the file format is invalid
     """
     logger.info("Starting annotation count for: %s", ontology_file)
-    print(f"\n{'='*80}")
-    print(f"Analyzing: {ontology_file}")
-    print(f"{'='*80}\n")
+    print("\n%s" % ('='*80))
+    print("Analyzing: %s" % ontology_file)
+    print("%s\n" % ('='*80))
     
     # Validate and load ontology
     if not _validate_file_path(ontology_file):
@@ -292,7 +290,10 @@ def count_annotations(ontology_file: str, custom_properties: Optional[set] = Non
     for entity_type, (result_key, description) in entity_type_map.items():
         subjects = set(graph.subjects(RDF.type, entity_type))
         results['entity_counts'][result_key] = len(subjects)
-        print(f"\n{description.split()[0]} Found {len(subjects)} {' '.join(description.split()[1:])}")
+        
+        # Print formatted entity count
+        split_desc = description.split()
+        print("\n%s Found %d %s" % (split_desc[0], len(subjects), ' '.join(split_desc[1:])))
         
         # Count annotations based on entity type
         if entity_type == OWL.Ontology:
@@ -318,12 +319,12 @@ def count_annotations(ontology_file: str, custom_properties: Optional[set] = Non
     return results
 
 
-def _validate_results(results: dict[str, int]) -> bool:
+def _validate_results(results: dict[str, int | dict[str, int]]) -> bool:
     """
     Validate that results are internally consistent.
     
     Args:
-        results: Dictionary containing annotation counts
+        results: Dictionary containing annotation counts and nested count dictionaries
         
     Returns:
         True if results are valid, False otherwise
@@ -342,7 +343,8 @@ def _validate_results(results: dict[str, int]) -> bool:
     
     if calculated_total != stored_total:
         logger.warning(
-            "Total mismatch: calculated=%d, stored=%d", calculated_total, stored_total
+            "Total mismatch: calculated=%d, stored=%d", 
+            calculated_total, stored_total
         )
         return False
     
@@ -363,20 +365,20 @@ def compare_with_oquare(ontology_file: str, oquare_count: int) -> None:
     if results:
         difference = results['total_annotations'] - oquare_count
         
-        print(f"\n{'='*80}")
+        print("\n%s" % ('='*80))
         print("COMPARISON WITH OQUARE")
-        print(f"{'='*80}")
-        print(f"OQuaRE reported (sumOfAnnotations): {oquare_count:>6}")
-        print(f"Manual count (all annotations):     {results['total_annotations']:>6}")
-        print(f"Difference:                         {difference:>6}")
-        print(f"{'='*80}\n")
+        print("%s" % ('='*80))
+        print("OQuaRE reported (sumOfAnnotations): %6d" % oquare_count)
+        print("Manual count (all annotations):     %6d" % results['total_annotations'])
+        print("Difference:                         %6d" % difference)
+        print("%s\n" % ('='*80))
         
         if results['ontology_annotations'] == oquare_count:
             logger.warning("OQuaRE appears to only count ontology-level annotations")
             print("⚠️  DIAGNOSIS CONFIRMED:")
             print("   OQuaRE is ONLY counting ontology-level annotations!")
             print("   It is NOT counting annotations on classes, properties, etc.")
-            print(f"\n   Missing annotations: {difference}")
+            print("\n   Missing annotations: %d" % difference)
         elif results['total_annotations'] == oquare_count:
             logger.info("OQuaRE count matches expected total")
             print("✓ OQuaRE count matches expected total - no issue found")
@@ -414,7 +416,7 @@ if __name__ == "__main__":
         else:
             results = count_annotations(ontology_file)
             if results is None:
-                logger.error("Annotation counting failed")
+                logger.exception("Annotation counting failed")
                 sys.exit(1)
     except KeyboardInterrupt:
         logger.info("Process interrupted by user")

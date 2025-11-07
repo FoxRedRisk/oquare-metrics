@@ -10,7 +10,7 @@ Date: 2025-11-04
 
 import logging
 from pathlib import Path
-from typing import Optional, Union, Tuple
+from typing import Optional, Union
 import owlready2 as owl2
 from rdflib import Graph as RDFGraph
 import tempfile

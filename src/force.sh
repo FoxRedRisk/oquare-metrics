@@ -14,7 +14,7 @@ modified_files=$9
 date="$(date +%Y-%m-%d_%H-%M-%S)"
 for file in $force_parse
 do
-    if [[ -z "$(printf '%s\n' "$modified_files" | grep -Fx "$file")" ]]
+    if ! grep -Fxq "$file" <<< "$modified_files"
     then
         dir=$(dirname "$file")
         outputFile=$(basename "$file")
@@ -30,8 +30,8 @@ do
 
         if [[ -f "$outputFilePath" ]]
         then
-            python $GITHUB_ACTION_PATH/src/main.py -i $contents_folder -s $dir -f $outputFile -d $date \
-                -M $model_plot -c $characteristics_plot -S $subcharacteristics_plot -m $metrics_plot -e $evolution_plot
+            python "$GITHUB_ACTION_PATH/src/main.py" -i "$contents_folder" -s "$dir" -f "$outputFile" -d "$date" \
+                -M "$model_plot" -c "$characteristics_plot" -S "$subcharacteristics_plot" -m "$metrics_plot" -e "$evolution_plot"
         fi
     fi
 done
