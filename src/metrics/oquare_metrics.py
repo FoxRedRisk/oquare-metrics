@@ -71,7 +71,7 @@ class OQuaREMetrics:
             print(f"Calculation: {sum_annotations} / {num_classes} = {anonto:.6f}")
             print(f"{'='*70}")
         
-        logger.debug(f"ANOnto = {sum_annotations} / {num_classes} = {anonto:.6f}")
+        logger.debug("ANOnto = %d / %d = %.6f", sum_annotations, num_classes, anonto)
         return anonto
     
     # =========================================================================
@@ -99,7 +99,7 @@ class OQuaREMetrics:
             cronto = sum_instances / num_classes
         
         self._cache['CROnto'] = cronto
-        logger.debug(f"CROnto = {sum_instances} / {num_classes} = {cronto:.6f}")
+        logger.debug("CROnto = %d / %d = %.6f", sum_instances, num_classes, cronto)
         return cronto
     
     # =========================================================================
@@ -127,7 +127,7 @@ class OQuaREMetrics:
             nomonto = sum_properties / num_classes
         
         self._cache['NOMOnto'] = nomonto
-        logger.debug(f"NOMOnto = {sum_properties} / {num_classes} = {nomonto:.6f}")
+        logger.debug("NOMOnto = %d / %d = %.6f", sum_properties, num_classes, nomonto)
         return nomonto
     
     # =========================================================================
@@ -155,7 +155,7 @@ class OQuaREMetrics:
             inronto = sum_relationships / num_classes
         
         self._cache['INROnto'] = inronto
-        logger.debug(f"INROnto = {sum_relationships} / {num_classes} = {inronto:.6f}")
+        logger.debug("INROnto = %d / %d = %.6f", sum_relationships, num_classes, inronto)
         return inronto
     
     # =========================================================================
@@ -183,7 +183,7 @@ class OQuaREMetrics:
             aronto = sum_attributes / num_classes
         
         self._cache['AROnto'] = aronto
-        logger.debug(f"AROnto = {sum_attributes} / {num_classes} = {aronto:.6f}")
+        logger.debug("AROnto = %d / %d = %.6f", sum_attributes, num_classes, aronto)
         return aronto
     
     # =========================================================================
@@ -205,7 +205,7 @@ class OQuaREMetrics:
         max_depth = self.basic.get_maximum_depth()
         
         self._cache['DITOnto'] = max_depth
-        logger.debug(f"DITOnto = {max_depth}")
+        logger.debug("DITOnto = %d", max_depth)
         return max_depth
     
     # =========================================================================
@@ -233,7 +233,7 @@ class OQuaREMetrics:
             naconto = sum_parents_leaf / num_leaf_classes
         
         self._cache['NACOnto'] = naconto
-        logger.debug(f"NACOnto = {sum_parents_leaf} / {num_leaf_classes} = {naconto:.6f}")
+        logger.debug("NACOnto = %d / %d = %.6f", sum_parents_leaf, num_leaf_classes, naconto)
         return naconto
     
     # =========================================================================
@@ -264,7 +264,7 @@ class OQuaREMetrics:
             noconto = sum_relationships / denominator
         
         self._cache['NOCOnto'] = noconto
-        logger.debug(f"NOCOnto = {sum_relationships} / ({num_classes} - {thing_relationships}) = {noconto:.6f}")
+        logger.debug("NOCOnto = %d / (%d - %d) = %.6f", sum_relationships, num_classes, thing_relationships, noconto)
         return noconto
     
     # =========================================================================
@@ -295,7 +295,7 @@ class OQuaREMetrics:
             cboonto = sum_parents / denominator
         
         self._cache['CBOOnto'] = cboonto
-        logger.debug(f"CBOOnto = {sum_parents} / ({num_classes} - {thing_relationships}) = {cboonto:.6f}")
+        logger.debug("CBOOnto = %d / (%d - %d) = %.6f", sum_parents, num_classes, thing_relationships, cboonto)
         return cboonto
     
     # =========================================================================
@@ -324,7 +324,7 @@ class OQuaREMetrics:
             wmconto = (sum_properties + sum_relationships) / num_classes
         
         self._cache['WMCOnto'] = wmconto
-        logger.debug(f"WMCOnto = ({sum_properties} + {sum_relationships}) / {num_classes} = {wmconto:.6f}")
+        logger.debug("WMCOnto = (%d + %d) / %d = %.6f", sum_properties, sum_relationships, num_classes, wmconto)
         return wmconto
     
     # =========================================================================
@@ -356,7 +356,7 @@ class OQuaREMetrics:
             rfconto = (sum_properties + sum_parents) / denominator
         
         self._cache['RFCOnto'] = rfconto
-        logger.debug(f"RFCOnto = ({sum_properties} + {sum_parents}) / ({num_classes} - {thing_relationships}) = {rfconto:.6f}")
+        logger.debug("RFCOnto = (%d + %d) / (%d - %d) = %.6f", sum_properties, sum_parents, num_classes, thing_relationships, rfconto)
         return rfconto
     
     # =========================================================================
@@ -387,7 +387,7 @@ class OQuaREMetrics:
             rronto = sum_properties / denominator
         
         self._cache['RROnto'] = rronto
-        logger.debug(f"RROnto = {sum_properties} / ({sum_relationships} + {num_classes}) = {rronto:.6f}")
+        logger.debug("RROnto = %d / (%d + %d) = %.6f", sum_properties, sum_relationships, num_classes, rronto)
         return rronto
     
     # =========================================================================
@@ -417,7 +417,7 @@ class OQuaREMetrics:
             lcomonto = sum_path_lengths / total_paths
         
         self._cache['LCOMOnto'] = lcomonto
-        logger.debug(f"LCOMOnto = {sum_path_lengths} / {total_paths} = {lcomonto:.6f}")
+        logger.debug("LCOMOnto = %d / %d = %.6f", sum_path_lengths, total_paths, lcomonto)
         return lcomonto
     
     # =========================================================================
@@ -449,7 +449,7 @@ class OQuaREMetrics:
             tmonto = sum_relationships / denominator
         
         self._cache['TMOnto'] = tmonto
-        logger.debug(f"TMOnto = {sum_relationships} / ({num_classes} - {classes_multi_parents}) = {tmonto:.6f}")
+        logger.debug("TMOnto = %d / (%d - %d) = %.6f", sum_relationships, num_classes, classes_multi_parents, tmonto)
         return tmonto
     
     # =========================================================================

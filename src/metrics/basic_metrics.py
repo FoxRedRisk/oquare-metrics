@@ -34,7 +34,7 @@ class OntologyBasicMetrics:
         """
         self.ontology = ontology
         self._cache = {}
-        logger.info(f"Initialized BasicMetrics for ontology: {ontology.name}")
+        logger.info("Initialized BasicMetrics for ontology: %s", ontology.name)
     
     def _get_thing_class(self) -> owl2.ThingClass:
         """Get the owl:Thing class."""
@@ -59,7 +59,7 @@ class OntologyBasicMetrics:
         count = len(classes)
         
         self._cache['count_classes'] = count
-        logger.debug(f"Total classes: {count}")
+        logger.debug("Total classes: %d", count)
         return count
     
     def count_leaf_classes(self) -> int:
@@ -82,7 +82,7 @@ class OntologyBasicMetrics:
         count = len(leaf_classes)
         self._cache['count_leaf_classes'] = count
         self._cache['leaf_classes'] = leaf_classes
-        logger.debug(f"Leaf classes: {count}")
+        logger.debug("Leaf classes: %d", count)
         return count
     
     def get_leaf_classes(self) -> List[owl2.ThingClass]:
@@ -110,7 +110,7 @@ class OntologyBasicMetrics:
         count = len(props)
         
         self._cache['count_object_properties'] = count
-        logger.debug(f"Object properties: {count}")
+        logger.debug("Object properties: %d", count)
         return count
     
     def count_data_properties(self) -> int:
@@ -127,7 +127,7 @@ class OntologyBasicMetrics:
         count = len(props)
         
         self._cache['count_data_properties'] = count
-        logger.debug(f"Data properties: {count}")
+        logger.debug("Data properties: %d", count)
         return count
     
     def count_properties(self) -> int:
@@ -155,7 +155,31 @@ class OntologyBasicMetrics:
         count = len(individuals)
         
         self._cache['count_individuals'] = count
-        logger.debug(f"Individuals: {count}")
+        logger.debug("Individuals: %d", count)
+        return count
+    
+    def _count_entity_annotations(self, entities, entity_type: str, exclude_self: bool = False) -> int:
+        """
+        Helper method to count annotations on a collection of entities.
+        
+        Args:
+            entities: Iterable of entities to count annotations for
+            entity_type: Type description for logging (e.g., "Class", "Object property")
+            exclude_self: If True, exclude self-annotations (for annotation properties)
+            
+        Returns:
+            Total annotation count for the entities
+        """
+        count = 0
+        for entity in entities:
+            for ann_prop in self.ontology.annotation_properties():
+                if exclude_self and entity == ann_prop:
+                    continue
+                values = ann_prop[entity]
+                if values:
+                    count += len(values) if isinstance(values, list) else 1
+        
+        logger.debug("%s annotations: %d", entity_type, count)
         return count
     
     def count_annotations(self) -> int:
@@ -182,90 +206,23 @@ class OntologyBasicMetrics:
         # Count ontology-level annotations
         ontology_annotations = 0
         try:
-            # In owlready2, ontology annotations are stored differently
-            for annotation in self.ontology.metadata.annotations:
+            for _ in self.ontology.metadata.annotations:
                 ontology_annotations += 1
-        except:
-            # Fallback: count using SWRL/RDF approach
+        except (AttributeError, TypeError):
             pass
         
-        logger.debug(f"Ontology annotations: {ontology_annotations}")
+        logger.debug("Ontology annotations: %d", ontology_annotations)
         total += ontology_annotations
         
-        # Count class annotations
-        class_annotations = 0
-        for cls in self.ontology.classes():
-            # Get all annotation assertions for this class
-            for prop in self.ontology.annotation_properties():
-                values = prop[cls]
-                if values:
-                    if isinstance(values, list):
-                        class_annotations += len(values)
-                    else:
-                        class_annotations += 1
-        
-        logger.debug(f"Class annotations: {class_annotations}")
-        total += class_annotations
-        
-        # Count object property annotations
-        obj_prop_annotations = 0
-        for prop in self.ontology.object_properties():
-            for ann_prop in self.ontology.annotation_properties():
-                values = ann_prop[prop]
-                if values:
-                    if isinstance(values, list):
-                        obj_prop_annotations += len(values)
-                    else:
-                        obj_prop_annotations += 1
-        
-        logger.debug(f"Object property annotations: {obj_prop_annotations}")
-        total += obj_prop_annotations
-        
-        # Count data property annotations
-        data_prop_annotations = 0
-        for prop in self.ontology.data_properties():
-            for ann_prop in self.ontology.annotation_properties():
-                values = ann_prop[prop]
-                if values:
-                    if isinstance(values, list):
-                        data_prop_annotations += len(values)
-                    else:
-                        data_prop_annotations += 1
-        
-        logger.debug(f"Data property annotations: {data_prop_annotations}")
-        total += data_prop_annotations
-        
-        # Count annotation property annotations
-        ann_prop_annotations = 0
-        for prop in self.ontology.annotation_properties():
-            for ann_prop in self.ontology.annotation_properties():
-                if prop != ann_prop:  # Don't count self-annotations
-                    values = ann_prop[prop]
-                    if values:
-                        if isinstance(values, list):
-                            ann_prop_annotations += len(values)
-                        else:
-                            ann_prop_annotations += 1
-        
-        logger.debug(f"Annotation property annotations: {ann_prop_annotations}")
-        total += ann_prop_annotations
-        
-        # Count individual annotations
-        individual_annotations = 0
-        for ind in self.ontology.individuals():
-            for ann_prop in self.ontology.annotation_properties():
-                values = ann_prop[ind]
-                if values:
-                    if isinstance(values, list):
-                        individual_annotations += len(values)
-                    else:
-                        individual_annotations += 1
-        
-        logger.debug(f"Individual annotations: {individual_annotations}")
-        total += individual_annotations
+        # Count annotations for different entity types
+        total += self._count_entity_annotations(self.ontology.classes(), "Class")
+        total += self._count_entity_annotations(self.ontology.object_properties(), "Object property")
+        total += self._count_entity_annotations(self.ontology.data_properties(), "Data property")
+        total += self._count_entity_annotations(self.ontology.annotation_properties(), "Annotation property", exclude_self=True)
+        total += self._count_entity_annotations(self.ontology.individuals(), "Individual")
         
         self._cache['count_annotations'] = total
-        logger.info(f"Total annotations (FIXED): {total}")
+        logger.info("Total annotations (FIXED): %d", total)
         return total
     
     # =========================================================================
@@ -307,7 +264,7 @@ class OntologyBasicMetrics:
         total = sum(relationships.values())
         
         self._cache['count_total_relationships'] = total
-        logger.debug(f"Total relationships: {total}")
+        logger.debug("Total relationships: %d", total)
         return total
     
     def count_thing_relationships(self) -> int:
@@ -327,7 +284,7 @@ class OntologyBasicMetrics:
         count = len(direct_subclasses)
         
         self._cache['count_thing_relationships'] = count
-        logger.debug(f"Thing relationships: {count}")
+        logger.debug("Thing relationships: %d", count)
         return count
     
     def count_direct_parents_per_class(self) -> Dict[owl2.ThingClass, int]:
@@ -366,7 +323,7 @@ class OntologyBasicMetrics:
         total = sum(parents.values())
         
         self._cache['sum_direct_parents'] = total
-        logger.debug(f"Sum of direct parents: {total}")
+        logger.debug("Sum of direct parents: %d", total)
         return total
     
     def sum_direct_parents_of_leaf_classes(self) -> int:
@@ -386,7 +343,7 @@ class OntologyBasicMetrics:
         total = sum(parents_dict.get(cls, 0) for cls in leaf_classes)
         
         self._cache['sum_direct_parents_leaf'] = total
-        logger.debug(f"Sum of direct parents (leaf classes): {total}")
+        logger.debug("Sum of direct parents (leaf classes): %d", total)
         return total
     
     def count_classes_with_multiple_parents(self) -> int:
@@ -406,7 +363,7 @@ class OntologyBasicMetrics:
         
         self._cache['count_multiple_parents'] = count
         self._cache['classes_multiple_parents'] = multiple
-        logger.debug(f"Classes with multiple parents: {count}")
+        logger.debug("Classes with multiple parents: %d", count)
         return count
     
     def sum_parents_of_classes_with_multiple_parents(self) -> int:
@@ -428,7 +385,7 @@ class OntologyBasicMetrics:
         total = sum(parents_dict.get(cls, 0) for cls in multi_parent_classes)
         
         self._cache['sum_parents_multi'] = total
-        logger.debug(f"Sum of parents (multi-parent classes): {total}")
+        logger.debug("Sum of parents (multi-parent classes): %d", total)
         return total
     
     # =========================================================================
@@ -475,7 +432,7 @@ class OntologyBasicMetrics:
         total = sum(attrs.values())
         
         self._cache['sum_attributes'] = total
-        logger.debug(f"Sum of attributes: {total}")
+        logger.debug("Sum of attributes: %d", total)
         return total
     
     # =========================================================================
@@ -534,7 +491,7 @@ class OntologyBasicMetrics:
             max_depth = max(max_depth, depth)
         
         self._cache['maximum_depth'] = max_depth
-        logger.debug(f"Maximum depth: {max_depth}")
+        logger.debug("Maximum depth: %d", max_depth)
         return max_depth
     
     def calculate_paths_from_leaf_to_thing(self, 
@@ -606,7 +563,7 @@ class OntologyBasicMetrics:
         result = (paths_dict, total_paths, sum_lengths)
         self._cache['all_leaf_paths'] = result
         
-        logger.debug(f"Total paths: {total_paths}, Sum of lengths: {sum_lengths}")
+        logger.debug("Total paths: %d, Sum of lengths: %d", total_paths, sum_lengths)
         return result
     
     # =========================================================================

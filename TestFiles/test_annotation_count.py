@@ -18,7 +18,7 @@ Date: 2025-10-27
 import sys
 import logging
 from pathlib import Path
-from typing import Dict, Optional, Set
+from typing import Optional
 from rdflib import Graph, Namespace, RDF, RDFS, OWL
 
 # Configure logging
@@ -89,29 +89,29 @@ def _load_ontology_graph(ontology_file: str) -> Optional[Graph]:
     g = Graph()
     try:
         g.parse(ontology_file, format='xml')
-        logger.info(f"Successfully loaded ontology with {len(g)} triples")
+        logger.info("Successfully loaded ontology with %d triples", len(g))
         print("✓ Successfully loaded ontology")
         print(f"  Total triples: {len(g)}")
         return g
     except FileNotFoundError as e:
         error_msg = f"Ontology file not found: {ontology_file}"
-        logger.error(error_msg, exc_info=True)
+        logger.exception(error_msg)
         print(f"✗ Error: {error_msg}")
         print(f"  Details: {e}")
     except ValueError as e:
         error_msg = "Invalid file format or corrupted ontology"
-        logger.error(error_msg, exc_info=True)
+        logger.exception(error_msg)
         print(f"✗ Error: {error_msg}")
         print(f"  Details: {e}")
         print("  Hint: Ensure the file is valid RDF/XML format")
     except PermissionError as e:
         error_msg = f"Permission denied accessing file: {ontology_file}"
-        logger.error(error_msg, exc_info=True)
+        logger.exception(error_msg)
         print(f"✗ Error: {error_msg}")
         print(f"  Details: {e}")
     except Exception as e:
         error_msg = f"Unexpected error loading ontology: {type(e).__name__}"
-        logger.error(error_msg, exc_info=True)
+        logger.exception(error_msg)
         print(f"✗ Error: {error_msg}")
         print(f"  Details: {e}")
         print(f"  File: {ontology_file}")
@@ -121,7 +121,7 @@ def _load_ontology_graph(ontology_file: str) -> Optional[Graph]:
     return None
 
 
-def _get_annotation_properties(custom_properties: Optional[Set]) -> Set:
+def _get_annotation_properties(custom_properties: Optional[set]) -> set:
     """
     Get the set of annotation properties to check.
     
@@ -134,11 +134,11 @@ def _get_annotation_properties(custom_properties: Optional[Set]) -> Set:
     annotation_properties = set(DEFAULT_ANNOTATION_PROPERTIES)
     if custom_properties:
         annotation_properties.update(custom_properties)
-        logger.info(f"Added {len(custom_properties)} custom annotation properties")
+        logger.info("Added %d custom annotation properties", len(custom_properties))
     return annotation_properties
 
 
-def _count_ontology_annotations(graph: Graph, subjects: Set, annotation_properties: Set, results: Dict) -> None:
+def _count_ontology_annotations(graph: Graph, subjects: set, annotation_properties: set, results: dict) -> None:
     """
     Count annotations for ontology-level entities with detailed breakdown.
     
@@ -158,7 +158,7 @@ def _count_ontology_annotations(graph: Graph, subjects: Set, annotation_properti
                 print(f"  - {prop_name}: {count}")
 
 
-def _count_entity_annotations(graph: Graph, subjects: Set, annotation_properties: Set) -> int:
+def _count_entity_annotations(graph: Graph, subjects: set, annotation_properties: set) -> int:
     """
     Count annotations for a set of entities.
     
@@ -180,7 +180,7 @@ def _count_entity_annotations(graph: Graph, subjects: Set, annotation_properties
     return total
 
 
-def _print_entity_summary(entity_type, result_key: str, subjects: Set, results: Dict) -> None:
+def _print_entity_summary(entity_type, result_key: str, subjects: set, results: dict) -> None:
     """
     Print summary statistics for an entity type.
     
@@ -197,7 +197,7 @@ def _print_entity_summary(entity_type, result_key: str, subjects: Set, results: 
         print(f"  Average per {entity_name}: {avg:.2f}")
 
 
-def _get_entity_type_map() -> Dict:
+def _get_entity_type_map() -> dict:
     """
     Get the mapping of OWL entity types to result keys and descriptions.
     
@@ -214,7 +214,7 @@ def _get_entity_type_map() -> Dict:
     }
 
 
-def _initialize_results() -> Dict[str, int]:
+def _initialize_results() -> dict[str, int]:
     """
     Initialize the results dictionary structure.
     
@@ -234,7 +234,7 @@ def _initialize_results() -> Dict[str, int]:
     }
 
 
-def _print_summary(results: Dict[str, int]) -> None:
+def _print_summary(results: dict[str, int]) -> None:
     """
     Print final summary of annotation counts.
     
@@ -255,7 +255,7 @@ def _print_summary(results: Dict[str, int]) -> None:
     print(f"{'='*80}\n")
 
 
-def count_annotations(ontology_file: str, custom_properties: Optional[Set] = None) -> Optional[Dict[str, int]]:
+def count_annotations(ontology_file: str, custom_properties: Optional[set] = None) -> Optional[dict[str, int]]:
     """
     Count all annotations in an OWL ontology file.
     
@@ -270,7 +270,7 @@ def count_annotations(ontology_file: str, custom_properties: Optional[Set] = Non
         FileNotFoundError: If the ontology file doesn't exist
         ValueError: If the file format is invalid
     """
-    logger.info(f"Starting annotation count for: {ontology_file}")
+    logger.info("Starting annotation count for: %s", ontology_file)
     print(f"\n{'='*80}")
     print(f"Analyzing: {ontology_file}")
     print(f"{'='*80}\n")
@@ -314,11 +314,11 @@ def count_annotations(ontology_file: str, custom_properties: Optional[Set] = Non
         logger.warning("Result validation failed - totals may be inconsistent")
     
     _print_summary(results)
-    logger.info(f"Annotation counting completed. Total: {results['total_annotations']}")
+    logger.info("Annotation counting completed. Total: %d", results['total_annotations'])
     return results
 
 
-def _validate_results(results: Dict[str, int]) -> bool:
+def _validate_results(results: dict[str, int]) -> bool:
     """
     Validate that results are internally consistent.
     
@@ -342,7 +342,7 @@ def _validate_results(results: Dict[str, int]) -> bool:
     
     if calculated_total != stored_total:
         logger.warning(
-            f"Total mismatch: calculated={calculated_total}, stored={stored_total}"
+            "Total mismatch: calculated=%d, stored=%d", calculated_total, stored_total
         )
         return False
     
@@ -357,7 +357,7 @@ def compare_with_oquare(ontology_file: str, oquare_count: int) -> None:
         ontology_file: Path to the OWL file
         oquare_count: The count reported by OQuaRE (sumOfAnnotations)
     """
-    logger.info(f"Comparing with OQuaRE count: {oquare_count}")
+    logger.info("Comparing with OQuaRE count: %d", oquare_count)
     results = count_annotations(ontology_file)
     
     if results:
@@ -381,7 +381,7 @@ def compare_with_oquare(ontology_file: str, oquare_count: int) -> None:
             logger.info("OQuaRE count matches expected total")
             print("✓ OQuaRE count matches expected total - no issue found")
         else:
-            logger.warning(f"Partial match detected. Difference: {difference}")
+            logger.warning("Partial match detected. Difference: %d", difference)
             print("⚠️  Partial match - OQuaRE may be filtering certain annotation types")
             print("   Investigating which annotations are being excluded...")
     else:
@@ -404,7 +404,7 @@ if __name__ == "__main__":
     try:
         oquare_count = int(sys.argv[2]) if len(sys.argv) > 2 else None
     except ValueError as e:
-        logger.error(f"Invalid oquare_count value: {sys.argv[2]}")
+        logger.exception("Invalid oquare_count value: %s", sys.argv[2])
         print(f"✗ Error: oquare_count must be an integer, got: {sys.argv[2]}")
         sys.exit(1)
     
@@ -421,7 +421,7 @@ if __name__ == "__main__":
         print("\n\n⚠️  Process interrupted by user")
         sys.exit(130)
     except Exception as e:
-        logger.error(f"Unexpected error in main: {e}", exc_info=True)
+        logger.exception("Unexpected error in main")
         print(f"\n✗ Unexpected error: {e}")
         import traceback
         print(f"Traceback:\n{traceback.format_exc()}")

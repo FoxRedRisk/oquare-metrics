@@ -10,7 +10,7 @@ Date: 2025-11-04
 
 import logging
 from pathlib import Path
-from typing import Optional, Union
+from typing import Optional, Union, Tuple
 import owlready2 as owl2
 
 logger = logging.getLogger(__name__)
@@ -19,6 +19,132 @@ logger = logging.getLogger(__name__)
 class OntologyLoadError(Exception):
     """Exception raised when ontology loading fails."""
     pass
+
+
+def _run_reasoner(reasoner: str) -> None:
+    """
+    Run the specified reasoner on the ontology.
+    
+    Args:
+        reasoner: Reasoner name ('HermiT', 'Pellet', or 'ELK')
+    """
+    reasoner_lower = reasoner.lower()
+    
+    if reasoner_lower == "hermit":
+        print("Reasoner: HermiT (Full OWL 2 DL)")
+        print("Starting classification...\n")
+        owl2.sync_reasoner_hermit(infer_property_values=True)
+    elif reasoner_lower == "pellet":
+        print("Reasoner: Pellet (Full OWL 2 DL)")
+        print("Starting classification...\n")
+        owl2.sync_reasoner_pellet(infer_property_values=True)
+    elif reasoner_lower == "elk":
+        print("Reasoner: ELK (EL++ Profile, using HermiT as fallback)")
+        print("Starting classification...\n")
+        owl2.sync_reasoner_hermit(infer_property_values=True)
+    else:
+        logger.warning("Unknown reasoner: %s, using HermiT", reasoner)
+        owl2.sync_reasoner_hermit(infer_property_values=True)
+
+
+def _print_class_hierarchy(classes: list) -> None:
+    """
+    Print class hierarchy with inferred relationships.
+    
+    Args:
+        classes: List of ontology classes
+    """
+    print("\nClass Hierarchy (with inferred ancestors):")
+    for cls in sorted(classes, key=lambda x: x.name if hasattr(x, 'name') else str(x)):
+        if hasattr(cls, 'name') and cls.name:
+            ancestors = [a.name if hasattr(a, 'name') else str(a) 
+                        for a in cls.ancestors() if a != cls]
+            parents = [p.name if hasattr(p, 'name') else str(p) 
+                      for p in cls.is_a]
+            print(f"  {cls.name}")
+            print(f"    Direct parents: {parents}")
+            print(f"    All ancestors: {ancestors}")
+
+
+def _print_consistency_check() -> None:
+    """Print consistency check results."""
+    print("\nConsistency Check:")
+    try:
+        print("  Ontology is consistent ✓")
+    except Exception:
+        print("  Inconsistencies detected! ✗")
+
+
+def _display_reasoning_results(onto: owl2.Ontology) -> None:
+    """
+    Display the results after reasoning.
+    
+    Args:
+        onto: Ontology after reasoning
+    """
+    print(f"\n{'='*70}")
+    print("REASONER RESULTS")
+    print(f"{'='*70}")
+    
+    # Count entities after reasoning
+    classes_after = list(onto.classes())
+    properties_after = list(onto.properties())
+    individuals_after = list(onto.individuals())
+    
+    print("Entities after reasoning:")
+    print(f"  Classes:     {len(classes_after)}")
+    print(f"  Properties:  {len(properties_after)}")
+    print(f"  Individuals: {len(individuals_after)}")
+    
+    _print_class_hierarchy(classes_after)
+    _print_consistency_check()
+    
+    print(f"{'='*70}")
+    print("✓ Reasoning completed successfully")
+    print(f"{'='*70}\n")
+
+
+def _apply_reasoning(onto: owl2.Ontology, reasoner: str) -> None:
+    """
+    Apply reasoning to the ontology and display results.
+    
+    Args:
+        onto: Loaded ontology
+        reasoner: Reasoner to use
+    """
+    print(f"\n{'='*70}")
+    print(f"RUNNING {reasoner.upper()} REASONER")
+    print(f"{'='*70}")
+    logger.info("Running %s reasoner...", reasoner)
+    
+    try:
+        with onto:
+            _run_reasoner(reasoner)
+        
+        _display_reasoning_results(onto)
+        logger.info("Reasoning completed successfully")
+    except Exception as e:
+        print(f"✗ Reasoning failed: {e}")
+        print(f"{'='*70}\n")
+        logger.exception("Reasoning failed")
+        logger.warning("Continuing without reasoning")
+
+
+def _log_ontology_statistics(onto: owl2.Ontology) -> None:
+    """
+    Log basic statistics about the loaded ontology.
+    
+    Args:
+        onto: Loaded ontology
+    """
+    num_classes = len(list(onto.classes()))
+    num_properties = len(list(onto.properties()))
+    num_individuals = len(list(onto.individuals()))
+    
+    logger.info("Ontology statistics:")
+    logger.info("  Classes: %d", num_classes)
+    logger.info("  Properties: %d", num_properties)
+    logger.info("  Individuals: %d", num_individuals)
 
 
 def load_ontology(
@@ -49,90 +175,16 @@ def load_ontology(
     if not ontology_path.exists():
         raise OntologyLoadError(f"Ontology file not found: {ontology_path}")
     
-    logger.info(f"Loading ontology from: {ontology_path}")
+    logger.info("Loading ontology from: %s", ontology_path)
     
     try:
-        # Load the ontology
         onto = owl2.get_ontology(str(ontology_path)).load()
-        logger.info(f"Successfully loaded ontology: {onto.base_iri}")
+        logger.info("Successfully loaded ontology: %s", onto.base_iri)
         
-        # Log basic statistics
-        num_classes = len(list(onto.classes()))
-        num_properties = len(list(onto.properties()))
-        num_individuals = len(list(onto.individuals()))
+        _log_ontology_statistics(onto)
         
-        logger.info(f"Ontology statistics:")
-        logger.info(f"  Classes: {num_classes}")
-        logger.info(f"  Properties: {num_properties}")
-        logger.info(f"  Individuals: {num_individuals}")
-        
-        # Apply reasoning if requested
         if use_reasoning and reasoner:
-            print(f"\n{'='*70}")
-            print(f"RUNNING {reasoner.upper()} REASONER")
-            print(f"{'='*70}")
-            logger.info(f"Running {reasoner} reasoner...")
-            try:
-                with onto:
-                    if reasoner.lower() == "hermit":
-                        print(f"Reasoner: HermiT (Full OWL 2 DL)")
-                        print(f"Starting classification...\n")
-                        owl2.sync_reasoner_hermit(infer_property_values=True)
-                    elif reasoner.lower() == "pellet":
-                        print(f"Reasoner: Pellet (Full OWL 2 DL)")
-                        print(f"Starting classification...\n")
-                        owl2.sync_reasoner_pellet(infer_property_values=True)
-                    elif reasoner.lower() == "elk":
-                        print(f"Reasoner: ELK (EL++ Profile, using HermiT as fallback)")
-                        print(f"Starting classification...\n")
-                        # ELK is more limited but faster
-                        owl2.sync_reasoner_hermit(infer_property_values=True)
-                    else:
-                        logger.warning(f"Unknown reasoner: {reasoner}, using HermiT")
-                        owl2.sync_reasoner_hermit(infer_property_values=True)
-                
-                # Display reasoner results
-                print(f"\n{'='*70}")
-                print(f"REASONER RESULTS")
-                print(f"{'='*70}")
-                
-                # Count entities after reasoning
-                classes_after = list(onto.classes())
-                properties_after = list(onto.properties())
-                individuals_after = list(onto.individuals())
-                
-                print(f"Entities after reasoning:")
-                print(f"  Classes:     {len(classes_after)}")
-                print(f"  Properties:  {len(properties_after)}")
-                print(f"  Individuals: {len(individuals_after)}")
-                
-                # Show class hierarchy with inferred relationships
-                print(f"\nClass Hierarchy (with inferred ancestors):")
-                for cls in sorted(classes_after, key=lambda x: x.name if hasattr(x, 'name') else str(x)):
-                    if hasattr(cls, 'name') and cls.name:
-                        ancestors = [a.name if hasattr(a, 'name') else str(a) for a in cls.ancestors() if a != cls]
-                        parents = [p.name if hasattr(p, 'name') else str(p) for p in cls.is_a]
-                        print(f"  {cls.name}")
-                        print(f"    Direct parents: {parents}")
-                        print(f"    All ancestors: {ancestors}")
-                
-                # Check for any inconsistencies
-                print(f"\nConsistency Check:")
-                try:
-                    # Try to get inconsistent classes (if any)
-                    print(f"  Ontology is consistent ✓")
-                except:
-                    print(f"  Inconsistencies detected! ✗")
-                
-                print(f"{'='*70}")
-                print(f"✓ Reasoning completed successfully")
-                print(f"{'='*70}\n")
-                logger.info("Reasoning completed successfully")
-            except Exception as e:
-                print(f"✗ Reasoning failed: {e}")
-                print(f"{'='*70}\n")
-                logger.warning(f"Reasoning failed: {e}")
-                logger.warning("Continuing without reasoning")
+            _apply_reasoning(onto, reasoner)
         
         return onto
         
@@ -171,11 +223,11 @@ def print_ontology_info(onto: owl2.Ontology):
     info = get_ontology_info(onto)
     
     print(f"\n{'='*60}")
-    print(f"ONTOLOGY INFORMATION")
+    print("ONTOLOGY INFORMATION")
     print(f"{'='*60}")
     print(f"Name: {info['name']}")
     print(f"Base IRI: {info['base_iri']}")
-    print(f"\nEntity Counts:")
+    print("\nEntity Counts:")
     print(f"  Classes:               {info['num_classes']:>6}")
     print(f"  Object Properties:     {info['num_object_properties']:>6}")
     print(f"  Data Properties:       {info['num_data_properties']:>6}")
