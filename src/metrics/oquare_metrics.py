@@ -39,7 +39,7 @@ class OQuaREMetrics:
     # ANNOTATION RICHNESS (ANOnto) - FIXED
     # =========================================================================
     
-    def calculate_anonto(self, verbose: bool = False) -> float:
+    def calculate_anonto(self, *, verbose: bool = False) -> float:
         """
         Annotation Richness: Mean number of annotations per class.
         

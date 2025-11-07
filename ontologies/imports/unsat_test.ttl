@@ -1,0 +1,14 @@
+@prefix : <http://example.org/unsat#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:UnsatOntology a owl:Ontology .
+
+:ClassA a owl:Class .
+:ClassB a owl:Class .
+
+# ClassA is subclass of ClassB
+:ClassA rdfs:subClassOf :ClassB .
+# And also subclass of the complement of ClassB -> unsatisfiable
+:ClassA rdfs:subClassOf [ owl:complementOf :ClassB ] .

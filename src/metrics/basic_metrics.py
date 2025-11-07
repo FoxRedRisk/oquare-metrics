@@ -158,7 +158,7 @@ class OntologyBasicMetrics:
         logger.debug("Individuals: %d", count)
         return count
     
-    def _count_entity_annotations(self, entities, entity_type: str, exclude_self: bool = False) -> int:
+    def _count_entity_annotations(self, entities, entity_type: str, *, exclude_self: bool = False) -> int:
         """
         Helper method to count annotations on a collection of entities.
         

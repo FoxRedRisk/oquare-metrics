@@ -12,6 +12,9 @@ import logging
 from pathlib import Path
 from typing import Optional, Union, Tuple
 import owlready2 as owl2
+from rdflib import Graph as RDFGraph
+import tempfile
+import os
 
 logger = logging.getLogger(__name__)
 
@@ -66,13 +69,49 @@ def _print_class_hierarchy(classes: list) -> None:
             print(f"    All ancestors: {ancestors}")
 
 
-def _print_consistency_check() -> None:
-    """Print consistency check results."""
+def _print_consistency_check(onto: owl2.Ontology) -> None:
+    """Print consistency check results.
+
+    This implementation attempts to detect unsatisfiable (inconsistent)
+    classes by checking for references to the `Nothing` class after
+    reasoning. If owlready2 does not expose `Nothing`, or an error
+    occurs while inspecting the ontology, the exception is logged and
+    the check reports that it could not be performed.
+    """
     print("\nConsistency Check:")
     try:
-        print("  Ontology is consistent ✓")
-    except Exception:
-        print("  Inconsistencies detected! ✗")
+        nothing = getattr(owl2, 'Nothing', None)
+
+        if nothing is None:
+            # If Nothing is not available, we can't perform this check reliably
+            print("  Consistency check not available (Nothing class not found) — skipped")
+            logger.warning("owlready2.Nothing not available; consistency check skipped")
+            return
+
+        # Find classes that are equivalent to or subclassed to Nothing (unsatisfiable)
+        inconsistent = []
+        for cls in onto.classes():
+            try:
+                eqs = getattr(cls, 'equivalent_to', []) or []
+                isas = getattr(cls, 'is_a', []) or []
+                if nothing in eqs or nothing in isas:
+                    inconsistent.append(cls)
+            except Exception:
+                # Ignore errors inspecting an individual class but log them
+                logger.exception("Error while inspecting class for consistency: %s", cls)
+
+        if inconsistent:
+            print("  Inconsistencies detected! ✗")
+            for ic in inconsistent:
+                name = getattr(ic, 'name', None) or str(ic)
+                print(f"    - {name}")
+            logger.warning("Detected %d inconsistent classes", len(inconsistent))
+        else:
+            print("  Ontology is consistent ✓")
+    except Exception as e:
+        # Only log exceptions from the check — do not swallow them silently
+        logger.exception("Failed to perform consistency check: %s", e)
+        print("  Consistency check could not be performed — see logs for details")
 
 
 def _display_reasoning_results(onto: owl2.Ontology) -> None:
@@ -97,7 +136,7 @@ def _display_reasoning_results(onto: owl2.Ontology) -> None:
     print(f"  Individuals: {len(individuals_after)}")
     
     _print_class_hierarchy(classes_after)
-    _print_consistency_check()
+    _print_consistency_check(onto)
     
     print(f"{'='*70}")
     print("✓ Reasoning completed successfully")
@@ -177,8 +216,32 @@ def load_ontology(
     
     logger.info("Loading ontology from: %s", ontology_path)
     
+    # If the input is Turtle/N3, convert it to RDF/XML first to avoid
+    # downstream reasoning tools (HermiT) choking on Turtle parsing quirks.
+    tmp_path = None
+    suffix = ontology_path.suffix.lower()
     try:
-        onto = owl2.get_ontology(str(ontology_path)).load()
+        if suffix in ('.ttl', '.n3'):
+            try:
+                logger.info("Converting Turtle/N3 ontology to RDF/XML for stable loading: %s", ontology_path)
+                g = RDFGraph()
+                g.parse(str(ontology_path), format='turtle')
+                # Write out to a temporary RDF/XML file
+                with tempfile.NamedTemporaryFile('wb', delete=False, suffix='.owl') as tmpf:
+                    tmp_path = tmpf.name
+                    xml_bytes = g.serialize(format='xml')
+                    if isinstance(xml_bytes, str):
+                        xml_bytes = xml_bytes.encode('utf-8')
+                    tmpf.write(xml_bytes)
+                load_target = tmp_path
+            except Exception as e_conv:
+                # If conversion fails, log and attempt to let owlready2 try directly as a fallback
+                logger.warning("Failed to convert Turtle to RDF/XML (%s); will attempt direct load: %s", ontology_path, e_conv)
+                load_target = str(ontology_path)
+        else:
+            load_target = str(ontology_path)
+
+        onto = owl2.get_ontology(load_target).load()
         logger.info("Successfully loaded ontology: %s", onto.base_iri)
         
         _log_ontology_statistics(onto)
@@ -187,9 +250,15 @@ def load_ontology(
             _apply_reasoning(onto, reasoner)
         
         return onto
-        
     except Exception as e:
         raise OntologyLoadError(f"Failed to load ontology: {e}") from e
+    finally:
+        # Clean up any temporary conversion file we created
+        if tmp_path:
+            try:
+                os.remove(tmp_path)
+            except Exception:
+                logger.debug("Temporary file %s could not be removed", tmp_path)
 
 
 def get_ontology_info(onto: owl2.Ontology) -> dict:

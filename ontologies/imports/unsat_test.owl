@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://example.org/unsat#"
+     xml:base="http://example.org/unsat"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <owl:Ontology rdf:about="http://example.org/unsat"/>
+
+  <owl:Class rdf:about="http://example.org/unsat#ClassA">
+    <rdfs:subClassOf rdf:resource="http://example.org/unsat#ClassB"/>
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:complementOf rdf:resource="http://example.org/unsat#ClassB"/>
+      </owl:Class>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://example.org/unsat#ClassB"/>
+</rdf:RDF>
