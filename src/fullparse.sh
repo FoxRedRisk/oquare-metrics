@@ -31,7 +31,7 @@ log "Starting fullparse.sh with arguments: $@"
 
 # Check if the OQuaRE tool exists
 OQUARE_PATH=$(readlink -f "$SCRIPT_DIR/../libs/oquare-versions.jar")
-if [ ! -f "$OQUARE_PATH" ]; then
+if [[ ! -f "$OQUARE_PATH" ]]; then
     log "Error: OQuaRE tool not found at $OQUARE_PATH"
     exit 1
 fi
@@ -89,7 +89,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Check for required arguments
-if [ -z "$contents_folder" ] || [ -z "$ontology_folders" ] || [ -z "$ontology_files" ]; then
+if [[ -z "$contents_folder" || -z "$ontology_folders" || -z "$ontology_files" ]]; then
     log "Error: Missing required arguments"
     usage
 fi
@@ -120,7 +120,7 @@ log "Ontology files: $ontology_files"
 log "Reasoner: $reasoner"
 
 # Create necessary directories if they don't exist
-if [ ! -d "$contents_folder/temp_results/ontologies/imports" ]; then
+if [[ ! -d "$contents_folder/temp_results/ontologies/imports" ]]; then
     mkdir -p "$contents_folder/temp_results/ontologies/imports"
     log "Created directory: $contents_folder/temp_results/ontologies/imports"
 else
@@ -131,7 +131,7 @@ fi
 log "Ontology file path: $ontology_files"
 
 # Verify that ontology_files is not empty
-if [ -z "$ontology_files" ]; then
+if [[ -z "$ontology_files" ]]; then
     log "Error: Ontology file path is empty"
     exit 1
 fi
