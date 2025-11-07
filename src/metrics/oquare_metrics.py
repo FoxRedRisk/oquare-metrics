@@ -39,7 +39,7 @@ class OQuaREMetrics:
     # ANNOTATION RICHNESS (ANOnto) - FIXED
     # =========================================================================
     
-    def calculate_ANOnto(self, verbose: bool = False) -> float:
+    def calculate_anonto(self, verbose: bool = False) -> float:
         """
         Annotation Richness: Mean number of annotations per class.
         
@@ -65,9 +65,9 @@ class OQuaREMetrics:
         
         if verbose:
             print(f"\n{'='*70}")
-            print(f"ANOnto (Annotation Richness)")
+            print("ANOnto (Annotation Richness)")
             print(f"{'='*70}")
-            print(f"Formula: ANOnto = ∑|ACi| / ∑|Ci|")
+            print("Formula: ANOnto = ∑|ACi| / ∑|Ci|")
             print(f"Calculation: {sum_annotations} / {num_classes} = {anonto:.6f}")
             print(f"{'='*70}")
         
@@ -78,7 +78,7 @@ class OQuaREMetrics:
     # CLASS RICHNESS (CROnto)
     # =========================================================================
     
-    def calculate_CROnto(self) -> float:
+    def calculate_cronto(self) -> float:
         """
         Class Richness: Mean number of instances per class.
         
@@ -106,7 +106,7 @@ class OQuaREMetrics:
     # NUMBER OF PROPERTIES (NOMOnto)
     # =========================================================================
     
-    def calculate_NOMOnto(self) -> float:
+    def calculate_nomonto(self) -> float:
         """
         Number of Properties: Number of properties per class.
         
@@ -134,7 +134,7 @@ class OQuaREMetrics:
     # RELATIONSHIPS PER CLASS (INROnto)
     # =========================================================================
     
-    def calculate_INROnto(self) -> float:
+    def calculate_inronto(self) -> float:
         """
         Instance Relationships: Mean number of relationships per class.
         
@@ -162,7 +162,7 @@ class OQuaREMetrics:
     # ATTRIBUTE RICHNESS (AROnto)
     # =========================================================================
     
-    def calculate_AROnto(self) -> float:
+    def calculate_aronto(self) -> float:
         """
         Attribute Richness: Mean number of attributes per class.
         
@@ -190,7 +190,7 @@ class OQuaREMetrics:
     # DEPTH OF INHERITANCE TREE (DITOnto)
     # =========================================================================
     
-    def calculate_DITOnto(self) -> int:
+    def calculate_ditonto(self) -> int:
         """
         Depth of Subsumption Hierarchy: Length of the largest path from Thing to a leaf class.
         
@@ -212,7 +212,7 @@ class OQuaREMetrics:
     # NUMBER OF ANCESTOR CLASSES (NACOnto)
     # =========================================================================
     
-    def calculate_NACOnto(self) -> float:
+    def calculate_naconto(self) -> float:
         """
         Number of Ancestor Classes: Mean number of ancestor classes per leaf class.
         
@@ -240,7 +240,7 @@ class OQuaREMetrics:
     # NUMBER OF CHILDREN (NOCOnto)
     # =========================================================================
     
-    def calculate_NOCOnto(self) -> float:
+    def calculate_noconto(self) -> float:
         """
         Number of Children: Mean number of direct subclasses.
         
@@ -271,7 +271,7 @@ class OQuaREMetrics:
     # COUPLING BETWEEN OBJECTS (CBOOnto)
     # =========================================================================
     
-    def calculate_CBOOnto(self) -> float:
+    def calculate_cboonto(self) -> float:
         """
         Coupling Between Objects: Number of related classes.
         
@@ -302,7 +302,7 @@ class OQuaREMetrics:
     # WEIGHTED METHOD COUNT (WMCOnto)
     # =========================================================================
     
-    def calculate_WMCOnto(self) -> float:
+    def calculate_wmconto(self) -> float:
         """
         Weighted Method Count: Mean number of properties and relationships per class.
         
@@ -331,7 +331,7 @@ class OQuaREMetrics:
     # RESPONSE FOR A CLASS (RFCOnto)
     # =========================================================================
     
-    def calculate_RFCOnto(self) -> float:
+    def calculate_rfconto(self) -> float:
         """
         Response For a Class: Number of properties that can be directly accessed from the class.
         
@@ -363,7 +363,7 @@ class OQuaREMetrics:
     # PROPERTIES RICHNESS (RROnto)
     # =========================================================================
     
-    def calculate_RROnto(self) -> float:
+    def calculate_rronto(self) -> float:
         """
         Properties Richness: Number of properties defined divided by relationships and properties.
         
@@ -394,7 +394,7 @@ class OQuaREMetrics:
     # LACK OF COHESION IN METHODS (LCOMOnto)
     # =========================================================================
     
-    def calculate_LCOMOnto(self) -> float:
+    def calculate_lcomonto(self) -> float:
         """
         Lack of Cohesion in Methods: Semantic and conceptual relatedness of classes.
         
@@ -409,7 +409,7 @@ class OQuaREMetrics:
             return self._cache['LCOMOnto']
         
         # Get all paths from leaf classes to Thing
-        paths_dict, total_paths, sum_path_lengths = self.basic.get_all_leaf_paths()
+        _, total_paths, sum_path_lengths = self.basic.get_all_leaf_paths()
         
         if total_paths == 0:
             lcomonto = 0.0
@@ -424,7 +424,7 @@ class OQuaREMetrics:
     # TANGLEDNESS (TMOnto)
     # =========================================================================
     
-    def calculate_TMOnto(self) -> float:
+    def calculate_tmonto(self) -> float:
         """
         Tangledness: Mean number of parents per class.
         
@@ -744,20 +744,20 @@ class OQuaREMetrics:
             Dictionary with all OQuaRE metric values
         """
         metrics = {
-            'ANOnto': self.calculate_ANOnto(),
-            'CROnto': self.calculate_CROnto(),
-            'NOMOnto': self.calculate_NOMOnto(),
-            'INROnto': self.calculate_INROnto(),
-            'AROnto': self.calculate_AROnto(),
-            'DITOnto': self.calculate_DITOnto(),
-            'NACOnto': self.calculate_NACOnto(),
-            'NOCOnto': self.calculate_NOCOnto(),
-            'CBOOnto': self.calculate_CBOOnto(),
-            'WMCOnto': self.calculate_WMCOnto(),
-            'RFCOnto': self.calculate_RFCOnto(),
-            'RROnto': self.calculate_RROnto(),
-            'LCOMOnto': self.calculate_LCOMOnto(),
-            'TMOnto': self.calculate_TMOnto(),
+            'ANOnto': self.calculate_anonto(),
+            'CROnto': self.calculate_cronto(),
+            'NOMOnto': self.calculate_nomonto(),
+            'INROnto': self.calculate_inronto(),
+            'AROnto': self.calculate_aronto(),
+            'DITOnto': self.calculate_ditonto(),
+            'NACOnto': self.calculate_naconto(),
+            'NOCOnto': self.calculate_noconto(),
+            'CBOOnto': self.calculate_cboonto(),
+            'WMCOnto': self.calculate_wmconto(),
+            'RFCOnto': self.calculate_rfconto(),
+            'RROnto': self.calculate_rronto(),
+            'LCOMOnto': self.calculate_lcomonto(),
+            'TMOnto': self.calculate_tmonto(),
         }
         
         logger.info("All OQuaRE metrics calculated")
@@ -768,7 +768,7 @@ class OQuaREMetrics:
         metrics = self.calculate_all_metrics()
         
         print(f"\n{'='*85}")
-        print(f"OQUARE QUALITY METRICS WITH SCORES")
+        print("OQUARE QUALITY METRICS WITH SCORES")
         print(f"{'='*85}")
         print(f"{'Metric':<15} {'Value':>15} {'Score':>8} {'Description'}")
         print(f"{'-'*85}")
@@ -803,7 +803,7 @@ class OQuaREMetrics:
     def print_detailed_calculations(self):
         """Print detailed calculations for all metrics showing formulas and values."""
         print(f"\n{'='*80}")
-        print(f"DETAILED METRIC CALCULATIONS")
+        print("DETAILED METRIC CALCULATIONS")
         print(f"{'='*80}\n")
         
         # Get basic values
@@ -819,139 +819,139 @@ class OQuaREMetrics:
         thing_relationships = self.basic.count_thing_relationships()
         classes_multi_parents = self.basic.count_classes_with_multiple_parents()
         max_depth = self.basic.get_maximum_depth()
-        paths_dict, total_paths, sum_path_lengths = self.basic.get_all_leaf_paths()
+        _, total_paths, sum_path_lengths = self.basic.get_all_leaf_paths()
         
         # ANOnto
         anonto = sum_annotations / num_classes if num_classes > 0 else 0.0
-        print(f"1. ANOnto (Annotation Richness)")
-        print(f"   Formula: ANOnto = ∑|ACi| / ∑|Ci|")
-        print(f"   Where:   ∑|ACi| = total annotations (sumOfAnnotations)")
-        print(f"            ∑|Ci| = total classes (numberOfClasses)")
+        print("1. ANOnto (Annotation Richness)")
+        print("   Formula: ANOnto = ∑|ACi| / ∑|Ci|")
+        print("   Where:   ∑|ACi| = total annotations (sumOfAnnotations)")
+        print("            ∑|Ci| = total classes (numberOfClasses)")
         print(f"   Values:  ANOnto = {sum_annotations} / {num_classes}")
         print(f"   Result:  ANOnto = {anonto:.6f}\n")
         
         # CROnto
         cronto = sum_instances / num_classes if num_classes > 0 else 0.0
-        print(f"2. CROnto (Class Richness)")
-        print(f"   Formula: CROnto = ∑|ICi| / ∑|Ci|")
-        print(f"   Where:   ∑|ICi| = total individuals/instances (numberOfIndividuals)")
-        print(f"            ∑|Ci| = total classes (numberOfClasses)")
+        print("2. CROnto (Class Richness)")
+        print("   Formula: CROnto = ∑|ICi| / ∑|Ci|")
+        print("   Where:   ∑|ICi| = total individuals/instances (numberOfIndividuals)")
+        print("            ∑|Ci| = total classes (numberOfClasses)")
         print(f"   Values:  CROnto = {sum_instances} / {num_classes}")
         print(f"   Result:  CROnto = {cronto:.6f}\n")
         
         # NOMOnto
         nomonto = sum_properties / num_classes if num_classes > 0 else 0.0
-        print(f"3. NOMOnto (Number of Properties)")
-        print(f"   Formula: NOMOnto = ∑|PCi| / ∑|Ci|")
-        print(f"   Where:   ∑|PCi| = total properties (numberOfProperties)")
-        print(f"            ∑|Ci| = total classes (numberOfClasses)")
+        print("3. NOMOnto (Number of Properties)")
+        print("   Formula: NOMOnto = ∑|PCi| / ∑|Ci|")
+        print("   Where:   ∑|PCi| = total properties (numberOfProperties)")
+        print("            ∑|Ci| = total classes (numberOfClasses)")
         print(f"   Values:  NOMOnto = {sum_properties} / {num_classes}")
         print(f"   Result:  NOMOnto = {nomonto:.6f}\n")
         
         # INROnto
         inronto = sum_relationships / num_classes if num_classes > 0 else 0.0
-        print(f"4. INROnto (Relationships per Class)")
-        print(f"   Formula: INROnto = ∑|RCi| / ∑|Ci|")
-        print(f"   Where:   ∑|RCi| = total relationships (sumOfRelationships)")
-        print(f"            ∑|Ci| = total classes (numberOfClasses)")
+        print("4. INROnto (Relationships per Class)")
+        print("   Formula: INROnto = ∑|RCi| / ∑|Ci|")
+        print("   Where:   ∑|RCi| = total relationships (sumOfRelationships)")
+        print("            ∑|Ci| = total classes (numberOfClasses)")
         print(f"   Values:  INROnto = {sum_relationships} / {num_classes}")
         print(f"   Result:  INROnto = {inronto:.6f}\n")
         
         # AROnto
         aronto = sum_attributes / num_classes if num_classes > 0 else 0.0
-        print(f"5. AROnto (Attribute Richness)")
-        print(f"   Formula: AROnto = ∑|AttCi| / ∑|Ci|")
-        print(f"   Where:   ∑|AttCi| = total attributes (sumOfAttributes)")
-        print(f"            ∑|Ci| = total classes (numberOfClasses)")
+        print("5. AROnto (Attribute Richness)")
+        print("   Formula: AROnto = ∑|AttCi| / ∑|Ci|")
+        print("   Where:   ∑|AttCi| = total attributes (sumOfAttributes)")
+        print("            ∑|Ci| = total classes (numberOfClasses)")
         print(f"   Values:  AROnto = {sum_attributes} / {num_classes}")
         print(f"   Result:  AROnto = {aronto:.6f}\n")
         
         # DITOnto
-        print(f"6. DITOnto (Depth of Inheritance Tree)")
-        print(f"   Formula: DITOnto = Max(∑D|Ci|)")
-        print(f"   Where:   Max(∑D|Ci|) = maximum depth from root to leaf (maximumDepth)")
+        print("6. DITOnto (Depth of Inheritance Tree)")
+        print("   Formula: DITOnto = Max(∑D|Ci|)")
+        print("   Where:   Max(∑D|Ci|) = maximum depth from root to leaf (maximumDepth)")
         print(f"   Values:  DITOnto = {max_depth}")
         print(f"   Result:  DITOnto = {max_depth}\n")
         
         # NACOnto
         naconto = sum_parents_leaf / num_leaf_classes if num_leaf_classes > 0 else 0.0
-        print(f"7. NACOnto (Number of Ancestor Classes)")
-        print(f"   Formula: NACOnto = ∑|SupC(Leaf)i| / ∑|C(leaf)i|")
-        print(f"   Where:   ∑|SupC(Leaf)i| = sum of parents of leaf classes (sumOfDirectParentsLeaf)")
-        print(f"            ∑|C(leaf)i| = total leaf classes (numberOfLeafClasses)")
+        print("7. NACOnto (Number of Ancestor Classes)")
+        print("   Formula: NACOnto = ∑|SupC(Leaf)i| / ∑|C(leaf)i|")
+        print("   Where:   ∑|SupC(Leaf)i| = sum of parents of leaf classes (sumOfDirectParentsLeaf)")
+        print("            ∑|C(leaf)i| = total leaf classes (numberOfLeafClasses)")
         print(f"   Values:  NACOnto = {sum_parents_leaf} / {num_leaf_classes}")
         print(f"   Result:  NACOnto = {naconto:.6f}\n")
         
         # NOCOnto
         denominator = num_classes - thing_relationships
         noconto = sum_relationships / denominator if denominator > 0 else 0.0
-        print(f"8. NOCOnto (Number of Children)")
-        print(f"   Formula: NOCOnto = ∑|RCi| / (∑|Ci| - |RThing|)")
-        print(f"   Where:   ∑|RCi| = total relationships (sumOfRelationships)")
-        print(f"            ∑|Ci| = total classes (numberOfClasses)")
-        print(f"            |RThing| = relationships to Thing (thingRelationships)")
+        print("8. NOCOnto (Number of Children)")
+        print("   Formula: NOCOnto = ∑|RCi| / (∑|Ci| - |RThing|)")
+        print("   Where:   ∑|RCi| = total relationships (sumOfRelationships)")
+        print("            ∑|Ci| = total classes (numberOfClasses)")
+        print("            |RThing| = relationships to Thing (thingRelationships)")
         print(f"   Values:  NOCOnto = {sum_relationships} / ({num_classes} - {thing_relationships})")
         print(f"   Result:  NOCOnto = {noconto:.6f}\n")
         
         # CBOOnto
         cboonto = sum_parents / denominator if denominator > 0 else 0.0
-        print(f"9. CBOOnto (Coupling Between Objects)")
-        print(f"   Formula: CBOOnto = ∑|SupCi| / (∑|Ci| - |RThing|)")
-        print(f"   Where:   ∑|SupCi| = sum of direct parents (sumOfDirectParents)")
-        print(f"            ∑|Ci| = total classes (numberOfClasses)")
-        print(f"            |RThing| = relationships to Thing (thingRelationships)")
+        print("9. CBOOnto (Coupling Between Objects)")
+        print("   Formula: CBOOnto = ∑|SupCi| / (∑|Ci| - |RThing|)")
+        print("   Where:   ∑|SupCi| = sum of direct parents (sumOfDirectParents)")
+        print("            ∑|Ci| = total classes (numberOfClasses)")
+        print("            |RThing| = relationships to Thing (thingRelationships)")
         print(f"   Values:  CBOOnto = {sum_parents} / ({num_classes} - {thing_relationships})")
         print(f"   Result:  CBOOnto = {cboonto:.6f}\n")
         
         # WMCOnto
         wmconto = (sum_properties + sum_relationships) / num_classes if num_classes > 0 else 0.0
-        print(f"10. WMCOnto (Weighted Method Count)")
-        print(f"    Formula: WMCOnto = (∑|PCi| + ∑|RCi|) / ∑|Ci|")
-        print(f"    Where:   ∑|PCi| = total properties (numberOfProperties)")
-        print(f"             ∑|RCi| = total relationships (sumOfRelationships)")
-        print(f"             ∑|Ci| = total classes (numberOfClasses)")
+        print("10. WMCOnto (Weighted Method Count)")
+        print("    Formula: WMCOnto = (∑|PCi| + ∑|RCi|) / ∑|Ci|")
+        print("    Where:   ∑|PCi| = total properties (numberOfProperties)")
+        print("             ∑|RCi| = total relationships (sumOfRelationships)")
+        print("             ∑|Ci| = total classes (numberOfClasses)")
         print(f"    Values:  WMCOnto = ({sum_properties} + {sum_relationships}) / {num_classes}")
         print(f"    Result:  WMCOnto = {wmconto:.6f}\n")
         
         # RFCOnto
         rfconto = (sum_properties + sum_parents) / denominator if denominator > 0 else 0.0
-        print(f"11. RFCOnto (Response For a Class)")
-        print(f"    Formula: RFCOnto = (∑|PCi| + ∑|SupCi|) / (∑|Ci| - |RThing|)")
-        print(f"    Where:   ∑|PCi| = total properties (numberOfProperties)")
-        print(f"             ∑|SupCi| = sum of direct parents (sumOfDirectParents)")
-        print(f"             ∑|Ci| = total classes (numberOfClasses)")
-        print(f"             |RThing| = relationships to Thing (thingRelationships)")
+        print("11. RFCOnto (Response For a Class)")
+        print("    Formula: RFCOnto = (∑|PCi| + ∑|SupCi|) / (∑|Ci| - |RThing|)")
+        print("    Where:   ∑|PCi| = total properties (numberOfProperties)")
+        print("             ∑|SupCi| = sum of direct parents (sumOfDirectParents)")
+        print("             ∑|Ci| = total classes (numberOfClasses)")
+        print("             |RThing| = relationships to Thing (thingRelationships)")
         print(f"    Values:  RFCOnto = ({sum_properties} + {sum_parents}) / ({num_classes} - {thing_relationships})")
         print(f"    Result:  RFCOnto = {rfconto:.6f}\n")
         
         # RROnto
         denom_rr = sum_relationships + num_classes
         rronto = sum_properties / denom_rr if denom_rr > 0 else 0.0
-        print(f"12. RROnto (Properties Richness)")
-        print(f"    Formula: RROnto = ∑|PCi| / (∑|RCi| + ∑|Ci|)")
-        print(f"    Where:   ∑|PCi| = total properties (numberOfProperties)")
-        print(f"             ∑|RCi| = total relationships (sumOfRelationships)")
-        print(f"             ∑|Ci| = total classes (numberOfClasses)")
+        print("12. RROnto (Properties Richness)")
+        print("    Formula: RROnto = ∑|PCi| / (∑|RCi| + ∑|Ci|)")
+        print("    Where:   ∑|PCi| = total properties (numberOfProperties)")
+        print("             ∑|RCi| = total relationships (sumOfRelationships)")
+        print("             ∑|Ci| = total classes (numberOfClasses)")
         print(f"    Values:  RROnto = {sum_properties} / ({sum_relationships} + {num_classes})")
         print(f"    Result:  RROnto = {rronto:.6f}\n")
         
         # LCOMOnto
         lcomonto = sum_path_lengths / total_paths if total_paths > 0 else 0.0
-        print(f"13. LCOMOnto (Lack of Cohesion)")
-        print(f"    Formula: LCOMOnto = ∑path(|C(leaf)i|) / m")
-        print(f"    Where:   ∑path(|C(leaf)i|) = sum of all path lengths from leaves to root")
-        print(f"             m = total number of paths from leaf classes")
+        print("13. LCOMOnto (Lack of Cohesion)")
+        print("    Formula: LCOMOnto = ∑path(|C(leaf)i|) / m")
+        print("    Where:   ∑path(|C(leaf)i|) = sum of all path lengths from leaves to root")
+        print("             m = total number of paths from leaf classes")
         print(f"    Values:  LCOMOnto = {sum_path_lengths} / {total_paths}")
         print(f"    Result:  LCOMOnto = {lcomonto:.6f}\n")
         
         # TMOnto
         denom_tm = num_classes - classes_multi_parents
         tmonto = sum_relationships / denom_tm if denom_tm > 0 else 0.0
-        print(f"14. TMOnto (Tangledness)")
-        print(f"    Formula: TMOnto = ∑|RCi| / (∑|Ci| - ∑|C(DP)i|)")
-        print(f"    Where:   ∑|RCi| = total relationships (sumOfRelationships)")
-        print(f"             ∑|Ci| = total classes (numberOfClasses)")
-        print(f"             ∑|C(DP)i| = classes with multiple parents (classesWithMultipleParents)")
+        print("14. TMOnto (Tangledness)")
+        print("    Formula: TMOnto = ∑|RCi| / (∑|Ci| - ∑|C(DP)i|)")
+        print("    Where:   ∑|RCi| = total relationships (sumOfRelationships)")
+        print("             ∑|Ci| = total classes (numberOfClasses)")
+        print("             ∑|C(DP)i| = classes with multiple parents (classesWithMultipleParents)")
         print(f"    Values:  TMOnto = {sum_relationships} / ({num_classes} - {classes_multi_parents})")
         print(f"    Result:  TMOnto = {tmonto:.6f}\n")
         
