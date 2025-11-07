@@ -37,7 +37,7 @@ def analyze_annotation_properties(ontology_file):
     except (KeyboardInterrupt, SystemExit):
         # Re-raise system-level exceptions
         raise
-    except (IOError, OSError, rdflib_exceptions.Error) as e:
+    except (OSError, rdflib_exceptions.Error) as e:
         print(f"✗ Error loading ontology: {str(e)}")
         return None
 

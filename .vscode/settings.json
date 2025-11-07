@@ -2,5 +2,10 @@
     "sonarlint.connectedMode.project": {
         "connectionId": "foxredrisk",
         "projectKey": "FoxRedRisk_oquare-metrics"
-    }
+    },
+    "python.testing.pytestArgs": [
+        "TestFiles"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }

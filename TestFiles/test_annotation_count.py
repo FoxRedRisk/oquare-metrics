@@ -94,24 +94,19 @@ def _load_ontology_graph(ontology_file: str) -> Graph | None:
         return g
     except FileNotFoundError as e:
         logger.exception("Ontology file not found: %s", ontology_file)
-        print("✗ Error: Ontology file not found: %s" % ontology_file)
-        print("  Details: %s" % e)
+        print(f"✗ Error: Ontology file not found: {ontology_file}\n  Details: {e}")
     except ValueError as e:
-        logger.exception("Invalid file format or corrupted ontology")
-        print("✗ Error: Invalid file format or corrupted ontology")
-        print("  Details: %s" % e)
-        print("  Hint: Ensure the file is valid RDF/XML format")
+        logger.exception("Invalid file format or corrupted ontology: %s", e)
+        print(f"✗ Error: Invalid file format or corrupted ontology\n  Details: {e}\n  Hint: Ensure the file is valid RDF/XML format")
     except PermissionError as e:
         logger.exception("Permission denied accessing file: %s", ontology_file)
-        print("✗ Error: Permission denied accessing file: %s" % ontology_file)
-        print("  Details: %s" % e)
+        print(f"✗ Error: Permission denied accessing file: {ontology_file}\n  Details: {e}")
     except Exception as e:
-        logger.exception("Unexpected error loading ontology: %s", type(e).__name__)
-        print("✗ Error: Unexpected error loading ontology: %s" % type(e).__name__)
-        print("  Details: %s" % e)
-        print("  File: %s" % ontology_file)
+        logger.exception("Unexpected error loading ontology: %s - %s", type(e).__name__, e)
+        print(f"✗ Error: Unexpected error loading ontology: {type(e).__name__}")
+        print(f"  Details: {e}\n  File: {ontology_file}")
         import traceback
-        print("  Traceback:\n%s" % traceback.format_exc())
+        print(f"  Traceback:\n{traceback.format_exc()}")
     
     return None
 
@@ -416,7 +411,7 @@ if __name__ == "__main__":
         else:
             results = count_annotations(ontology_file)
             if results is None:
-                logger.exception("Annotation counting failed")
+                logger.error("Annotation counting failed for file: %s", ontology_file)
                 sys.exit(1)
     except KeyboardInterrupt:
         logger.info("Process interrupted by user")
