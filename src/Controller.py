@@ -151,7 +151,7 @@ class Controller:
             self.graph_plotter.plot_oquare_characteristics(oquare_characteristics_values, file, temp_path)
             self.readme_generator.append_characteristics(file, temp_path)
             logging.info("Characteristics handling completed successfully")
-        except Exception as e:
+        except Exception:
             logging.exception("Error handling characteristics")
 
     def handle_subcharacteristics(self, temp_path: str, file: str, metrics_file: str = None) -> None:
