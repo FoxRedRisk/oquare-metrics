@@ -115,12 +115,12 @@ def print_overall_assessment(score_counts):
     print("  {:.1f}% of metrics scored Poor or Very Poor (L1-L2)".format(poor_pct))
     
     # Determine quality assessment based on excellent percentage
-    if excellent_pct >= 50:
-        assessment = "HIGH QUALITY ontology"
-    elif excellent_pct >= 30:
+    if excellent_pct < 30:
+        assessment = "NEEDS IMPROVEMENT"
+    elif excellent_pct < 50:
         assessment = "MODERATE QUALITY ontology"
     else:
-        assessment = "NEEDS IMPROVEMENT"
+        assessment = "HIGH QUALITY ontology"
     
     print("  → Overall Assessment: {}".format(assessment))
     

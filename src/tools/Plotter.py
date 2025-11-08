@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import matplotx
 import numpy as np
 
-class oquareGraphs:
+class OQuareGraphs:
 
     """Plotter class which makes use of matplotlib
 
@@ -33,12 +33,8 @@ class oquareGraphs:
         values = list(data.values())
         xpos = range(len(values))
 
-        line_labels = list(data.keys())
-        line_labels = list(data.keys())
-        line_labels = list(data.keys())
         img_dir = os.path.join(output_path, 'img')
         os.makedirs(img_dir, exist_ok=True)
-        line_labels = list(data.keys())
         with plt.style.context(matplotx.styles.ayu["light"]):
             plt.rc('font', size=10)
             plt.ylim([0, 5.5])
@@ -46,9 +42,6 @@ class oquareGraphs:
             plt.xticks(xpos, dates, fontsize=8, rotation=-45, ha="left", rotation_mode="anchor")
             plt.gca().grid(True, which='major', axis='both', color='#888888', linestyle='--')
             plt.title('OQuaRE model values')
-            line_labels = list(data.keys())
-            img_dir = os.path.join(output_path, 'img')
-            os.makedirs(img_dir, exist_ok=True)
             plt.savefig(os.path.join(img_dir, file + '_OQuaRE_model_values.png'), format="png", bbox_inches='tight')
 
         plt.clf()
@@ -66,10 +59,6 @@ class oquareGraphs:
         output_path -- Path to where the figure will be saved to
         
         """
-        line_labels = list(data.keys())
-        line_labels = list(data.keys())
-        line_labels = list(data.keys())
-        line_labels = list(data.keys())
         img_dir = os.path.join(output_path, 'img')
         os.makedirs(img_dir, exist_ok=True)
         
@@ -163,8 +152,6 @@ class oquareGraphs:
             values = list(subcharacteristics.values())
             ypos = range(len(values))
 
-            img_dir = os.path.join(output_path, 'img')
-            os.makedirs(img_dir, exist_ok=True)
             with plt.style.context(matplotx.styles.ayu["light"]):
 
                 if len(values) == 1:
@@ -197,6 +184,8 @@ class oquareGraphs:
         """
         img_dir = os.path.join(output_path, 'img')
         os.makedirs(img_dir, exist_ok=True)
+        
+        line_labels = list(data.keys())
         
         with plt.style.context(matplotx.styles.ayu["light"]):
             
@@ -260,6 +249,8 @@ class oquareGraphs:
         img_dir = os.path.join(output_path, 'img')
         os.makedirs(img_dir, exist_ok=True)
         
+        line_labels = list(data.keys())
+        
         with plt.style.context(matplotx.styles.ayu["light"]):
 
             for label in line_labels:
@@ -280,7 +271,7 @@ class oquareGraphs:
 
             img_dir = os.path.join(output_path, 'img')
             os.makedirs(img_dir, exist_ok=True)
-            fig, axs = plt.subplots(4, 5, figsize=(12,12))
+            _, axs = plt.subplots(4, 5, figsize=(12,12))
             
             row = 0
             col = 0
@@ -304,8 +295,3 @@ class oquareGraphs:
                     ax.label_outer()
             
             plt.savefig(os.path.join(img_dir, file + '_scaled_metrics_evolution.png'), format='png', bbox_inches='tight')
-
-
-
-
-        return

@@ -2,7 +2,7 @@
 import glob
 import logging
 import os
-from tools.Plotter import oquareGraphs
+from tools.Plotter import OQuareGraphs
 from tools.Parser import MetricsParser
 from tools.Reporter import readmeGen
 
@@ -31,7 +31,7 @@ class Controller:
         Class has a plotter and reporter instances as fields for easy usage
 
         """
-        self.graph_plotter = oquareGraphs()
+        self.graph_plotter = OQuareGraphs()
         self.readme_generator = readmeGen()
 
     def store_metrics_evolution(self, metrics: dict, data_store: dict, date: str) -> None:
