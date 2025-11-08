@@ -30,9 +30,11 @@ def load_and_prepare_ontology(ontology_path):
     print("Loading ontology from: {}".format(ontology_path))
     try:
         ontology = load_ontology(ontology_path, reasoner=None, use_reasoning=False)
-    except Exception as e:
-        print("✗ Failed to load ontology: {}\n".format(e))
+    except (IOError, OSError, ValueError, ImportError) as e:
+        print(f"✗ Failed to load ontology: {e}\n")
         return None, None
+    except (KeyboardInterrupt, SystemExit, GeneratorExit):
+        raise
     
     print("✓ Ontology loaded successfully!\n")
     
