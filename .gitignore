@@ -97,6 +97,7 @@ generate_images.log
 *.bak
 *.swp
 *~
+nul
 
 # Logs
 *.log
