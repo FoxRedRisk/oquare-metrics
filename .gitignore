@@ -1,5 +1,10 @@
 # Aider
 .aider*
+.sonarlint/*/
+.vscode/*/
+__pycache__/*/
+Markdown/*/
+TestFiles/*/
 
 # Python
 __pycache__/
