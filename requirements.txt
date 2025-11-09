@@ -5,4 +5,4 @@ owlready2
 numpy
 pandas
 seaborn
-defusedxml
+defusedxml>=0.7.1

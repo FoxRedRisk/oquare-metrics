@@ -9,25 +9,29 @@ so it can be used with the OQuaRE tool.
 import os
 import urllib.request
 import sys
+from urllib.parse import urlparse
 
 def download_elk():
     """Download ELK reasoner JAR file."""
     
     # ELK reasoner download URL (version 0.4.3 - stable release)
     elk_url = "https://github.com/liveontologies/elk-reasoner/releases/download/v0.4.3/elk-distribution-0.4.3-owlapi-library.zip"
+    expected_domain = "github.com"
     
     libs_dir = "./libs"
     elk_zip = os.path.join(libs_dir, "elk.zip")
     
     print("Downloading ELK reasoner...")
-    print(f"URL: {elk_url}")
     
     try:
-        # Validate URL scheme to prevent file:/ or custom scheme attacks
-        if not elk_url.startswith('https://'):
-            print("✗ Error: Invalid URL scheme. Only HTTPS URLs are allowed.")
+        # Validate URL is HTTPS and from expected domain
+        parsed = urlparse(elk_url)
+        if parsed.scheme != 'https' or parsed.netloc != expected_domain:
+            print("✗ Error: Invalid URL. Only HTTPS URLs from github.com are allowed.")
             print(f"  Provided URL: {elk_url}")
             return False
+        
+        print(f"URL: {elk_url}")
         
         # Download the file
         urllib.request.urlretrieve(elk_url, elk_zip)
