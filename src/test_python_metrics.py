@@ -149,7 +149,7 @@ def _parse_jar_xml(jar_xml: Path) -> dict:
     Returns:
         Dictionary of JAR metrics
     """
-    import xml.etree.ElementTree as ET
+    import defusedxml.ElementTree as ET
     
     try:
         jar_tree = ET.parse(jar_xml)

@@ -12,7 +12,7 @@ import logging
 from pathlib import Path
 from typing import Dict, Optional, Union
 from xml.etree.ElementTree import Element, SubElement, ElementTree, tostring
-from xml.dom import minidom
+from defusedxml import minidom
 from datetime import datetime
 
 logger = logging.getLogger(__name__)
@@ -29,6 +29,7 @@ def prettify_xml(elem: Element) -> str:
         Pretty-printed XML string
     """
     rough_string = tostring(elem, encoding='unicode')
+    # Using defusedxml.minidom to prevent XML attacks (B318 security fix)
     reparsed = minidom.parseString(rough_string)
     return reparsed.toprettyxml(indent="  ")
 

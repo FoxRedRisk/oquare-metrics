@@ -23,6 +23,12 @@ def download_elk():
     print(f"URL: {elk_url}")
     
     try:
+        # Validate URL scheme to prevent file:/ or custom scheme attacks
+        if not elk_url.startswith('https://'):
+            print("✗ Error: Invalid URL scheme. Only HTTPS URLs are allowed.")
+            print(f"  Provided URL: {elk_url}")
+            return False
+        
         # Download the file
         urllib.request.urlretrieve(elk_url, elk_zip)
         print(f"✓ Downloaded to {elk_zip}")

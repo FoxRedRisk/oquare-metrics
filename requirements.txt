@@ -5,3 +5,4 @@ owlready2
 numpy
 pandas
 seaborn
+defusedxml
