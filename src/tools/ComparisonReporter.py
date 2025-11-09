@@ -142,7 +142,6 @@ class ComparisonReporter:
             file_handle: Open file handle for writing
             comparison_data: ComparisonData object
         """
-        metrics_comparison = comparison_data.get_metrics_comparison()
         scaled_metrics_comparison = comparison_data.get_scaled_metrics_comparison()
         
         file_handle.write("## Metrics Comparison\n\n")

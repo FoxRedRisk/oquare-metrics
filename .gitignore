@@ -83,14 +83,9 @@ Thumbs.db
 desktop.ini
 
 # Project-specific: Generated output files
-output/*/metrics/*.xml
-output/*/metrics/img/*.png
-output/*/temp_results/
-output/comparisons/*/img/*.png
-output/comparisons/*/comparison_summary.json
-output/test_python/metrics/*.*
+output/*/
+output/*.*
 generate_images.log
-output/test_python/
 
 # Temporary files
 *.tmp
