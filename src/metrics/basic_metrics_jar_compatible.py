@@ -123,6 +123,21 @@ class OntologyBasicMetrics:
         logger.debug(f"Individuals: {count}")
         return count
     
+    def _count_annotation_values(self, values) -> int:
+        """Helper to count annotation values (list or single)."""
+        if not values:
+            return 0
+        return len(values) if isinstance(values, list) else 1
+    
+    def _count_entity_annotations(self, entities, annotation_properties) -> int:
+        """Helper to count annotations on a collection of entities."""
+        total = 0
+        for entity in entities:
+            for ann_prop in annotation_properties:
+                values = ann_prop[entity]
+                total += self._count_annotation_values(values)
+        return total
+    
     def count_annotations(self) -> int:
         """
         Count ALL annotations on ALL entities in the ontology.
@@ -138,64 +153,26 @@ class OntologyBasicMetrics:
             return self._cache['count_annotations']
         
         total = 0
+        annotation_props = list(self.ontology.annotation_properties())
         
         # Count ontology-level annotations
         try:
-            for annotation in self.ontology.metadata.annotations:
-                total += 1
+            total += len(self.ontology.metadata.annotations)
         except:
             pass
         
-        # Count class annotations
-        for cls in self.ontology.classes():
-            for prop in self.ontology.annotation_properties():
-                values = prop[cls]
-                if values:
-                    if isinstance(values, list):
-                        total += len(values)
-                    else:
-                        total += 1
+        # Count annotations on various entity types
+        total += self._count_entity_annotations(self.ontology.classes(), annotation_props)
+        total += self._count_entity_annotations(self.ontology.object_properties(), annotation_props)
+        total += self._count_entity_annotations(self.ontology.data_properties(), annotation_props)
+        total += self._count_entity_annotations(self.ontology.individuals(), annotation_props)
         
-        # Count object property annotations
-        for prop in self.ontology.object_properties():
-            for ann_prop in self.ontology.annotation_properties():
-                values = ann_prop[prop]
-                if values:
-                    if isinstance(values, list):
-                        total += len(values)
-                    else:
-                        total += 1
-        
-        # Count data property annotations
-        for prop in self.ontology.data_properties():
-            for ann_prop in self.ontology.annotation_properties():
-                values = ann_prop[prop]
-                if values:
-                    if isinstance(values, list):
-                        total += len(values)
-                    else:
-                        total += 1
-        
-        # Count annotation property annotations
-        for prop in self.ontology.annotation_properties():
-            for ann_prop in self.ontology.annotation_properties():
+        # Count annotation property annotations (excluding self-references)
+        for prop in annotation_props:
+            for ann_prop in annotation_props:
                 if prop != ann_prop:
                     values = ann_prop[prop]
-                    if values:
-                        if isinstance(values, list):
-                            total += len(values)
-                        else:
-                            total += 1
-        
-        # Count individual annotations
-        for ind in self.ontology.individuals():
-            for ann_prop in self.ontology.annotation_properties():
-                values = ann_prop[ind]
-                if values:
-                    if isinstance(values, list):
-                        total += len(values)
-                    else:
-                        total += 1
+                    total += self._count_annotation_values(values)
         
         self._cache['count_annotations'] = total
         logger.info(f"Total annotations (FIXED): {total}")
@@ -316,6 +293,25 @@ class OntologyBasicMetrics:
         logger.debug(f"Sum of parents (multi-parent classes): {total}")
         return total
     
+    def _count_property_domain_range(self, properties) -> int:
+        """Helper to count domain and range restrictions for properties."""
+        total = 0
+        for prop in properties:
+            if hasattr(prop, 'domain') and prop.domain:
+                total += 1
+            if hasattr(prop, 'range') and prop.range:
+                total += 1
+        return total
+    
+    def _count_property_assertions(self, individuals, properties) -> int:
+        """Helper to count property assertions on individuals."""
+        total = 0
+        for ind in individuals:
+            for prop in properties:
+                values = prop[ind]
+                total += self._count_annotation_values(values)
+        return total
+    
     def count_property_usages(self) -> int:
         """
         Count total property usages (JAR-compatible).
@@ -324,45 +320,30 @@ class OntologyBasicMetrics:
         if 'property_usages' in self._cache:
             return self._cache['property_usages']
         
+        object_props = list(self.ontology.object_properties())
+        data_props = list(self.ontology.data_properties())
+        individuals = list(self.ontology.individuals())
+        
         total_usages = 0
-        
-        # Count object property assertions
-        for prop in self.ontology.object_properties():
-            # Count domain and range restrictions
-            if hasattr(prop, 'domain') and prop.domain:
-                total_usages += 1
-            if hasattr(prop, 'range') and prop.range:
-                total_usages += 1
-        
-        # Count data property assertions
-        for prop in self.ontology.data_properties():
-            # Count domain and range restrictions
-            if hasattr(prop, 'domain') and prop.domain:
-                total_usages += 1
-            if hasattr(prop, 'range') and prop.range:
-                total_usages += 1
-        
-        # Count actual property uses on individuals
-        for ind in self.ontology.individuals():
-            for prop in self.ontology.object_properties():
-                values = prop[ind]
-                if values:
-                    if isinstance(values, list):
-                        total_usages += len(values)
-                    else:
-                        total_usages += 1
-            
-            for prop in self.ontology.data_properties():
-                values = prop[ind]
-                if values:
-                    if isinstance(values, list):
-                        total_usages += len(values)
-                    else:
-                        total_usages += 1
+        total_usages += self._count_property_domain_range(object_props)
+        total_usages += self._count_property_domain_range(data_props)
+        total_usages += self._count_property_assertions(individuals, object_props)
+        total_usages += self._count_property_assertions(individuals, data_props)
         
         self._cache['property_usages'] = total_usages
         logger.debug(f"Property usages: {total_usages}")
         return total_usages
+    
+    def _count_data_property_domains(self, properties) -> int:
+        """Helper to count data property domain constraints."""
+        total = 0
+        for prop in properties:
+            if hasattr(prop, 'domain') and prop.domain:
+                domains = prop.domain if isinstance(prop.domain, list) else [prop.domain]
+                total += len(domains)
+            if hasattr(prop, 'range') and prop.range:
+                total += 1
+        return total
     
     def sum_attributes(self) -> int:
         """
@@ -372,25 +353,12 @@ class OntologyBasicMetrics:
         if 'sum_attributes' in self._cache:
             return self._cache['sum_attributes']
         
+        data_props = list(self.ontology.data_properties())
+        individuals = list(self.ontology.individuals())
+        
         total = 0
-        
-        # Count data property domains and ranges
-        for prop in self.ontology.data_properties():
-            if hasattr(prop, 'domain') and prop.domain:
-                domains = prop.domain if isinstance(prop.domain, list) else [prop.domain]
-                total += len(domains)
-            if hasattr(prop, 'range') and prop.range:
-                total += 1
-        
-        # Count actual data property assertions on individuals
-        for ind in self.ontology.individuals():
-            for prop in self.ontology.data_properties():
-                values = prop[ind]
-                if values:
-                    if isinstance(values, list):
-                        total += len(values)
-                    else:
-                        total += 1
+        total += self._count_data_property_domains(data_props)
+        total += self._count_property_assertions(individuals, data_props)
         
         self._cache['sum_attributes'] = total
         logger.debug(f"Sum of attributes (JAR-compatible): {total}")
