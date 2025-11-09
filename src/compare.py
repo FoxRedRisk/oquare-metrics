@@ -195,10 +195,18 @@ def print_comparison_summary(comparison_data) -> None:
     print("\n🔝 TOP 5 METRIC CHANGES (by absolute difference):")
     for i, (metric, data) in enumerate(sorted_metrics[:5], 1):
         # Determine change symbol
-        change_symbol = "✓" if data['difference'] > 0 else "✗" if data['difference'] < 0 else "-"
+        if data['difference'] > 0:
+            change_symbol = "✓"
+        elif data['difference'] < 0:
+            change_symbol = "✗"
+        else:
+            change_symbol = "-"
         
         # Format percent change
-        percent_str = f"{data['percent_change']}%" if data['percent_change'] is not None else "N/A"
+        if data['percent_change'] is not None:
+            percent_str = f"{data['percent_change']}%"
+        else:
+            percent_str = "N/A"
         
         print(f"  {i}. {metric}: {data['difference']:+.2f} ({percent_str}) {change_symbol}")
     
