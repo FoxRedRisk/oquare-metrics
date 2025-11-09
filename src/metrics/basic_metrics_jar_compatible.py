@@ -155,11 +155,18 @@ class OntologyBasicMetrics:
         total = 0
         annotation_props = list(self.ontology.annotation_properties())
         
-        # Count ontology-level annotations
+        # Count ontology-level annotations (metadata may be missing or structured differently)
         try:
             total += len(self.ontology.metadata.annotations)
-        except:
-            pass
+        except (AttributeError, TypeError) as e:
+            # Log the issue so we can debug metadata-access problems without crashing.
+            ontology_name = getattr(self.ontology, 'name', '<unknown>')
+            logger.warning(
+                "Could not count ontology-level metadata annotations for ontology %s: %s",
+                ontology_name,
+                e
+            )
+            # Continue without counting ontology-level annotations
         
         # Count annotations on various entity types
         total += self._count_entity_annotations(self.ontology.classes(), annotation_props)
