@@ -195,12 +195,21 @@ def print_comparison_summary(comparison_data) -> None:
     print("\n🔝 TOP 5 METRIC CHANGES (by absolute difference):")
     for i, (metric, data) in enumerate(sorted_metrics[:5], 1):
         # Determine change symbol
-        if data['difference'] > 0:
-            change_symbol = "✓"
-        elif data['difference'] < 0:
-            change_symbol = "✗"
+        difference = data.get('difference')
+        if difference is None:
+            change_symbol = "?"  # Indicates missing or invalid data
         else:
-            change_symbol = "-"
+            try:
+                # Convert to float to handle both int and float inputs
+                difference = float(difference)
+                if difference > 0:
+                    change_symbol = "✓"
+                elif difference < 0:
+                    change_symbol = "✗"
+                else:
+                    change_symbol = "-"  # Exactly zero
+            except (TypeError, ValueError):
+                change_symbol = "!"  # Indicates invalid numeric value
         
         # Format percent change
         if data['percent_change'] is not None:
