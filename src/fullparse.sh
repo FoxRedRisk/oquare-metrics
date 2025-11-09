@@ -17,10 +17,12 @@ log() {
 
 # Function to handle errors
 error_handler() {
+    local line_number=$1
     local exit_code=$?
-    log "Error occurred in line $1 with exit code $exit_code"
+    log "Error occurred in line $line_number with exit code $exit_code"
     log "Last command executed: $BASH_COMMAND"
     exit $exit_code
+    return $exit_code
 }
 
 # Set up error handling
