@@ -12,7 +12,9 @@ fi
 
 # Function to log messages
 log() {
-    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" >&2
+    local message="$1"
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - $message" >&2
+    return 0
 }
 
 # Function to handle errors
@@ -71,6 +73,7 @@ normalize_path() {
     local path="$1"
     # Remove leading './' and convert backslashes to forward slashes
     echo "${path#./}" | sed 's/\\/\//g'
+    return 0
 }
 
 # Parse command-line options
