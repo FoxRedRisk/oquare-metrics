@@ -99,5 +99,3 @@ generate_images.log
 
 # Logs
 *.log
-output/test_python/metrics/lecture_python.xml
-src/metrics/__pycache__/basic_metrics_jar_compatible.cpython-314.pyc

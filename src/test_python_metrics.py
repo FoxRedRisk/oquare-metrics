@@ -120,14 +120,17 @@ def test_ontology(ontology_path: str, reasoner: str = "HermiT", compare_jar: boo
             jar_output_path = Path("output/metrics") / f"{Path(ontology_path).stem}.xml"
             
             if not jar_output_path.exists():
-                logger.warning(f"JAR output not found: {jar_output_path}")
-                logger.warning("Run the JAR first to generate comparison data")
-            else:
-                compare_with_jar(output_path, jar_output_path, basic_values, oquare_values)
+                logger.error(f"✗ JAR output not found: {jar_output_path}")
+                logger.error("Cannot perform comparison without JAR output")
+                logger.error("Please run the JAR implementation first to generate comparison data")
+                return False
+            
+            compare_with_jar(jar_output_path, basic_values, oquare_values)
         except Exception as e:
             logger.error(f"✗ Comparison failed: {e}")
             import traceback
             traceback.print_exc()
+            return False
     
     logger.info("\n" + "=" * 80)
     logger.info("✓ All tests completed successfully!")
@@ -238,12 +241,43 @@ def _print_comparison_summary(fixes: list, issues: list):
     print("")
 
 
-def compare_with_jar(python_xml: Path, jar_xml: Path, python_basic: dict, python_oquare: dict):
+def _compare_single_metric(metric: str, all_python: dict, jar_metrics: dict, 
+                           issues: list, fixes: list):
+    """
+    Compare a single metric between Python and JAR implementations.
+    
+    Args:
+        metric: Metric name to compare
+        all_python: All Python metrics
+        jar_metrics: All JAR metrics
+        issues: List to append issues to
+        fixes: List to append fixes to
+    """
+    if metric not in all_python or metric not in jar_metrics:
+        return
+    
+    py_val = all_python[metric]
+    jar_val = jar_metrics[metric]
+    
+    if not isinstance(py_val, (int, float)) or not isinstance(jar_val, (int, float)):
+        _print_metric_comparison(metric, py_val, jar_val, "-")
+        return
+    
+    status, is_issue, is_fix = _determine_metric_status(metric, py_val, jar_val)
+    
+    if is_fix:
+        fixes.append(metric)
+    if is_issue:
+        issues.append(metric)
+    
+    _print_metric_comparison(metric, py_val, jar_val, status)
+
+
+def compare_with_jar(jar_xml: Path, python_basic: dict, python_oquare: dict):
     """
     Compare Python output with JAR output.
     
     Args:
-        python_xml: Path to Python-generated XML
         jar_xml: Path to JAR-generated XML
         python_basic: Python basic metrics
         python_oquare: Python OQuaRE metrics
@@ -279,21 +313,7 @@ def compare_with_jar(python_xml: Path, jar_xml: Path, python_basic: dict, python
     
     # Compare each metric
     for metric in key_metrics:
-        if metric in all_python and metric in jar_metrics:
-            py_val = all_python[metric]
-            jar_val = jar_metrics[metric]
-            
-            if isinstance(py_val, (int, float)) and isinstance(jar_val, (int, float)):
-                status, is_issue, is_fix = _determine_metric_status(metric, py_val, jar_val)
-                
-                if is_fix:
-                    fixes.append(metric)
-                if is_issue:
-                    issues.append(metric)
-                
-                _print_metric_comparison(metric, py_val, jar_val, status)
-            else:
-                _print_metric_comparison(metric, py_val, jar_val, "-")
+        _compare_single_metric(metric, all_python, jar_metrics, issues, fixes)
     
     # Print summary
     _print_comparison_summary(fixes, issues)

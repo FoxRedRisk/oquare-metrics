@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <ontologyMetrics>
   <ontologyName>ontologies\imports\lecture</ontologyName>
-  <timestamp>2025-11-09T15:00:42.348384</timestamp>
+  <timestamp>2025-11-09T19:34:44.527770</timestamp>
   <generator>OQuaRE-Python-v1.0</generator>
   <basicMetrics>
     <numberOfClasses>5</numberOfClasses>
