@@ -1,10 +1,10 @@
 # Aider
 .aider*
-.sonarlint/*/
-.vscode/*/
-__pycache__/*/
-Markdown/*/
-TestFiles/*/
+.sonarlint/
+.vscode/
+__pycache__/
+Markdown/
+TestFiles/
 
 # Python
 __pycache__/
@@ -88,8 +88,7 @@ Thumbs.db
 desktop.ini
 
 # Project-specific: Generated output files
-output/*/
-output/*.*
+output/
 generate_images.log
 
 # Temporary files
