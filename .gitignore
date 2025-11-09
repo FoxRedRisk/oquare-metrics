@@ -100,3 +100,8 @@ nul
 
 # Logs
 *.log
+
+# Security scan reports
+bandit_report.json
+bandit_report_*.json
+security_scan_*.json
