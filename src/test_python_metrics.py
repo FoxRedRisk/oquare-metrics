@@ -39,12 +39,12 @@ def test_ontology(ontology_path: str, reasoner: str = "HermiT", compare_jar: boo
         reasoner: Reasoner to use
         compare_jar: Whether to compare with JAR output
     """
-    logger.info(f"{'='*80}")
-    logger.info(f"Testing Python OQuaRE Metrics Implementation")
-    logger.info(f"{'='*80}")
+    logger.info("=" * 80)
+    logger.info("Testing Python OQuaRE Metrics Implementation")
+    logger.info("=" * 80)
     logger.info(f"Ontology: {ontology_path}")
     logger.info(f"Reasoner: {reasoner}")
-    logger.info(f"{'='*80}\n")
+    logger.info("=" * 80 + "\n")
     
     # Load ontology
     try:
@@ -63,12 +63,12 @@ def test_ontology(ontology_path: str, reasoner: str = "HermiT", compare_jar: boo
         logger.info("✓ Basic metrics calculated\n")
         
         # Print basic metrics
-        print(f"\n{'='*70}")
-        print(f"BASIC METRICS")
-        print(f"{'='*70}")
+        print("\n" + "=" * 70)
+        print("BASIC METRICS")
+        print("=" * 70)
         for metric, value in basic_values.items():
             print(f"{metric:<35} {value:>10}")
-        print(f"{'='*70}\n")
+        print("=" * 70 + "\n")
         
     except Exception as e:
         logger.error(f"✗ Failed to calculate basic metrics: {e}")
@@ -129,11 +129,113 @@ def test_ontology(ontology_path: str, reasoner: str = "HermiT", compare_jar: boo
             import traceback
             traceback.print_exc()
     
-    logger.info(f"\n{'='*80}")
+    logger.info("\n" + "=" * 80)
     logger.info("✓ All tests completed successfully!")
-    logger.info(f"{'='*80}\n")
+    logger.info("=" * 80 + "\n")
     
     return True
+
+
+def _parse_jar_xml(jar_xml: Path) -> dict:
+    """
+    Parse JAR XML and extract metrics.
+    
+    Args:
+        jar_xml: Path to JAR-generated XML
+        
+    Returns:
+        Dictionary of JAR metrics
+    """
+    import xml.etree.ElementTree as ET
+    
+    try:
+        jar_tree = ET.parse(jar_xml)
+        jar_root = jar_tree.getroot()
+    except Exception as e:
+        logger.error(f"Failed to parse JAR XML: {e}")
+        return {}
+    
+    # Extract JAR metrics
+    jar_metrics = {}
+    excluded_tags = {'metrics', 'ontologyMetrics', 'basicMetrics', 'oquareMetrics', 
+                     'timestamp', 'generator', 'ontologyName'}
+    
+    for elem in jar_root.iter():
+        if elem.text and elem.tag not in excluded_tags:
+            try:
+                jar_metrics[elem.tag] = float(elem.text)
+            except (ValueError, TypeError):
+                jar_metrics[elem.tag] = elem.text
+    
+    return jar_metrics
+
+
+def _determine_metric_status(metric: str, py_val: float, jar_val: float) -> tuple:
+    """
+    Determine the status of a metric comparison.
+    
+    Args:
+        metric: Metric name
+        py_val: Python value
+        jar_val: JAR value
+        
+    Returns:
+        Tuple of (status string, is_issue boolean, is_fix boolean)
+    """
+    diff = abs(py_val - jar_val)
+    percent_diff = (diff / jar_val * 100) if jar_val != 0 else 0
+    
+    if metric == 'sumOfAnnotations' and diff > 0:
+        return "✓ FIXED", False, True
+    elif diff < 0.0001:  # Tolerance for floating point
+        return "✓ Match", False, False
+    elif percent_diff < 1:
+        return "≈ Close", False, False
+    else:
+        return "✗ Diff", True, False
+
+
+def _print_metric_comparison(metric: str, py_val, jar_val, status: str):
+    """
+    Print a single metric comparison line.
+    
+    Args:
+        metric: Metric name
+        py_val: Python value
+        jar_val: JAR value
+        status: Status string
+    """
+    if isinstance(py_val, (int, float)) and isinstance(jar_val, (int, float)):
+        diff = abs(py_val - jar_val)
+        print(f"{metric:<30} {py_val:<20.6f} {jar_val:<20.6f} {diff:<15.6f} {status}")
+    else:
+        print(f"{metric:<30} {py_val!s:<20} {jar_val!s:<20} {'N/A':<15} -")
+
+
+def _print_comparison_summary(fixes: list, issues: list):
+    """
+    Print the comparison summary.
+    
+    Args:
+        fixes: List of fixed metrics
+        issues: List of metrics with issues
+    """
+    print("=" * 105)
+    
+    if fixes:
+        print(f"\n✓ FIXES IMPLEMENTED: {len(fixes)}")
+        for metric in fixes:
+            print(f"  - {metric}: Now counting all annotations (not just rdfs:label/comment)")
+    
+    if not issues:
+        print("\n✓ All other metrics match or are within tolerance")
+    else:
+        print(f"\n⚠ {len(issues)} metrics show significant differences:")
+        for metric in issues:
+            print(f"  - {metric}")
+        print("\nNote: Some differences may be expected due to implementation details")
+    
+    print("")
 
 
 def compare_with_jar(python_xml: Path, jar_xml: Path, python_basic: dict, python_oquare: dict):
@@ -146,30 +248,16 @@ def compare_with_jar(python_xml: Path, jar_xml: Path, python_basic: dict, python
         python_basic: Python basic metrics
         python_oquare: Python OQuaRE metrics
     """
-    import xml.etree.ElementTree as ET
-    
-    logger.info("\n" + "="*80)
+    logger.info("\n" + "=" * 80)
     logger.info("COMPARISON WITH JAR IMPLEMENTATION")
-    logger.info("="*80)
+    logger.info("=" * 80)
     
     # Parse JAR XML
-    try:
-        jar_tree = ET.parse(jar_xml)
-        jar_root = jar_tree.getroot()
-    except Exception as e:
-        logger.error(f"Failed to parse JAR XML: {e}")
+    jar_metrics = _parse_jar_xml(jar_xml)
+    if not jar_metrics:
         return
     
-    # Extract JAR metrics
-    jar_metrics = {}
-    for elem in jar_root.iter():
-        if elem.text and elem.tag not in ['metrics', 'ontologyMetrics', 'basicMetrics', 'oquareMetrics', 'timestamp', 'generator', 'ontologyName']:
-            try:
-                jar_metrics[elem.tag] = float(elem.text)
-            except:
-                jar_metrics[elem.tag] = elem.text
-    
-    # Compare key metrics
+    # Print header
     print(f"\n{'Metric':<30} {'Python':<20} {'JAR':<20} {'Diff':<15} {'Status'}")
     print("-" * 105)
     
@@ -189,48 +277,26 @@ def compare_with_jar(python_xml: Path, jar_xml: Path, python_basic: dict, python
     issues = []
     fixes = []
     
+    # Compare each metric
     for metric in key_metrics:
         if metric in all_python and metric in jar_metrics:
             py_val = all_python[metric]
             jar_val = jar_metrics[metric]
             
-            # Calculate difference
             if isinstance(py_val, (int, float)) and isinstance(jar_val, (int, float)):
-                diff = abs(py_val - jar_val)
-                percent_diff = (diff / jar_val * 100) if jar_val != 0 else 0
+                status, is_issue, is_fix = _determine_metric_status(metric, py_val, jar_val)
                 
-                # Determine status
-                if metric == 'sumOfAnnotations' and diff > 0:
-                    status = "✓ FIXED"
+                if is_fix:
                     fixes.append(metric)
-                elif diff < 0.0001:  # Tolerance for floating point
-                    status = "✓ Match"
-                elif percent_diff < 1:
-                    status = "≈ Close"
-                else:
-                    status = "✗ Diff"
+                if is_issue:
                     issues.append(metric)
                 
-                print(f"{metric:<30} {py_val:<20.6f} {jar_val:<20.6f} {diff:<15.6f} {status}")
+                _print_metric_comparison(metric, py_val, jar_val, status)
             else:
-                print(f"{metric:<30} {py_val!s:<20} {jar_val!s:<20} {'N/A':<15} -")
+                _print_metric_comparison(metric, py_val, jar_val, "-")
     
-    # Summary
-    print("=" * 105)
-    if fixes:
-        print(f"\n✓ FIXES IMPLEMENTED: {len(fixes)}")
-        for metric in fixes:
-            print(f"  - {metric}: Now counting all annotations (not just rdfs:label/comment)")
-    
-    if not issues:
-        print(f"\n✓ All other metrics match or are within tolerance")
-    else:
-        print(f"\n⚠ {len(issues)} metrics show significant differences:")
-        for metric in issues:
-            print(f"  - {metric}")
-        print("\nNote: Some differences may be expected due to implementation details")
-    
-    print("")
+    # Print summary
+    _print_comparison_summary(fixes, issues)
 
 
 def main():
