@@ -120,7 +120,7 @@ def test_ontology(ontology_path: str, reasoner: str = "HermiT", compare_jar: boo
             jar_output_path = Path("output/metrics") / f"{Path(ontology_path).stem}.xml"
             
             if not jar_output_path.exists():
-                logger.error(f"✗ JAR output not found: {jar_output_path}")
+                logger.error("✗ JAR output not found: %s", jar_output_path)
                 logger.error("Cannot perform comparison without JAR output")
                 logger.error("Please run the JAR implementation first to generate comparison data")
                 return False
@@ -242,7 +242,7 @@ def _print_comparison_summary(fixes: list, issues: list):
 
 
 def _compare_single_metric(metric: str, all_python: dict, jar_metrics: dict, 
-                           issues: list, fixes: list):
+                           issues: list, fixes: list) -> None:
     """
     Compare a single metric between Python and JAR implementations.
     
