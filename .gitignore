@@ -90,6 +90,7 @@ output/comparisons/*/img/*.png
 output/comparisons/*/comparison_summary.json
 output/test_python/metrics/*.*
 generate_images.log
+output/test_python/
 
 # Temporary files
 *.tmp
