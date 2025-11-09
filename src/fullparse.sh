@@ -54,6 +54,7 @@ usage() {
     echo "  -m: Generate metrics plot"
     echo "  -e: Generate evolution plot"
     exit 1
+    return 0
 }
 
 # Initialize variables

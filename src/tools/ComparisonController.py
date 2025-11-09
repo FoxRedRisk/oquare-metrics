@@ -130,7 +130,7 @@ class ComparisonController:
             
         except Exception as e:
             self.logger.error(f"Error loading ontology data from {xml_path}: {str(e)}")
-            raise Exception(f"Failed to load ontology data from {xml_path}: {str(e)}")
+            raise RuntimeError(f"Failed to load ontology data from {xml_path}: {str(e)}")
     
     def _create_output_directory(self, output_path: str) -> None:
         """Create output directory structure
@@ -153,4 +153,4 @@ class ComparisonController:
             
         except Exception as e:
             self.logger.error(f"Error creating output directory {output_path}: {str(e)}")
-            raise Exception(f"Failed to create output directory: {str(e)}")
+            raise OSError(f"Failed to create output directory: {str(e)}")
